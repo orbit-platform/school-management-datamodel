@@ -1,0 +1,64 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="std_class_sec_student_trg" directorySegmentName="seg_0" id="FB3A0E28-1A76-03E3-83F4-2615214BE58B">
+<createdBy>leads</createdBy>
+<createdTime>2020-01-21 12:20:07 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>UPDATE</actions>
+<body><![CDATA[DECLARE
+    v_current_status     student.status_name%TYPE;
+    v_doj                student.doj%TYPE;
+    v_last_schooling_day student.last_schooling_day%TYPE;
+BEGIN
+    SELECT
+        status_name,
+        doj,
+        last_schooling_day
+    INTO
+        v_current_status,
+        v_doj,
+        v_last_schooling_day
+    FROM
+        student
+    WHERE
+        id = :old.student_id;
+        
+    ---changes
+    IF v_current_status <> :new.status_name THEN
+        IF (:new.status_name = 'TRANSFERRED' OR :new.status_name = 'DROPPED OUT' OR :new.status_name = 'INACTIVE') THEN
+            IF v_last_schooling_day IS NULL THEN
+                UPDATE student
+                SET
+                    status_name = :new.status_name,
+                    last_schooling_day = sysdate
+                WHERE
+                    id = :old.student_id;
+            ELSE
+                UPDATE student
+                SET
+                    status_name = :new.status_name
+                WHERE
+                    id = :old.student_id;
+            END IF;
+        ELSIF (:new.status_name = 'ACTIVE' OR v_doj IS NULL) THEN
+            IF v_doj IS NULL THEN
+                UPDATE student
+                SET
+                    status_name = :new.status_name,
+                    doj = sysdate
+                WHERE
+                    id = :old.student_id;
+            ELSE
+                UPDATE student
+                SET
+                    status_name = :new.status_name
+                WHERE
+                    id = :old.student_id;
+            END IF;
+        END IF;
+    END IF;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<columns>56C08AC2-804B-4E39-E69F-7B7EB52E2040</columns>
+<condition><![CDATA[NEW.status_name = 'TRANSFERRED' OR NEW.status_name = 'DROPPED OUT' OR NEW.status_name = 'INACTIVE' OR new.status_name = 'ACTIVE']]></condition>
+<table>B9AC28C3-6500-CD48-2021-9D5AAC41E55A</table>
+</TriggerOraclev10g>

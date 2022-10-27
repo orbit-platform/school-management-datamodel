@@ -1,0 +1,25 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="system_credential_chg_trg" directorySegmentName="seg_0" id="96B534CE-9BCB-F33C-4F24-89516F7D95F6">
+<createdBy>leads</createdBy>
+<createdTime>2021-07-16 15:45:39 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[BEGIN
+    IF inserting THEN
+        :new.recovery_email := lower(:new.recovery_email);
+        :new.created_by := nvl(v('APP_USER'), user);
+        :new.created_on := current_timestamp;
+        :new.changed_on := current_timestamp;
+    END IF;
+
+    IF updating THEN
+        :new.recovery_email := lower(:new.recovery_email);
+        :new.updated_by := nvl(v('APP_USER'), user);
+        :new.changed_on := current_timestamp;
+    END IF;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>73A5B718-20AF-4FE7-878D-70DB66F81A6E, 82422ECD-1B81-2858-8851-49FEC65FCEEF, 9F72EB08-5367-A4E8-B92A-DEA82E7E0741, 66715F78-E0DD-B146-FB52-5D9DA99F6251, 68AE28C8-0FAC-C826-212E-9B984683994A, 2708F424-B54F-D870-4E18-F0DB9C52ACB3, AB4AE6EA-CB10-7B86-0424-7AB1A65C96EA, 7D196D0D-6B4B-3530-BD1E-723409328133, 4366CE3E-3749-7517-731F-B48454D70131, 93F1983D-85B8-1DD6-672D-25033FB6351E</columns>
+<table>88E84D6A-3893-2EA5-AADB-3DCA867224B5</table>
+</TriggerOraclev10g>

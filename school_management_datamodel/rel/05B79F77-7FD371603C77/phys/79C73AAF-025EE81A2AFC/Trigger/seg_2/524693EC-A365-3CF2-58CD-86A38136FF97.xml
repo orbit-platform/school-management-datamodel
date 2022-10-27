@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="fee_alert_id_trg" directorySegmentName="seg_2" id="524693EC-A365-3CF2-58CD-86A38136FF97">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-17 05:15:24 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+    :new.id := leadsuser.fee_alert_id_seq.nextval;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<condition><![CDATA[new.id IS NULL]]></condition>
+<table>1861EAFE-2612-C04A-C133-60E4FD8460F2</table>
+</TriggerOraclev10g>

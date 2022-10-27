@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="emp_signature_chg_trg" directorySegmentName="seg_3" id="F6D701E8-11A1-9428-9BC4-B3629A31AE89">
+<createdBy>leads</createdBy>
+<createdTime>2021-01-12 06:53:44 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[BEGIN
+    IF inserting THEN
+        :new.created_by := nvl(v('APP_USER'), user);
+        :new.created_on := current_timestamp;
+        :new.changed_on := current_timestamp;
+    END IF;
+
+    IF updating THEN
+        :new.updated_by := nvl(v('APP_USER'), user);
+        :new.changed_on := current_timestamp;
+    END IF;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>44A3BC28-5A09-F79A-2B0E-D388FCF4215B, E1323D89-DA32-7384-38E8-21E3A20B7404, EACEBC90-A871-3451-29AC-E50DA1CCC493, 60BFF95C-0AA3-AA73-36D2-9B2CAFF09B5F, B06FE366-AEAC-B236-9258-449E6391980F, BC176B7D-E6DC-84B2-849E-68C9E0D64CFC</columns>
+<table>629DF504-56E9-E5B6-7C3C-A64B331D4963</table>
+</TriggerOraclev10g>

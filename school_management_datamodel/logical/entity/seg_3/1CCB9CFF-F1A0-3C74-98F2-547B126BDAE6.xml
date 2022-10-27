@@ -1,0 +1,96 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="1CCB9CFF-F1A0-3C74-98F2-547B126BDAE6" name="assessment">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-10 05:28:57 UTC</createdTime>
+<comment><![CDATA[Assessment Type: Formative/Summative]]></comment>
+<commentInRDBMS><![CDATA[Assessment Type: Formative/Summative]]></commentInRDBMS>
+<notes><![CDATA[Assessment Type: Formative/Summative]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>assessment</preferredAbbreviation>
+<shortName>assessment</shortName>
+<synonym>assessment</synonym>
+<synonymToDisplay>assessment</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="type" id="0D08A73E-D0A2-0388-35F4-B42D77656644">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-10 05:29:53 UTC</createdTime>
+<comment><![CDATA[Type of Assessment]]></comment>
+<commentInRDBMS><![CDATA[Type of Assessment]]></commentInRDBMS>
+<notes><![CDATA[Type of Assessment]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FEB4621B-70B8-BAC5-D17C-4C77910EFC3D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="48698A5B-6F5F-90B0-E97B-CC94BEE4D07A">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-10 05:30:16 UTC</createdTime>
+<comment><![CDATA[Assessment Pseudo Name]]></comment>
+<commentInRDBMS><![CDATA[Assessment Pseudo Name]]></commentInRDBMS>
+<notes><![CDATA[Assessment Pseudo Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FEB4621B-70B8-BAC5-D17C-4C77910EFC3D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="0BFE2C4E-9A8B-CC27-EB71-24642BC88D9A">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-10 05:30:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A7D89DCE-9DB5-1754-FB8B-4364063BEE6F" name="assessment_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-10 05:30:40 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>0D08A73E-D0A2-0388-35F4-B42D77656644</newElementsIDs>
+<usedAttributes>
+<attributeRef>0D08A73E-D0A2-0388-35F4-B42D77656644</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="78816AF1-02F4-00C0-0F58-2A66C28EE871" name="assessment_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-10 05:30:51 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>48698A5B-6F5F-90B0-E97B-CC94BEE4D07A</newElementsIDs>
+<usedAttributes>
+<attributeRef>48698A5B-6F5F-90B0-E97B-CC94BEE4D07A</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_3" id="4171B7D5-DA01-EE8B-2A5D-6256DE13B822" name="category_class">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-03 10:20:18 UTC</createdTime>
+<comment><![CDATA[Category Class Table consists of special classes - Intervension/Musics/Arts/Schetching/etc]]></comment>
+<commentInRDBMS><![CDATA[Category Class Table consists of special classes - Intervension/Musics/Arts/Schetching/etc]]></commentInRDBMS>
+<generatorID>F48B89B4-4CC5-AB81-4E67-EA7E3D4204EA</generatorID>
+<notes><![CDATA[Category Class Table consists of special classes - Intervension/Musics/Arts/Schetching/etc]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<usedAsRemoteObject>true</usedAsRemoteObject>
+<abbreviation>category_class</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="A4110252-DBD7-8DA1-7238-46104A039196">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-03 10:20:18 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="name" id="F80873D0-1572-377A-532C-608814F28B98">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-03 10:20:18 UTC</createdTime>
+<comment><![CDATA[Specialized Class Table consists of special classes - Intervension/Musics/Arts/Schetching/etc]]></comment>
+<commentInRDBMS><![CDATA[Specialized Class Table consists of special classes - Intervension/Musics/Arts/Schetching/etc]]></commentInRDBMS>
+<generatorID>2A840271-F565-2E0F-C802-22DA50CF9887</generatorID>
+<notes><![CDATA[Specialized Class Table consists of special classes - Intervension/Musics/Arts/Schetching/etc]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="AEF9A3DF-1C95-5CA1-B8CB-45A895451826">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-03 10:20:18 UTC</createdTime>
+<generatorID>9B93EFA7-EAA1-E623-96C7-13256EAC41A1</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0FDCEAC5-3E1E-0E61-2D4A-A777184D5A4A" name="category_class_pk">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-03 10:20:18 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="A4110252-DBD7-8DA1-7238-46104A039196"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1067E91A-870B-87A7-3E44-7711F4DA8E30" name="specialized_class_un">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-03 10:20:18 UTC</createdTime>
+<generatorID>08478871-FEA2-0065-0893-AFFBB1B70231</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F80873D0-1572-377A-532C-608814F28B98"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="22DFACD1-1189-B764-A2A0-028C0BA58EFF" name="category_class_id_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-03 10:28:57 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A4110252-DBD7-8DA1-7238-46104A039196"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AE3211A6-04F3-A17A-4121-84356EE8B351" name="category_class_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-03 10:28:57 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F80873D0-1572-377A-532C-608814F28B98"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

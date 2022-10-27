@@ -1,0 +1,158 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="C4A4D1A9-B6B8-C8EF-5C02-60C3A4FBB8FD" name="ecalendar">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-31 03:39:29 UTC</createdTime>
+<comment><![CDATA[Employee Calendar]]></comment>
+<commentInRDBMS><![CDATA[Employee Calendar]]></commentInRDBMS>
+<notes><![CDATA[Employee Calendar]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>ecalendar</preferredAbbreviation>
+<shortName>ecalendar</shortName>
+<synonym>ecalendar</synonym>
+<synonymToDisplay>ecalendar</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="startdate" id="F7A86428-B349-8F3A-3468-A6B4042EEC67">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-31 03:42:33 UTC</createdTime>
+<comment><![CDATA[Start Date and Time]]></comment>
+<commentInRDBMS><![CDATA[Start Date and Time]]></commentInRDBMS>
+<notes><![CDATA[Start Date and Time]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<defaultValue>TRUNC(sysdate, &apos;DD&apos;)</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="enddate" id="AF86DEE6-AEC5-18B0-E9A1-5EB9046C398D">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-31 03:42:56 UTC</createdTime>
+<comment><![CDATA[End Date and Time]]></comment>
+<commentInRDBMS><![CDATA[End Date and Time]]></commentInRDBMS>
+<notes><![CDATA[End Date and Time]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<defaultValue>TRUNC(sysdate, &apos;DD&apos;)</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="allday_flag" id="3BE16EFB-E28A-2DE2-215B-07B2AF324B0F">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-31 04:12:39 UTC</createdTime>
+<generatorID>52696D80-6659-D7E8-55AE-BE8221D5B77B</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>44F79CB3-4A84-AA51-D448-31FA39C447D5</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="reminder" id="F4954D8E-C844-9E53-7E77-05B8168BC341">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-31 04:13:29 UTC</createdTime>
+<comment><![CDATA[Reminder of the Calendar]]></comment>
+<commentInRDBMS><![CDATA[Reminder of the Calendar]]></commentInRDBMS>
+<notes><![CDATA[Reminder of the Calendar]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<defaultValue>TRUNC(sysdate, &apos;DD&apos;)</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="description" id="25240A64-31A1-5A9E-A56C-5EEAF8F65B9E">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-31 03:43:32 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="comments" id="4D05EC3F-381E-874F-195F-8E09113F7474">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-31 03:43:57 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="employee_id" id="10E4BFB6-4D6F-71D3-726C-48267C6D2D32">
+<createdBy>leads</createdBy>
+<createdTime>2020-09-08 05:41:04 UTC</createdTime>
+<comment><![CDATA[Employee ID Number]]></comment>
+<commentInRDBMS><![CDATA[Employee ID Number]]></commentInRDBMS>
+<generatorID>3E37FD96-082C-4B90-BB6A-ED9F8A567B10</generatorID>
+<notes><![CDATA[Employee ID Number]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>C431F04A-9B96-82C0-25D3-8356C925D1F2</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

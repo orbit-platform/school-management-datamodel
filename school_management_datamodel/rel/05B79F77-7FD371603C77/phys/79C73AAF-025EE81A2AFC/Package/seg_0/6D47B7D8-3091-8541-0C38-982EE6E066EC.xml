@@ -1,0 +1,257 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="fee_due_pckg" directorySegmentName="seg_0" id="6D47B7D8-3091-8541-0C38-982EE6E066EC">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-08 11:13:57 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE fee_due_pckg AS
+    PROCEDURE fee_dues_sms_proc (
+        p_school_code       VARCHAR2,
+        p_batch_no          DATE,
+        p_class_code        VARCHAR2,
+        p_stream_code       VARCHAR2,
+        p_accounting_period DATE,
+        p_sms_code          VARCHAR2,
+        p_exception         VARCHAR2,
+        p_message           VARCHAR2
+    );
+END fee_due_pckg;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="fee_due_pckg" id="6D47B7D8-3091-8541-0C38-982EE6E066EC">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-08 11:14:44 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE BODY fee_due_pckg AS
+    PROCEDURE fee_dues_sms_proc (
+        p_school_code       VARCHAR2,
+        p_batch_no          DATE,
+        p_class_code        VARCHAR2,
+        p_stream_code       VARCHAR2,
+        p_accounting_period DATE,
+        p_sms_code          VARCHAR2,
+        p_exception         VARCHAR2,
+        p_message           VARCHAR2
+    ) IS
+        ---variables
+        v_school_code       school.code%TYPE;
+        v_batch_no          batch.no#%TYPE;
+        v_class_code        class.code%TYPE;
+        v_stream_code       stream.code%TYPE;
+        v_accounting_period accounting.period%TYPE;
+        v_exception         VARCHAR2(2000);
+        v_sms_code          sms_template.code%TYPE;
+        v_message           VARCHAR2(1200);
+        v_counter           NUMBER;
+
+        ---cursor
+        CURSOR cur_fee_dues (
+            pschool_code       VARCHAR2,
+            pbatch_no          DATE,
+            pclass_code        VARCHAR2,
+            pstream_code       VARCHAR2,
+            paccounting_period DATE,
+            psms_code          VARCHAR2,
+            pexception         VARCHAR2,
+            pmessage           VARCHAR2
+        ) IS
+        SELECT
+            student_id,
+            guardian_name,
+            telephone,
+            message
+        FROM
+            ( SELECT
+                  accounting_period,
+                  student_id AS student_id,
+                  student_name AS student_name,
+                  guardian_name AS guardian_name,
+                  telephone AS telephone,
+                  fee AS recurr_fees,
+                  paid AS paid,
+                  balance AS dues,
+                  replace(replace(replace(replace(replace(nvl(message, &apos;Select message template&apos;),
+                                                          &apos;$STUDENT_NAME$&apos;,
+                                                          student_name),
+                                                  &apos;$DUES$&apos;,
+                                                  to_char(round(balance),
+                                                          &apos;99,999&apos;) || &apos;/-&apos;),
+                                          &apos;$LINK$&apos;,
+                                          url),
+                                  &apos;$ACCOUNTING_PERIOD$&apos;,
+                                  accounting_period),
+                          &apos;$CLASS_TEACHER$&apos;,
+                          class_teacher) AS message
+              FROM
+                  ( SELECT
+                              std.school_code AS school_code,
+                              scs.batch_no# AS batch_no,
+                              ( SELECT
+                                      pseudo
+                                  FROM
+                                      accounting
+                                WHERE
+                                    period = p_accounting_period
+                              ) AS accounting_period,
+                              scs.class_code AS class_code,
+                              title.name || &apos; &apos; || emp.first_name AS class_teacher,
+                              scs.student_id AS student_id,
+                              g.first_name || &apos; &apos; || g.last_name AS guardian_name,
+                              g.primary_tel AS telephone,
+                              std.first_name || &apos; &apos; || std.last_name AS student_name,
+                              clink.short_url AS url,
+                              SUM(smf.amount) AS fee,
+                              nvl(fpay.amount, 0) AS paid,
+                              SUM(smf.amount) - nvl(fpay.amount, 0) AS balance,
+                              ( SELECT
+                                      text_message
+                                  FROM
+                                      sms_template
+                                WHERE
+                                    code = p_sms_code
+                              ) AS message
+                          FROM
+                                   student std
+                              INNER JOIN company_school csch
+                              ON ( csch.school_code = std.school_code )
+                              INNER JOIN std_class_sec scs
+                              ON ( scs.student_id = std.id )
+                              INNER JOIN std_guardian g
+                              ON ( g.id = std.guardian_id )
+                              INNER JOIN std_monthly_fee smf
+                              ON ( smf.school_code = std.school_code
+                                   AND smf.batch_no# = scs.batch_no#
+                                   AND smf.class_code = scs.class_code
+                                   AND nvl(smf.stream_code, &apos;NA&apos;) = nvl(scs.stream_code,
+                                                                        nvl(smf.stream_code, &apos;NA&apos;))
+                                   AND smf.student_id = scs.student_id )
+                              INNER JOIN school_term sterm
+                              ON ( sterm.school_code = csch.school_code
+                                   AND sterm.batch_no# = scs.batch_no#
+                                   AND sterm.class_code = scs.class_code
+                                   AND nvl(sterm.stream_code, &apos;NA&apos;) = nvl(scs.stream_code,
+                                                                          nvl(sterm.stream_code, &apos;NA&apos;)) )
+                              LEFT OUTER JOIN ( SELECT
+                                                                      school_code,
+                                                                      batch_no#,
+                                                                      student_id,
+                                                                      SUM(amount) AS amount
+                                                                  FROM
+                                                                      fee_payment
+                                                GROUP BY
+                                                    school_code,
+                                                    batch_no#,
+                                                    student_id
+                                              ) fpay
+                              ON ( fpay.school_code = std.school_code
+                                   AND fpay.batch_no# = scs.batch_no#
+                                   AND fpay.student_id = scs.student_id )
+                              INNER JOIN company_link clink
+                              ON ( clink.company_code = csch.company_code
+                                   AND REGEXP_LIKE ( clink.link_type,
+                                                     &apos;SCHOOL FEE PAYMENT&apos;,
+                                                     &apos;i&apos; )
+                                   AND clink.status_name = &apos;ACTIVE&apos; )
+                              LEFT OUTER JOIN ( SELECT
+                                                                                        school_code,
+                                                                                        batch_no#,
+                                                                                        LISTAGG(student_id, &apos;:&apos;) WITHIN GROUP(
+                                                                                        ORDER BY
+                                                                                            student_id
+                                                                                        ) AS std_exception
+                                                                                    FROM
+                                                                                        std_fee_notice
+                                                                  WHERE
+                                                                      status_name = &apos;ACTIVE&apos;
+                                                GROUP BY
+                                                    school_code,
+                                                    batch_no#
+                                              ) sfn
+                              ON ( sfn.school_code = std.school_code
+                                   AND sfn.batch_no# = scs.batch_no# )
+                              INNER JOIN class_teacher cteach
+                              ON ( cteach.school_code = csch.school_code
+                                   AND cteach.batch_no# = smf.batch_no#
+                                   AND cteach.class_code = scs.class_code
+                                   AND nvl(cteach.stream_code, &apos;NA&apos;) = nvl(scs.stream_code,
+                                                                           nvl(cteach.stream_code, &apos;NA&apos;))
+                                   AND cteach.section_code = scs.section_code
+                                   AND cteach.term_code = sterm.term_code
+                                   AND cteach.status_name = &apos;ACTIVE&apos; )
+                              INNER JOIN assistant ass
+                              ON ( ass.code = cteach.assistant_code
+                                   AND REGEXP_LIKE ( ass.name,
+                                                     &apos;^CLASS TEACHER&apos;,
+                                                     &apos;i&apos; ) )
+                              INNER JOIN employee emp
+                              ON ( emp.id = cteach.employee_id )
+                              INNER JOIN title
+                              ON ( title.name = emp.title_name )
+                        WHERE
+                                scs.status_name = &apos;ACTIVE&apos;
+                            AND smf.status_name = &apos;ACTIVE&apos;
+                            AND g.status_name = &apos;ACTIVE&apos;
+                            AND std.school_code = p_school_code
+                            AND scs.batch_no# = p_batch_no
+                            AND scs.class_code = p_class_code
+                            AND nvl(scs.stream_code, &apos;NA&apos;) = nvl(p_stream_code,
+                                                                 nvl(scs.stream_code, &apos;NA&apos;))
+                            AND NOT instr(&apos;:&apos; || sfn.std_exception || &apos;:&apos;, &apos;:&apos; || scs.student_id || &apos;:&apos;) &gt; 0
+                            AND smf.accounting_period &lt;= p_accounting_period
+                      GROUP BY
+                          std.school_code,
+                          scs.batch_no#,
+                          scs.class_code,
+                          title.name || &apos; &apos; || emp.first_name,
+                          scs.student_id,
+                          g.first_name || &apos; &apos; || g.last_name,
+                          g.primary_tel,
+                          std.first_name || &apos; &apos; || std.last_name,
+                          clink.short_url,
+                          nvl(fpay.amount, 0)
+                    HAVING
+                        SUM(smf.amount) - nvl(fpay.amount, 0) &gt;= 100
+                    ORDER BY
+                        student_name
+                  )
+            );
+    BEGIN
+        v_counter := 1;
+        v_school_code := p_school_code;
+        v_batch_no := p_batch_no;
+        v_class_code := p_class_code;
+        v_stream_code := p_stream_code;
+        v_accounting_period := p_accounting_period;
+        v_exception := p_exception;
+        v_sms_code := p_sms_code;
+        v_message := p_message;
+
+        ---sending messages
+        FOR indx IN cur_fee_dues(pschool_code =&gt; v_school_code, pbatch_no =&gt; v_batch_no, pclass_code =&gt; v_class_code, pstream_code =&gt; v_stream_code, paccounting_period =&gt; v_accounting_period,
+                                psms_code =&gt; v_sms_code, pexception =&gt; v_exception, pmessage =&gt; v_message) LOOP
+            leadsuser.pristine_pckg.sendsms(indx.telephone, indx.message);
+
+            ---record the message
+            INSERT INTO leadsuser.sms_log (
+                person#,
+                person_name,
+                sms_code,
+                telephone,
+                message,
+                reason
+            ) VALUES (
+                indx.student_id,
+                indx.guardian_name,
+                v_sms_code,
+                indx.telephone,
+                indx.message,
+                &apos;FEE DUE&apos;
+            );
+            IF v_counter &gt;= 50 THEN
+                v_counter := 1;
+                COMMIT;
+            ELSE
+                v_counter := v_counter + 1;
+            END IF;
+        END LOOP;
+    END fee_dues_sms_proc;
+END fee_due_pckg;</source>
+</body>
+</PackageOracle>

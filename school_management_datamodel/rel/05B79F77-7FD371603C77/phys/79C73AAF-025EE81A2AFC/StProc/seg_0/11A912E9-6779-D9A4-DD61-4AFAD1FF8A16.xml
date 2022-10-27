@@ -1,0 +1,56 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_markcard_param" directorySegmentName="seg_0" id="11A912E9-6779-D9A4-DD61-4AFAD1FF8A16">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-01 18:22:17 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_markcard_param (
+    p_school_code    IN VARCHAR2,
+    p_class_code     IN VARCHAR2,
+    p_stream_code    IN VARCHAR2,
+    p_term_code      IN VARCHAR2,
+    p_parameter_name IN OUT VARCHAR2
+) IS
+
+    ---cursor on parameter_name
+    CURSOR cur_parameter_name (
+        pp_school_code    VARCHAR2,
+        pp_class_code     VARCHAR2,
+        pp_stream_code    VARCHAR2,
+        pp_term_code      VARCHAR2,
+        pp_parameter_name VARCHAR2
+    ) IS
+    SELECT
+        pseudo_name
+    FROM
+        ( SELECT
+                school_code,
+                batch_no#,
+                class_code,
+                stream_code,
+                term_code,
+                parameter_name,
+                pseudo_name,
+                status_type,
+                ROW_NUMBER()
+                OVER(PARTITION BY school_code, class_code, stream_code, term_code, parameter_name
+                     ORDER BY
+                         batch_no# DESC
+                ) AS my_rank
+            FROM
+                school_rep_temp
+          WHERE
+                  school_code = pp_school_code
+              AND class_code = pp_class_code
+              AND stream_code = pp_stream_code
+              AND term_code = pp_term_code
+              AND parameter_name = pp_parameter_name
+        )
+    WHERE
+            my_rank = 1
+        AND status_type = &apos;Y&apos;;
+BEGIN
+    OPEN cur_parameter_name(pp_school_code =&gt; p_school_code, pp_class_code =&gt; p_class_code, pp_stream_code =&gt; p_stream_code, pp_term_code =&gt; p_term_code, pp_parameter_name =&gt; p_parameter_name);
+    FETCH cur_parameter_name INTO p_parameter_name;
+    CLOSE cur_parameter_name;
+END;</source>
+</StoredProcedureOraclev10g>

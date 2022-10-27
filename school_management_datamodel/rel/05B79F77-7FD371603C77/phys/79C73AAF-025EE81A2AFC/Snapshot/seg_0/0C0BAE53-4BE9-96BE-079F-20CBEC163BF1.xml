@@ -1,0 +1,230 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="mvc_marksheet" directorySegmentName="seg_0" id="0C0BAE53-4BE9-96BE-079F-20CBEC163BF1">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-01 05:22:07 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<nextDate>sysdate + 60 * 12/1440</nextDate>
+<refreshType>FORCE</refreshType>
+<startDate>sysdate</startDate>
+<subquery><![CDATA[SELECT
+        "SCHOOL_CODE",
+        "BATCH_NO",
+        "CLASS_CODE",
+        "SECTION_CODE",
+        "TERM_CODE",
+        "STUDENT_ID",
+        "PART_NAME",
+        "RANKING_TYPE",
+        "ACADEMIC_CODE",
+        "CATEGORY_CODE",
+        "DOMAIN_CODE",
+        "SUPER_CODE",
+        "SUBJECT_CODE",
+        "DOMAIN",
+        "SUBJECT",
+        "MAIN_MAX_MARK",
+        "INTER_MAX_MARK",
+        "TOTAL_MAX_MARK",
+        "MAIN_PASS_MARK",
+        "INTER_PASS_MARK",
+        "TOTAL_PASS_MARK",
+        "MAIN_MARK_OBTAINED",
+        "INTER_MARK_OBTAINED",
+        "TOTAL_MARK_OBTAINED",
+        "STATUS",
+        "PERCENTAGE"
+    FROM
+        ( SELECT
+              "SCHOOL_CODE",
+              "BATCH_NO",
+              "CLASS_CODE",
+              "SECTION_CODE",
+              "TERM_CODE",
+              "STUDENT_ID",
+              "PART_NAME",
+              "RANKING_TYPE",
+              "ACADEMIC_CODE",
+              "CATEGORY_CODE",
+              "DOMAIN_CODE",
+              "SUPER_CODE",
+              "SUBJECT_CODE",
+              "DOMAIN",
+              "SUBJECT",
+              to_char(main_max_mark) AS "MAIN_MAX_MARK",
+              to_char(inter_max_mark) AS "INTER_MAX_MARK",
+              to_char(total_max_mark) AS "TOTAL_MAX_MARK",
+              to_char(main_pass_mark) AS "MAIN_PASS_MARK",
+              to_char(inter_pass_mark) AS "INTER_PASS_MARK",
+              to_char(total_pass_mark) AS "TOTAL_PASS_MARK",
+              to_char(main_mark_obtained) AS "MAIN_MARK_OBTAINED",
+              to_char(inter_mark_obtained) AS "INTER_MARK_OBTAINED",
+              to_char(total_mark_obtained) AS "TOTAL_MARK_OBTAINED",
+              "STATUS",
+              to_char(percentage) AS "PERCENTAGE"
+          FROM
+              ( SELECT
+                    *
+                FROM
+                    mvc_marksheet_nur
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_kg4
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_kg5
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_cl1
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_cl2
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_cl3
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_cl4
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_cl5
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_cl6
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_cl7
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_cl8
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_cl9
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_cl10
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_cl11sc
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_cl11art
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_cl12sc
+                UNION
+                SELECT
+                    *
+                FROM
+                    mvc_marksheet_cl12art
+              )
+          UNION
+          ( SELECT
+              "SCHOOL_CODE",
+              "BATCH_NO#",
+              "CLASS_CODE",
+              "SECTION_CODE",
+              "TERM_CODE",
+              "STUDENT_ID",
+              "PART_NAME",
+              "RANKING_TYPE",
+              "ACADEMIC_CODE",
+              "CATEGORY_CODE",
+              "DOMAIN_CODE",
+              "SUPER_CODE",
+              "SUBJECT_CODE",
+              "DOMAIN",
+              "SUBJECT",
+              "MAIN_MAX_MARK",
+              "INTER_MAX_MARK",
+              "TOTAL_MAX_MARK",
+              "MAIN_PASS_MARK",
+              "INTER_PASS_MARK",
+              "TOTAL_PASS_MARK",
+              "MAIN_MARK_OBTAINED",
+              "INTER_MARK_OBTAINED",
+              "TOTAL_MARK_OBTAINED",
+              "STATUS",
+              "PERCENTAGE"
+          FROM
+              arc_std_marksheet
+          )
+        ) wd
+    ORDER BY
+        school_code,
+        batch_no,
+        class_code,
+        section_code,
+        term_code,
+        student_id,
+        part_name,
+        ranking_type,
+        ( SELECT
+              a.serial_no
+          FROM
+              subject_category a
+          WHERE
+              a.code = wd.category_code
+        ) ASC NULLS LAST,
+        ( SELECT
+              a.serial_no
+          FROM
+              school_domain a
+          WHERE
+              a.school_code = wd.school_code
+              AND a.class_code = wd.class_code
+              AND a.domain_code = wd.domain_code
+        ) ASC NULLS LAST,
+        ( SELECT
+              a.serial_no
+          FROM
+              school_super a
+          WHERE
+              a.school_code = wd.school_code
+              AND a.batch_no# = wd.batch_no
+              AND a.class_code = wd.class_code
+              AND a.super_code = wd.super_code
+        ) ASC NULLS LAST,
+        ( SELECT
+              serial_no
+          FROM
+              school_subject
+          WHERE
+              school_code = wd.school_code
+              AND batch_no# = wd.batch_no
+              AND class_code = wd.class_code
+              AND subject_code = wd.subject_code
+        ) ASC NULLS LAST]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with>ROWID</with>
+</SnapshotOraclev11g>

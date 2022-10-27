@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FunctionOracle class="oracle.dbtools.crest.model.design.storage.oracle.FunctionOracle" name="func_grade_conversion" directorySegmentName="seg_0" id="00B120EE-170D-0C98-5B47-CD7C4789CD65">
+<createdBy>leads</createdBy>
+<createdTime>2020-09-08 11:34:34 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE FUNCTION func_grade_conversion (
+    p_score NUMBER
+) RETURN VARCHAR2 IS
+    v_grade   grade_score.abbrv%TYPE;
+BEGIN
+    NULL;
+    SELECT
+        abbrv
+    INTO v_grade
+    FROM
+        grade_score
+    WHERE
+        round(p_score) BETWEEN range_from AND range_upto;
+    RETURN v_grade;
+END;</source>
+</FunctionOracle>

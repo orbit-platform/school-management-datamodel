@@ -1,0 +1,117 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="pckg_send_select_sms" directorySegmentName="seg_0" id="8168129F-6351-EED3-68CC-07C0F4318807">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-03 12:29:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE pckg_send_select_sms AS 
+    ---send select sms
+    PROCEDURE send_select_sms_proc (
+        pcompany_code  IN VARCHAR2,
+        presource_name IN VARCHAR2,
+        psms_code      IN VARCHAR2,
+        pmessage       IN VARCHAR2,
+        preason        IN VARCHAR2
+    );
+END;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="pckg_send_select_sms" id="8168129F-6351-EED3-68CC-07C0F4318807">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-03 12:31:43 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE BODY pckg_send_select_sms AS
+    PROCEDURE send_select_sms_proc (
+        pcompany_code  IN VARCHAR2,
+        presource_name IN VARCHAR2,
+        psms_code      IN VARCHAR2,
+        pmessage       IN VARCHAR2,
+        preason        IN VARCHAR2
+    ) AS
+        v_counter PLS_INTEGER;
+
+        ---cursor
+        CURSOR cur_sms (
+            p_company_code  VARCHAR2,
+            p_resource_name VARCHAR2,
+            p_sms_code      VARCHAR2,
+            p_message       VARCHAR2,
+            p_reason        VARCHAR2
+        ) IS
+        SELECT
+            person#,
+            person_name,
+            telephone,
+            replace(replace(nvl(p_message, &apos;Select message template&apos;), &apos;$PERSON_NAME$&apos;, person_name), &apos;$FEE_DUE$&apos;, NULL) AS message,
+            p_sms_code AS sms_code,
+            p_reason AS reason
+        FROM
+            ( SELECT
+                  ed.company_code,
+                  emp.id AS person#,
+                  emp.first_name || &apos; &apos; || emp.last_name AS person_name,
+                  emp.primary_tel AS telephone
+              FROM
+                       leadsuser.employee emp
+                  INNER JOIN ( SELECT
+                                   employee_id,
+                                   company_code
+                               FROM
+                                   ( SELECT
+                                         employee_id,
+                                         company_code,
+                                         ROW_NUMBER()
+                                         OVER(PARTITION BY employee_id, company_code
+                                              ORDER BY
+                                                  effective_from DESC
+                                         ) AS my_rank
+                                     FROM
+                                         emp_department ed
+                                   )
+                               WHERE
+                                   my_rank = 1
+                             ) ed
+                  ON ( ed.employee_id = emp.id )
+              UNION
+              SELECT
+                  cs.company_code,
+                  std.id AS person#,
+                  std.first_name || &apos; &apos; || std.last_name AS person_name,
+                  g.primary_tel AS telephone
+              FROM
+                       student std
+                  INNER JOIN leadsuser.std_guardian g
+                  ON ( std.guardian_id = g.id )
+                  INNER JOIN company_school cs
+                  ON ( cs.school_code = std.school_code )
+            )
+        WHERE
+                company_code = p_company_code
+            AND instr(&apos;:&apos; || p_resource_name || &apos;:&apos;, &apos;:&apos; || person# || &apos;:&apos;) &gt; 0;
+    BEGIN
+        v_counter := 1;
+        FOR indx IN cur_sms(p_company_code =&gt; pcompany_code, p_resource_name =&gt; presource_name, p_sms_code =&gt; psms_code, p_message =&gt; pmessage, p_reason =&gt; preason) LOOP
+            leadsuser.pristine_pckg.sendsms(indx.telephone, indx.message);
+            INSERT INTO leadsuser.sms_log (
+                person#,
+                person_name,
+                sms_code,
+                telephone,
+                message,
+                reason
+            ) VALUES (
+                indx.person#,
+                indx.person_name,
+                indx.sms_code,
+                indx.telephone,
+                indx.message,
+                indx.reason
+            );
+            IF v_counter &gt;= 50 THEN
+                v_counter := 1;
+                COMMIT;
+            ELSE
+                v_counter := v_counter + 1;
+            END IF;
+        END LOOP;
+    END send_select_sms_proc;
+END pckg_send_select_sms;</source>
+</body>
+</PackageOracle>

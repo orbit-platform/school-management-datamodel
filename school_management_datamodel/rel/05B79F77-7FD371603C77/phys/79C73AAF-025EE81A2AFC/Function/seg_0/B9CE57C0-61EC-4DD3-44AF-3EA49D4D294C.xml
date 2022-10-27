@@ -1,0 +1,48 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FunctionOracle class="oracle.dbtools.crest.model.design.storage.oracle.FunctionOracle" name="func_colspan" directorySegmentName="seg_0" id="B9CE57C0-61EC-4DD3-44AF-3EA49D4D294C">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-01 14:27:14 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE FUNCTION func_colspan (
+    p_main VARCHAR2 DEFAULT NULL,
+    p_internal VARCHAR2 DEFAULT NULL,
+    p_total VARCHAR2 DEFAULT NULL,
+    p_status VARCHAR2 DEFAULT NULL,
+    p_percent VARCHAR2 DEFAULT NULL
+) RETURN NUMBER AS
+    v_rowspan NUMBER := 0;
+    v_index NUMBER := 0;
+BEGIN
+    IF
+        p_main IS NOT NULL
+        AND p_main NOT IN ( &apos;MAXIMUM_MAIN&apos;, &apos;MINIMUM_MAIN&apos;, &apos;MAIN_SCORE&apos; )
+    THEN
+        v_rowspan := v_rowspan + 1;
+    END IF;
+    IF
+        p_internal IS NOT NULL
+        AND p_internal NOT IN ( &apos;MAXIMUM_INTERNAL&apos;, &apos;MINIMUM_INTERNAL&apos;, &apos;INTERNAL_SCORE&apos; )
+    THEN
+        v_rowspan := v_rowspan + 1;
+    END IF;
+    IF
+        p_total IS NOT NULL
+        AND p_total NOT IN ( &apos;MAXIMUM_TOTAL&apos;, &apos;MINIMUM_TOTAL&apos;, &apos;TOTAL_SCORE&apos; )
+    THEN
+        v_rowspan := v_rowspan + 1;
+    END IF;
+    IF
+        p_status IS NOT NULL
+        AND p_status NOT IN ( &apos;SCORE_STATUS&apos; )
+    THEN
+        v_rowspan := v_rowspan + 1;
+    END IF;
+    IF
+        p_percent IS NOT NULL
+        AND p_percent NOT IN ( &apos;SCORE_PERCENTAGE&apos; )
+    THEN
+        v_rowspan := v_rowspan + 1;
+    END IF;
+    RETURN v_rowspan;
+END;</source>
+</FunctionOracle>

@@ -1,0 +1,96 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_3" id="C5061D5D-33B2-7598-D328-93474C596452" name="day_ratio">
+<createdBy>leads</createdBy>
+<createdTime>2022-05-11 04:43:42 UTC</createdTime>
+<comment><![CDATA[Day Flag, 1 - FULL DAY, 0.5 - HALF DAY]]></comment>
+<generatorID>4F930CD7-FCAC-DDA2-98C9-6D3A3BEC8F0D</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>day_ratio</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="13EC49F3-D234-A765-530E-AE62D32086F8">
+<createdBy>leads</createdBy>
+<createdTime>2022-05-11 04:43:42 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="val" id="2B9DD8A8-00A9-0AC9-981E-68CFA9E9054B">
+<createdBy>leads</createdBy>
+<createdTime>2022-05-11 04:43:42 UTC</createdTime>
+<comment><![CDATA[Ratio Value: 1 FULL DAY, 0.5 HALF DAY]]></comment>
+<commentInRDBMS><![CDATA[Ratio Value: 1 FULL DAY, 0.5 HALF DAY]]></commentInRDBMS>
+<generatorID>D409B0C0-4B74-C4FC-7517-579BBE5616D7</generatorID>
+<notes><![CDATA[Ratio Value: 1 FULL DAY, 0.5 HALF DAY]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="EFB750AC-6FB2-1080-98F7-DACDC930C7EA">
+<createdBy>leads</createdBy>
+<createdTime>2022-05-11 04:43:42 UTC</createdTime>
+<generatorID>FBEA4B33-2132-5025-0932-5EC1AAB61D71</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="ED137C07-9086-E815-5CCE-5CCAC47BAB1E" name="day_ratio_pk">
+<createdBy>leads</createdBy>
+<createdTime>2022-05-11 04:43:42 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="13EC49F3-D234-A765-530E-AE62D32086F8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="71ED00A0-A6D6-281C-8423-08706FFC69A7" name="day_ratio_UN">
+<createdBy>leads</createdBy>
+<createdTime>2022-05-11 04:43:42 UTC</createdTime>
+<generatorID>27D60A60-8317-513F-76B7-AE72E215F5AA</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2B9DD8A8-00A9-0AC9-981E-68CFA9E9054B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="93D17930-E94A-2F29-B119-B323CA0C1DC3" name="day_ratio_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-05-11 04:49:32 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="13EC49F3-D234-A765-530E-AE62D32086F8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="34DC8A2E-B804-886F-6AAD-A150DE2D4D13" name="day_ratio_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-05-11 04:49:32 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2B9DD8A8-00A9-0AC9-981E-68CFA9E9054B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

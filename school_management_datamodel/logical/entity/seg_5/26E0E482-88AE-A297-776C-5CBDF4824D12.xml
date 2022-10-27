@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_5" id="26E0E482-88AE-A297-776C-5CBDF4824D12" name="question">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-19 05:30:31 UTC</createdTime>
+<comment><![CDATA[Types of Questions - TRUE/FALSE, MCQ, FILL-IN-THE-BLANK, MATCH-THE-FOLLOWING, SHORT-ANSWER, LONG-ANSWER]]></comment>
+<commentInRDBMS><![CDATA[Types of Questions - TRUE/FALSE, MCQ, FILL-IN-THE-BLANK, MATCH-THE-FOLLOWING, SHORT-ANSWER, LONG-ANSWER]]></commentInRDBMS>
+<notes><![CDATA[Types of Questions - TRUE/FALSE, MCQ, FILL-IN-THE-BLANK, MATCH-THE-FOLLOWING, SHORT-ANSWER, LONG-ANSWER]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>question</preferredAbbreviation>
+<shortName>question</shortName>
+<synonym>question</synonym>
+<synonymToDisplay>question</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="type" id="F873E242-A081-54ED-B6F2-E53062736D9E">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-19 10:41:05 UTC</createdTime>
+<comment><![CDATA[Question Type]]></comment>
+<commentInRDBMS><![CDATA[Question Type]]></commentInRDBMS>
+<notes><![CDATA[Question Type]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="E02CD320-6870-6E80-F283-80AE8672ADB5">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-19 10:41:05 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>F60E1FFE-5DA6-531C-BDFF-CB0CBCB7F7CD</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="7997A8BF-1C17-0524-4B45-820FDA8AEC1F">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-19 10:41:05 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="8DA044CD-E4E6-D190-ED40-BC2652405374" name="question_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-25 07:06:09 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>F873E242-A081-54ED-B6F2-E53062736D9E</newElementsIDs>
+<usedAttributes>
+<attributeRef>F873E242-A081-54ED-B6F2-E53062736D9E</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

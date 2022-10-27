@@ -1,0 +1,205 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="59E1942B-5828-CAC7-2044-DD0ECD86488F" name="app_certificate">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-04 03:52:57 UTC</createdTime>
+<comment><![CDATA[applicant_certificate - Applicant's Certificate records]]></comment>
+<commentInRDBMS><![CDATA[applicant_certificate - Applicant's Certificate records]]></commentInRDBMS>
+<notes><![CDATA[applicant_certificate - Applicant's Certificate records]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>app_certificate</preferredAbbreviation>
+<shortName>app_certificate</shortName>
+<synonym>app_certificate</synonym>
+<synonymToDisplay>app_certificate</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="applicant_id" id="910E74C0-5882-BFE0-D195-0D32C6E59CF0">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-04 03:53:41 UTC</createdTime>
+<generatorID>BF8F0AFA-70B1-A1B6-A280-3744FEE96967</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>CC72644C-6AC3-6632-47B4-3F35FB371223</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="certificate_code" id="60F0724D-9A1D-FF0C-A716-40C2141DA404">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-16 04:19:50 UTC</createdTime>
+<generatorID>AEAC4BAE-7B70-F34E-BAB5-3C775F67133D</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>B2C8D706-7446-1708-2A4C-094E1ECA36B2</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>53AB0579-872F-D944-2762-9BC69C2EFEBD</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="other_certificate" id="0F871762-46CC-795B-45CD-126177370F13">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-23 08:42:08 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="percentage" id="504C875D-DF17-1E3C-D992-A1BEF7FB4D0D">
+<createdBy>leads</createdBy>
+<createdTime>2021-05-05 09:36:06 UTC</createdTime>
+<comment><![CDATA[Percentage Scores]]></comment>
+<commentInRDBMS><![CDATA[Percentage Scores]]></commentInRDBMS>
+<notes><![CDATA[Percentage Scores]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="passing_year" id="3C0D3CE0-C279-343B-743B-591B4D45433F">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-04 03:54:33 UTC</createdTime>
+<comment><![CDATA[year of certfication]]></comment>
+<commentInRDBMS><![CDATA[year of certfication]]></commentInRDBMS>
+<notes><![CDATA[year of certfication]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<domain>57E4E726-0278-DC93-9196-ABB2B37DFF18</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="notes" id="57811296-EC76-E7B5-F2E4-E024E8AF7229">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-04 03:54:33 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="created_by" id="B0DFD4E8-58F7-CC20-306D-53DA89034F7B">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-04 03:54:33 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FCF40FD2-658F-71B5-EA0B-1055E4223B0E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="created_on" id="568080A8-5976-6B2C-108F-7E8926F98E11">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-04 03:54:33 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="updated_by" id="CA45FE62-E526-64ED-EAD8-D3FB88B3AC18">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-04 03:54:33 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FCF40FD2-658F-71B5-EA0B-1055E4223B0E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="changed_on" id="3498D564-BB71-52D1-F7ED-BCFB23A9D004">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-04 03:54:33 UTC</createdTime>
+<comment><![CDATA[insert record date]]></comment>
+<commentInRDBMS><![CDATA[insert record date]]></commentInRDBMS>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="E02C140A-D497-1B77-8164-975A6C436678" name="app_certificate_UN">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-04 03:54:49 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>BF8F0AFA-70B1-A1B6-A280-3744FEE96967,AEAC4BAE-7B70-F34E-BAB5-3C775F67133D</newElementsIDs>
+<usedAttributes>
+<attributeRef>910E74C0-5882-BFE0-D195-0D32C6E59CF0</attributeRef>
+<attributeRef>60F0724D-9A1D-FF0C-A716-40C2141DA404</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

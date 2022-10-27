@@ -1,0 +1,97 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_6" id="43B6BA39-336C-FCF4-B8A3-EB6D005E55F8" name="compulsory">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:03:07 UTC</createdTime>
+<comment><![CDATA[Compulsory Subject Types - MAIN/ADDITIONAL/CO-CURRICULAR are Flagged 'YES',
+Preferrable Subject Types - OPTIONAL SUBJECT/SECOND LANGUAGE/FOURTH SUBJECT are flagged 'NO']]></comment>
+<commentInRDBMS><![CDATA[Compulsory Subject Types - MAIN/ADDITIONAL/CO-CURRICULAR are Flagged 'YES',
+Preferrable Subject Types - OPTIONAL SUBJECT/SECOND LANGUAGE/FOURTH SUBJECT are flagged 'NO']]></commentInRDBMS>
+<notes><![CDATA[Compulsory Subject Types - MAIN/ADDITIONAL/CO-CURRICULAR are Flagged 'YES',
+Preferrable Subject Types - OPTIONAL SUBJECT/SECOND LANGUAGE/FOURTH SUBJECT are flagged 'NO']]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>compulsory</preferredAbbreviation>
+<shortName>compulsory</shortName>
+<synonym>compulsory</synonym>
+<synonymToDisplay>compulsory</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="type" id="BA026020-0AF3-40C0-48A4-7E0527934130">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:08:01 UTC</createdTime>
+<comment><![CDATA[Optional is set YES, NO for Compulsory Subject]]></comment>
+<commentInRDBMS><![CDATA[Optional is set YES, NO for Compulsory Subject]]></commentInRDBMS>
+<notes><![CDATA[Optional is set YES, NO for Compulsory Subject]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<defaultValue>YES</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="1B697BF4-0DBC-6D5F-2A85-36FA5E929BD7">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:08:01 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="C96970A0-3FB0-49AE-F399-2C149F7D28D1">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:08:01 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="B33AD49F-3278-73F9-0AA3-5F09583496FD" name="compulsory_UN">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:08:05 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>BA026020-0AF3-40C0-48A4-7E0527934130</newElementsIDs>
+<usedAttributes>
+<attributeRef>BA026020-0AF3-40C0-48A4-7E0527934130</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="98505D92-39D8-1401-02AE-3D4EB03E67C2" name="compulsory_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:08:22 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>1B697BF4-0DBC-6D5F-2A85-36FA5E929BD7</newElementsIDs>
+<usedAttributes>
+<attributeRef>1B697BF4-0DBC-6D5F-2A85-36FA5E929BD7</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

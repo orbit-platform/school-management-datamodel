@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="uni_parameter_code_trg" directorySegmentName="seg_6" id="D2290855-59F1-8F4C-3B9A-253F9A591ADE">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-07 06:35:18 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+    SELECT
+        lpad(nvl(MAX(to_number(code)), 0) + 1, 4, '0')
+    INTO :new.code
+    FROM
+        uni_parameter;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<table>F2556F17-2EF1-84A6-FBF6-20F4352C2302</table>
+</TriggerOraclev10g>

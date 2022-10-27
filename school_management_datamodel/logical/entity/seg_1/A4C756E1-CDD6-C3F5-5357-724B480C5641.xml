@@ -1,0 +1,98 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="A4C756E1-CDD6-C3F5-5357-724B480C5641" name="week">
+<createdBy>leads</createdBy>
+<createdTime>2018-09-03 12:49:16 UTC</createdTime>
+<comment><![CDATA[week]]></comment>
+<commentInRDBMS><![CDATA[week]]></commentInRDBMS>
+<notes><![CDATA[week]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>week</preferredAbbreviation>
+<shortName>week</shortName>
+<synonym>week</synonym>
+<synonymToDisplay>week</synonymToDisplay>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="no#" id="149E830E-E69C-D664-3528-2F90282962C2">
+<createdBy>leads</createdBy>
+<createdTime>2018-09-03 12:49:54 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<constraintName>week_number_cons</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>1</beginValue>
+<endValue>5</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="name" id="F7ECB6E1-0470-C445-319B-ED77F47E5613">
+<createdBy>leads</createdBy>
+<createdTime>2018-09-03 12:50:14 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>107D2248-3970-71B3-96D1-16C26501CFAF</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="1C9E4D4A-8ADF-329E-F58B-1BC05B608EA1" name="week_un">
+<createdBy>leads</createdBy>
+<createdTime>2018-09-03 12:50:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
+</engineerTo>
+<newElementsIDs>F7ECB6E1-0470-C445-319B-ED77F47E5613</newElementsIDs>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<usedAttributes>
+<attributeRef>F7ECB6E1-0470-C445-319B-ED77F47E5613</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="8AED4760-68B9-E42D-C8CA-278812DB8AED" name="week_PK">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-08 09:52:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>149E830E-E69C-D664-3528-2F90282962C2</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

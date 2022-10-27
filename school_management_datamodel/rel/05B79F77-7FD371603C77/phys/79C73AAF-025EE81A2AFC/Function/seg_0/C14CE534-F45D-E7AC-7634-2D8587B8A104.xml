@@ -1,0 +1,26 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FunctionOracle class="oracle.dbtools.crest.model.design.storage.oracle.FunctionOracle" name="func_std_grade" directorySegmentName="seg_0" id="C14CE534-F45D-E7AC-7634-2D8587B8A104">
+<createdBy>leads</createdBy>
+<createdTime>2021-11-29 14:11:08 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE FUNCTION func_std_grade (
+    p_school_code VARCHAR2,
+    p_class_code VARCHAR2,
+    p_mark_obtained NUMBER,
+    p_max_mark NUMBER
+) RETURN VARCHAR2 AS
+    v_grade VARCHAR2(10);
+BEGIN
+    SELECT
+        a.pseudo_name
+    INTO v_grade
+    FROM
+        school_grade a
+    WHERE
+        a.status_name = &apos;ACTIVE&apos;
+        AND a.school_code = p_school_code
+        AND a.class_code = p_class_code
+        AND round(p_mark_obtained / p_max_mark * 100) BETWEEN a.range_from AND a.range_upto;
+    RETURN v_grade;
+END;</source>
+</FunctionOracle>

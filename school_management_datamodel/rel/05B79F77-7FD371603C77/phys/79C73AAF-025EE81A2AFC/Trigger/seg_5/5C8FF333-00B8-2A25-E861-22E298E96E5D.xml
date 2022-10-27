@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="emp_leave_eligibility_chg_trg" directorySegmentName="seg_5" id="5C8FF333-00B8-2A25-E861-22E298E96E5D">
+<createdBy>leads</createdBy>
+<createdTime>2020-03-25 07:42:28 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[BEGIN
+    IF inserting THEN
+        :new.created_by := nvl(v('APP_USER'), user);
+        :new.created_on := current_timestamp;
+        :new.changed_on := current_timestamp;
+    END IF;
+
+    IF updating THEN
+        :new.updated_by := nvl(v('APP_USER'), user);
+        :new.changed_on := current_timestamp;
+    END IF;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>8083CAF7-5447-18F5-5883-21594F8E13B6, FE7E2495-96C3-8A47-7720-58B0F7010B3A, 25355FC5-D8F0-2404-FFB8-CED0C7C6A747, A25E2631-6EDF-4BD4-AA72-F8AB3E5888F0, EBEFBB1D-EF89-ED4E-8FE8-8AF3425AE2A2, DC0D31FE-381C-3884-9369-EF92F6C22EE4, C9C6F28A-74E6-9BBA-DEF5-77CBFD67348D, 18FB8F22-8B6C-EEAB-3666-DDC57C372F3D</columns>
+<table>388E0F6F-EBA6-5C4B-2296-7A93B6F94414</table>
+</TriggerOraclev10g>

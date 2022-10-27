@@ -1,0 +1,111 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="3A58CEFF-285B-6A07-C623-832CD2018F1F" name="attendance_status">
+<createdBy>leads</createdBy>
+<createdTime>2020-02-18 12:54:35 UTC</createdTime>
+<comment><![CDATA[Attendance Status - YES/NO/APPENDING]]></comment>
+<generatorID>87519EFB-3B5C-69E8-6BF5-A6D0196559FF</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>attendance_status</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="F13384BE-2547-6F8A-4E88-AB1BF8798490">
+<createdBy>leads</createdBy>
+<createdTime>2020-02-26 11:09:57 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="status_name" id="F3E9FE34-3761-869D-0B2C-6BE8C02C0B72">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-07 03:51:34 UTC</createdTime>
+<comment><![CDATA[Status Name]]></comment>
+<commentInRDBMS><![CDATA[Status Name]]></commentInRDBMS>
+<generatorID>6502045C-8F7D-F37B-2E20-518D31D6735C</generatorID>
+<notes><![CDATA[Status Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="15DA731B-0632-9D3A-1417-A01CBD1C6BA9" referredColumn="0F47AE6E-2301-2369-DA6B-55E80FFA0DA6"/>
+</associations>
+</Column>
+<Column name="descriptions" id="58F683C0-272B-8D62-113B-6EDDF7878368">
+<createdBy>leads</createdBy>
+<createdTime>2020-02-18 12:54:35 UTC</createdTime>
+<generatorID>43CF08E6-8CD9-CFE6-9E57-04E653B7CFEA</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="96A433BE-D05E-7C2F-5D61-0F631D765A3E" name="attendance_status_pk">
+<createdBy>leads</createdBy>
+<createdTime>2020-02-26 11:09:57 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="F13384BE-2547-6F8A-4E88-AB1BF8798490"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="174ECC65-46CB-607E-E21A-6C252B5D5915" name="attendance_status_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-02-26 11:09:57 UTC</createdTime>
+<generatorID>1162ED1F-3948-1019-B471-2C121BB48D1F</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F3E9FE34-3761-869D-0B2C-6BE8C02C0B72"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="284BDD2F-B282-2498-2E64-E43B78FD53BC" name="attendance_status_id_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-02-26 11:20:43 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F13384BE-2547-6F8A-4E88-AB1BF8798490"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="251EA66C-54B2-1631-4044-24C262583C36" name="attendance_status_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-02-26 11:20:43 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F3E9FE34-3761-869D-0B2C-6BE8C02C0B72"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="76991E43-03DA-19A8-2819-13EB0670B18B" name="AttnStat_Status_FK">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-07 03:51:35 UTC</createdTime>
+<generatorID>D4C3DA96-8B99-3B81-5CE7-16ACE311438C</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F3E9FE34-3761-869D-0B2C-6BE8C02C0B72"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

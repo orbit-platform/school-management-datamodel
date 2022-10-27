@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="std_privilege_rec_trg" directorySegmentName="seg_1" id="73870836-15C9-DFD8-73C9-FBBC9E277EDD">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 07:31:02 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[BEGIN
+	IF inserting THEN
+		INSERT INTO leadsuser.std_privilege_rec(std_privilege_id, student_id, privilege_name, effective_from, effective_upto, notes, status_name, dml_flag, created_by, created_on, updated_by, changedate)
+			VALUES(:NEW.id, :NEW.student_id, :NEW.privilege_name, :NEW.effective_from, :NEW.effective_upto, :NEW.notes, :NEW.status_name, 'INSERT', :NEW.created_by, :NEW.created_on, :NEW.updated_by, :NEW.changedate);
+	END IF;
+
+	IF updating THEN
+		INSERT INTO leadsuser.std_privilege_rec(std_privilege_id, student_id, privilege_name, effective_from, effective_upto, notes, status_name, dml_flag, created_by, created_on, updated_by, changedate)
+			VALUES(:OLD.id, :OLD.student_id, :NEW.privilege_name, :NEW.effective_from, :NEW.effective_upto, :NEW.notes, :NEW.status_name, 'UPDATE', :OLD.created_by, :OLD.created_on, :NEW.updated_by, :NEW.changedate);
+	END IF;
+	
+	IF deleting THEN
+		---nullifying the std_privilege_id before deleting in the master table std_privilege
+		UPDATE leadsuser.std_privilege_rec
+		SET std_privilege_id = ''
+		WHERE std_privilege_id = :OLD.id;
+
+		---inserting the deleted record of std_privilege
+		INSERT INTO leadsuser.std_privilege_rec(std_privilege_id, student_id, privilege_name, effective_from, effective_upto, notes, status_name, dml_flag, created_by, created_on, updated_by, changedate)
+			VALUES(null, :OLD.student_id, :OLD.privilege_name, :OLD.effective_from, :OLD.effective_upto, :OLD.notes, :OLD.status_name, 'DELETE', :OLD.created_by, :OLD.created_on, NVL(V('APP_USER'), USER), current_timestamp);
+	END IF;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<columns>D66C860B-572E-E8F0-E13D-9A0702D626D0, 2FCB5842-4EE3-F789-F73A-F69B2B6E8DBE, 96CD4AE0-5A78-499F-58C6-ECB2D4E0F85D, 5261C5C1-1A23-0AC1-DBF8-228003119B0A, EF1BB46B-BD0E-1323-9EFA-05D13623133A</columns>
+<table>BD92A07D-F3E4-9EC2-8501-0525B4A7D4DA</table>
+</TriggerOraclev10g>

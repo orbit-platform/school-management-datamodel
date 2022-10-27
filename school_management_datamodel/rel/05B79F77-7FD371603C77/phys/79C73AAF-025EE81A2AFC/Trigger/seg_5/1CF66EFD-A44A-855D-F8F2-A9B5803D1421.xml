@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="sibling_id_trg" directorySegmentName="seg_5" id="1CF66EFD-A44A-855D-F8F2-A9B5803D1421">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-02 11:12:28 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+    :new.id := leadsuser.sibling_id_seq.nextval;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<condition><![CDATA[new.id IS NULL]]></condition>
+<table>122D515C-00A0-1B83-00D3-C5B60526F182</table>
+</TriggerOraclev10g>

@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="timetable_rec_trg" directorySegmentName="seg_2" id="328D16C8-BC11-EF7D-D8F0-2FE0167B4B00">
+<createdBy>leads</createdBy>
+<createdTime>2019-01-03 09:23:24 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[BEGIN
+	IF inserting THEN
+		INSERT INTO leadsuser.timetable_rec(timetable_id, class_section_id, timeslot_id, sub_teacher, day_no#, period_name, subject_name, comments, status_name, dml_flag, created_by, created_on, updated_by, changedate)
+			VALUES(:NEW.id, :NEW.class_section_id, :NEW.timeslot_id, :NEW.sub_teacher, :NEW.day_no#, :NEW.period_name, :NEW.subject_name, :NEW.comments, :NEW.status_name, 'INSERT', :NEW.created_by, :NEW.created_on, :NEW.updated_by, :NEW.changedate);
+	END IF;
+
+	IF updating THEN
+		INSERT INTO leadsuser.timetable_rec(timetable_id, class_section_id, timeslot_id, sub_teacher, day_no#, period_name, subject_name, comments, status_name, dml_flag, created_by, created_on, updated_by, changedate)
+			VALUES(:NEW.id, :NEW.class_section_id, :NEW.timeslot_id, :NEW.sub_teacher, :NEW.day_no#, :NEW.period_name, :NEW.subject_name, :NEW.comments, :NEW.status_name, 'UPDATE', :OLD.created_by, :OLD.created_on, :NEW.updated_by, :NEW.changedate);
+	END IF;
+
+	IF deleting THEN
+		--nullifying the timetable_id
+		UPDATE leadsuser.timetable_rec
+		SET timetable_id = ''
+		WHERE timetable_id = :OLD.id;
+
+		---inserting the deleted records
+		INSERT INTO leadsuser.timetable_rec(timetable_id, class_section_id, timeslot_id, sub_teacher, day_no#, period_name, subject_name, comments, status_name, dml_flag, created_by, created_on, updated_by, changedate)
+			VALUES(null, :OLD.class_section_id, :OLD.timeslot_id, :OLD.sub_teacher, :OLD.day_no#, :OLD.period_name, :OLD.subject_name, :OLD.comments, :OLD.status_name, 'DELETE', :OLD.created_by, :OLD.created_on, NVL(V('APP_USER'), USER), current_timestamp);
+	END IF;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<columns>D6DC32DE-70B1-F511-644C-AFD5A2D528A4, 044FA3FC-FEBB-8E98-F06E-DA99D007FB56, F1323F91-0559-F8DB-BF11-F8C5896DE017, 3E9DA85E-94DD-B36A-34C6-E8900C02DB69, 06FE9B78-81B4-6AFC-8147-357924B2663C, 4A0B5145-BF97-A59A-4CFC-3000D516ED5A, 6EF68B99-5E9F-5C2C-E7C5-E679D90DF420, 6C42A276-EFE3-0FBE-B538-DE99CF03BA80</columns>
+<table>82A4E3E4-A47D-E4FC-0747-DA3802180D38</table>
+</TriggerOraclev10g>

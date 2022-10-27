@@ -1,0 +1,222 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="score_allocation_std_trg" directorySegmentName="seg_0" id="ABBAD803-7430-A34D-4E4C-9E03698829D8">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-26 06:28:40 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[DECLARE
+    v_school_code score_allocation.school_code%TYPE;
+    v_batch_no score_allocation.batch_no#%TYPE;
+    v_class_code score_allocation.class_code%TYPE;
+    v_term_code score_allocation.term_code%TYPE;
+    v_student_id std_score_alloc.student_id%TYPE;
+    v_super_code score_allocation.super_code%TYPE;
+    v_evaluation_code score_allocation.evaluation_code%TYPE;
+    v_examination_type score_allocation.examination_type%TYPE;
+    v_assessment_type score_allocation.assessment_type%TYPE;
+    v_min_mark score_allocation.min_mark%TYPE;
+    v_max_mark score_allocation.max_mark%TYPE;
+    v_special_type std_score_alloc.special_type%TYPE;
+    v_status_name score_allocation.status_name%TYPE;
+    v_description score_allocation.descriptions%TYPE;
+    CURSOR cur_std_score_alloc (
+        p_school_code VARCHAR2,
+        p_student_id NUMBER,
+        p_batch_no DATE,
+        p_class_code VARCHAR2,
+        p_term_code VARCHAR2,
+        p_super_code VARCHAR2,
+        p_evaluation_code VARCHAR2
+    ) IS
+    SELECT
+        school_code,
+        batch_no#,
+        class_code,
+        term_code,
+        student_id,
+        super_code,
+        evaluation_code,
+        examination_type,
+        assessment_type,
+        min_mark,
+        max_mark,
+        special_type,
+        status_name,
+        descriptions
+    FROM
+        std_score_alloc
+    WHERE
+        school_code = p_school_code
+        AND batch_no# = p_batch_no
+        AND class_code = p_class_code
+        AND term_code = p_term_code
+        AND student_id = p_student_id
+        AND super_code = p_super_code
+        AND evaluation_code = p_evaluation_code;
+BEGIN
+    FOR std_idx IN ( SELECT
+                         std.school_code,
+                         scs.student_id,
+                         scs.batch_no# AS batch_no,
+                         scs.class_code
+                     FROM
+                         std_class_sec scs
+                         INNER JOIN student std
+                         ON ( std.id = scs.student_id )
+                     WHERE
+                         scs.status_name = 'ACTIVE'
+                         AND std.school_code = :new.school_code
+                         AND scs.batch_no# = :new.batch_no#
+                         AND scs.class_code = :new.class_code
+                   ) LOOP
+        OPEN cur_std_score_alloc(
+                                p_school_code => std_idx.school_code,
+                                p_batch_no => std_idx.batch_no,
+                                p_class_code => std_idx.class_code,
+                                p_term_code => :new.term_code,
+                                p_student_id => std_idx.student_id,
+                                p_super_code => :new.super_code,
+                                p_evaluation_code => :new.evaluation_code
+             );
+        FETCH cur_std_score_alloc INTO
+            v_school_code,
+            v_batch_no,
+            v_class_code,
+            v_term_code,
+            v_student_id,
+            v_super_code,
+            v_evaluation_code,
+            v_examination_type,
+            v_assessment_type,
+            v_min_mark,
+            v_max_mark,
+            v_special_type,
+            v_status_name,
+            v_description;
+        IF inserting THEN
+            IF cur_std_score_alloc%notfound THEN
+                INSERT INTO std_score_alloc (
+                    school_code,
+                    batch_no#,
+                    class_code,
+                    term_code,
+                    student_id,
+                    super_code,
+                    evaluation_code,
+                    examination_type,
+                    assessment_type,
+                    min_mark,
+                    max_mark,
+                    special_type,
+                    status_name,
+                    descriptions
+                ) VALUES (
+                    :new.school_code,
+                    :new.batch_no#,
+                    :new.class_code,
+                    :new.term_code,
+                    std_idx.student_id,
+                    :new.super_code,
+                    :new.evaluation_code,
+                    :new.examination_type,
+                    :new.assessment_type,
+                    :new.min_mark,
+                    :new.max_mark,
+                    'NO',
+                    :new.status_name,
+                    :new.descriptions
+                );
+            END IF;
+        END IF;
+        IF updating THEN
+            IF cur_std_score_alloc%found THEN
+                IF v_special_type = 'NO' THEN
+                    IF ( :old.examination_type <> :new.examination_type 
+                    OR :old.assessment_type <> :new.assessment_type 
+                    OR :old.min_mark <> :new.min_mark 
+                    OR :old.max_mark <> :new.max_mark 
+                    OR :old.status_name <> :new.status_name 
+                    OR nvl(:old.descriptions, 'na') <> nvl(:new.descriptions, 'na') ) THEN
+                        UPDATE std_score_alloc
+                        SET
+                            examination_type = :new.examination_type,
+                            assessment_type = :new.assessment_type,
+                            min_mark = :new.min_mark,
+                            max_mark = :new.max_mark,
+                            status_name = :new.status_name,
+                            descriptions = :new.descriptions
+                        WHERE
+                            school_code = v_school_code
+                            AND batch_no# = v_batch_no
+                            AND class_code = v_class_code
+                            AND term_code = v_term_code
+                            AND student_id = v_student_id
+                            AND super_code = v_super_code
+                            AND evaluation_code = v_evaluation_code;
+                    END IF;
+                END IF;
+            END IF;
+        END IF;
+        CLOSE cur_std_score_alloc;
+    END LOOP;
+    IF deleting THEN
+        FOR std_idx IN ( SELECT
+                             std.school_code,
+                             scs.student_id,
+                             scs.batch_no# AS batch_no,
+                             scs.class_code
+                         FROM
+                             std_class_sec scs
+                             INNER JOIN student std
+                             ON ( std.id = scs.student_id )
+                         WHERE
+                             scs.status_name = 'ACTIVE'
+                             AND std.school_code = :old.school_code
+                             AND scs.batch_no# = :old.batch_no#
+                             AND scs.class_code = :old.class_code
+                       ) LOOP
+            OPEN cur_std_score_alloc(
+                                    p_school_code => std_idx.school_code,
+                                    p_batch_no => std_idx.batch_no,
+                                    p_class_code => std_idx.class_code,
+                                    p_term_code => :old.term_code,
+                                    p_student_id => std_idx.student_id,
+                                    p_super_code => :old.super_code,
+                                    p_evaluation_code => :old.evaluation_code
+                 );
+            FETCH cur_std_score_alloc INTO
+                v_school_code,
+                v_batch_no,
+                v_class_code,
+                v_term_code,
+                v_student_id,
+                v_super_code,
+                v_evaluation_code,
+                v_examination_type,
+                v_assessment_type,
+                v_min_mark,
+                v_max_mark,
+                v_special_type,
+                v_status_name,
+                v_description;
+            IF cur_std_score_alloc%found THEN
+                IF v_special_type = 'NO' THEN
+                    DELETE FROM std_score_alloc
+                    WHERE
+                        school_code = v_school_code
+                        AND batch_no# = v_batch_no
+                        AND class_code = v_class_code
+                        AND term_code = v_term_code
+                        AND student_id = v_student_id
+                        AND super_code = v_super_code
+                        AND evaluation_code = v_evaluation_code;
+                END IF;
+            END IF;
+            CLOSE cur_std_score_alloc;
+        END LOOP;
+    END IF;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>AB1E91CC-7EE0-1997-CBAD-0F5479D3A7A7, A02AAFCE-A89C-2FB6-12C9-AAE4442053F2, 294F1B5E-3454-AB06-33E0-EA557EA1C923, 4616DF24-76B6-5C29-612B-EAE1C7BD54FF, C0C45045-C4B6-3487-95DE-D92A9526B9DB, B777F47C-7353-A812-663C-716558B75749</columns>
+<table>2EE701C9-B67C-3422-81B2-E3BF71DCF1CD</table>
+</TriggerOraclev10g>

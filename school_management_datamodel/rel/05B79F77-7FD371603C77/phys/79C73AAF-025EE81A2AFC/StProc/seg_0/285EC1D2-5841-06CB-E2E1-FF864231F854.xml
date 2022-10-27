@@ -1,0 +1,155 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_class_teacher_auto" directorySegmentName="seg_0" id="285EC1D2-5841-06CB-E2E1-FF864231F854">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-10 15:53:30 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_class_teacher_auto AS
+    ---VARIABLES
+    v_school_code class_teacher.school_code%TYPE;
+    v_batch_no# class_teacher.batch_no#%TYPE;
+    v_class_code class_teacher.class_code%TYPE;
+    v_section_code class_teacher.section_code%TYPE;
+    v_term_code class_teacher.term_code%TYPE;
+    v_assistant_code class_teacher.assistant_code%TYPE;
+    v_employee_id class_teacher.employee_id%TYPE;
+        
+    ----VIRTUAL
+    CURSOR cur_virtual_ct IS
+    SELECT
+        sterm.school_code,
+        sterm.batch_no#,
+        sterm.class_code,
+        cs.section_code,
+        sterm.term_code,
+        (
+            SELECT
+                ct1.assistant_code
+            FROM
+                     class_teacher ct1
+                INNER JOIN school_term st1 ON ( st1.school_code = ct1.school_code
+                                                AND st1.batch_no# = ct1.batch_no#
+                                                AND st1.class_code = ct1.class_code
+                                                AND st1.term_code = ct1.term_code
+                                                AND st1.serial_no = 1 )
+            WHERE
+                    ct1.status_name = &apos;ACTIVE&apos;
+                AND st1.status_name = &apos;ACTIVE&apos;
+                AND ct1.school_code = sterm.school_code
+                AND ct1.batch_no# = sterm.batch_no#
+                AND ct1.class_code = sterm.class_code
+                AND ct1.section_code = cs.section_code
+                AND ct1.assistant_code = nvl(ctt.assistant_code, ct1.assistant_code)
+        ) AS assistant_code,
+        (
+            SELECT
+                ct1.employee_id
+            FROM
+                     class_teacher ct1
+                INNER JOIN school_term st1 ON ( st1.school_code = ct1.school_code
+                                                AND st1.batch_no# = ct1.batch_no#
+                                                AND st1.class_code = ct1.class_code
+                                                AND st1.term_code = ct1.term_code
+                                                AND st1.serial_no = 1 )
+            WHERE
+                    ct1.status_name = &apos;ACTIVE&apos;
+                AND st1.status_name = &apos;ACTIVE&apos;
+                AND ct1.school_code = sterm.school_code
+                AND ct1.batch_no# = sterm.batch_no#
+                AND ct1.class_code = sterm.class_code
+                AND ct1.section_code = cs.section_code
+                AND ct1.assistant_code = nvl(ctt.assistant_code, ct1.assistant_code)
+        ) AS employee_id,
+        sterm.status_name,
+        &apos;MACHINE AUTOMATED&apos; AS descriptions
+    FROM
+             school_term sterm
+        INNER JOIN class_section cs ON ( cs.school_code = sterm.school_code
+                                         AND cs.batch_no# = sterm.batch_no#
+                                         AND cs.class_code = sterm.class_code )
+        INNER JOIN (
+            SELECT
+                school_code,
+                MAX(batch_no#) AS batch_no#
+            FROM
+                class_teacher
+            GROUP BY
+                school_code
+        ) ct ON ( ct.school_code = sterm.school_code
+                  AND ct.batch_no# = sterm.batch_no# )
+        LEFT OUTER JOIN class_teacher ctt ON ( ctt.school_code = sterm.school_code
+                                               AND ctt.batch_no# = sterm.batch_no#
+                                               AND ctt.class_code = sterm.class_code
+                                               AND ctt.section_code = cs.section_code
+                                               AND ctt.term_code = sterm.term_code
+                                               AND ctt.status_name = &apos;ACTIVE&apos; )
+    WHERE
+            sterm.status_name = &apos;ACTIVE&apos;
+        AND cs.status_name = &apos;ACTIVE&apos;;
+        
+    ---REAL
+    CURSOR cur_real_ct (
+        p_school_code VARCHAR2,
+        p_batch_no DATE,
+        p_class_code VARCHAR2,
+        p_section_code VARCHAR2,
+        p_term_code VARCHAR2,
+        p_assistant_code VARCHAR2
+    ) IS
+    SELECT
+        school_code,
+        batch_no#,
+        class_code,
+        section_code,
+        term_code,
+        assistant_code,
+        employee_id
+    FROM
+        class_teacher
+    WHERE
+            school_code = p_school_code
+        AND batch_no# = p_batch_no
+        AND class_code = p_class_code
+        AND section_code = p_section_code
+        AND term_code = p_term_code
+        AND assistant_code = p_assistant_code;
+BEGIN
+    FOR indx IN cur_virtual_ct LOOP
+        OPEN cur_real_ct(p_school_code =&gt; indx.school_code, p_batch_no =&gt; indx.batch_no#, p_class_code =&gt; indx.class_code, p_section_code =&gt; indx.section_code, p_term_code =&gt; indx.term_code,
+                        p_assistant_code =&gt; indx.assistant_code);
+        FETCH cur_real_ct INTO
+            v_school_code,
+            v_batch_no#,
+            v_class_code,
+            v_section_code,
+            v_term_code,
+            v_assistant_code,
+            v_employee_id;
+        
+        ---insert statement
+        IF cur_real_ct%notfound THEN
+            INSERT INTO class_teacher (
+                school_code,
+                batch_no#,
+                class_code,
+                section_code,
+                term_code,
+                assistant_code,
+                employee_id,
+                status_name,
+                descriptions
+            ) VALUES (
+                indx.school_code,
+                indx.batch_no#,
+                indx.class_code,
+                indx.section_code,
+                indx.term_code,
+                indx.assistant_code,
+                indx.employee_id,
+                indx.status_name,
+                indx.descriptions
+            );
+        END IF;
+        CLOSE cur_real_ct;
+    END LOOP;
+END;</source>
+</StoredProcedureOraclev10g>

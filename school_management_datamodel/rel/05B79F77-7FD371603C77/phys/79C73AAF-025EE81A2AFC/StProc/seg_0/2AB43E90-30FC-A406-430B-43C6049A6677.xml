@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_company_session_auto" directorySegmentName="seg_0" id="2AB43E90-30FC-A406-430B-43C6049A6677">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-11 10:57:22 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_company_session_auto AS
+
+    v_company_code     company_session.company_code%TYPE;
+    v_department_code  company_session.department_code%TYPE;
+    v_batch_no         company_session.batch_no#%TYPE;
+    v_effective_from   company_session.effective_from%TYPE;
+    v_effective_upto   company_session.effective_upto%TYPE;
+    v_status_name      company_session.status_name%TYPE;
+    CURSOR cur IS
+    SELECT
+        csess.company_code,
+        csess.department_code,
+        add_months(csess.batch_no#, 12) AS batch_no#,
+        add_months(csess.effective_from, 12) AS effective_from,
+        add_months(csess.effective_upto, 12) AS effective_upto,
+        csess.status_name
+    FROM
+             ( SELECT
+              company_code,
+              department_code,
+              MAX(batch_no#) AS batch_no#
+          FROM
+              company_session
+          WHERE
+              status_name = &apos;ACTIVE&apos;
+          GROUP BY
+              company_code,
+              department_code
+        ) v
+        INNER JOIN company_session csess ON ( csess.company_code = v.company_code
+                                              AND csess.batch_no# = v.batch_no#
+                                              AND csess.department_code = v.department_code );
+
+    CURSOR cur_company_session (
+        p_company_code     VARCHAR2,
+        p_department_code  VARCHAR2,
+        p_batch_no         DATE
+    ) IS
+    SELECT
+        company_code,
+        department_code,
+        batch_no#,
+        effective_from,
+        effective_upto,
+        status_name
+    FROM
+        company_session
+    WHERE
+            company_code = p_company_code
+        AND department_code = p_department_code
+        AND batch_no# = p_batch_no;
+
+BEGIN
+    FOR indx IN cur LOOP
+        OPEN cur_company_session(p_company_code =&gt; indx.company_code, p_department_code =&gt; indx.department_code, p_batch_no =&gt; indx.batch_no#);
+
+        FETCH cur_company_session INTO
+            v_company_code,
+            v_department_code,
+            v_batch_no,
+            v_effective_from,
+            v_effective_upto,
+            v_status_name;
+        IF cur_company_session%notfound THEN
+            INSERT INTO company_session (
+                company_code,
+                department_code,
+                batch_no#,
+                effective_from,
+                effective_upto,
+                status_name
+            ) VALUES (
+                indx.company_code,
+                indx.department_code,
+                indx.batch_no#,
+                indx.effective_from,
+                indx.effective_upto,
+                indx.status_name
+            );
+
+        END IF;
+
+        CLOSE cur_company_session;
+    END LOOP;
+END;</source>
+</StoredProcedureOraclev10g>

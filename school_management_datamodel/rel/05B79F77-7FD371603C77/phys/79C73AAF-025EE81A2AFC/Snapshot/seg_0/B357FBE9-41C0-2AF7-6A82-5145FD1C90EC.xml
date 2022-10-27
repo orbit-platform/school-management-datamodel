@@ -1,0 +1,90 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="mv_std_academic" directorySegmentName="seg_0" id="B357FBE9-41C0-2AF7-6A82-5145FD1C90EC">
+<createdBy>leads</createdBy>
+<createdTime>2021-11-29 16:06:20 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<nextDate>sysdate + (60 * 24 * 30)/1440</nextDate>
+<refresh>YES</refresh>
+<refreshType>FORCE</refreshType>
+<startDate>sysdate</startDate>
+<subquery><![CDATA[SELECT
+    csub.school_code,
+    csub.batch_no# AS batch_no,
+    csub.class_code AS class_code,
+    csub.stream_code AS stream_code,
+    csub.term_code AS term_code,
+    ssub.student_id AS student_id,
+    ssup.part_name AS part_name,
+    ssup.part_name || '. ' || acat.pseudo AS academic_name,
+    acat.code AS academic_code
+FROM
+         school_super ssup
+    INNER JOIN school_subject ssubj
+    ON ( ssubj.school_code = ssup.school_code
+         AND ssubj.batch_no# = ssup.batch_no#
+         AND ssubj.class_code = ssup.class_code
+         AND ssubj.stream_code = ssup.stream_code
+         AND ssubj.super_code = ssup.super_code )
+    INNER JOIN subject_category scat
+    ON ( scat.code = ssup.category_code )
+    INNER JOIN academic_category acat
+    ON ( acat.code = scat.academic_code )
+    INNER JOIN class_subject csub
+    ON ( csub.school_code = ssup.school_code
+         AND csub.batch_no# = ssup.batch_no#
+         AND csub.class_code = ssup.class_code
+         AND csub.stream_code = ssup.stream_code
+         AND csub.subject_code = ssubj.subject_code )
+    INNER JOIN std_subject ssub
+    ON ( ssub.school_code = csub.school_code
+         AND ssub.batch_no# = csub.batch_no#
+         AND ssub.class_code = csub.class_code
+         AND ssub.stream_code = csub.stream_code
+         AND ssub.term_code = csub.term_code
+         AND ssub.subject_code = csub.subject_code )
+WHERE
+        ssup.status_name = 'ACTIVE'
+    AND csub.status_name = 'ACTIVE'
+    AND ssub.status_name = 'ACTIVE'
+GROUP BY
+    csub.school_code,
+    csub.batch_no#,
+    csub.class_code,
+    csub.stream_code,
+    csub.term_code,
+    ssub.student_id,
+    ssup.part_name,
+    ssup.part_name || '. ' || acat.pseudo,
+    acat.code
+UNION
+SELECT
+    vsfs.school_code,
+    vsfs.batch_no# AS batch_no,
+    vsfs.class_code,
+    vsfs.stream_code,
+    vsfs.term_code,
+    vsfs.student_id,
+    vsfs.part_name AS part_name,
+    vsfs.part_name || '. ' || acat.pseudo AS academic_name,
+    scat.academic_code AS academic_code
+FROM
+         mv_std_fourth_sub vsfs
+    INNER JOIN subject_category scat
+    ON ( scat.code = vsfs.category_code )
+    INNER JOIN academic_category acat
+    ON ( acat.code = scat.academic_code )
+GROUP BY
+    vsfs.school_code,
+    vsfs.batch_no#,
+    vsfs.class_code,
+    vsfs.stream_code,
+    vsfs.term_code,
+    vsfs.student_id,
+    vsfs.part_name,
+    vsfs.part_name || '. ' || acat.pseudo,
+    scat.academic_code,
+    vsfs.class_code]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with>ROWID</with>
+</SnapshotOraclev11g>

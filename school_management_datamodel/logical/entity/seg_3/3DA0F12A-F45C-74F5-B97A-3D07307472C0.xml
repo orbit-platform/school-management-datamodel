@@ -1,0 +1,189 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="3DA0F12A-F45C-74F5-B97A-3D07307472C0" name="school_day">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-22 12:16:39 UTC</createdTime>
+<comment><![CDATA[Records of Day - DAY 1/DAY 2/DAY 3/DAY 4/DAY 5]]></comment>
+<commentInRDBMS><![CDATA[Records of Day - DAY 1/DAY 2/DAY 3/DAY 4/DAY 5]]></commentInRDBMS>
+<notes><![CDATA[Records of Day - DAY 1/DAY 2/DAY 3/DAY 4/DAY 5]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>school_day</preferredAbbreviation>
+<shortName>school_day</shortName>
+<synonym>school_day</synonym>
+<synonymToDisplay>school_day</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="effective_date" id="98CDE9C6-EE4E-2EE9-273D-47FD7B1AD7F7">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-22 12:18:29 UTC</createdTime>
+<comment><![CDATA[Effective Date is the date of change of Day enforced by admin]]></comment>
+<commentInRDBMS><![CDATA[Effective Date is the date of change of Day enforced by admin]]></commentInRDBMS>
+<notes><![CDATA[Effective Date is the date of change of Day enforced by admin]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<constraintName>school_day_cons_effdate</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<defaultValue>TRUNC(sysdate, &apos;DD&apos;)</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="day_no#" id="B40F9690-F4FB-37BB-5834-3E85E89EE97D">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-22 12:17:49 UTC</createdTime>
+<comment><![CDATA[Day of the Week in Day no. - Day 1 /Day 2/Day 3/Day 4/Day 5/Day 6/Day 7]]></comment>
+<generatorID>BD6E86A5-598D-4BDE-4626-8B804248075E</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>FAF55B15-8235-381A-D86D-047D24CFD498</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="notes" id="8CD556C2-C159-3107-B95A-7303DA61B28C">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-22 12:19:55 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="created_by" id="319FB50F-ED31-93E3-9C22-7871A5A2B469">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-22 12:20:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="created_on" id="5DC23927-BAC4-788F-13E3-28634C5081C9">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-22 12:20:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="updated_by" id="872F1EB2-A8AC-5295-669B-33B840B24C77">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-22 12:20:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="changedate" id="DF75A4C2-1DEE-4F3A-34D8-8600534BB4AB">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-22 12:20:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="batch_name" id="344957E3-A91D-70F8-BEFC-4754E8CD1C90">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-10 11:33:18 UTC</createdTime>
+<comment><![CDATA[Batch Name]]></comment>
+<commentInRDBMS><![CDATA[Batch Name]]></commentInRDBMS>
+<generatorID>21F843E4-9C37-46E5-AA89-EE515332F3C2</generatorID>
+<notes><![CDATA[Batch Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>CBD6D200-B096-814F-4206-5B05A9D77F94</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>2B87B6DD-67BA-5A8C-E5A9-DDF62A59852D</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="6B9465C5-5693-566C-35FB-4CCC27C61C08" name="school_day_un">
+<createdBy>leads</createdBy>
+<createdTime>2019-04-22 12:22:55 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
+</engineerTo>
+<newElementsIDs>98CDE9C6-EE4E-2EE9-273D-47FD7B1AD7F7</newElementsIDs>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<usedAttributes>
+<attributeRef>98CDE9C6-EE4E-2EE9-273D-47FD7B1AD7F7</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

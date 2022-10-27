@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="emp_leave_rec_trg" directorySegmentName="seg_5" id="8672FD5A-FD1F-0FFD-CBF4-83F277F9D1C2">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-21 11:51:22 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[BEGIN
+    IF inserting THEN
+        INSERT INTO emp_leave_rec (
+            emp_leave_id,
+            company_code,
+            batch_no#,
+            employee_id,
+            leave_code,
+            effective_from,
+            effective_upto,
+            leave_status,
+            reasons,
+            delegation_id,
+            incident_status,
+            doa_comments,
+            closed_by,
+            closed_on,
+            dml_flag
+        ) VALUES (
+            :new.id,
+            :new.company_code,
+            :new.batch_no#,
+            :new.employee_id,
+            :new.leave_code,
+            :new.effective_from,
+            :new.effective_upto,
+            :new.leave_status,
+            :new.reasons,
+            :new.delegation_id,
+            :new.incident_status,
+            :new.doa_comments,
+            :new.closed_by,
+            :new.closed_on,
+            'INSERT'
+        );
+    END IF;
+    IF updating THEN
+        INSERT INTO emp_leave_rec (
+            emp_leave_id,
+            company_code,
+            batch_no#,
+            employee_id,
+            leave_code,
+            effective_from,
+            effective_upto,
+            leave_status,
+            reasons,
+            delegation_id,
+            incident_status,
+            doa_comments,
+            closed_by,
+            closed_on,
+            dml_flag
+        ) VALUES (
+            :old.id,
+            :new.company_code,
+            :new.batch_no#,
+            :new.employee_id,
+            :new.leave_code,
+            :new.effective_from,
+            :new.effective_upto,
+            :new.leave_status,
+            :new.reasons,
+            :new.delegation_id,
+            :new.incident_status,
+            :new.doa_comments,
+            :new.closed_by,
+            :new.closed_on,
+            'UPDATE'
+        );
+    END IF;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<table>4EDFC80E-7A0C-19C9-A381-A3EF56C7A8E1</table>
+</TriggerOraclev10g>

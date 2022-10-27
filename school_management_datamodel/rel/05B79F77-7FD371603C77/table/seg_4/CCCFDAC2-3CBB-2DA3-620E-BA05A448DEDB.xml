@@ -1,0 +1,289 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_4" id="CCCFDAC2-3CBB-2DA3-620E-BA05A448DEDB" name="emp_epf">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-25 06:29:46 UTC</createdTime>
+<comment><![CDATA[As an employee of any organisation, one gets a provident fund (PF) number. For an un-exempted organisation, managed by EPFO, the PF number is an alphanumeric one representing the state, regional office, establishment, and the PF member code. In case of an exempted organisation, where the PF is manged by a trust, the PF number is only numeric. PF number is not unique and changes every time an employee changes organisation.]]></comment>
+<commentInRDBMS><![CDATA[As an employee of any organisation, one gets a provident fund (PF) number. For an un-exempted organisation, managed by EPFO, the PF number is an alphanumeric one representing the state, regional office, establishment, and the PF member code. In case of an exempted organisation, where the PF is manged by a trust, the PF number is only numeric. PF number is not unique and changes every time an employee changes organisation.]]></commentInRDBMS>
+<generatorID>E08BC3E1-D9A8-A09D-DE6E-4EEC72CD6856</generatorID>
+<notes><![CDATA[As an employee of any organisation, one gets a provident fund (PF) number. For an un-exempted organisation, managed by EPFO, the PF number is an alphanumeric one representing the state, regional office, establishment, and the PF member code. In case of an exempted organisation, where the PF is manged by a trust, the PF number is only numeric. PF number is not unique and changes every time an employee changes organisation.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>emp_epf</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="417BE07B-887A-1FBD-703D-ADEF4BBAA7B2">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-25 06:29:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="employee_id" id="BD1FC420-F276-4226-94C4-A6F7221704FB">
+<createdBy>leads</createdBy>
+<createdTime>2020-09-11 05:56:02 UTC</createdTime>
+<comment><![CDATA[Employee ID Number]]></comment>
+<commentInRDBMS><![CDATA[Employee ID Number]]></commentInRDBMS>
+<generatorID>91955853-7351-F9AB-7B4A-E691FCB766FA</generatorID>
+<notes><![CDATA[Employee ID Number]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="499CC165-BAD0-91F2-1706-E6F9A3077C1C" referredColumn="E4E61450-47CD-6551-0AAC-ED9CB3769046"/>
+</associations>
+</Column>
+<Column name="epf" id="47819D3B-E1FF-C94E-9892-11963FE4CFA6">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-25 06:29:46 UTC</createdTime>
+<comment><![CDATA[As an employee of any organisation, one gets a provident fund (PF) number. For an un-exempted organisation, managed by EPFO, the PF number is an alphanumeric one representing the state, regional office, establishment, and the PF member code. In case of an exempted organisation, where the PF is manged by a trust, the PF number is only numeric. PF number is not unique and changes every time an employee changes organisation.]]></comment>
+<commentInRDBMS><![CDATA[As an employee of any organisation, one gets a provident fund (PF) number. For an un-exempted organisation, managed by EPFO, the PF number is an alphanumeric one representing the state, regional office, establishment, and the PF member code. In case of an exempted organisation, where the PF is manged by a trust, the PF number is only numeric. PF number is not unique and changes every time an employee changes organisation.]]></commentInRDBMS>
+<generatorID>9D1B210D-65F2-5B26-555D-A314BB3C9CEC</generatorID>
+<notes><![CDATA[As an employee of any organisation, one gets a provident fund (PF) number. For an un-exempted organisation, managed by EPFO, the PF number is an alphanumeric one representing the state, regional office, establishment, and the PF member code. In case of an exempted organisation, where the PF is manged by a trust, the PF number is only numeric. PF number is not unique and changes every time an employee changes organisation.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="uan" id="C9391F0F-2AB9-CAA9-1DCB-8B5062D340ED">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 12:59:27 UTC</createdTime>
+<generatorID>A02BEC5D-A53D-B7B3-B6BD-A2513165CC8C</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="status_name" id="8DB91DE1-A73A-4173-C496-C9565BE92950">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-25 06:29:46 UTC</createdTime>
+<comment><![CDATA[Status Name]]></comment>
+<commentInRDBMS><![CDATA[Status Name]]></commentInRDBMS>
+<generatorID>D84A36A9-11E5-46CB-3F99-4BACEC647ED0</generatorID>
+<notes><![CDATA[Status Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="notes" id="6E9E07AB-68AA-A3AC-6876-05B6BD6147C4">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-25 06:29:46 UTC</createdTime>
+<generatorID>569C7F08-14C6-B145-46C4-BE35651CD704</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>F60E1FFE-5DA6-531C-BDFF-CB0CBCB7F7CD</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="created_by" id="881A3004-7EE0-7D02-6D32-D598F1A827C8">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-25 06:29:46 UTC</createdTime>
+<generatorID>A8DAE39D-3A90-7A9A-B2A6-20F6C53BBF50</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FCF40FD2-658F-71B5-EA0B-1055E4223B0E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="created_on" id="61AD884A-1050-3615-F40E-0C0CDAED0074">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-25 06:29:46 UTC</createdTime>
+<generatorID>26C00C3D-6E20-2B7E-C40B-97EED58506D5</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="updated_by" id="8F465E87-5F07-F415-3AE2-6B4929ECF300">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-25 06:29:46 UTC</createdTime>
+<comment><![CDATA[Last Updated by]]></comment>
+<commentInRDBMS><![CDATA[Last Updated by]]></commentInRDBMS>
+<generatorID>21D07D1A-34B3-76A9-D5A9-DC941166C9C7</generatorID>
+<notes><![CDATA[Last Updated by]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FCF40FD2-658F-71B5-EA0B-1055E4223B0E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="changed_on" id="1D507B8A-0D1C-BF19-D8A3-057A89D6CD67">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-25 06:29:46 UTC</createdTime>
+<comment><![CDATA[Last changed date and time]]></comment>
+<commentInRDBMS><![CDATA[Last changed date and time]]></commentInRDBMS>
+<generatorID>BDFA6219-B144-FF94-E0E1-124D733C6637</generatorID>
+<notes><![CDATA[Last changed date and time]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="status_name1" id="F38219C3-37BC-FDEF-F53A-7801FDC4EEED">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-07 03:51:35 UTC</createdTime>
+<comment><![CDATA[Status Name]]></comment>
+<commentInRDBMS><![CDATA[Status Name]]></commentInRDBMS>
+<generatorID>EA48052D-43F7-7FC9-B845-7B4396A07E6F</generatorID>
+<notes><![CDATA[Status Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3CA8FD2B-E4D4-B3C5-E6A1-B9D3D2C3CDFA" referredColumn="0F47AE6E-2301-2369-DA6B-55E80FFA0DA6"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0B3CB301-0B4F-C669-026C-502BC676C01A" name="emp_epf_pk">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-25 06:29:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="417BE07B-887A-1FBD-703D-ADEF4BBAA7B2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6C9FF868-538F-17D7-DFB8-D42DE5EE0094" name="emp_epf_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-25 06:29:46 UTC</createdTime>
+<generatorID>5F73FC47-4698-E2B4-1EF4-FCFE5EFA7C7F</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BD1FC420-F276-4226-94C4-A6F7221704FB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9EC51B5E-B7D9-7FB8-B5B5-6164969ACE0D" name="emp_epf_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-08 11:29:53 UTC</createdTime>
+<generatorID>76D499D2-6F76-6DBE-D32B-D72C6D6BE6BB</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="47819D3B-E1FF-C94E-9892-11963FE4CFA6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="963B502B-A587-EC2D-9EE1-7702435909F5" name="emp_epf_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 11:56:00 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="417BE07B-887A-1FBD-703D-ADEF4BBAA7B2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="101D2B50-43C8-65BC-49B4-0BBE052379E3" name="emp_epf_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 11:56:00 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BD1FC420-F276-4226-94C4-A6F7221704FB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E124BFDE-27CC-85FD-6917-9D7A7AFC1D12" name="emp_epf_un2_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-08 11:31:32 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="47819D3B-E1FF-C94E-9892-11963FE4CFA6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5A217673-0711-8DB7-7AFD-47D021095580" name="emp_epf_emp_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-25 06:30:19 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BD1FC420-F276-4226-94C4-A6F7221704FB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="77114B9C-BB0D-687C-8E8C-24A5736C1B12" name="emp_epf_stat_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-25 06:30:19 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8DB91DE1-A73A-4173-C496-C9565BE92950"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A7C2C608-7BDC-DB7C-7A09-005B581EC9A3" name="emp_epf__idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-07 07:33:56 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F38219C3-37BC-FDEF-F53A-7801FDC4EEED"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="399F6A16-00DB-3829-2C0B-73AA06185C51" name="EmpEPF_Employee_FK">
+<createdBy>leads</createdBy>
+<createdTime>2020-09-11 05:56:02 UTC</createdTime>
+<generatorID>21268FD6-A0A6-2016-7506-50B65C604A94</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BD1FC420-F276-4226-94C4-A6F7221704FB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="541B4B23-6805-79E3-A142-68A60D34804A" name="EmpEPF_Status_FK">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-07 03:51:35 UTC</createdTime>
+<generatorID>5227B8B2-E9D3-0C55-F54F-7B4711A96586</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F38219C3-37BC-FDEF-F53A-7801FDC4EEED"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

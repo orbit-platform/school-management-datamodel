@@ -1,0 +1,248 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="CBD4137C-062F-5E07-15CA-4E0B5C30A75D" name="lib_management_rec">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:21:02 UTC</createdTime>
+<comment><![CDATA[Historical record of the library management]]></comment>
+<commentInRDBMS><![CDATA[Historical record of the library management]]></commentInRDBMS>
+<notes><![CDATA[Historical record of the library management]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>lib_management_rec</preferredAbbreviation>
+<shortName>lib_management_rec</shortName>
+<synonym>lib_management_rec</synonym>
+<synonymToDisplay>lib_management_rec</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="subscriber#" id="69F3248E-E60F-A894-0FA8-1B97C92DD9F5">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:21:02 UTC</createdTime>
+<comment><![CDATA[Subscriber ID]]></comment>
+<commentInRDBMS><![CDATA[Subscriber full name.]]></commentInRDBMS>
+<notes><![CDATA[Subscriber full name.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="subscriber_type" id="D67F21E5-7485-5535-DA1A-91296F535987">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:21:02 UTC</createdTime>
+<comment><![CDATA[subscriber type - teacher/student/staff/etc/]]></comment>
+<commentInRDBMS><![CDATA[subscriber type - teacher/student/staff/etc/]]></commentInRDBMS>
+<generatorID>9B1128AF-374B-C526-EC90-34771587C1B6</generatorID>
+<notes><![CDATA[subscriber type - teacher/student/staff/etc/]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="policy_type" id="F353064C-B539-90D8-260A-D219F7079BB7">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:21:02 UTC</createdTime>
+<comment><![CDATA[Policy Name of the Library - weekly/monthly/quarterly, etc.]]></comment>
+<commentInRDBMS><![CDATA[Policy Name of the Library - weekly/monthly/quarterly, etc.]]></commentInRDBMS>
+<generatorID>F80B266D-AA52-0C3E-8A22-D8003023897F</generatorID>
+<notes><![CDATA[Policy Name of the Library - weekly/monthly/quarterly, etc.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="takenon" id="B9BFDC2D-34AD-73A2-AA67-15B18283F691">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:21:02 UTC</createdTime>
+<comment><![CDATA[The date the book was taken on.]]></comment>
+<commentInRDBMS><![CDATA[The date the book was taken on.]]></commentInRDBMS>
+<notes><![CDATA[The date the book was taken on.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="returnedon" id="094C5FCD-4563-1F1D-D42D-C26BE549BFAB">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:21:02 UTC</createdTime>
+<comment><![CDATA[The date the book was returned.]]></comment>
+<commentInRDBMS><![CDATA[The date the book was returned.]]></commentInRDBMS>
+<notes><![CDATA[The date the book was returned.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="remarks" id="89C5E4D5-D618-5A7C-50F2-B5FF2EDCA2E9">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:21:02 UTC</createdTime>
+<comment><![CDATA[Remarks on the book and subscriber.]]></comment>
+<commentInRDBMS><![CDATA[Remarks on the book and subscriber.]]></commentInRDBMS>
+<notes><![CDATA[Remarks on the book and subscriber.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="status_name" id="EDB6ADB6-D472-6CFA-ED98-7BA0999C422E">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:43:34 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>PENDING</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="created_by" id="CC7B3629-B400-24A3-769A-1C7A108711E1">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:21:02 UTC</createdTime>
+<comment><![CDATA[Created By]]></comment>
+<commentInRDBMS><![CDATA[Created By]]></commentInRDBMS>
+<notes><![CDATA[Created By]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="created_on" id="200D7182-C48A-F753-B1F4-EBBD900D7401">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:21:02 UTC</createdTime>
+<comment><![CDATA[Created Date and Time]]></comment>
+<commentInRDBMS><![CDATA[Created Date and Time]]></commentInRDBMS>
+<notes><![CDATA[Created Date and Time]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="updated_by" id="A418855A-219F-DF22-71ED-9F2265E43F41">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:21:02 UTC</createdTime>
+<comment><![CDATA[Last Updated Date and Time]]></comment>
+<commentInRDBMS><![CDATA[Last Updated Date and Time]]></commentInRDBMS>
+<notes><![CDATA[Last Updated Date and Time]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="changedate" id="74C3220F-43A5-FACA-8AC8-17DCB1EBB5C3">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:21:02 UTC</createdTime>
+<comment><![CDATA[Change date of the record.]]></comment>
+<commentInRDBMS><![CDATA[Change date of the record.]]></commentInRDBMS>
+<notes><![CDATA[Change date of the record.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

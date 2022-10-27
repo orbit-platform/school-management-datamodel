@@ -1,0 +1,110 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="employee_lwd_trg" directorySegmentName="seg_0" id="C410614A-605D-063D-F491-B80065401367">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-19 09:11:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>UPDATE</actions>
+<body><![CDATA[BEGIN
+    ---update of emp_department
+    UPDATE emp_department
+    SET
+        effective_upto = :new.last_working_day,
+        status_name = :new.status_name
+    WHERE
+            employee_id = :old.id
+        AND status_name = 'ACTIVE';
+        
+    ---update of emp_school
+
+    UPDATE emp_school
+    SET
+        effective_upto = :new.last_working_day,
+        status_name = :new.status_name
+    WHERE
+            employee_id = :old.id
+        AND status_name = 'ACTIVE';
+        
+   ---update of emp_designation
+
+    UPDATE emp_designation
+    SET
+        effective_upto = :new.last_working_day,
+        status_name = :new.status_name
+    WHERE
+            employee_id = :old.id
+        AND status_name = 'ACTIVE';
+    
+   ---update of emp_employment
+
+    UPDATE emp_employment
+    SET
+        effective_upto = :new.last_working_day,
+        status_name = :new.status_name
+    WHERE
+            employee_id = :old.id
+        AND status_name = 'ACTIVE';
+        
+    ---update of emp_grade
+
+    UPDATE emp_grade
+    SET
+        effective_upto = :new.last_working_day,
+        status_name = :new.status_name
+    WHERE
+            employee_id = :old.id
+        AND status_name = 'ACTIVE';
+    
+    ---update of emp_role
+
+    UPDATE emp_role
+    SET
+        effective_upto = :new.last_working_day,
+        status_name = :new.status_name
+    WHERE
+            employee_id = :old.id
+        AND status_name = 'ACTIVE';
+        
+    ---update of emp_role
+
+    UPDATE emp_band
+    SET
+        effective_upto = :new.last_working_day,
+        status_name = :new.status_name
+    WHERE
+            employee_id = :old.id
+        AND status_name = 'ACTIVE';
+        
+    ---update of emp_manager
+
+    UPDATE emp_manager
+    SET
+        effective_upto = :new.last_working_day,
+        status_name = :new.status_name
+    WHERE
+            employee_id = :old.id
+        AND status_name = 'ACTIVE';
+        
+    ---update of emp_location
+
+    UPDATE emp_location
+    SET
+        effective_upto = :new.last_working_day,
+        status_name = :new.status_name
+    WHERE
+            employee_id = :old.id
+        AND status_name = 'ACTIVE';
+        
+    ---update of emp_student
+    UPDATE emp_student
+    SET
+        status_name = 'INACTIVE'
+    WHERE
+            employee_id = :old.id
+        AND status_name = 'ACTIVE';
+
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<columns>6EC3E43E-2A7C-8D62-67DA-048DE2C618AC</columns>
+<condition><![CDATA[new.last_working_day <> old.last_working_day]]></condition>
+<table>3451E805-A98C-EE3B-67AE-77E0870970F9</table>
+</TriggerOraclev10g>

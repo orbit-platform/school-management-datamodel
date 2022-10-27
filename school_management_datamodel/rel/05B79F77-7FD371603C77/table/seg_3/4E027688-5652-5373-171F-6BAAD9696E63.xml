@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_3" id="4E027688-5652-5373-171F-6BAAD9696E63" name="fee_parameter">
+<createdBy>leads</createdBy>
+<createdTime>2021-01-04 05:16:04 UTC</createdTime>
+<comment><![CDATA[Fee Parameters - like late fee, last date of fee payment, etc.]]></comment>
+<commentInRDBMS><![CDATA[Fee Parameters - like late fee, last date of fee payment, etc.]]></commentInRDBMS>
+<generatorID>6CF08D78-318F-3819-E92B-CBFC668FF7C5</generatorID>
+<notes><![CDATA[Fee Parameters - like late fee, last date of fee payment, etc.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>fee_parameter</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="57C9B42B-3594-AA5F-3FF2-16D1A10C16A9">
+<createdBy>leads</createdBy>
+<createdTime>2021-01-04 05:16:04 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="name" id="FF4D4EA0-2564-75AC-401E-A3EC6837DD06">
+<createdBy>leads</createdBy>
+<createdTime>2021-01-04 05:16:04 UTC</createdTime>
+<comment><![CDATA[Parameter Name]]></comment>
+<commentInRDBMS><![CDATA[Parameter Name]]></commentInRDBMS>
+<generatorID>C43EC51D-7356-8CD6-2E2A-60877842F424</generatorID>
+<notes><![CDATA[Parameter Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="806581F6-F9D4-1BA5-131A-A409EE57B445">
+<createdBy>leads</createdBy>
+<createdTime>2021-01-04 05:16:04 UTC</createdTime>
+<generatorID>218649F5-977B-EE91-1E42-D387CB7004FF</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FB7ED632-9A60-55D4-3EBA-790ED8939D17" name="fee_parameter_pk">
+<createdBy>leads</createdBy>
+<createdTime>2021-01-04 05:16:04 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="57C9B42B-3594-AA5F-3FF2-16D1A10C16A9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="65E7F959-0401-A272-1224-7C0A30B48FD2" name="fee_parameter_UN">
+<createdBy>leads</createdBy>
+<createdTime>2021-01-04 05:16:04 UTC</createdTime>
+<generatorID>63E35441-65A8-9257-E8FB-06F91B573C37</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FF4D4EA0-2564-75AC-401E-A3EC6837DD06"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DBED8530-240E-5395-E5A4-5CB71A78879B" name="fee_parameter_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-01-04 12:25:18 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="57C9B42B-3594-AA5F-3FF2-16D1A10C16A9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CE16530D-093A-4FA0-ACD6-305D12BD8B5E" name="fee_parameter_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-01-04 12:25:18 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FF4D4EA0-2564-75AC-401E-A3EC6837DD06"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

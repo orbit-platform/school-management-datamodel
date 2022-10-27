@@ -1,0 +1,167 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="emp_student_relative_trg" directorySegmentName="seg_3" id="2C2D16EE-9E8E-3E60-44E0-9D5D91AF2485">
+<createdBy>leads</createdBy>
+<createdTime>2022-05-30 09:14:47 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[DECLARE
+    ---variables
+    v_employee_id   emp_relative.employee_id%TYPE;
+    v_title_name    emp_relative.title_name%TYPE;
+    v_first_name    emp_relative.first_name%TYPE;
+    v_middle_name   emp_relative.middle_name%TYPE;
+    v_last_name     emp_relative.last_name%TYPE;
+    v_relation_type emp_relative.relation_type%TYPE;
+
+    ---cursor emp_student
+    CURSOR cur_emp_student (
+        p_employee_id NUMBER
+    ) IS
+    SELECT
+        (
+            CASE
+                WHEN std.sex_name = 'M' THEN
+                    'Mr.'
+                WHEN std.sex_name = 'F' THEN
+                    'Ms.'
+                ELSE
+                    'Master'
+            END
+        ) AS title_name,
+        es.employee_id,
+        std.first_name AS first_name,
+        std.middle_name AS middle_name,
+        std.last_name AS last_name,
+        (
+            CASE
+                WHEN std.sex_name = 'M' THEN
+                    'SON'
+                WHEN std.sex_name = 'F' THEN
+                    'DAUGHTER'
+            END
+        ) AS relation_type
+    FROM
+             emp_student es
+        INNER JOIN student std
+        ON ( std.id = es.student_id )
+    WHERE
+        employee_id = p_employee_id;
+        
+    ---cursor emp_relative
+    CURSOR cur_emp_relative (
+        p_employee_id NUMBER,
+        p_first_name  VARCHAR2
+    ) IS
+    SELECT
+        employee_id,
+        title_name,
+        first_name,
+        middle_name,
+        last_name,
+        relation_type
+    FROM
+        emp_relative
+    WHERE
+            employee_id = p_employee_id
+        AND first_name = p_first_name;
+BEGIN
+    IF inserting THEN
+        FOR indx IN cur_emp_student(p_employee_id => :new.employee_id) LOOP
+            OPEN cur_emp_relative(p_employee_id => indx.employee_id, p_first_name => indx.first_name);
+            FETCH cur_emp_relative INTO
+                v_employee_id,
+                v_title_name,
+                v_first_name,
+                v_middle_name,
+                v_last_name,
+                v_relation_type;
+                
+            ---insert
+            IF cur_emp_relative%notfound THEN
+                INSERT INTO emp_relative (
+                    employee_id,
+                    title_name,
+                    first_name,
+                    middle_name,
+                    last_name,
+                    relation_type
+                ) VALUES (
+                    indx.employee_id,
+                    indx.title_name,
+                    indx.first_name,
+                    indx.middle_name,
+                    indx.last_name,
+                    indx.relation_type
+                );
+            END IF;
+            
+            ---update
+            IF cur_emp_relative%found THEN
+                IF ( v_title_name <> indx.title_name OR v_middle_name <> indx.middle_name OR v_last_name <> indx.last_name OR v_relation_type <> indx.relation_type ) THEN
+                    UPDATE emp_relative
+                    SET
+                        title_name = indx.title_name,
+                        middle_name = indx.middle_name,
+                        last_name = indx.last_name,
+                        relation_type = indx.relation_type
+                    WHERE
+                            employee_id = v_employee_id
+                        AND first_name = v_first_name;
+                END IF;
+            END IF;
+            CLOSE cur_emp_relative;
+        END LOOP;
+    END IF; ---inserting
+
+    IF updating THEN
+        FOR indx IN cur_emp_student(p_employee_id => :old.employee_id) LOOP
+            OPEN cur_emp_relative(p_employee_id => indx.employee_id, p_first_name => indx.first_name);
+            FETCH cur_emp_relative INTO
+                v_employee_id,
+                v_title_name,
+                v_first_name,
+                v_middle_name,
+                v_last_name,
+                v_relation_type;
+                
+            ---insert
+            IF cur_emp_relative%notfound THEN
+                INSERT INTO emp_relative (
+                    employee_id,
+                    title_name,
+                    first_name,
+                    middle_name,
+                    last_name,
+                    relation_type
+                ) VALUES (
+                    indx.employee_id,
+                    indx.title_name,
+                    indx.first_name,
+                    indx.middle_name,
+                    indx.last_name,
+                    indx.relation_type
+                );
+            END IF;
+            
+            ---update
+            IF cur_emp_relative%found THEN
+                IF ( v_title_name <> indx.title_name OR v_middle_name <> indx.middle_name OR v_last_name <> indx.last_name OR v_relation_type <> indx.relation_type ) THEN
+                    UPDATE emp_relative
+                    SET
+                        title_name = indx.title_name,
+                        middle_name = indx.middle_name,
+                        last_name = indx.last_name,
+                        relation_type = indx.relation_type
+                    WHERE
+                            employee_id = v_employee_id
+                        AND first_name = v_first_name;
+                END IF;
+            END IF;
+            CLOSE cur_emp_relative;
+        END LOOP;
+    END IF; ---updating
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>D7D8E50F-D47C-D8EE-3A8F-1A7B047B7908, 8E17C06E-2078-8C37-DFE2-8DE1BD45B7D1, 845AB953-47B8-758D-E470-954B363BCB37, 9933797A-F380-16E0-383A-036ACFF03CE8</columns>
+<table>5ABF4D22-190F-783C-967B-AE9D05FCDA8C</table>
+</TriggerOraclev10g>

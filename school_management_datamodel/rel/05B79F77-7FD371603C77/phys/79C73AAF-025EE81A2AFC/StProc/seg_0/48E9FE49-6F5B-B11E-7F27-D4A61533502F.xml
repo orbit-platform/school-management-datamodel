@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_markscard_sub_cnt" directorySegmentName="seg_0" id="48E9FE49-6F5B-B11E-7F27-D4A61533502F">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-29 15:04:05 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>create or replace PROCEDURE proc_markscard_sub_cnt (
+    p_school_code IN VARCHAR,
+    p_batch_no    IN DATE,
+    p_class_code  IN VARCHAR2,
+    p_term_code   IN VARCHAR2,
+    p_count       IN OUT NUMBER
+) AS
+    CURSOR cur (
+        p_school_code VARCHAR2,
+        p_batch_no    DATE,
+        p_class_code  VARCHAR2,
+        p_term_code   VARCHAR2
+    ) IS
+    SELECT
+        COUNT(1)
+    FROM
+        ( SELECT
+              school_code,
+              batch_no,
+              class_code,
+              term_code,
+              subject
+          FROM
+              mvc_marksheet
+          WHERE
+                  school_code = p_school_code
+              AND batch_no = p_batch_no
+              AND class_code = p_class_code
+              AND term_code = p_term_code
+          GROUP BY
+              school_code,
+              batch_no,
+              class_code,
+              term_code,
+              subject
+        );
+BEGIN
+    OPEN cur(p_school_code, p_batch_no, p_class_code, p_term_code);
+    FETCH cur INTO p_count;
+    CLOSE cur;
+END;</source>
+</StoredProcedureOraclev10g>

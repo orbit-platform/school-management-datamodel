@@ -1,0 +1,109 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_5" id="52C7F559-90DD-8E32-FE19-E1B49BF7D659" name="difficulty">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-25 06:42:20 UTC</createdTime>
+<generatorID>25DBFE68-280C-C2FA-96DC-346187F68DE8</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>difficulty</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="F465BC0C-595D-3F6D-ECA1-6011DFAE9D50">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-25 06:42:20 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="type" id="304BECA0-B6C1-16EB-A8FB-50DF1F9E9BED">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-25 06:42:20 UTC</createdTime>
+<comment><![CDATA[Difficulty Level/Type]]></comment>
+<commentInRDBMS><![CDATA[Difficulty Level/Type]]></commentInRDBMS>
+<generatorID>57060952-3450-FBFB-AC90-3964F7FC9BE6</generatorID>
+<notes><![CDATA[Difficulty Level/Type]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pseudo" id="7CC64637-C56A-E4AC-5272-50083F598698">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-27 06:19:56 UTC</createdTime>
+<comment><![CDATA[Pseudo Name of Difficulty Level]]></comment>
+<commentInRDBMS><![CDATA[Pseudo Name of Difficulty Level]]></commentInRDBMS>
+<generatorID>4984EBA4-A92C-F820-50DD-54B62AF09040</generatorID>
+<notes><![CDATA[Pseudo Name of Difficulty Level]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="A83FD723-FEA2-1AA9-ADEE-74F91F3D85CE">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-25 06:42:20 UTC</createdTime>
+<generatorID>41D8C33A-29B7-00BB-D3D0-BD7427FDF43C</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3B6AADB7-6E57-F404-032D-EEA3D33A1459" name="difficulty_pk">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-25 06:42:20 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="F465BC0C-595D-3F6D-ECA1-6011DFAE9D50"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5AEB799B-9FBD-8DDF-E83F-AB58593C7ADD" name="difficulty_un">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-25 06:42:20 UTC</createdTime>
+<generatorID>02B46904-72D6-AFAD-769C-42DD352D6FD4</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="304BECA0-B6C1-16EB-A8FB-50DF1F9E9BED"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="82006F3D-B971-4499-AF0D-104D68DF1A95" name="difficulty_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-25 07:14:22 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F465BC0C-595D-3F6D-ECA1-6011DFAE9D50"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="257784D0-67FF-E4AE-8D08-961F7916EB39" name="difficulty_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-25 07:14:22 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="304BECA0-B6C1-16EB-A8FB-50DF1F9E9BED"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,109 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="3866B91B-E9AC-ECA0-36E0-531BA00B75D3" name="istarred">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-06 09:01:13 UTC</createdTime>
+<comment><![CDATA[Inbox Starred  - Starred and Unstarred]]></comment>
+<commentInRDBMS><![CDATA[Inbox Starred  - Starred and Unstarred]]></commentInRDBMS>
+<notes><![CDATA[Inbox Starred  - Starred and Unstarred]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteDesignID>8C6DDE97-B4FE-D62E-0482-5FBF623D80EF</remoteDesignID>
+<remoteModelID>2B8CB683-CF09-45A5-3EDA-4E4281210CFD</remoteModelID>
+<remoteObjectID>75039302-2252-0D68-4E2F-E3AF1FF9D565</remoteObjectID>
+<remoteObjectRelativeStorageName>/rel/2B8CB683-4E4281210CFD/table/seg_0/75039302-2252-0D68-4E2F-E3AF1FF9D565.xml</remoteObjectRelativeStorageName>
+<remoteSchemaName>leadsuser</remoteSchemaName>
+<abbreviation>istarred</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="8CEB44B7-70EF-4B78-EC67-992E8FA9DC74">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>DA2BD237-BDBD-C847-D8A7-1301DE7B0849</remoteObjectID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="flag" id="3A611C2D-9B26-DA92-0A9E-098772E13A87">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<comment><![CDATA[Flag - YES/NO]]></comment>
+<generatorID>0B45DC97-E928-DFB5-3CE7-67983C244F3B</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>D121E5A3-CE0E-B3D8-A96F-A034ACFE1F0B</remoteObjectID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>PENDING</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="C4FCB2A5-DA64-CDEC-AB13-2C1F742A4BB3">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<generatorID>B0178C01-1869-0C58-576C-827FFAE18FC6</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>72EC61EB-709E-F07C-7A00-7DD2928C7CFC</remoteObjectID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="025CD9EE-511E-B86B-2813-9D1F600377B9" name="istarred_pk">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>801E2F20-8876-C624-144B-D21D7560CBF4</remoteObjectID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="8CEB44B7-70EF-4B78-EC67-992E8FA9DC74"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DC0205AB-6F96-2977-0E3F-65ADD78B2B33" name="starred_un">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<generatorID>764A22EF-05B2-28DF-FF5D-B35F4363CA2B</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>1240CFB9-61A0-938E-0B4E-C89341DABBC0</remoteObjectID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3A611C2D-9B26-DA92-0A9E-098772E13A87"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1BB622E1-3A92-F0F1-8EBE-5BF280BC2489" name="istarred_id_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-01-04 09:43:40 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>C5422F1F-CAA3-50FA-6896-0A1CC6C0B15B</remoteObjectID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8CEB44B7-70EF-4B78-EC67-992E8FA9DC74"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6B8251AA-3499-7E4D-95B9-DF9013AC908D" name="istarred_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-01-04 09:43:40 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>7FDFA932-A11A-7A90-4D89-377BD64E9DA8</remoteObjectID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3A611C2D-9B26-DA92-0A9E-098772E13A87"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

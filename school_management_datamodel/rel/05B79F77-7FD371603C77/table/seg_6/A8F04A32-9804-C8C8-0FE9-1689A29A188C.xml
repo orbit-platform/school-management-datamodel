@@ -1,0 +1,138 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_6" id="A8F04A32-9804-C8C8-0FE9-1689A29A188C" name="city">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:44:09 UTC</createdTime>
+<generatorID>C57E5AD7-02EF-564A-6FC5-62D9E5981965</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>city</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID" id="6374BE15-6B2B-56F4-319A-FDAE02AF9769">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:44:09 UTC</createdTime>
+<comment><![CDATA[City ID]]></comment>
+<commentInRDBMS><![CDATA[City ID]]></commentInRDBMS>
+<generatorID>9D3154E1-AB0A-E851-F60F-908C11EF124C</generatorID>
+<notes><![CDATA[City ID]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="27F83606-8A05-6C67-CF0D-4833D62B3044">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:44:09 UTC</createdTime>
+<comment><![CDATA[country name]]></comment>
+<commentInRDBMS><![CDATA[country name]]></commentInRDBMS>
+<generatorID>B5F76FDF-3782-9609-729B-4111EB7DFBBE</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>C53373E2-F314-0647-905E-3D61C9965182</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="district_ID" id="08B187B7-3843-AB42-80AB-AAC6E2069C8E">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:44:09 UTC</createdTime>
+<comment><![CDATA[District ID]]></comment>
+<commentInRDBMS><![CDATA[District ID]]></commentInRDBMS>
+<generatorID>8E853AC3-281A-0A83-C4BF-DD1CB7AD00C2</generatorID>
+<notes><![CDATA[District ID]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7853F13F-79AD-F9DA-C97D-68DB85BE136A" referredColumn="A43D0BE6-B541-6EB6-5085-7A395F878F28"/>
+</associations>
+</Column>
+<Column name="descriptions" id="D1174A34-1844-C959-79FF-B1052889753A">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:44:09 UTC</createdTime>
+<generatorID>3B581D69-0D0C-0482-9C52-9A8E34C4CC97</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="38F61A4B-8EBE-5BCB-C4E0-FDD092E69EB3" name="city_PK">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:44:09 UTC</createdTime>
+<generatorID>97CC0AD7-AC84-BD24-2799-8B5FEDAFAA6C</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6374BE15-6B2B-56F4-319A-FDAE02AF9769"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="37C315D3-F38E-3B83-EFD7-A2C041F3A576" name="city_UN">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:44:09 UTC</createdTime>
+<generatorID>3C149DE7-8FDE-3200-CE3C-1A9088678593</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="27F83606-8A05-6C67-CF0D-4833D62B3044"/>
+<colUsage columnID="08B187B7-3843-AB42-80AB-AAC6E2069C8E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="53BBF957-8121-EF12-9BCC-C3D4299A7DEE" name="city_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:56:21 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6374BE15-6B2B-56F4-319A-FDAE02AF9769"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="664CDFAE-6453-E8A9-8340-1146113EE3BE" name="city_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:56:21 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="27F83606-8A05-6C67-CF0D-4833D62B3044"/>
+<colUsage columnID="08B187B7-3843-AB42-80AB-AAC6E2069C8E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C6282A53-430E-A11E-FAC2-45DE570F6AA6" name="city_dst_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:47:09 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="08B187B7-3843-AB42-80AB-AAC6E2069C8E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BBEBE7EA-0A7B-0AB9-CB13-A8AFD9C185B7" name="City_District_FK">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:44:09 UTC</createdTime>
+<generatorID>7A5FE92F-872A-2D9A-5EDD-6B26DEEB3EA2</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="08B187B7-3843-AB42-80AB-AAC6E2069C8E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

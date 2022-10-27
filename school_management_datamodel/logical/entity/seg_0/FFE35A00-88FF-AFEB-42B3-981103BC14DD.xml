@@ -1,0 +1,115 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="FFE35A00-88FF-AFEB-42B3-981103BC14DD" name="community">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-26 09:25:28 UTC</createdTime>
+<comment><![CDATA[community]]></comment>
+<commentInRDBMS><![CDATA[community]]></commentInRDBMS>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>community</preferredAbbreviation>
+<shortName>community</shortName>
+<synonym>community</synonym>
+<synonymToDisplay>community</synonymToDisplay>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="code" id="EC0E5E29-2EFE-6ED6-99CA-08F0BB7C157E">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-26 05:42:18 UTC</createdTime>
+<comment><![CDATA[Community Code]]></comment>
+<commentInRDBMS><![CDATA[Community Code]]></commentInRDBMS>
+<notes><![CDATA[Community Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>64DFA8C5-8CC8-87F4-4AD1-C1EA0E25E52B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="name" id="E6CD17D8-5DBE-271E-047A-E04C8152E4E4">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-26 09:26:01 UTC</createdTime>
+<comment><![CDATA[Community of the person]]></comment>
+<commentInRDBMS><![CDATA[Community of the person]]></commentInRDBMS>
+<notes><![CDATA[Community of the person]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>3BE38452-0FB0-9CF2-445A-873D4EA82BFC</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="descriptions" id="D14F2072-ABE0-3B60-BE8B-2DBD5EEF9DB6">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-26 09:26:54 UTC</createdTime>
+<comment><![CDATA[Any description of the community.]]></comment>
+<commentInRDBMS><![CDATA[Any description of the community.]]></commentInRDBMS>
+<notes><![CDATA[Any description of the community.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="2CC1EA32-98C1-3603-A702-96DB20DBD5C9" name="community_UN">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-26 09:26:05 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>E6CD17D8-5DBE-271E-047A-E04C8152E4E4</newElementsIDs>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<usedAttributes>
+<attributeRef>E6CD17D8-5DBE-271E-047A-E04C8152E4E4</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="4BA9422A-0F5C-19F1-5D16-C4F57EC8C63D" name="community_PK">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-26 05:42:23 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>EC0E5E29-2EFE-6ED6-99CA-08F0BB7C157E</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

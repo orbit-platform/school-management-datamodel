@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_fee_cycle_auto" directorySegmentName="seg_0" id="ED7348E3-25F1-A34E-65FB-64A3717922DC">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-16 11:20:16 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_fee_cycle_auto AS
+
+    v_school_code        fee_cycle.school_code%TYPE;
+    v_batch_no           fee_cycle.batch_no#%TYPE;
+    v_accounting_period  fee_cycle.accounting_period%TYPE;
+    v_last_date          fee_cycle.last_date%TYPE;
+    v_status_name        fee_cycle.status_name%TYPE;
+    v_descriptions       fee_cycle.descriptions%TYPE;
+    CURSOR cur IS
+    SELECT
+        sacc.school_code,
+        sacc.batch_no#,
+        sacc.accounting_period,
+        ( add_months(sacc.accounting_period, 1) + 9 ) AS last_date,
+        sacc.status_name
+    FROM
+             school_accounting sacc
+        INNER JOIN ( SELECT
+                         school_code,
+                         add_months(MAX(batch_no#), 12) AS batch_no#
+                     FROM
+                         fee_cycle
+                     WHERE
+                         status_name = &apos;ACTIVE&apos;
+                     GROUP BY
+                         school_code
+                   ) v ON ( v.school_code = sacc.school_code
+                            AND v.batch_no# = sacc.batch_no# )
+    WHERE
+        sacc.status_name = &apos;ACTIVE&apos;;
+
+    CURSOR cur_fee_cycle (
+        p_school_code        VARCHAR2,
+        p_batch_no           DATE,
+        p_accounting_period  DATE
+    ) IS
+    SELECT
+        school_code,
+        batch_no#,
+        accounting_period,
+        last_date,
+        status_name,
+        descriptions
+    FROM
+        fee_cycle
+    WHERE
+            school_code = p_school_code
+        AND batch_no# = p_batch_no
+        AND accounting_period = p_accounting_period;
+
+BEGIN
+    FOR indx IN cur LOOP
+        OPEN cur_fee_cycle(p_school_code =&gt; indx.school_code, p_batch_no =&gt; indx.batch_no#, p_accounting_period =&gt; indx.accounting_period);
+
+        FETCH cur_fee_cycle INTO
+            v_school_code,
+            v_batch_no,
+            v_accounting_period,
+            v_last_date,
+            v_status_name,
+            v_descriptions;
+        IF cur_fee_cycle%notfound THEN
+            INSERT INTO fee_cycle (
+                school_code,
+                batch_no#,
+                accounting_period,
+                last_date,
+                status_name
+            ) VALUES (
+                indx.school_code,
+                indx.batch_no#,
+                indx.accounting_period,
+                indx.last_date,
+                indx.status_name
+            );
+
+        END IF;
+
+        CLOSE cur_fee_cycle;
+    END LOOP;
+END;</source>
+</StoredProcedureOraclev10g>

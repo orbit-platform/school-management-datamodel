@@ -1,0 +1,228 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_automated_fee_reminder" directorySegmentName="seg_0" id="83CAE60A-5F1D-D884-0075-6A5820FF18B7">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-18 07:14:55 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_automated_fee_reminder IS
+
+    ---variable 
+    v_counter NUMBER;
+
+    ---cursor 
+    CURSOR cur IS
+    SELECT
+        student_id AS person#,
+        guardian_name AS person_name,
+        template_code AS sms_code,
+        telephone,
+        replace(replace(replace(replace(nvl(message, &apos;Select message template&apos;), &apos;$STUDENT_NAME$&apos;, student_name), &apos;$DUES$&apos;, &apos;till &apos; || accounting_period || &apos;, &apos; || TRIM(to_char(balance, &apos;99,999&apos;) || &apos;/-&apos;)), &apos;$LINK$&apos;, url), &apos;$ACCOUNTING_PERIOD$&apos;, accounting_period) AS message,
+        &apos;Daily Fee Reminder&apos; AS reason
+    FROM
+        ( SELECT
+              std.school_code AS school_code,
+              scs.batch_no# AS batch_no,
+              to_char(nvl(v.accounting_period, fcy.accounting_period), &apos;MON&apos;) AS accounting_period,
+              smstemp.code AS template_code,
+              fcy.last_date,
+              sfa.alert_date AS messaged_on,
+              scs.class_code AS class_code,
+              scs.student_id AS student_id,
+              std.first_name || &apos; &apos; || std.last_name AS student_name,
+              SUM(smf.amount) AS fee,
+              nvl(fpay.amount, 0) AS paid,
+              SUM(smf.amount) - nvl(fpay.amount, 0) AS balance,
+              g.first_name || nvl2(g.middle_name, &apos; &apos; || g.middle_name || &apos; &apos;, &apos; &apos;) || g.last_name AS guardian_name,
+              g.primary_tel AS telephone,
+              clink.short_url AS url,
+              smstemp.text_message AS message
+          FROM
+                   student std
+              INNER JOIN std_class_sec scs ON ( scs.student_id = std.id )
+              INNER JOIN std_guardian g ON ( g.id = std.guardian_id )
+              INNER JOIN std_monthly_fee smf ON ( smf.school_code = std.school_code
+                                                  AND smf.batch_no# = scs.batch_no#
+                                                  AND smf.student_id = scs.student_id )
+              INNER JOIN company_school cs ON ( cs.school_code = std.school_code )
+              INNER JOIN school_accounting sacc ON ( sacc.school_code = cs.school_code
+                                                     AND sacc.accounting_period = smf.accounting_period )
+              INNER JOIN fee_cleared fclr ON ( fclr.school_code = sacc.school_code
+                                               AND fclr.batch_no# = sacc.batch_no# )
+              INNER JOIN ( SELECT
+                               school_code,
+                               batch_no#,
+                               accounting_period,
+                               last_date
+                           FROM
+                               fee_cycle
+                           WHERE
+                                   status_name = &apos;ACTIVE&apos;
+                               AND accounting_period = trunc(sysdate -(30 + EXTRACT(DAY FROM last_date)), &apos;month&apos;)
+                         ) fcy ON ( fcy.school_code = sacc.school_code
+                                    AND fcy.batch_no# = sacc.batch_no# )
+              LEFT OUTER JOIN ( SELECT
+                                    std.school_code AS school_code,
+                                    scs.batch_no# AS batch_no#,
+                                    scs.student_id AS student_id,
+                                    add_months(fcy.accounting_period, 1) AS accounting_period
+                                FROM
+                                         student std
+                                    INNER JOIN std_class_sec scs ON ( scs.student_id = std.id )
+                                    INNER JOIN std_guardian g ON ( g.id = std.guardian_id )
+                                    INNER JOIN school_accounting sacc ON ( sacc.school_code = std.school_code
+                                                                           AND sacc.batch_no# = scs.batch_no# )
+                                    INNER JOIN std_monthly_fee smf ON ( smf.school_code = sacc.school_code
+                                                                        AND smf.batch_no# = sacc.batch_no#
+                                                                        AND smf.accounting_period = sacc.accounting_period
+                                                                        AND smf.student_id = scs.student_id )
+                                    INNER JOIN fee_cleared fclr ON ( fclr.school_code = sacc.school_code
+                                                                     AND fclr.batch_no# = sacc.batch_no# )
+                                    INNER JOIN fee_cycle fcy ON ( fcy.school_code = smf.school_code
+                                                                  AND fcy.batch_no# = smf.batch_no#
+                                                                  AND fcy.accounting_period = trunc(sysdate -(30 + EXTRACT(DAY FROM last_date)), &apos;month&apos;) )
+                                    LEFT OUTER JOIN ( SELECT
+                                                          school_code,
+                                                          batch_no#,
+                                                          student_id,
+                                                          SUM(amount) AS amount
+                                                      FROM
+                                                          fee_payment
+                                                      GROUP BY
+                                                          school_code,
+                                                          batch_no#,
+                                                          student_id
+                                                    ) fpay ON ( fpay.school_code = smf.school_code
+                                                                AND fpay.batch_no# = smf.batch_no#
+                                                                AND fpay.student_id = smf.student_id )
+                                WHERE
+                                        scs.status_name = &apos;ACTIVE&apos;
+                                    AND g.status_name = &apos;ACTIVE&apos;
+                                    AND sacc.status_name = &apos;ACTIVE&apos;
+                                    AND smf.status_name = &apos;ACTIVE&apos;
+                                    AND fcy.status_name = &apos;ACTIVE&apos;
+                                    AND scs.batch_no# = trunc(sysdate, &apos;year&apos;)
+                                    AND smf.accounting_period &lt;= fcy.accounting_period
+                                    AND EXISTS ( SELECT
+                                                     1
+                                                 FROM
+                                                          fee_cycle a
+                                                     INNER JOIN school_accounting b ON ( a.school_code = b.school_code
+                                                                                         AND a.batch_no# = b.batch_no#
+                                                                                         AND a.accounting_period = add_months(b.accounting_period, - 1) )
+                                                 WHERE
+                                                         a.accounting_period = add_months(fcy.accounting_period, 1)
+                                                     AND sysdate BETWEEN b.effective_from AND b.effective_upto
+                                               )
+                                GROUP BY
+                                    std.school_code,
+                                    scs.batch_no#,
+                                    fcy.accounting_period,
+                                    scs.student_id,
+                                    fpay.amount,
+                                    fclr.threshold_amt
+                                HAVING
+                                    SUM(smf.amount) - nvl(fpay.amount, 0) &gt; fclr.threshold_amt
+                              ) v ON ( v.school_code = smf.school_code
+                                       AND v.batch_no# = smf.batch_no#
+                                       AND v.student_id = smf.student_id )
+              INNER JOIN sms_fee_alert sfa ON ( sfa.school_code = fcy.school_code
+                                                AND sfa.alert_date = trunc(sysdate, &apos;dd&apos;) )
+              INNER JOIN sms_template smstemp ON ( smstemp.code = sfa.template_code
+                                                   AND smstemp.template_type = &apos;FEE DUES&apos;
+                                                   AND smstemp.resource_type = &apos;GUARDIAN&apos; )
+              LEFT OUTER JOIN ( SELECT
+                                    school_code,
+                                    batch_no#,
+                                    LISTAGG(student_id, &apos;:&apos;) WITHIN GROUP(
+                                        ORDER BY
+                                            student_id
+                                    ) AS std_exception
+                                FROM
+                                    std_fee_notice
+                                WHERE
+                                    status_name = &apos;ACTIVE&apos;
+                                GROUP BY
+                                    school_code,
+                                    batch_no#
+                              ) sfn ON ( sfn.school_code = std.school_code
+                                         AND sfn.batch_no# = scs.batch_no# )
+              LEFT OUTER JOIN company_link clink ON ( clink.company_code = cs.company_code
+                                                      AND upper(clink.link_type) = &apos;SCHOOL FEE PAYMENT&apos;
+                                                      AND clink.status_name = &apos;ACTIVE&apos; )
+              LEFT OUTER JOIN ( SELECT
+                                    school_code,
+                                    batch_no#,
+                                    student_id,
+                                    SUM(amount) AS amount
+                                FROM
+                                    fee_payment
+                                GROUP BY
+                                    school_code,
+                                    batch_no#,
+                                    student_id
+                              ) fpay ON ( fpay.school_code = std.school_code
+                                          AND fpay.batch_no# = scs.batch_no#
+                                          AND fpay.student_id = scs.student_id )
+          WHERE
+                  scs.status_name = &apos;ACTIVE&apos;
+              AND smf.status_name = &apos;ACTIVE&apos;
+              AND g.status_name = &apos;ACTIVE&apos;
+              AND cs.status_name = &apos;ACTIVE&apos;
+              AND fclr.status_name = &apos;ACTIVE&apos;
+              AND sfa.status_name = &apos;ACTIVE&apos;
+              AND fcy.last_date &lt; sysdate
+              AND scs.batch_no# = trunc(sysdate, &apos;year&apos;)
+              AND NOT instr(&apos;:&apos; || sfn.std_exception || &apos;:&apos;, &apos;:&apos; || scs.student_id || &apos;:&apos;) &gt; 0
+              AND smf.accounting_period &lt;= nvl(v.accounting_period, fcy.accounting_period)
+          GROUP BY
+              std.school_code,
+              scs.batch_no#,
+              nvl(v.accounting_period, fcy.accounting_period),
+              smstemp.code,
+              fcy.last_date,
+              sfa.alert_date,
+              scs.class_code,
+              scs.student_id,
+              fclr.threshold_amt,
+              clink.short_url,
+              g.first_name || nvl2(g.middle_name, &apos; &apos; || g.middle_name || &apos; &apos;, &apos; &apos;) || g.last_name,
+              g.primary_tel,
+              std.first_name || &apos; &apos; || std.last_name,
+              nvl(fpay.amount, 0),
+              smstemp.text_message
+          HAVING
+              SUM(smf.amount) - nvl(fpay.amount, 0) &gt; fclr.threshold_amt
+          ORDER BY
+              student_name
+        );
+
+BEGIN
+    v_counter := 1;
+    FOR indx IN cur LOOP
+        leadsuser.pristine_pckg.sendsms(indx.telephone, indx.message);
+        INSERT INTO leadsuser.sms_log (
+            person#,
+            person_name,
+            sms_code,
+            telephone,
+            message,
+            reason
+        ) VALUES (
+            indx.person#,
+            indx.person_name,
+            indx.sms_code,
+            indx.telephone,
+            indx.message,
+            indx.reason
+        );
+
+        IF v_counter &gt;= 50 THEN
+            v_counter := 1;
+            COMMIT;
+        ELSE
+            v_counter := v_counter + 1;
+        END IF;
+
+    END LOOP;
+
+END;</source>
+</StoredProcedureOraclev10g>

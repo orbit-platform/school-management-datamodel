@@ -1,0 +1,25 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="ilabel_insert_user_trg" directorySegmentName="seg_7" id="F292103E-DEDC-036D-C0B9-3BF0448B816B">
+<createdBy>leads</createdBy>
+<createdTime>2019-02-10 07:56:17 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[DECLARE
+    --variable to store user_id
+    v_user_id   NUMBER;
+BEGIN
+--select the value of user_id into v_user_id
+    SELECT
+        user_id
+    INTO v_user_id
+    FROM
+        leadsuser.login
+    WHERE
+        user_name = v('APP_USER');
+
+    --insert the login user_id
+    :new.login_user_id := v_user_id;
+END ilable_insert_user_trg;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<table>209FE120-717A-B0F6-356E-122807E3D711</table>
+</TriggerOraclev10g>

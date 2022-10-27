@@ -1,0 +1,44 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_markcard_cteacher" directorySegmentName="seg_0" id="50564FB5-D176-1B90-E67E-3C02E9B9CB31">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-10 11:30:49 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_markcard_cteacher (
+    p_school_code        IN VARCHAR2,
+    p_batch_no           IN DATE,
+    p_class_code         IN VARCHAR2,
+    p_stream_code        IN VARCHAR2,
+    p_section_code       IN VARCHAR2,
+    p_term_code          IN VARCHAR2,
+    p_cteacher_digital   IN OUT VARCHAR2,
+    p_class_teacher_name IN OUT VARCHAR2
+) AS
+    CURSOR cur_class_teacher (
+        pp_school_code  VARCHAR2,
+        pp_batch_no     DATE,
+        pp_class_code   VARCHAR2,
+        pp_stream_code  VARCHAR2,
+        pp_section_code VARCHAR2,
+        pp_term_code    VARCHAR2
+    ) IS
+    SELECT
+        class_teacher_id,
+        class_teacher_name
+    FROM
+        mv_class_teacher
+    WHERE
+            school_code = pp_school_code
+        AND batch_no# = pp_batch_no
+        AND class_code = pp_class_code
+        AND stream_code = pp_stream_code
+        AND section_code = pp_section_code
+        AND term_code = pp_term_code;
+BEGIN
+    OPEN cur_class_teacher(pp_school_code =&gt; p_school_code, pp_batch_no =&gt; p_batch_no, pp_class_code =&gt; p_class_code, pp_stream_code =&gt; p_stream_code, pp_section_code =&gt; p_section_code,
+                          pp_term_code =&gt; p_term_code);
+    FETCH cur_class_teacher INTO
+        p_cteacher_digital,
+        p_class_teacher_name;
+    CLOSE cur_class_teacher;
+END;</source>
+</StoredProcedureOraclev10g>

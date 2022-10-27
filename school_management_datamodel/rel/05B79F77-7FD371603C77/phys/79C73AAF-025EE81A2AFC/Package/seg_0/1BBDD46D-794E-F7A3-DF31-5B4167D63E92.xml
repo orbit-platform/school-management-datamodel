@@ -1,0 +1,151 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="student_assessment_pckg" directorySegmentName="seg_0" id="1BBDD46D-794E-F7A3-DF31-5B4167D63E92">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-20 10:08:34 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE student_assessment_pckg AS
+    PROCEDURE std_subject_remark_proc (
+        p_school_code VARCHAR2,
+        p_batch_no DATE,
+        p_class_code VARCHAR2,
+        p_term_code VARCHAR2,
+        p_subject_code VARCHAR2,
+        p_employee_id NUMBER,
+        p_remark_code VARCHAR2,
+        p_student_id NUMBER,
+        p_ordinal_no NUMBER,
+        p_description VARCHAR2
+    );
+END student_assessment_pckg;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="student_assessment_pckg" id="1BBDD46D-794E-F7A3-DF31-5B4167D63E92">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-07 09:23:10 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE BODY student_assessment_pckg AS
+    PROCEDURE std_subject_remark_proc (
+        p_school_code VARCHAR2,
+        p_batch_no DATE,
+        p_class_code VARCHAR2,
+        p_term_code VARCHAR2,
+        p_subject_code VARCHAR2,
+        p_employee_id NUMBER,
+        p_remark_code VARCHAR2,
+        p_student_id NUMBER,
+        p_ordinal_no NUMBER,
+        p_description VARCHAR2
+    ) AS
+        ---variable declarations
+        v_school_code std_subject_remark.school_code%TYPE;
+        v_batch_no std_subject_remark.batch_no#%TYPE;
+        v_class_code std_subject_remark.class_code%TYPE;
+        v_term_code std_subject_remark.term_code%TYPE;
+        v_subject_code std_subject_remark.subject_code%TYPE;
+        v_employee_id std_subject_remark.employee_id%TYPE;
+        v_remark_code std_subject_remark.remark_code%TYPE;
+        v_student_id std_subject_remark.student_id%TYPE;
+        v_ordinal_no std_subject_remark.ordinal_no%TYPE;
+        v_status_name std_subject_remark.status_name%TYPE := &apos;ACTIVE&apos;;
+        v_descriptions std_subject_remark.descriptions%TYPE;
+        
+        ---cursor
+        CURSOR cur_std_subject_remark (
+            p1_school_code VARCHAR2,
+            p1_batch_no DATE,
+            p1_class_code VARCHAR2,
+            p1_term_code VARCHAR2,
+            p1_subject_code VARCHAR2,
+            p1_employee_id VARCHAR2,
+            p1_remark_code VARCHAR2,
+            p1_student_id VARCHAR2,
+            p1_ordinal_no NUMBER
+        ) IS
+        SELECT
+            school_code,
+            batch_no#,
+            class_code,
+            term_code,
+            subject_code,
+            employee_id,
+            remark_code,
+            student_id,
+            ordinal_no,
+            status_name,
+            descriptions
+        FROM
+            std_subject_remark
+        WHERE
+                school_code = p1_school_code
+            AND batch_no# = p1_batch_no
+            AND class_code = p1_class_code
+            AND term_code = p1_term_code
+            AND subject_code = p1_subject_code
+            AND employee_id = p1_employee_id
+            AND remark_code = p1_remark_code
+            AND student_id = p1_student_id
+            AND ordinal_no = p1_ordinal_no;
+    BEGIN
+        OPEN cur_std_subject_remark(p1_school_code =&gt; p_school_code, p1_batch_no =&gt; p_batch_no, p1_class_code =&gt; p_class_code, p1_term_code =&gt; p_term_code, p1_subject_code =&gt; p_subject_code,
+                                   p1_employee_id =&gt; p_employee_id, p1_remark_code =&gt; p_remark_code, p1_student_id =&gt; p_student_id, p1_ordinal_no =&gt; p_ordinal_no);
+        FETCH cur_std_subject_remark INTO
+            v_school_code,
+            v_batch_no,
+            v_class_code,
+            v_term_code,
+            v_subject_code,
+            v_employee_id,
+            v_remark_code,
+            v_student_id,
+            v_ordinal_no,
+            v_status_name,
+            v_descriptions;
+            
+        ---insert 
+        IF cur_std_subject_remark%notfound THEN
+            INSERT INTO std_subject_remark (
+                school_code,
+                batch_no#,
+                class_code,
+                term_code,
+                subject_code,
+                employee_id,
+                remark_code,
+                student_id,
+                ordinal_no,
+                status_name,
+                descriptions
+            ) VALUES (
+                p_school_code,
+                p_batch_no,
+                p_class_code,
+                p_term_code,
+                p_subject_code,
+                p_employee_id,
+                p_remark_code,
+                p_student_id,
+                p_ordinal_no,
+                &apos;ACTIVE&apos;,
+                p_description
+            );
+        END IF;
+        
+        ---update
+        IF cur_std_subject_remark%found THEN
+            UPDATE std_subject_remark
+            SET
+                descriptions = p_description
+            WHERE
+                    school_code = p_school_code
+                AND batch_no# = p_batch_no
+                AND class_code = p_class_code
+                AND term_code = p_term_code
+                AND subject_code = p_subject_code
+                AND employee_id = p_employee_id
+                AND remark_code = p_remark_code
+                AND student_id = p_student_id
+                AND ordinal_no = p_ordinal_no;
+        END IF;
+        CLOSE cur_std_subject_remark;
+    END std_subject_remark_proc;
+END student_assessment_pckg;</source>
+</body>
+</PackageOracle>

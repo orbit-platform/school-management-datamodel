@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="99FCF2C6-A8C7-496A-1B02-81C48D78445B" name="istarred">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-30 07:18:43 UTC</createdTime>
+<comment><![CDATA[Inbox Starred  - Starred and Unstarred]]></comment>
+<commentInRDBMS><![CDATA[Inbox Starred  - Starred and Unstarred]]></commentInRDBMS>
+<notes><![CDATA[Inbox Starred  - Starred and Unstarred]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>istarred</preferredAbbreviation>
+<shortName>istarred</shortName>
+<synonym>istarred</synonym>
+<synonymToDisplay>istarred</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="flag" id="0B45DC97-E928-DFB5-3CE7-67983C244F3B">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-30 07:19:27 UTC</createdTime>
+<comment><![CDATA[Flag - YES/NO]]></comment>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>PENDING</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="description" id="B0178C01-1869-0C58-576C-827FFAE18FC6">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-30 07:19:56 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="764A22EF-05B2-28DF-FF5D-B35F4363CA2B" name="starred_un">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-30 07:20:08 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
+</engineerTo>
+<newElementsIDs>0B45DC97-E928-DFB5-3CE7-67983C244F3B</newElementsIDs>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<usedAttributes>
+<attributeRef>0B45DC97-E928-DFB5-3CE7-67983C244F3B</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_6" id="1D1C2B57-4624-E233-D991-4BE8F3EFAC19" name="postal_office">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 05:09:25 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<shortName>postal_office</shortName>
+<synonym>postal_office</synonym>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="name" id="F6F28DA8-6169-5E60-BC48-0A9BC4DBC690">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 05:09:25 UTC</createdTime>
+<comment><![CDATA[country name]]></comment>
+<commentInRDBMS><![CDATA[country name]]></commentInRDBMS>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<importedID>F769AF13-965D-6A9C-BCBD-D4371AC8EA73</importedID>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>C53373E2-F314-0647-905E-3D61C9965182</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="pin_code" id="38BF8C3B-8F74-F9E5-0932-C0E8D4EEE2F5">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 05:09:25 UTC</createdTime>
+<comment><![CDATA[Postal Identification No.]]></comment>
+<commentInRDBMS><![CDATA[Postal Identification No.]]></commentInRDBMS>
+<notes><![CDATA[Postal Identification No.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<importedID>E11BC62F-DDAE-8182-38E3-7E093C78471B</importedID>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>9134A9AC-0FFF-5A44-981C-E1E3CFCFC0B0</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="city_ID" id="7FD4A8E4-8236-7401-58D0-57A1D9C43BF0">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 05:09:25 UTC</createdTime>
+<comment><![CDATA[City ID]]></comment>
+<commentInRDBMS><![CDATA[City ID]]></commentInRDBMS>
+<generatorID>5265C441-81E1-50A0-6699-4FFD865AF04A</generatorID>
+<notes><![CDATA[City ID]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<importedID>DD47C560-1F4D-FE3C-BC65-407293E28C78</importedID>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>9D3154E1-AB0A-E851-F60F-908C11EF124C</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="8E25C786-DEAE-7658-183C-ECD307AE975A">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 05:09:25 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<importedID>2A6DB6C6-7F5C-3F8F-F8B1-592D85C0D408</importedID>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="57342ADF-C634-BE62-DDC4-1AF3FCA7CAF3" name="postal_office_UN">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 05:09:25 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<usedAttributes>
+<attributeRef>F6F28DA8-6169-5E60-BC48-0A9BC4DBC690</attributeRef>
+<attributeRef>38BF8C3B-8F74-F9E5-0932-C0E8D4EEE2F5</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,109 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="admission_pckg" directorySegmentName="seg_0" id="AABEBCEB-8803-21EE-4E85-C1A30F3E01EE">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-20 06:56:55 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE admission_pckg AS
+    --PROCEDURE TO SEND SMS TO GUARDIAN OF NEWLY ADMITTED
+    PROCEDURE send_admission_proc (
+        pschool_code IN VARCHAR2,
+        pbatch_no IN DATE,
+        pclass_code IN VARCHAR2,
+        pstatus_name IN VARCHAR2,
+        pmessage IN VARCHAR2
+    );
+END admission_pckg;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="admission_pckg" id="AABEBCEB-8803-21EE-4E85-C1A30F3E01EE">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-20 06:57:36 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE BODY admission_pckg AS
+
+    ---PACKAGE TO SEND SMS TO NEWLY ADMITTED
+    PROCEDURE send_admission_proc (
+        pschool_code IN VARCHAR2,
+        pbatch_no IN DATE,
+        pclass_code IN VARCHAR2,
+        pstatus_name IN VARCHAR2,
+        pmessage IN VARCHAR2
+    ) AS
+        --encapsulation
+        v_school_code admission.school_code%TYPE;
+        v_batch_no admission.batch_no#%TYPE;
+        v_class_code VARCHAR2(4000);
+        v_status_name admission.status_name%TYPE;
+        v_message VARCHAR2(1000);
+
+        --cursor
+        CURSOR cur (
+            p_school_code VARCHAR2,
+            p_batch_no DATE,
+            p_class_code VARCHAR2,
+            p_status_name VARCHAR2
+        ) IS
+        SELECT
+            adm.id AS admission_id,
+            adm.first_name || nvl2(adm.middle_name, &apos; &apos; || adm.middle_name || &apos; &apos;, &apos; &apos;) || adm.last_name AS student_name,
+            adm.class_code AS class_code,
+            g.first_name || nvl2(g.middle_name, &apos; &apos; || g.middle_name || &apos; &apos;, &apos; &apos;) || g.last_name AS guardian_name,
+            adm.primary_tel AS student_tel,
+            g.primary_tel AS guardian_tel,
+            g.primary_email AS primary_email
+        FROM
+                 admission adm
+            INNER JOIN std_guardian g ON ( g.admission_id = adm.id )
+        WHERE
+                adm.status_name = &apos;APPROVED&apos;
+            AND adm.school_code = p_school_code
+            AND adm.batch_no# = p_batch_no
+            AND instr(&apos;:&apos; || p_class_code || &apos;:&apos;, adm.class_code) &gt; 0
+            AND adm.status_name = nvl(p_status_name, adm.status_name);
+    BEGIN
+        v_school_code := pschool_code;
+        v_batch_no := pbatch_no;
+        v_class_code := pclass_code;
+        v_status_name := pstatus_name;
+        v_message := pmessage;
+
+    ---cursor open
+        FOR indx IN cur(p_school_code =&gt; v_school_code, p_batch_no =&gt; v_batch_no, p_class_code =&gt; v_class_code, p_status_name =&gt; v_status_name) LOOP
+            ---SENDING TO GUARDIAN
+            leadsuser.pristine_pckg.sendsms(indx.guardian_tel, v_message);
+
+            ---SENDING TO STUDENT
+            leadsuser.pristine_pckg.sendsms(indx.student_tel, v_message);
+
+        --insert the sms log - guardian
+            INSERT INTO leadsuser.sms_log (
+                person#,
+                person_name,
+                telephone,
+                message,
+                reason
+            ) VALUES (
+                indx.admission_id,
+                indx.guardian_name,
+                indx.guardian_tel,
+                v_message,
+                &apos;ADMISSION NOTICE&apos;
+            );
+
+            --insert the sms log - student
+            INSERT INTO leadsuser.sms_log (
+                person#,
+                person_name,
+                telephone,
+                message,
+                reason
+            ) VALUES (
+                indx.admission_id,
+                indx.student_name,
+                indx.student_tel,
+                v_message,
+                &apos;ADMISSION NOTICE&apos;
+            );
+        END LOOP;
+    END send_admission_proc;
+END admission_pckg;</source>
+</body>
+</PackageOracle>

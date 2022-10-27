@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FunctionOracle class="oracle.dbtools.crest.model.design.storage.oracle.FunctionOracle" name="func_std_division" directorySegmentName="seg_0" id="FD1C5E0C-DAFF-9E75-957D-2ECD1D10CF1B">
+<createdBy>leads</createdBy>
+<createdTime>2021-11-29 14:32:00 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE FUNCTION func_std_division (
+    p_school_code   VARCHAR2,
+    p_batch_no      DATE,
+    p_term_code     VARCHAR2,
+    p_class_code    VARCHAR2,
+    p_student_id    VARCHAR2,
+    p_mark_obtained NUMBER,
+    p_max_mark      NUMBER
+) RETURN VARCHAR2 AS
+    v_division VARCHAR2(50);
+BEGIN
+    SELECT
+        nvl(msop.overall_status, sdiv.division_name)
+    INTO v_division
+    FROM
+             school_division sdiv
+        INNER JOIN std_class_sec scs
+        ON ( scs.school_code = sdiv.school_code
+             AND scs.class_code = sdiv.class_code )
+        INNER JOIN school_term sterm
+        ON ( sterm.school_code = scs.school_code
+             AND sterm.batch_no# = scs.batch_no#
+             AND sterm.class_code = scs.class_code )
+        LEFT OUTER JOIN mv_std_overall_passed msop
+        ON ( msop.school_code = sterm.school_code
+             AND msop.batch_no = sterm.batch_no#
+             AND msop.class_code = sterm.class_code
+             AND msop.term_code = sterm.term_code
+             AND msop.student_id = scs.student_id )
+    WHERE
+            scs.status_name = &apos;ACTIVE&apos;
+        AND scs.school_code = p_school_code
+        AND scs.batch_no# = p_batch_no
+        AND sterm.term_code = p_term_code
+        AND scs.class_code = p_class_code
+        AND scs.student_id = p_student_id
+        AND round(p_mark_obtained / p_max_mark * 100) BETWEEN sdiv.range_from AND sdiv.range_upto;
+    RETURN v_division;
+END;</source>
+</FunctionOracle>

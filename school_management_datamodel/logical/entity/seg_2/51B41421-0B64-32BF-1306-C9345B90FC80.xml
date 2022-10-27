@@ -1,0 +1,85 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="51B41421-0B64-32BF-1306-C9345B90FC80" name="ireceiver">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-29 11:25:29 UTC</createdTime>
+<comment><![CDATA[Inbox receiver Flag - TO/CC/BCC]]></comment>
+<commentInRDBMS><![CDATA[Inbox receiver Flag - TO/CC/BCC]]></commentInRDBMS>
+<notes><![CDATA[Inbox receiver Flag - TO/CC/BCC]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>ireceiver</preferredAbbreviation>
+<shortName>ireceiver</shortName>
+<synonym>ireceiver</synonym>
+<synonymToDisplay>ireceiver</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="flag" id="D25080FF-53EE-F639-370C-85357F7C07C1">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-29 11:26:08 UTC</createdTime>
+<comment><![CDATA[Inbox Flag - TO/CC/BCC]]></comment>
+<commentInRDBMS><![CDATA[Inbox Flag - TO/CC/BCC]]></commentInRDBMS>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<constraintName>receiver_cons</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>TO</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="description" id="3A47F11D-DC1E-73AF-683B-DF5C6BAEE2B6">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-29 11:26:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="0BEF8A0D-917F-ACC1-065A-2289068D5A26" name="receiver_un">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-29 11:26:43 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
+</engineerTo>
+<newElementsIDs>D25080FF-53EE-F639-370C-85357F7C07C1</newElementsIDs>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<usedAttributes>
+<attributeRef>D25080FF-53EE-F639-370C-85357F7C07C1</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FunctionOracle class="oracle.dbtools.crest.model.design.storage.oracle.FunctionOracle" name="apex_item_textarea_clob" directorySegmentName="seg_0" id="1D40CDAF-DAA0-CC54-26E7-8F1ACE804379">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-02 11:33:00 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE FUNCTION apex_item_textarea_clob (
+    p_idx     IN        NUMBER,
+    p_value   IN        CLOB,
+    p_rows    NUMBER,
+    p_cols    NUMBER
+) RETURN CLOB IS
+    v_string   CLOB;
+BEGIN
+    v_string   := to_clob(apex_item.textarea(p_idx, wwv_flow_utilities.clob_to_varchar2(p_value), p_rows, p_cols));
+    RETURN v_string;
+END;</source>
+</FunctionOracle>

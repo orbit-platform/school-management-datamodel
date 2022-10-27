@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="C5FAF0B8-D74B-2A36-7213-2CCAFC024521" name="subscriber">
+<createdBy>leads</createdBy>
+<createdTime>2018-07-07 06:58:51 UTC</createdTime>
+<comment><![CDATA[subscriber - type : student/teacher/staff/etc/]]></comment>
+<commentInRDBMS><![CDATA[subscriber - type : student/teacher/staff/etc/]]></commentInRDBMS>
+<notes><![CDATA[subscriber - type : student/teacher/staff/etc/]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>subscriber</preferredAbbreviation>
+<shortName>subscriber</shortName>
+<synonym>subscriber</synonym>
+<synonymToDisplay>subscriber</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="type" id="436B58CF-721B-5EBD-2AB1-0CBE3DAD8C76">
+<createdBy>leads</createdBy>
+<createdTime>2018-07-07 06:59:31 UTC</createdTime>
+<comment><![CDATA[subscriber type - teacher/student/staff/etc/]]></comment>
+<commentInRDBMS><![CDATA[subscriber type - teacher/student/staff/etc/]]></commentInRDBMS>
+<notes><![CDATA[subscriber type - teacher/student/staff/etc/]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="description" id="3ABB230C-0377-2794-C336-8E5C0ADCB34F">
+<createdBy>leads</createdBy>
+<createdTime>2018-07-07 06:59:59 UTC</createdTime>
+<comment><![CDATA[subscriber type description - teacher/student/staff/etc/]]></comment>
+<commentInRDBMS><![CDATA[subscriber type description - teacher/student/staff/etc/]]></commentInRDBMS>
+<notes><![CDATA[subscriber type description - teacher/student/staff/etc/]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="EC59F02B-2611-2FBE-9902-D2C8CC964290" name="subscriber_un">
+<createdBy>leads</createdBy>
+<createdTime>2018-07-07 07:00:39 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
+</engineerTo>
+<newElementsIDs>436B58CF-721B-5EBD-2AB1-0CBE3DAD8C76</newElementsIDs>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<usedAttributes>
+<attributeRef>436B58CF-721B-5EBD-2AB1-0CBE3DAD8C76</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,457 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="admission_student_com_trg" directorySegmentName="seg_7" id="87266A06-BB0A-A97F-21BC-74DD0D9F10BA">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-15 06:28:22 UTC</createdTime>
+<comment><![CDATA[This compound trigger is used for admission approval to move admission data to student data]]></comment>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>UPDATE</actions>
+<body><![CDATA[COMPOUND TRIGGER
+    ---variable declaration
+    TYPE admission_student_rt IS RECORD (
+        v_admission_id    admission.id%TYPE,
+        v_first_name      admission.first_name%TYPE,
+        v_middle_name     admission.middle_name%TYPE,
+        v_last_name       admission.last_name%TYPE,
+        v_gender          admission.gender%TYPE,
+        v_dob             admission.dob%TYPE,
+        v_school_code     admission.school_code%TYPE,
+        v_doj             admission.doj%TYPE,
+        v_batch_no        admission.batch_no#%TYPE,
+        v_class_code      admission.class_code%TYPE,
+        v_stream_code     admission.stream_code%TYPE,
+        v_primary_tel     admission.primary_tel%TYPE,
+        v_secondary_tel   admission.secondary_tel%TYPE,
+        v_primary_email   admission.primary_email%TYPE,
+        v_secondary_email admission.secondary_email%TYPE
+    );
+
+     ---declaration of type
+    TYPE row_level_info_t IS
+        TABLE OF admission_student_rt INDEX BY PLS_INTEGER;
+
+    ---declaration of global variable
+    g_row_level_info row_level_info_t;
+
+    ---starting of each row stmt
+    AFTER EACH ROW IS BEGIN
+        g_row_level_info(g_row_level_info.count + 1).v_admission_id := :new.id;
+        g_row_level_info(g_row_level_info.count).v_first_name := :new.first_name;
+        g_row_level_info(g_row_level_info.count).v_middle_name := :new.middle_name;
+        g_row_level_info(g_row_level_info.count).v_last_name := :new.last_name;
+        g_row_level_info(g_row_level_info.count).v_gender := :new.gender;
+        g_row_level_info(g_row_level_info.count).v_dob := :new.dob;
+        g_row_level_info(g_row_level_info.count).v_school_code := :new.school_code;
+        g_row_level_info(g_row_level_info.count).v_doj := :new.doj;
+        g_row_level_info(g_row_level_info.count).v_batch_no := :new.batch_no#;
+        g_row_level_info(g_row_level_info.count).v_class_code := :new.class_code;
+        g_row_level_info(g_row_level_info.count).v_stream_code := :new.stream_code;
+        g_row_level_info(g_row_level_info.count).v_primary_tel := :new.primary_tel;
+        g_row_level_info(g_row_level_info.count).v_secondary_tel := :new.secondary_tel;
+        g_row_level_info(g_row_level_info.count).v_primary_email := :new.primary_email;
+        g_row_level_info(g_row_level_info.count).v_secondary_email := :new.secondary_email;
+    END AFTER EACH ROW; ---end of each row stmt
+
+    ---starting of statement level 
+    AFTER STATEMENT IS
+        ---declaration of variables
+        v_student_id       student.id%TYPE;
+        v_effective_upto   DATE := TO_DATE ( '31-Dec-2099', 'DD-Mon-YYYY' );
+        v_status_name      student.status_name%TYPE := 'ACTIVE';
+        v_notes            std_class_sec.notes%TYPE := 'New Student';
+
+        ---declaration of std_class_sec
+
+        v_class_code       std_class_sec.class_code%TYPE;
+        v_section_code     std_class_sec.section_code%TYPE := 'A';
+        scs_effective_from std_class_sec.effective_from%TYPE;
+        scs_effective_upto std_class_sec.effective_upto%TYPE;
+
+        ---declaration of std_parent variables
+        v_parent_id        std_parent.id%TYPE;
+
+        ---declaration of std_guardian variables
+        v_guardian_id      std_guardian.id%TYPE;
+
+        ---declaration of std_curraddress variables
+        v_curraddr_id      std_curraddress.id%TYPE;
+
+        ---declaration of std_permaddress variables
+        v_permaddr_id      std_permaddress.id%TYPE;
+
+        ---declaration of std_subject variables
+        v_any_subject      adm_subject.subject_code%TYPE := 'N';
+        CURSOR cur_std_subject (
+            p_admission_id NUMBER
+        ) IS
+        SELECT
+            admission_id,
+            subject_code,
+            status_name,
+            descriptions
+        FROM
+            adm_subject
+        WHERE
+                status_name = 'ACTIVE'
+            AND admission_id = p_admission_id;
+
+        ---declaration of sibling variables
+        v_anysibling       student.anysibling%TYPE := 'N';
+        v_sibling_id       NUMBER;
+        v_first_name_csv   sibling.first_name_csv%TYPE;
+
+        ---cursor on sibling
+        ---cursor adm_sibling
+        CURSOR cur_adm_sibling (
+            p_admission_id NUMBER,
+            p_student_id   NUMBER
+        ) IS
+        SELECT
+            a.admission_id,
+            a.student_id,
+            ( SELECT
+                    LISTAGG(std.first_name, ',') WITHIN GROUP(
+                    ORDER BY
+                        std.dob ASC
+                    )
+                FROM
+                    student std
+              WHERE
+                  std.id IN ( SELECT
+                                              b.student_id
+                                          FROM
+                                              adm_sibling b
+                              WHERE
+                                  b.admission_id = a.admission_id
+                            )
+            ) || ',' || ( SELECT
+                                            first_name
+                                        FROM
+                                            admission
+                          WHERE
+                              id = a.admission_id
+                        ) AS first_name_csv
+        FROM
+            adm_sibling a
+        WHERE
+            a.admission_id = p_admission_id
+        UNION
+        SELECT
+            TO_NUMBER(p_admission_id),
+            TO_NUMBER(p_student_id),
+            ( SELECT
+                    LISTAGG(std.first_name, ',') WITHIN GROUP(
+                    ORDER BY
+                        std.dob ASC
+                    )
+                FROM
+                    student std
+              WHERE
+                  std.id IN ( SELECT
+                                              b.student_id
+                                          FROM
+                                              adm_sibling b
+                              WHERE
+                                  b.admission_id = p_admission_id
+                            )
+            ) || ',' || ( SELECT
+                                            first_name
+                                        FROM
+                                            admission
+                          WHERE
+                              id = TO_NUMBER(p_admission_id)
+                        ) AS first_name_csv
+        FROM
+            dual;
+
+    ---cursor sibling
+        CURSOR cur_sibling (
+            p_admission_id NUMBER
+        ) IS
+        SELECT
+            sibling_id
+        FROM
+            ( SELECT
+                    sibling_id,
+                    my_count
+                FROM
+                    ( SELECT
+                              sibling_id,
+                              COUNT(1) AS my_count
+                          FROM
+                              std_sibling
+                        WHERE
+                            instr(':' ||(SELECT
+                                                                       LISTAGG(student_id, ':') WITHIN GROUP(
+                                                                       ORDER BY
+                                                                           student_id
+                                                                       ) AS student_id
+                                                                   FROM
+                                                                       adm_sibling
+                                                      WHERE
+                                                          admission_id = p_admission_id
+                                         GROUP BY
+                                             admission_id
+                                        ) || ':',
+                                  ':' || student_id || ':') > 0
+                      GROUP BY
+                          sibling_id
+                    )
+              ORDER BY
+                  my_count DESC
+            )
+        WHERE
+            ROWNUM = 1;
+
+    ---cursor std_sibling
+        CURSOR cur_std_sibling (
+            p_sibling_id NUMBER,
+            p_student_id NUMBER
+        ) IS
+        SELECT
+            sibling_id,
+            student_id
+        FROM
+            std_sibling
+        WHERE
+                sibling_id = p_sibling_id
+            AND student_id = p_student_id;
+    BEGIN
+        ---declaring variables
+        v_student_id := student_id_seq.nextval;
+        FOR indx IN 1..g_row_level_info.count LOOP
+            ---getting v_parent_id information from table std_parent
+            SELECT
+                id
+            INTO v_parent_id
+            FROM
+                std_parent
+            WHERE
+                admission_id = g_row_level_info(indx).v_admission_id;
+            ---getting v_guardian_id information from table std_guardian
+
+            SELECT
+                id
+            INTO v_guardian_id
+            FROM
+                std_guardian
+            WHERE
+                admission_id = g_row_level_info(indx).v_admission_id;
+
+            ---getting v_curraddress_id information from table std_curraddress
+
+            SELECT
+                id
+            INTO v_curraddr_id
+            FROM
+                std_curraddress
+            WHERE
+                admission_id = g_row_level_info(indx).v_admission_id;
+
+            ---getting v_permaddress_id information from table std_permaddress
+
+            SELECT
+                id
+            INTO v_permaddr_id
+            FROM
+                std_permaddress
+            WHERE
+                admission_id = g_row_level_info(indx).v_admission_id;
+                
+            ---getting v_effective_from and v_effective_upto
+            SELECT
+                effective_from,
+                effective_upto
+            INTO
+                scs_effective_from,
+                scs_effective_upto
+            FROM
+                school_session
+            WHERE
+                    school_code = g_row_level_info(indx).v_school_code
+                AND batch_no# = g_row_level_info(indx).v_batch_no
+                AND class_code = g_row_level_info(indx).v_class_code;
+
+          ---getting v_any_subject information from the table adm_subject
+            SELECT
+                CASE
+                    WHEN COUNT(1) > 0 THEN
+                        'Y'
+                    ELSE
+                        'N'
+                END
+            INTO v_any_subject
+            FROM
+                adm_subject
+            WHERE
+                admission_id = g_row_level_info(indx).v_admission_id;
+
+           ---getting v_any_sibling information from table adm_sibling
+
+            SELECT
+                CASE
+                    WHEN COUNT(1) > 0 THEN
+                        'Y'
+                    ELSE
+                        'N'
+                END
+            INTO v_anysibling
+            FROM
+                adm_sibling
+            WHERE
+                admission_id = g_row_level_info(indx).v_admission_id;
+
+            ---insert into student statement - 
+
+            INSERT INTO student (
+                id,
+                first_name,
+                middle_name,
+                last_name,
+                sex_name,
+                dob,
+                school_code,
+                doj,
+                primary_email,
+                secondary_email,
+                primary_tel,
+                secondary_tel,
+                anysibling,
+                last_schooling_day,
+                notes,
+                admission_id,
+                status_name,
+                parent_id,
+                guardian_id,
+                curraddr_id,
+                permaddr_id
+            ) VALUES (
+                v_student_id,
+                g_row_level_info(indx).v_first_name,
+                g_row_level_info(indx).v_middle_name,
+                g_row_level_info(indx).v_last_name,
+                g_row_level_info(indx).v_gender,
+                g_row_level_info(indx).v_dob,
+                g_row_level_info(indx).v_school_code,
+                nvl(g_row_level_info(indx).v_doj,
+                    sysdate),
+                g_row_level_info(indx).v_primary_email,
+                g_row_level_info(indx).v_secondary_email,
+                g_row_level_info(indx).v_primary_tel,
+                g_row_level_info(indx).v_secondary_tel,
+                v_anysibling,
+                v_effective_upto,
+                v_notes,
+                g_row_level_info(indx).v_admission_id,
+                v_status_name,
+                v_parent_id,
+                v_guardian_id,
+                v_curraddr_id,
+                v_permaddr_id
+            );
+
+            ---insert into std_class_sec
+
+            INSERT INTO std_class_sec (
+                school_code,
+                batch_no#,
+                class_code,
+                stream_code,
+                section_code,
+                student_id,
+                effective_from,
+                effective_upto,
+                status_name,
+                notes
+            ) VALUES (
+                g_row_level_info(indx).v_school_code,
+                g_row_level_info(indx).v_batch_no,
+                g_row_level_info(indx).v_class_code,
+                g_row_level_info(indx).v_stream_code,
+                v_section_code,
+                v_student_id,
+                scs_effective_from,
+                scs_effective_upto,
+                v_status_name,
+                v_notes
+            );
+
+            ---insert into std_subject
+            FOR indx2 IN cur_std_subject(p_admission_id => g_row_level_info(indx).v_admission_id) LOOP
+                IF cur_std_subject%found THEN
+                    INSERT INTO std_subject (
+                        school_code,
+                        batch_no#,
+                        class_code,
+                        stream_code,
+                        term_code,
+                        student_id,
+                        subject_code,
+                        status_name,
+                        descriptions
+                    ) VALUES (
+                        g_row_level_info(indx).v_school_code,
+                        g_row_level_info(indx).v_batch_no,
+                        g_row_level_info(indx).v_class_code,
+                        g_row_level_info(indx).v_stream_code,
+                        '01',
+                        v_student_id,
+                        indx2.subject_code,
+                        indx2.status_name,
+                        indx2.descriptions
+                    );
+                END IF;
+            END LOOP;
+
+            ---insert into std_sibling
+            FOR indx_asib IN cur_adm_sibling(p_admission_id => g_row_level_info(indx).v_admission_id, p_student_id => v_student_id) LOOP
+                IF cur_adm_sibling%found THEN
+                    OPEN cur_sibling(p_admission_id => indx_asib.admission_id);
+                    FETCH cur_sibling INTO v_sibling_id;
+
+                    ---sibling_id available
+                    IF cur_sibling%found THEN
+                        ---checking if the student_id already there
+                        OPEN cur_std_sibling(p_sibling_id => v_sibling_id, p_student_id => indx_asib.student_id);
+                        FETCH cur_std_sibling INTO
+                            v_sibling_id,
+                            v_student_id;
+
+                        ---insert into std_sibling
+                        IF cur_std_sibling%notfound THEN
+                            INSERT INTO std_sibling (
+                                sibling_id,
+                                student_id
+                            ) VALUES (
+                                v_sibling_id,
+                                indx_asib.student_id
+                            );
+                        END IF;
+
+                        ---update the sibling first_name_csv
+                        SELECT
+                            first_name_csv
+                        INTO v_first_name_csv
+                        FROM
+                            sibling
+                        WHERE
+                            id = v_sibling_id;
+                        IF v_first_name_csv <> indx_asib.first_name_csv THEN
+                            UPDATE sibling
+                            SET
+                                first_name_csv = indx_asib.first_name_csv
+                            WHERE
+                                id = v_sibling_id;
+                        END IF;
+                        CLOSE cur_std_sibling;
+                    END IF;
+                    CLOSE cur_sibling;
+                END IF;
+            END LOOP;
+        END LOOP;
+    END AFTER STATEMENT;
+END;]]></body>
+<triggerTime>COMPOUND</triggerTime>
+<columns>7ECBF03A-E0C0-62E7-75EB-33CBF7B2463A</columns>
+<condition><![CDATA[old.status_name = 'PENDING' AND new.status_name = 'APPROVED']]></condition>
+<table>ABC98086-233F-20E7-2748-F843C5E49991</table>
+</TriggerOraclev10g>

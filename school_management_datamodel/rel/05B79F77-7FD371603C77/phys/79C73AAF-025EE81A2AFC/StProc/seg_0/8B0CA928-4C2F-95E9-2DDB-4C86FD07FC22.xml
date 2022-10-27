@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="classroom_activity_proc" directorySegmentName="seg_0" id="8B0CA928-4C2F-95E9-2DDB-4C86FD07FC22">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-08 07:48:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE classroom_activity_proc (
+    p_school_code    VARCHAR2,
+    p_batch_no       DATE,
+    p_class_code     VARCHAR2,
+    p_term_code      IN               VARCHAR2,
+    p_subject_code   IN               VARCHAR2,
+    p_employee_id    IN               NUMBER,
+    p_topic          IN               VARCHAR2,
+    p_tool_code      IN               VARCHAR2,
+    p_descriptions   IN               VARCHAR2,
+    p_done_on        IN               DATE,
+    p_status_name    IN               VARCHAR2,
+    p_notes          IN               VARCHAR2
+) AS
+    ---declaration of variables
+    v_school_code    classroom_activity.school_code%TYPE;
+    v_batch_no       classroom_activity.batch_no#%TYPE;
+    v_class_code     classroom_activity.class_code%TYPE;
+    v_term_code      classroom_activity.term_code%TYPE;
+    v_subject_code   classroom_activity.subject_code%TYPE;
+    v_employee_id    classroom_activity.employee_id%TYPE;
+    v_topic          classroom_activity.topic%TYPE;
+    v_tool_code      classroom_activity.tool_code%TYPE;
+    v_descriptions   classroom_activity.descriptions%TYPE;
+    v_done_on        classroom_activity.done_on%TYPE;
+    v_status_name    classroom_activity.status_name%TYPE;
+    v_notes          classroom_activity.notes%TYPE;
+BEGIN
+    --encapsulation of variables and parameters
+    v_school_code    := p_school_code;
+    v_batch_no       := p_batch_no;
+    v_class_code     := p_class_code;
+    v_term_code      := p_term_code;
+    v_subject_code   := p_subject_code;
+    v_employee_id    := p_employee_id;
+    v_topic          := p_topic;
+    v_tool_code      := p_tool_code;
+    v_descriptions   := p_descriptions;
+    v_done_on        := p_done_on;
+    v_status_name    := p_status_name;
+    v_notes          := p_notes;
+
+    ---insert statement;
+    INSERT INTO classroom_activity (
+        school_code,
+        batch_no#,
+        class_code,
+        term_code,
+        subject_code,
+        employee_id,
+        topic,
+        tool_code,
+        descriptions,
+        done_on,
+        status_name,
+        notes
+    ) VALUES (
+        v_school_code,
+        v_batch_no,
+        v_class_code,
+        v_term_code,
+        v_subject_code,
+        v_employee_id,
+        v_topic,
+        v_tool_code,
+        v_descriptions,
+        v_done_on,
+        v_status_name,
+        v_notes
+    );
+END;</source>
+</StoredProcedureOraclev10g>

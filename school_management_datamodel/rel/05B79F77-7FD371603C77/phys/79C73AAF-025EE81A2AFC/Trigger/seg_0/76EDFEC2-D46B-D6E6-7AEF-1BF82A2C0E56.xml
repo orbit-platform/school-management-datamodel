@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="book_unit_no_trg" directorySegmentName="seg_0" id="76EDFEC2-D46B-D6E6-7AEF-1BF82A2C0E56">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-13 11:24:39 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+    SELECT
+        nvl(MAX(no), 0) + 1
+    INTO :new.no
+    FROM
+        book_unit;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>958793BE-71AC-8EDA-D41F-A5605D7DDF10, 314AF4BB-A2BC-B43A-5846-AC56C637C56F</columns>
+<condition><![CDATA[new.no IS NULL]]></condition>
+<table>D2ED605A-94A4-8CAE-8189-F94E0F0E44F1</table>
+</TriggerOraclev10g>

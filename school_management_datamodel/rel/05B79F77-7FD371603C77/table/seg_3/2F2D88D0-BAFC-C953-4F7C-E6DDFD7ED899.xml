@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_3" id="2F2D88D0-BAFC-C953-4F7C-E6DDFD7ED899" name="room">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-22 07:02:12 UTC</createdTime>
+<comment><![CDATA[facility room available]]></comment>
+<commentInRDBMS><![CDATA[facility room available]]></commentInRDBMS>
+<generatorID>B495254D-28EE-38DF-2373-BBC9A1B58410</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>room</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="code" id="FD466553-AA27-486C-4685-8172F2648698">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-22 07:02:12 UTC</createdTime>
+<comment><![CDATA[Room Code]]></comment>
+<commentInRDBMS><![CDATA[Room Code]]></commentInRDBMS>
+<generatorID>DCD82B87-4185-3EB5-005C-F3D964BB280F</generatorID>
+<notes><![CDATA[Room Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>9DA830EE-DD3A-42B9-FF8B-9E0CF1066FBA</domain>
+<defaultValue>0001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0000</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="name" id="98D6C9CF-DB68-3F70-E62F-9ECBC6EF02C3">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-22 07:02:12 UTC</createdTime>
+<comment><![CDATA[Room Name]]></comment>
+<commentInRDBMS><![CDATA[Room Name]]></commentInRDBMS>
+<generatorID>EE325F6D-38B5-4285-2B0B-244096F84C26</generatorID>
+<notes><![CDATA[Room Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>041B29E7-B2CF-CF85-CBCC-6820AEACA3BA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="8BA2B01D-7A35-8A43-F2D8-8FA276DFB2A1">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-22 07:02:12 UTC</createdTime>
+<comment><![CDATA[Description of the Room]]></comment>
+<commentInRDBMS><![CDATA[Description of the Room]]></commentInRDBMS>
+<generatorID>C2B4AAB6-4450-D1E8-12B5-D4CD79A47CA2</generatorID>
+<notes><![CDATA[Description of the Room]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8EE02009-1335-A3C1-6022-469F5CA85598" name="room_PK">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-22 07:02:13 UTC</createdTime>
+<generatorID>E4C36EAF-C780-4117-20E3-B14CC5C50FFF</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FD466553-AA27-486C-4685-8172F2648698"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="439B74FE-D113-50FF-6929-959A6FEBEA85" name="room_UN">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-22 07:02:12 UTC</createdTime>
+<generatorID>E54C9BA7-8C29-6B78-6B69-8257127A2389</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="98D6C9CF-DB68-3F70-E62F-9ECBC6EF02C3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4DE16970-6105-0BD0-F1D8-1B08E2721230" name="room_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-22 07:03:24 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FD466553-AA27-486C-4685-8172F2648698"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D14746D5-C428-90D2-3DF7-02368D4D8C24" name="room_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-22 07:03:24 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="98D6C9CF-DB68-3F70-E62F-9ECBC6EF02C3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

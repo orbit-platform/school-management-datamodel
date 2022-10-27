@@ -1,0 +1,135 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_2" id="65AAE9F6-E582-BD92-220C-DE219ED7CCCB" name="score">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-06 09:54:19 UTC</createdTime>
+<comment><![CDATA[Score Type - Grade/Value]]></comment>
+<commentInRDBMS><![CDATA[Score Type - Grade/Value]]></commentInRDBMS>
+<generatorID>99C1A464-79D7-29AD-BC26-1E428E07BFA0</generatorID>
+<notes><![CDATA[Score Type - Grade/Value]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>score</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="D646AD02-459D-DB89-3C33-438C6347D775">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-06 09:54:19 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="type" id="44B137E0-7F9E-0CEB-4698-C511E860B46F">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-06 09:54:19 UTC</createdTime>
+<comment><![CDATA[Score Type - Grade/Value]]></comment>
+<commentInRDBMS><![CDATA[Score Type - Grade/Value]]></commentInRDBMS>
+<generatorID>6352B9AD-7EAB-2144-68AD-E5AA432B24FB</generatorID>
+<notes><![CDATA[Score Type - Grade/Value]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pseudo" id="2DE1DD1C-F8AF-CC7C-C3F6-30373C73BA44">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-18 09:40:31 UTC</createdTime>
+<generatorID>11772FB5-D44D-A606-32F3-D9DF5E57D575</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="0045B047-A0C1-BE4F-0915-86D8542B4E76">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-06 09:54:19 UTC</createdTime>
+<comment><![CDATA[Description of Score Type - Grade/Value]]></comment>
+<commentInRDBMS><![CDATA[Description of Score Type - Grade/Value]]></commentInRDBMS>
+<generatorID>C55CFAC5-9E35-A43B-A63E-CC19872305F0</generatorID>
+<notes><![CDATA[Description of Score Type - Grade/Value]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4BC85C31-4A41-DF2B-29CA-AFB8296703B1" name="score_pk">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-06 09:54:19 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="D646AD02-459D-DB89-3C33-438C6347D775"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2C88B00F-1FA1-D70E-7B75-BD5F3085FC01" name="score_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-06 09:54:19 UTC</createdTime>
+<generatorID>E512A120-A3A1-B4C1-83A8-2C51EB23F183</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="44B137E0-7F9E-0CEB-4698-C511E860B46F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="40E477B7-F6D8-9D81-F3CB-B69815B225C1" name="score_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-18 09:40:31 UTC</createdTime>
+<generatorID>47B5BFD1-C575-1782-6C9D-5BFEA19634DB</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2DE1DD1C-F8AF-CC7C-C3F6-30373C73BA44"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="507C1217-2339-A289-D98E-EA2C4A4F01D1" name="score_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-06 09:57:19 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D646AD02-459D-DB89-3C33-438C6347D775"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E3129087-11A1-033A-1202-712378AA94C4" name="score_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-06 09:57:19 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="44B137E0-7F9E-0CEB-4698-C511E860B46F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2B83052A-DB07-F9DC-3E5C-C3AF87AC95C6" name="score_un2_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-18 09:49:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2DE1DD1C-F8AF-CC7C-C3F6-30373C73BA44"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

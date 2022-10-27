@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FunctionOracle class="oracle.dbtools.crest.model.design.storage.oracle.FunctionOracle" name="func_school_score_status" directorySegmentName="seg_0" id="F4052BC5-D4D3-E1BA-2946-3E46AA1218B4">
+<createdBy>leads</createdBy>
+<createdTime>2020-09-05 11:50:01 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>create FUNCTION func_school_score_status (
+    p_school_code         VARCHAR2,
+    p_batch_no            DATE,
+    p_term_code           VARCHAR2,
+    p_score_status_name   VARCHAR2,
+    p_phrase              VARCHAR2 DEFAULT &apos;SHORT&apos;
+) RETURN VARCHAR2 IS
+    v_name   school_score_status.name%TYPE;
+BEGIN
+    SELECT
+        CASE
+            WHEN upper(p_phrase) = &apos;SHORT&apos; THEN sss.name
+            WHEN upper(p_phrase) = &apos;LONG&apos;  THEN sss.long_name
+        END AS v_name
+    INTO v_name
+    FROM
+        score_status ss
+        INNER JOIN school_score_status sss ON ( sss.score_status_name = ss.name )
+    WHERE
+        sss.school_code = p_school_code
+        AND sss.batch_no# = p_batch_no
+        AND sss.term_code = p_term_code
+        AND sss.score_status_name = p_score_status_name;
+    RETURN v_name;
+END;</source>
+</FunctionOracle>

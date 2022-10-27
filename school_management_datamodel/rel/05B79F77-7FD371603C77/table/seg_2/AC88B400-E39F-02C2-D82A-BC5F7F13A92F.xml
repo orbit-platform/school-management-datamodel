@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_2" id="AC88B400-E39F-02C2-D82A-BC5F7F13A92F" name="semester">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-19 10:13:31 UTC</createdTime>
+<comment><![CDATA[Semester Table - I Semester/II Semester/III Semester/IV Semester]]></comment>
+<commentInRDBMS><![CDATA[Semester Table - I Semester/II Semester/III Semester/IV Semester]]></commentInRDBMS>
+<generatorID>E1F5EECF-7687-F061-5397-861324F7C1A7</generatorID>
+<notes><![CDATA[Semester Table - I Semester/II Semester/III Semester/IV Semester]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>semester</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="code" id="5D6163BB-C933-4FF6-37C0-A67F30F6C773">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-19 10:13:31 UTC</createdTime>
+<generatorID>4B4DA355-62E4-A379-2F6D-89A8DD715784</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="CF99F9E6-C276-1A14-3D75-A749CB474E38">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-19 10:13:31 UTC</createdTime>
+<generatorID>C72A5B04-D1C5-922A-D033-A51C78D27E3B</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<constraintName>semester_default_cons</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>107D2248-3970-71B3-96D1-16C26501CFAF</domain>
+<defaultValue>NOT APPLICABLE</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="A7D1DBA5-03A5-EBBE-1207-4360A6BDA10F">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-19 10:13:31 UTC</createdTime>
+<generatorID>5CCB21E8-5AD7-E11D-E604-680B73574DC4</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4CFD2A37-82C9-5926-37E5-57336254F4EC" name="semester_PK">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-19 10:13:31 UTC</createdTime>
+<generatorID>C0556242-B6E6-ADA8-4AEC-174CC70AAE8A</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5D6163BB-C933-4FF6-37C0-A67F30F6C773"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8BA8607B-6916-AB2E-3266-77D9B5E9AD7C" name="semester_UN">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-19 10:13:31 UTC</createdTime>
+<generatorID>00C330D9-C216-44B5-8C0F-74B90C2F99D9</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CF99F9E6-C276-1A14-3D75-A749CB474E38"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9E05F648-7DF2-A5C9-867D-D3E0EF4CF3FA" name="semester_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-19 10:13:58 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5D6163BB-C933-4FF6-37C0-A67F30F6C773"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E78CA19F-6F7F-FE7C-F744-4A95AB2FB4FA" name="semester_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-19 10:13:58 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CF99F9E6-C276-1A14-3D75-A749CB474E38"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

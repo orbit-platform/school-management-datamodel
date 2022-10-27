@@ -1,0 +1,294 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_4" id="56404674-EB92-93A9-7CEB-F273A2B8C853" name="emp_salary">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 09:31:41 UTC</createdTime>
+<comment><![CDATA[Montly/Weekly/Daily Salary payment of the employees]]></comment>
+<commentInRDBMS><![CDATA[Montly/Weekly/Daily Salary payment of the employees]]></commentInRDBMS>
+<notes><![CDATA[Montly/Weekly/Daily Salary payment of the employees]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>emp_salary</preferredAbbreviation>
+<shortName>emp_salary</shortName>
+<synonym>emp_salary</synonym>
+<synonymToDisplay>emp_salary</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="company_code" id="9D45FF10-781C-7FF1-F56C-FDEE9CBCA19C">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 11:02:16 UTC</createdTime>
+<comment><![CDATA[Company Code - 10 digits]]></comment>
+<commentInRDBMS><![CDATA[Company Code - 10 digits]]></commentInRDBMS>
+<generatorID>C33233B3-E087-196A-DC5C-47DBAEAA65A6</generatorID>
+<notes><![CDATA[Company Code - 10 digits]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>95B99F61-D3E4-28BD-961F-A8F40C4D2CD8</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>53AB0579-872F-D944-2762-9BC69C2EFEBD</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="batch_no#" id="A1090482-1B74-1B65-A270-0EECAC77518A">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 09:34:46 UTC</createdTime>
+<comment><![CDATA[Batch Number expressed in date]]></comment>
+<commentInRDBMS><![CDATA[Batch Number expressed in date]]></commentInRDBMS>
+<generatorID>BAFA4D9C-B249-3331-1D32-557D71C6A758</generatorID>
+<notes><![CDATA[Batch Number expressed in date]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>941B8596-FF99-A7A7-83C7-3538B79D0948</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<domain>57E4E726-0278-DC93-9196-ABB2B37DFF18</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="accounting_period" id="7DEA9817-305A-159B-FDF6-374C2BB4AFC9">
+<createdBy>leads</createdBy>
+<createdTime>2021-01-04 12:37:23 UTC</createdTime>
+<generatorID>D8368B08-049C-4B72-0958-6006DC7772CF</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>A2ED0ED7-A636-7420-F899-3D7C2D92A62C</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<domain>57E4E726-0278-DC93-9196-ABB2B37DFF18</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="employee_id" id="0C138A48-B01C-B9A7-2152-86BEEDA07F2F">
+<createdBy>leads</createdBy>
+<createdTime>2020-09-08 05:41:04 UTC</createdTime>
+<comment><![CDATA[Employee ID Number]]></comment>
+<commentInRDBMS><![CDATA[Employee ID Number]]></commentInRDBMS>
+<generatorID>965BCC25-263E-6A82-ADF3-1C273BB88352</generatorID>
+<notes><![CDATA[Employee ID Number]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>C431F04A-9B96-82C0-25D3-8356C925D1F2</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="component_code" id="1BD6DBB3-B31E-07EF-EF8A-CE63B3E7AE0F">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 09:35:04 UTC</createdTime>
+<generatorID>BA26A42A-5917-A1CA-4A04-E033C9809C44</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>3F241DA0-A90B-E2BA-65F5-0EFECE939EBE</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="salary_code" id="5D270DCA-DE3F-8965-FCB4-09E97F3B1B75">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 09:35:23 UTC</createdTime>
+<generatorID>1112F186-CFF4-8655-9199-2650ECBAF135</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>AAF2E739-0488-948C-8FAE-2DE97385C1D7</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="clockwork_code" id="C53DE3E7-1E13-DB24-67C0-69E2760B3ED1">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 09:35:41 UTC</createdTime>
+<generatorID>F4B32E16-5CB8-1E73-DEFC-89AA69A8E3DD</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>E9406C82-D008-2FA8-7A82-9609E7A06740</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="amount" id="E189007F-A0CA-49BA-973C-C9464AFBB0B4">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 09:31:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pc_basic" id="814F7913-A96F-AD9D-BBC1-C0B22CEEB75F">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-26 11:37:08 UTC</createdTime>
+<comment><![CDATA[Minimum Percentage of Basic Pay]]></comment>
+<commentInRDBMS><![CDATA[Minimum Percentage of Basic Pay]]></commentInRDBMS>
+<notes><![CDATA[Minimum Percentage of Basic Pay]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="status_name" id="004B47DB-DCFD-D5F3-BDA2-00AC0209750A">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 09:31:41 UTC</createdTime>
+<comment><![CDATA[status type - ACTIVE/INACTIVE]]></comment>
+<commentInRDBMS><![CDATA[status type - ACTIVE/INACTIVE]]></commentInRDBMS>
+<generatorID>97460E0F-24F8-E911-6CD7-D48FA9996181</generatorID>
+<notes><![CDATA[status type - ACTIVE/INACTIVE]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="47884022-2CF8-C24B-118A-AF906DB4F4AD">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 09:31:41 UTC</createdTime>
+<comment><![CDATA[description of payroll component]]></comment>
+<commentInRDBMS><![CDATA[description of payroll component]]></commentInRDBMS>
+<notes><![CDATA[description of payroll component]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="created_by" id="755B940D-B278-4286-14B2-8A8B33B3812E">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 09:31:41 UTC</createdTime>
+<comment><![CDATA[created by the apex user or any user]]></comment>
+<commentInRDBMS><![CDATA[created by the apex user or any user]]></commentInRDBMS>
+<notes><![CDATA[created by the apex user or any user]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FCF40FD2-658F-71B5-EA0B-1055E4223B0E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="created_on" id="76E67318-2752-0A56-5931-DB6AADAD9F97">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 09:31:41 UTC</createdTime>
+<comment><![CDATA[Created on - Date and Time]]></comment>
+<commentInRDBMS><![CDATA[Created on - Date and Time]]></commentInRDBMS>
+<notes><![CDATA[Created on - Date and Time]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="updated_by" id="E08C8ED4-AEFB-FA45-07F0-6306014BD1F9">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 09:31:41 UTC</createdTime>
+<comment><![CDATA[Updated by the apex user or any user]]></comment>
+<commentInRDBMS><![CDATA[Updated by the apex user or any user]]></commentInRDBMS>
+<notes><![CDATA[Updated by the apex user or any user]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FCF40FD2-658F-71B5-EA0B-1055E4223B0E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="changed_on" id="4AB5DB07-380D-ECC6-1C04-DAE053C38E71">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 09:31:41 UTC</createdTime>
+<comment><![CDATA[Last Changed date and time]]></comment>
+<commentInRDBMS><![CDATA[Last Changed date and time]]></commentInRDBMS>
+<notes><![CDATA[Last Changed date and time]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="775BC1B4-436B-25C1-3F1C-BAE2104C49F7" name="emp_salary_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-27 09:38:47 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>C33233B3-E087-196A-DC5C-47DBAEAA65A6,D8368B08-049C-4B72-0958-6006DC7772CF,965BCC25-263E-6A82-ADF3-1C273BB88352,BA26A42A-5917-A1CA-4A04-E033C9809C44</newElementsIDs>
+<usedAttributes>
+<attributeRef>9D45FF10-781C-7FF1-F56C-FDEE9CBCA19C</attributeRef>
+<attributeRef>7DEA9817-305A-159B-FDF6-374C2BB4AFC9</attributeRef>
+<attributeRef>0C138A48-B01C-B9A7-2152-86BEEDA07F2F</attributeRef>
+<attributeRef>1BD6DBB3-B31E-07EF-EF8A-CE63B3E7AE0F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

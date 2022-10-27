@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="facility_rec_trg" directorySegmentName="seg_6" id="0EF2A30F-C447-CC1F-2912-3EA6F2CD8A68">
+<createdBy>leads</createdBy>
+<createdTime>2019-01-11 07:17:02 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[BEGIN
+	IF inserting THEN
+		INSERT INTO leadsuser.facility_rec(facility_id, requirement, requested_by, item_ntype, unit_name, quantity, price, subtotal, priority_plevel, reason, assigned_to, status_name, dml_flag, created_by, requested_on, closed_by, closed_on, updated_by, changedate)
+			VALUES(:NEW.id, :NEW.requirement, :NEW.requested_by, :NEW.item_ntype, :NEW.unit_name, :NEW.quantity, :NEW.price, :NEW.subtotal, :NEW.priority_plevel, :NEW.reason, :NEW.assigned_to, :NEW.status_name, 'INSERT', :NEW.created_by, :NEW.requested_on, :NEW.closed_by, :NEW.closed_on, :NEW.updated_by, :NEW.changedate);
+	END IF;
+
+	IF updating THEN
+		INSERT INTO leadsuser.facility_rec(facility_id, requirement, requested_by, item_ntype, unit_name, quantity, price, subtotal, priority_plevel, reason, assigned_to, status_name, dml_flag, created_by, requested_on, closed_by, closed_on, updated_by, changedate)
+			VALUES(:OLD.id, :NEW.requirement, :NEW.requested_by, :NEW.item_ntype, :NEW.unit_name, :NEW.quantity, :NEW.price, :NEW.subtotal, :NEW.priority_plevel, :NEW.reason, :NEW.assigned_to, :NEW.status_name, 'UPDATE', :OLD.created_by, :OLD.requested_on, :NEW.closed_by, :NEW.closed_on, :NEW.updated_by, :NEW.changedate);
+	END IF;
+
+	IF deleting THEN
+		--update facility_id to null for delete process
+		UPDATE leadsuser.facility_rec
+		SET facility_id = ''
+		WHERE facility_id = :OLD.id;
+
+		--insert the delete row in the facility_rec table
+		INSERT INTO leadsuser.facility_rec(facility_id, requirement, requested_by, item_ntype, unit_name, quantity, price, subtotal, priority_plevel, reason, assigned_to, status_name, dml_flag, created_by, requested_on, closed_by, closed_on, updated_by, changedate)
+			VALUES(null, :OLD.requirement, :OLD.requested_by, :OLD.item_ntype, :OLD.unit_name, :OLD.quantity, :OLD.price, :OLD.subtotal, :OLD.priority_plevel, :OLD.reason, :OLD.assigned_to, :OLD.status_name, 'DELETE', :OLD.created_by, :OLD.requested_on, :OLD.closed_by, :OLD.closed_on, NVL(V('APP_USER'), USER), current_timestamp);
+	END IF;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<columns>CDB1F44A-5935-5155-6425-D3E405B73E87, 12EB06EA-01B7-0C98-E510-D6B60C5ADA66, 23A4C882-F06C-4A65-5557-74AA9534BECB, 8BBBC5A8-4BA3-7000-E283-DDD1B3912823, 34B241D0-7E60-C2C4-4742-1B5727B5D91B, C230151E-D3EC-7340-F19D-DFE26FE71832, 484C1424-9862-25A9-3214-7880366AE774, F1E1A970-0D58-DDA1-126E-77A12A149567, 84190407-0828-A563-5BAA-B5A9AA8D2D36, C0881BA0-67BF-E09B-E348-70720ED0864D, 49AA7959-DFC8-97F8-650C-D9B64BC7789C, ACD0D931-CBC3-0033-AF55-CBE85FB7ABE8</columns>
+<table>888D9E5F-D25C-17CF-B264-3FA26E8DCDD7</table>
+</TriggerOraclev10g>

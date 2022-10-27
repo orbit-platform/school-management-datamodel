@@ -1,0 +1,21 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="true_false_ans_chg_trg" directorySegmentName="seg_8" id="A82554F1-EE1C-F231-6F4F-73A2B077B5A2">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-25 15:19:13 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[BEGIN
+    IF inserting THEN
+        :new.created_by := nvl(v('APP_USER'), user);
+        :new.created_on := current_timestamp;
+        :new.changed_on := current_timestamp;
+    END IF;
+    IF updating THEN
+        :new.updated_by := nvl(v('APP_USER'), user);
+        :new.changed_on := current_timestamp;
+    END IF;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>914E063F-6EB4-B27C-AF5E-634A259855E5, 0C3D5294-BFCB-5575-458E-180A0EBB812F, 46053D92-1C22-3B67-258B-04993C4A73B6</columns>
+<table>9185C9CA-F0DA-8480-F834-E5FE25B515D4</table>
+</TriggerOraclev10g>

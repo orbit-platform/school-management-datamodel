@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C9F62FE6-A062-7C9C-F461-BC260D86A9A1" name="employment">
+<createdBy>leads</createdBy>
+<createdTime>2020-03-25 06:15:30 UTC</createdTime>
+<comment><![CDATA[employment type and description.]]></comment>
+<commentInRDBMS><![CDATA[employment type and description.]]></commentInRDBMS>
+<generatorID>A9B4A1F9-44B3-9BE4-AF60-8A6098FB5E99</generatorID>
+<notes><![CDATA[employment type and description.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>employment</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="type" id="6FA89E9B-0178-B253-B8EF-FCFFFFE37C32">
+<createdBy>leads</createdBy>
+<createdTime>2020-03-25 06:15:30 UTC</createdTime>
+<comment><![CDATA[Employment Type]]></comment>
+<commentInRDBMS><![CDATA[Employment Type]]></commentInRDBMS>
+<generatorID>B3220BE7-B664-0241-A505-8A528DC144A6</generatorID>
+<notes><![CDATA[Employment Type]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<constraintName>employment_name_cons</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>F74029D6-A3A6-D608-9446-2AE2C4A067D2</domain>
+<defaultValue>FULL TIME</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="E2A5C5EE-614B-3BE2-F9D7-09D84F404035">
+<createdBy>leads</createdBy>
+<createdTime>2020-03-25 06:15:30 UTC</createdTime>
+<comment><![CDATA[description of employment type]]></comment>
+<commentInRDBMS><![CDATA[description of employment type]]></commentInRDBMS>
+<generatorID>6356038D-E567-5285-8857-7D68B2EF6762</generatorID>
+<notes><![CDATA[description of employment type]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B3846791-7A83-54BF-997B-D6D194B7FB2A" name="employment_un">
+<createdBy>leads</createdBy>
+<createdTime>2020-03-25 06:15:30 UTC</createdTime>
+<generatorID>2370C904-4BD6-D492-427B-AC2D4032EBC5</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6FA89E9B-0178-B253-B8EF-FCFFFFE37C32"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9564A48F-D6DE-2971-4523-437DDEF64229" name="employment_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-03-25 06:16:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
+<ind_PK_UK id="B86F27B9-3855-983F-BA43-471B31487619" name="employment_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-03-25 06:16:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6FA89E9B-0178-B253-B8EF-FCFFFFE37C32"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

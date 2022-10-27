@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_4" id="0C38929A-2285-ADF8-5DA4-9E536BAD9C55" name="sibling">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-02 06:52:57 UTC</createdTime>
+<comment><![CDATA[Sibling ID of the students]]></comment>
+<commentInRDBMS><![CDATA[Sibling ID of the students]]></commentInRDBMS>
+<notes><![CDATA[Sibling ID of the students]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>sibling</preferredAbbreviation>
+<shortName>sibling</shortName>
+<synonym>sibling</synonym>
+<synonymToDisplay>sibling</synonymToDisplay>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="5F3DA81C-D5C4-378C-C6EF-B3F4E9F89F34">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-02 06:53:22 UTC</createdTime>
+<comment><![CDATA[Sibling ID of the students]]></comment>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="first_name_csv" id="0971916A-CD88-DB93-B9F1-79F8AAC251FA">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-02 06:54:17 UTC</createdTime>
+<comment><![CDATA[Comma Separated First Name, e.g., James,John,Joseph]]></comment>
+<commentInRDBMS><![CDATA[Comma Separated First Name, e.g., James,John,Joseph]]></commentInRDBMS>
+<notes><![CDATA[Comma Separated First Name, e.g., James,John,Joseph]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>E8E195BB-3B87-7228-E310-5E31456915A4</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="notes" id="4E452357-5CAD-6411-A186-5F40E83239B3">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-02 09:03:26 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="AE07C1E5-4AA5-DDC2-EB87-99007183F048" name="sibling_PK">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-02 06:53:32 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>5F3DA81C-D5C4-378C-C6EF-B3F4E9F89F34</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="8DF365A4-D12F-BC07-94BE-EF0A50380725" name="sibling_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-02 09:01:14 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>0971916A-CD88-DB93-B9F1-79F8AAC251FA</newElementsIDs>
+<usedAttributes>
+<attributeRef>0971916A-CD88-DB93-B9F1-79F8AAC251FA</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

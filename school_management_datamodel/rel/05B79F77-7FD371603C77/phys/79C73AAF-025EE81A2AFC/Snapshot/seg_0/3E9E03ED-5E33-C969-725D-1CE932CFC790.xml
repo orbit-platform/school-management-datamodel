@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="mv_std_score_alloc" directorySegmentName="seg_0" id="3E9E03ED-5E33-C969-725D-1CE932CFC790">
+<createdBy>leads</createdBy>
+<createdTime>2021-11-29 13:56:33 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<nextDate>sysdate + (60*24*60)/1440</nextDate>
+<refresh>YES</refresh>
+<refreshType>FORCE</refreshType>
+<startDate>sysdate</startDate>
+<subquery><![CDATA[SELECT
+        school_code,
+        batch_no# AS batch_no,
+        class_code,
+        stream_code,
+        term_code,
+        student_id,
+        super_code,
+        evaluation_code,
+        examination_type,
+        assessment_type,
+        min_mark,
+        max_mark,
+        special_type,
+        status_name
+    FROM
+        std_score_alloc]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with></with>
+</SnapshotOraclev11g>

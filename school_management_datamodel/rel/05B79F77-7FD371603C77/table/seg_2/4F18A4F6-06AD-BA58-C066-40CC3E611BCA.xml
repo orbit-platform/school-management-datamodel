@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_2" id="4F18A4F6-06AD-BA58-C066-40CC3E611BCA" name="quarter">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-21 06:38:06 UTC</createdTime>
+<comment><![CDATA[quarter of the year - 3 months]]></comment>
+<commentInRDBMS><![CDATA[quarter of the year - 3 months]]></commentInRDBMS>
+<generatorID>34F7156A-1366-A4B8-6F20-BEB3AE6466E3</generatorID>
+<notes><![CDATA[quarter of the year - 3 months]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteDesignID>8C6DDE97-B4FE-D62E-0482-5FBF623D80EF</remoteDesignID>
+<remoteModelID>2B8CB683-CF09-45A5-3EDA-4E4281210CFD</remoteModelID>
+<remoteObjectID>45C48AB1-2A8C-E8E2-D996-0B0280AA674C</remoteObjectID>
+<remoteObjectRelativeStorageName>/rel/2B8CB683-4E4281210CFD/table/seg_1/45C48AB1-2A8C-E8E2-D996-0B0280AA674C.xml</remoteObjectRelativeStorageName>
+<remoteSchemaName>leadsuser</remoteSchemaName>
+<abbreviation>quarter</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="29386550-E78F-69B5-C1DE-3901CCE9C234">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-21 06:38:06 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>DA198985-CE30-C96F-B669-CA310B6BF0AD</remoteObjectID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="name" id="8FBEF03C-FB38-7909-2338-B726402D1507">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-21 06:38:06 UTC</createdTime>
+<comment><![CDATA[Name of the Quarter - First quarter/Second Quarter/Third Quarter/Fourth Quarter]]></comment>
+<commentInRDBMS><![CDATA[Name of the Quarter - First quarter/Second Quarter/Third Quarter/Fourth Quarter]]></commentInRDBMS>
+<generatorID>83608A77-B5AD-200C-F721-F315D6E225AE</generatorID>
+<notes><![CDATA[Name of the Quarter - First quarter/Second Quarter/Third Quarter/Fourth Quarter]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>474C9ED4-CE2B-59F6-39C2-E4421FD3873D</remoteObjectID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="41DE2E5F-F801-A104-A04D-155337C5F148">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-21 06:38:06 UTC</createdTime>
+<generatorID>D53F71CC-5A46-95DE-0CF3-B9B6E0AD5782</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>DB02C23F-88F3-C984-37CD-21B0DF0A0B84</remoteObjectID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5DF53B9C-CFAE-1D4D-6AB6-348940596F96" name="quarter_pk">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-21 06:38:06 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>9CE099E3-DE12-B1DF-C395-99FB4E98DCE6</remoteObjectID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="29386550-E78F-69B5-C1DE-3901CCE9C234"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="03774F3A-AF21-8552-59E9-F24CCBC1D691" name="quarter_un">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-21 06:38:06 UTC</createdTime>
+<generatorID>3AE40761-1FFF-4067-1083-41852477C3B7</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>A44C60B8-3A9D-27CF-1971-D4A2D8126D47</remoteObjectID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8FBEF03C-FB38-7909-2338-B726402D1507"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6C4645A3-3246-7EF1-B7A2-DF20D0610ED6" name="quarter_id_idx">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-21 09:47:00 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>CF7BDA0C-327E-B2AC-84AE-A2E0029CA1D9</remoteObjectID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="29386550-E78F-69B5-C1DE-3901CCE9C234"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8E3B71B9-533F-6FEC-EB79-0E463D164434" name="quarter_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-21 09:47:00 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>70DEEEEF-6109-E3D2-DE05-5B1946B346DC</remoteObjectID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8FBEF03C-FB38-7909-2338-B726402D1507"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

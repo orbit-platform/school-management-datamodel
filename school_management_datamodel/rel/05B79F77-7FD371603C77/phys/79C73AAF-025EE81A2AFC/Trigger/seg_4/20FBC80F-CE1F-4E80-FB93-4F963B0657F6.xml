@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="inbox_chg_trg" directorySegmentName="seg_4" id="20FBC80F-CE1F-4E80-FB93-4F963B0657F6">
+<createdBy>leads</createdBy>
+<createdTime>2019-02-10 07:56:55 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[BEGIN
+	IF inserting THEN
+    		:new.sent_on := current_timestamp;
+    		:new.changedate := current_timestamp;
+    	END IF;
+
+    	IF updating THEN
+    		:new.changedate := current_timestamp;
+    	END IF;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>84A84CD3-872A-9769-B398-0116D996D353, 130502A8-ED20-31EF-27B7-6617D56A318F, A1E6D83E-80D1-6BB4-33B0-17AFFD301E13, CD481531-986D-EB61-AE32-CB9F811E7AA4, E947049F-D41F-DF64-1185-AF20ABBD451B, 3AE0D11D-0C02-B7E7-5665-526F2D8A08DF, B85D6DAF-0104-DE37-1FC6-B6644BFC7F88, CF131B1F-E62A-68AB-B385-8B68D3B1D0B4, 0038D8A2-DBF7-6C55-D8F4-F672D1BA270B, 68201720-A2D3-DECB-20CF-501F51AC69A8</columns>
+<table>F5BE6B55-8FCC-3E40-AA98-4EE7039309A4</table>
+</TriggerOraclev10g>

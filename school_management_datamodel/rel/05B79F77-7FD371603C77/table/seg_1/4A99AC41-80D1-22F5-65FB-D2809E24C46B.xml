@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="4A99AC41-80D1-22F5-65FB-D2809E24C46B" name="genre">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-06 09:01:13 UTC</createdTime>
+<comment><![CDATA[Genre type and description table.]]></comment>
+<commentInRDBMS><![CDATA[Genre type and description table.]]></commentInRDBMS>
+<notes><![CDATA[Genre type and description table.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteDesignID>8C6DDE97-B4FE-D62E-0482-5FBF623D80EF</remoteDesignID>
+<remoteModelID>2B8CB683-CF09-45A5-3EDA-4E4281210CFD</remoteModelID>
+<remoteObjectID>01F854A4-0E46-4F4E-56A1-5C3CC7C260CB</remoteObjectID>
+<remoteObjectRelativeStorageName>/rel/2B8CB683-4E4281210CFD/table/seg_0/01F854A4-0E46-4F4E-56A1-5C3CC7C260CB.xml</remoteObjectRelativeStorageName>
+<remoteSchemaName>leadsuser</remoteSchemaName>
+<abbreviation>genre</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="2A7FBD33-56F5-9B3D-C1C1-52A6EB884205">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>45EA311C-70B5-73B7-F901-6F4CBAF9CD68</remoteObjectID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="name" id="5BB2E98A-A9F9-55EC-352A-A985AE79D9A0">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<comment><![CDATA[Genre name - science/arts/mathementics/history/etc]]></comment>
+<commentInRDBMS><![CDATA[Genre name - science/arts/mathementics/history/etc]]></commentInRDBMS>
+<generatorID>031ED489-CE5F-023E-D0DF-21EDBBA5946D</generatorID>
+<notes><![CDATA[Genre name - science/arts/mathementics/history/etc]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>FEA026BC-9BF1-8D61-1D46-64A472FC3ACA</remoteObjectID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="CEA65A1C-E97E-FDD0-63DA-B292D9F34B2E">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<comment><![CDATA[Description of the genre type.]]></comment>
+<commentInRDBMS><![CDATA[Description of the genre type.]]></commentInRDBMS>
+<generatorID>4CA7CB57-1033-18E3-E5F0-51A530CFA108</generatorID>
+<notes><![CDATA[Description of the genre type.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>529B7C2C-0575-625A-13C8-1323FE76C108</remoteObjectID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E69E7490-B693-5C86-2508-2B98585D8EEA" name="genre_pk">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>62FD6581-3BC1-BF34-851B-388D805A94C1</remoteObjectID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="2A7FBD33-56F5-9B3D-C1C1-52A6EB884205"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0B106D29-BF43-AECA-7702-9EDB04208193" name="genre_un">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<generatorID>0F92CECE-33AC-9CDF-1DB1-44B82D7BB15F</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>A81BD9EB-7BA4-8D0A-AEF2-EDCB355423DC</remoteObjectID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5BB2E98A-A9F9-55EC-352A-A985AE79D9A0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AE28B407-6D2C-9A12-15D9-E3AF4EB90FD6" name="genre_id_idx">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:56:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>5E381564-7321-0D9F-0768-9072584A08A0</remoteObjectID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2A7FBD33-56F5-9B3D-C1C1-52A6EB884205"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="85D3D92C-78CB-EE35-0B36-E83BB445AC73" name="genre_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:56:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>606EA99B-A4BB-4E2A-DBF8-B384154369B8</remoteObjectID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5BB2E98A-A9F9-55EC-352A-A985AE79D9A0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

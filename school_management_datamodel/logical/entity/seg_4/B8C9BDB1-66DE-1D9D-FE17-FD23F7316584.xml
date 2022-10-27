@@ -1,0 +1,102 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_4" id="B8C9BDB1-66DE-1D9D-FE17-FD23F7316584" name="break">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-09 12:24:03 UTC</createdTime>
+<comment><![CDATA[breaks - BREAKFAST/LUNCH/DINNER/SNACKS]]></comment>
+<commentInRDBMS><![CDATA[breaks - BREAKFAST/LUNCH/DINNER/SNACKS]]></commentInRDBMS>
+<notes><![CDATA[breaks - BREAKFAST/LUNCH/DINNER/SNACKS]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>break</preferredAbbreviation>
+<shortName>break</shortName>
+<synonym>break</synonym>
+<synonymToDisplay>break</synonymToDisplay>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="code" id="67BC6E01-0E09-EDF9-F5AC-F9D5495136E5">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-02 07:32:49 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="E02969C6-A26C-CA9F-9819-0DFB33CE7201">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-09 12:24:55 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FCF40FD2-658F-71B5-EA0B-1055E4223B0E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo_name" id="3FA9F7B3-02EF-41E2-CDCC-A4106D81A591">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-03 10:57:31 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FCF40FD2-658F-71B5-EA0B-1055E4223B0E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="B194B8AF-9612-946D-B5B3-EDAFA7A1C918">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-09 12:25:04 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="CB38F8EC-D680-543F-C4A9-59A34CCADA96" name="break_un">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-09 12:27:32 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
+</engineerTo>
+<newElementsIDs>E02969C6-A26C-CA9F-9819-0DFB33CE7201</newElementsIDs>
+<usedAttributes>
+<attributeRef>E02969C6-A26C-CA9F-9819-0DFB33CE7201</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="84D6E376-6A5C-5847-897C-4294FECA3367" name="break_PK">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-02 07:32:54 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>67BC6E01-0E09-EDF9-F5AC-F9D5495136E5</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,74 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="student_email_trg" directorySegmentName="seg_0" id="C85A8C5D-3BE5-DE6B-1D76-0B191DAB06CA">
+<createdBy>leads</createdBy>
+<createdTime>2021-04-26 10:20:39 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[DECLARE
+    v_email student.primary_email%TYPE;
+    CURSOR cur_email (
+        p_student_id VARCHAR2
+    ) IS
+    SELECT
+        official_email
+    INTO v_email
+    FROM
+        std_email
+    WHERE
+        student_id = p_student_id;
+
+BEGIN
+    OPEN cur_email(p_student_id => :old.id);
+    FETCH cur_email INTO v_email;
+    IF inserting THEN
+        INSERT INTO std_email (
+            student_id,
+            official_email,
+            status_name,
+            recovered_on,
+            notes
+        ) VALUES (
+            :new.id,
+            :new.primary_email,
+            'ACTIVE',
+            TO_DATE('31-DEC-2099', 'DD-Mon-YYYY'),
+            'NEW STUDENT'
+        );
+
+    END IF;
+
+    IF updating THEN
+        IF cur_email%notfound THEN
+            INSERT INTO std_email (
+                student_id,
+                official_email,
+                status_name,
+                recovered_on,
+                notes
+            ) VALUES (
+                :new.id,
+                :new.primary_email,
+                'ACTIVE',
+                TO_DATE('31-DEC-2099', 'DD-MON-YYYY'),
+                'NEW STUDENT'
+            );
+
+        ELSIF cur_email%found then
+            IF :new.primary_email <> :old.primary_email THEN
+                UPDATE std_email
+                SET
+                    official_email = :new.primary_email
+                WHERE
+                    student_id = :old.id;
+
+            END IF;
+        END IF;
+    END IF;
+
+    CLOSE cur_email;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>BFC4176C-2B31-5AA0-2B48-45BF95D475AC</columns>
+<condition><![CDATA[new.primary_email IS NOT NULL OR new.primary_email <> old.primary_email]]></condition>
+<table>C31DD924-4ECE-BECD-A83E-9730F9B7721C</table>
+</TriggerOraclev10g>

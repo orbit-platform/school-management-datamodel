@@ -1,0 +1,129 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_5" id="80D7F71F-95AB-0BAF-8B48-5BF133DC1A9D" name="syllabus_ordinal">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-03 10:50:12 UTC</createdTime>
+<comment><![CDATA[Unit Ordinal is the Unit number of Syllabus]]></comment>
+<commentInRDBMS><![CDATA[Unit Ordinal is the Unit number of Syllabus]]></commentInRDBMS>
+<notes><![CDATA[Unit Ordinal is the Unit number of Syllabus]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>syllabus_ordinal</preferredAbbreviation>
+<shortName>syllabus_ordinal</shortName>
+<synonym>syllabus_ordinal</synonym>
+<synonymToDisplay>syllabus_ordinal</synonymToDisplay>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="no" id="3C92C754-E0FD-6201-3AE2-15B729524DA5">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:10:15 UTC</createdTime>
+<comment><![CDATA[Heriarchy of Order]]></comment>
+<commentInRDBMS><![CDATA[Heriarchy of Order]]></commentInRDBMS>
+<generatorID>432AC118-26CD-738B-B666-94045E84B9F8</generatorID>
+<notes><![CDATA[Heriarchy of Order]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>D9C5BBCD-DDC7-39E3-8911-361CD2B2189B</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="97F0BD4B-68C5-D9B0-6B2F-C3A76C6E29BC">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-03 10:52:04 UTC</createdTime>
+<comment><![CDATA[name - FIRST /SECOND /THIRD/FOURTH /FIFTH]]></comment>
+<commentInRDBMS><![CDATA[name - FIRST /SECOND /THIRD/FOURTH /FIFTH]]></commentInRDBMS>
+<notes><![CDATA[name - FIRST /SECOND /THIRD/FOURTH /FIFTH]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="9CEEB292-BAA2-CBDD-3D73-5A85CFD23300">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-03 10:52:04 UTC</createdTime>
+<comment><![CDATA[order - 1st/2nd/3rd/4th/5th]]></comment>
+<commentInRDBMS><![CDATA[order - 1st/2nd/3rd/4th/5th]]></commentInRDBMS>
+<notes><![CDATA[order - 1st/2nd/3rd/4th/5th]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>90B036C7-C776-9355-8F80-DD6128DA0B91</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="496A220E-5BE6-0B66-56A3-41A5CCE47137">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-03 10:52:04 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="7250DBFC-5D90-9D4F-FBDC-B4840D4C618F" name="syllabus_ordinal_PK">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-03 10:52:15 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>432AC118-26CD-738B-B666-94045E84B9F8</newElementsIDs>
+<usedAttributes>
+<attributeRef>3C92C754-E0FD-6201-3AE2-15B729524DA5</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="8591A7A9-E0AD-80F0-855C-0F4B38ACF0A2" name="syllabus_ordinal_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-03 10:52:22 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>97F0BD4B-68C5-D9B0-6B2F-C3A76C6E29BC</newElementsIDs>
+<usedAttributes>
+<attributeRef>97F0BD4B-68C5-D9B0-6B2F-C3A76C6E29BC</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="0D04FAB0-63D2-4961-C927-6FAEE7A7D423" name="syllabus_ordinal_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:11:12 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>9CEEB292-BAA2-CBDD-3D73-5A85CFD23300</newElementsIDs>
+<usedAttributes>
+<attributeRef>9CEEB292-BAA2-CBDD-3D73-5A85CFD23300</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

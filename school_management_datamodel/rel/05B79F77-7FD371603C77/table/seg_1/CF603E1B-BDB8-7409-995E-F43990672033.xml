@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="CF603E1B-BDB8-7409-995E-F43990672033" name="KPI">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-08 10:45:33 UTC</createdTime>
+<comment><![CDATA[perforamance KPI]]></comment>
+<commentInRDBMS><![CDATA[perforamance KPI]]></commentInRDBMS>
+<generatorID>84AF51A8-B255-ED51-D966-8FA067404B34</generatorID>
+<notes><![CDATA[perforamance KPI]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>KPI</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="code" id="6F861EF9-F3DE-9735-BB5F-7ED1063297EF">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-08 10:45:34 UTC</createdTime>
+<comment><![CDATA[KPI Code]]></comment>
+<commentInRDBMS><![CDATA[KPI Code]]></commentInRDBMS>
+<generatorID>2EE05374-0169-8F1B-FA09-1F20B843ECC5</generatorID>
+<notes><![CDATA[KPI Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>DAD257BD-7E63-1DCF-3F54-E4241B367706</domain>
+<defaultValue>0000</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0000</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="name" id="18CE25BE-AC0E-2333-2D17-AB22B86CD8B1">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-08 10:45:34 UTC</createdTime>
+<comment><![CDATA[KPI NAME]]></comment>
+<commentInRDBMS><![CDATA[KPI NAME]]></commentInRDBMS>
+<generatorID>AC190DB9-3386-F177-6671-7593D9480355</generatorID>
+<notes><![CDATA[KPI NAME]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>AFB565EB-530B-C812-D408-DD01B4006660</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="3DBAC109-9AAC-B139-93EC-D7E8D86BF5CB">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-03 13:21:06 UTC</createdTime>
+<comment><![CDATA[performance parameter description]]></comment>
+<commentInRDBMS><![CDATA[performance parameter description]]></commentInRDBMS>
+<generatorID>D4B15710-757A-D110-DC7B-A54DD98F9729</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1EE6DC8E-28CA-B4F7-C1D5-6ABF3A7E3CF4" name="kpi_pk">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-08 10:45:34 UTC</createdTime>
+<generatorID>4E7E2430-AE00-3E79-A406-F99D2918B3A6</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6F861EF9-F3DE-9735-BB5F-7ED1063297EF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DE39CC73-A820-55C3-EA6C-124952E3FFDE" name="kpi_un">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-08 10:45:34 UTC</createdTime>
+<generatorID>8D65065C-6047-0FF5-4A47-88B907B54401</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="18CE25BE-AC0E-2333-2D17-AB22B86CD8B1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7980E0E0-1281-E0AD-FDCB-14CCE5EE2FC8" name="kpi_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-08 10:57:16 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6F861EF9-F3DE-9735-BB5F-7ED1063297EF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="72F40779-21BC-B40B-728F-658E647B9DF1" name="kpi_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-08 10:57:16 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="18CE25BE-AC0E-2333-2D17-AB22B86CD8B1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

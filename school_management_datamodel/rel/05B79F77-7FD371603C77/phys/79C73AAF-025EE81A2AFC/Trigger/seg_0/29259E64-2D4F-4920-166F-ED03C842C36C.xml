@@ -1,0 +1,218 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="class_subject_syc_trg" directorySegmentName="seg_0" id="29259E64-2D4F-4920-166F-ED03C842C36C">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-13 11:10:17 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[DECLARE
+    ---variable declarations
+    v_school_code std_subject.school_code%TYPE;
+    v_batch_no# std_subject.batch_no#%TYPE;
+    v_class_code std_subject.class_code%TYPE;
+    v_term_code std_subject.term_code%TYPE;
+    v_student_id std_subject.student_id%TYPE;
+    v_subject_code std_subject.subject_code%TYPE;
+    v_status_name std_subject.status_name%TYPE;
+
+    ----cursor on class subject
+    CURSOR cur_class_subject (
+        p_school_code VARCHAR2,
+        p_batch_no DATE,
+        p_class_code VARCHAR2,
+        p_term_code VARCHAR2,
+        p_subject_code VARCHAR2
+    ) IS
+    SELECT
+        sterm.school_code,
+        sterm.batch_no#,
+        sterm.class_code,
+        sterm.term_code,
+        csub.subject_code,
+        csub.status_name,
+        csub.descriptions
+    FROM
+             school_term sterm
+        INNER JOIN school_subject ssubj ON ( ssubj.school_code = sterm.school_code
+                                             AND ssubj.batch_no# = sterm.batch_no#
+                                             AND ssubj.class_code = sterm.class_code )
+        INNER JOIN school_super ssup ON ( ssup.school_code = sterm.school_code
+                                          AND ssup.batch_no# = sterm.batch_no#
+                                          AND ssup.class_code = sterm.class_code
+                                          AND ssup.super_code = ssubj.super_code )
+        INNER JOIN class_subject csub ON ( csub.school_code = sterm.school_code
+                                           AND csub.batch_no# = sterm.batch_no#
+                                           AND csub.class_code = sterm.class_code
+                                           AND csub.term_code = sterm.term_code
+                                           AND csub.subject_code = ssubj.subject_code )
+    WHERE
+            sterm.status_name = 'ACTIVE'
+        AND csub.status_name = 'ACTIVE'
+        AND ssup.compulsory_type = 'YES'
+        AND sterm.school_code = p_school_code
+        AND sterm.batch_no# = p_batch_no
+        AND sterm.class_code = p_class_code
+        AND sterm.term_code = p_term_code
+        AND csub.subject_code = p_subject_code;
+        
+    ---cursor student
+    CURSOR cur_student (
+        p_school_code VARCHAR2,
+        p_batch_no DATE,
+        p_class_code VARCHAR2,
+        p_term_code VARCHAR2
+    ) IS
+    SELECT
+        sterm.school_code,
+        sterm.batch_no#,
+        sterm.class_code,
+        sterm.term_code,
+        scs.student_id
+    FROM
+             student std
+        INNER JOIN school_term sterm ON ( sterm.school_code = std.school_code )
+        INNER JOIN std_class_sec scs ON ( scs.student_id = std.id
+                                          AND scs.batch_no# = sterm.batch_no#
+                                          AND scs.class_code = sterm.class_code )
+    WHERE
+            sterm.school_code = p_school_code
+        AND sterm.batch_no# = p_batch_no
+        AND sterm.class_code = p_class_code
+        AND sterm.term_code = p_term_code
+    ORDER BY
+        scs.student_id;
+        
+    ---cursor on student subject
+    CURSOR cur_std_subject (
+        p_school_code VARCHAR2,
+        p_batch_no DATE,
+        p_class_code VARCHAR2,
+        p_term_code VARCHAR2,
+        p_student_id VARCHAR2,
+        p_subject_code VARCHAR2
+    ) IS
+    SELECT
+        sterm.school_code,
+        sterm.batch_no#,
+        sterm.class_code,
+        sterm.term_code,
+        scs.student_id,
+        ssubj.subject_code,
+        ssubj.status_name
+    FROM
+             student std
+        INNER JOIN school_term sterm ON ( sterm.school_code = std.school_code )
+        INNER JOIN std_class_sec scs ON ( scs.student_id = std.id
+                                          AND scs.batch_no# = sterm.batch_no#
+                                          AND scs.class_code = sterm.class_code )
+        LEFT OUTER JOIN std_subject ssubj ON ( ssubj.school_code = sterm.school_code
+                                               AND ssubj.batch_no# = sterm.batch_no#
+                                               AND ssubj.class_code = sterm.class_code
+                                               AND ssubj.term_code = sterm.term_code
+                                               AND ssubj.student_id = scs.student_id )
+    WHERE
+            sterm.school_code = p_school_code
+        AND sterm.batch_no# = p_batch_no
+        AND sterm.class_code = p_class_code
+        AND sterm.term_code = p_term_code
+        AND scs.student_id = p_student_id
+        AND ssubj.subject_code = p_subject_code
+    ORDER BY
+        scs.student_id;
+BEGIN
+
+    ---inserting
+    IF inserting THEN
+        FOR indx1 IN cur_class_subject(p_school_code => :new.school_code, p_batch_no => :new.batch_no#, p_class_code => :new.class_code, p_term_code => :new.term_code, p_subject_code => :new.subject_code) LOOP
+            FOR indx2 IN cur_student(p_school_code => indx1.school_code, p_batch_no => indx1.batch_no#, p_class_code => indx1.class_code, p_term_code => indx1.term_code) LOOP
+                OPEN cur_std_subject(p_school_code => indx2.school_code, p_batch_no => indx2.batch_no#, p_class_code => indx2.class_code, p_term_code => indx2.term_code, p_student_id => indx2.student_id,
+                                    p_subject_code => indx1.subject_code);
+                FETCH cur_std_subject INTO
+                    v_school_code,
+                    v_batch_no#,
+                    v_class_code,
+                    v_term_code,
+                    v_student_id,
+                    v_subject_code,
+                    v_status_name;
+            
+            ---execution statement
+                IF cur_std_subject%notfound THEN
+                ---insert into std_subject
+                    INSERT INTO std_subject (
+                        school_code,
+                        batch_no#,
+                        class_code,
+                        term_code,
+                        student_id,
+                        subject_code,
+                        status_name,
+                        descriptions
+                    ) VALUES (
+                        indx2.school_code,
+                        indx2.batch_no#,
+                        indx2.class_code,
+                        indx2.term_code,
+                        indx2.student_id,
+                        indx1.subject_code,
+                        indx1.status_name,
+                        indx1.descriptions
+                    );
+                END IF;
+                CLOSE cur_std_subject;
+            END LOOP;
+        END LOOP;
+    END IF;
+    
+    ---updating
+    IF updating THEN
+        IF :new.term_code <> :old.term_code THEN
+            UPDATE std_subject
+            SET
+                term_code = :new.term_code
+            WHERE
+                    school_code = :old.school_code
+                AND batch_no# = :old.batch_no#
+                AND class_code = :old.class_code
+                AND term_code = :old.term_code
+                AND subject_code = :old.subject_code;
+        END IF;
+        IF :new.subject_code <> :old.subject_code THEN
+            UPDATE std_subject
+            SET
+                subject_code = :new.subject_code
+            WHERE
+                    school_code = :old.school_code
+                AND batch_no# = :old.batch_no#
+                AND class_code = :old.class_code
+                AND term_code = :old.term_code
+                AND subject_code = :old.subject_code;
+        END IF;
+        IF :new.status_name <> :old.status_name THEN
+            UPDATE std_subject
+            SET
+                status_name = :new.status_name
+            WHERE
+                    school_code = :old.school_code
+                AND batch_no# = :old.batch_no#
+                AND class_code = :old.class_code
+                AND term_code = :old.term_code
+                AND subject_code = :old.subject_code;
+        END IF;
+    END IF;
+    
+    ---deleting
+    IF deleting THEN
+        DELETE FROM std_subject
+        WHERE
+                school_code = :old.school_code
+            AND batch_no# = :old.batch_no#
+            AND class_code = :old.class_code
+            AND term_code = :old.term_code
+            AND subject_code = :old.subject_code;
+    END IF;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>0E6A2BE0-3917-CF8D-EAC7-85743D1602E1</columns>
+<condition><![CDATA[old.term_code <> new.term_code OR old.subject_code <> new.subject_code OR old.status_name <> new.status_name]]></condition>
+<table>E044BD9B-51C1-0575-2782-764969DAEC27</table>
+</TriggerOraclev10g>

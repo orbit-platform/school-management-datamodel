@@ -1,0 +1,41 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="emp_marital_emp_trg" directorySegmentName="seg_3" id="796D4F07-2755-DD9E-C2D8-2CCA59ADB65F">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-28 09:58:24 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[DECLARE
+    ---variable
+    v_marital_status emp_marital.marital_status%TYPE;
+    CURSOR cur (
+        p_employee_id VARCHAR2
+    ) IS
+    SELECT
+        marital_status
+    INTO v_marital_status
+    FROM
+        employee
+    WHERE
+        id = p_employee_id;
+
+BEGIN
+    OPEN cur(p_employee_id => :new.employee_id);
+    FETCH cur INTO v_marital_status;
+        
+    ---update marital_status in employee table
+    IF ( nvl(v_marital_status, 'na') <> :new.marital_status ) THEN
+        UPDATE employee
+        SET
+            marital_status = :new.marital_status
+        WHERE
+            id = :new.employee_id;
+
+    END IF;
+
+    CLOSE cur;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<columns>CF1C1E64-3B31-1AEC-A572-6C566FA25065, 31F4CDD3-07AB-07B6-91CA-412C4B75086B</columns>
+<condition><![CDATA[new.employee_id <> old.employee_id OR new.marital_status <> old.marital_status OR new.status_name = 'ACTIVE']]></condition>
+<table>B3897A93-0EE1-21AD-8E85-5AB727F0E706</table>
+</TriggerOraclev10g>

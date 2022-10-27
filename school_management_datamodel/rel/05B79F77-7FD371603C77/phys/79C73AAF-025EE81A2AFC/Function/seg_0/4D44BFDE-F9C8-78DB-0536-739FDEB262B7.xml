@@ -1,0 +1,40 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FunctionOracle class="oracle.dbtools.crest.model.design.storage.oracle.FunctionOracle" name="func_number_of_subject" directorySegmentName="seg_0" id="4D44BFDE-F9C8-78DB-0536-739FDEB262B7">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-21 15:51:16 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE FUNCTION func_number_of_subject (
+    p_school_code VARCHAR,
+    p_batch_no    DATE,
+    p_class_code  VARCHAR2,
+    p_term_code   VARCHAR2
+) RETURN NUMBER AS
+    v_count NUMBER;
+BEGIN
+    SELECT
+        COUNT(1)
+    INTO v_count
+    FROM
+        ( SELECT
+              school_code,
+              batch_no,
+              class_code,
+              term_code,
+              subject
+          FROM
+              mvc_marksheet
+          WHERE
+                  school_code = p_school_code
+              AND batch_no = p_batch_no
+              AND class_code = p_class_code
+              AND term_code = p_term_code
+          GROUP BY
+              school_code,
+              batch_no,
+              class_code,
+              term_code,
+              subject
+        );
+    RETURN v_count;
+END;</source>
+</FunctionOracle>

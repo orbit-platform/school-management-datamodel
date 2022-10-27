@@ -1,0 +1,181 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="leave_pckg" directorySegmentName="seg_0" id="7A172BA7-400E-F098-1E45-09779AE3AFB0">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-21 10:45:12 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE leave_pckg AS 
+    --leave application proc
+    PROCEDURE eleave_request_ui_proc (
+        p_company_code   VARCHAR2,
+        p_batch_no       DATE,
+        p_employee_id    NUMBER,
+        p_leave_code     VARCHAR2,
+        p_effective_from DATE,
+        p_effective_upto DATE,
+        p_reasons        VARCHAR2,
+        p_delegation_id  NUMBER
+    );
+END leave_pckg;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="leave_pckg" id="7A172BA7-400E-F098-1E45-09779AE3AFB0">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-21 10:45:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE BODY leave_pckg AS 
+    --leave application proc
+    PROCEDURE eleave_request_ui_proc (
+        p_company_code   VARCHAR2,
+        p_batch_no       DATE,
+        p_employee_id    NUMBER,
+        p_leave_code     VARCHAR2,
+        p_effective_from DATE,
+        p_effective_upto DATE,
+        p_reasons        VARCHAR2,
+        p_delegation_id  NUMBER
+    ) AS
+    
+        --variable declaration
+        v_company_code    emp_leave.company_code%TYPE;
+        v_batch_no        emp_leave.batch_no#%TYPE;
+        v_employee_id     emp_leave.employee_id%TYPE;
+        v_leave_code      emp_leave.leave_code%TYPE;
+        v_effective_from  emp_leave.effective_from%TYPE;
+        v_effective_upto  emp_leave.effective_upto%TYPE;
+        v_leave_status    emp_leave.leave_status%TYPE;
+        v_reasons         emp_leave.reasons%TYPE;
+        v_delegation_id   emp_leave.delegation_id%TYPE;
+        v_incident_status emp_leave.incident_status%TYPE;
+        
+        ---additional variable
+        v_count           NUMBER;
+        v_leave_name      VARCHAR2(200);
+
+        --exception variable declaration
+        leave_exception EXCEPTION;
+        ex_date_error EXCEPTION;
+    BEGIN
+
+        --getter and setters 
+        v_company_code := p_company_code;
+        v_batch_no := p_batch_no;
+        v_employee_id := p_employee_id;
+        v_leave_code := p_leave_code;
+        v_effective_from := p_effective_from;
+        v_effective_upto := p_effective_upto;
+        v_leave_status := &apos;PENDING&apos;;
+        v_reasons := p_reasons;
+        v_delegation_id := p_delegation_id;
+        v_incident_status := &apos;OPEN&apos;;
+
+        ---getting the leave name
+        SELECT
+            name
+        INTO v_leave_name
+        FROM
+            leave
+        WHERE
+            code = v_leave_code;
+
+    --checking if the leave &apos;APPROVED&apos; already exist or not
+
+        SELECT
+            COUNT(*)
+        INTO v_count
+        FROM
+            emp_leave
+        WHERE
+                employee_id = v_employee_id
+            AND ( ( effective_from BETWEEN v_effective_from AND v_effective_upto )
+                  OR ( ( effective_upto BETWEEN v_effective_from AND v_effective_from ) ) )
+            AND ( leave_status = &apos;APPROVED&apos;
+                  OR leave_status = &apos;PENDING&apos; );
+
+        --checking if effective_from date is less than effective_upto
+        IF v_effective_from &gt; v_effective_upto THEN
+            RAISE ex_date_error;
+        END IF;
+        
+        ---legitimate leaves
+        IF v_count = 0 THEN
+            INSERT INTO leadsuser.emp_leave (
+                company_code,
+                batch_no#,
+                employee_id,
+                leave_code,
+                effective_from,
+                effective_upto,
+                leave_status,
+                reasons,
+                delegation_id,
+                incident_status
+            ) VALUES (
+                v_company_code,
+                v_batch_no,
+                v_employee_id,
+                v_leave_code,
+                v_effective_from,
+                v_effective_upto,
+                v_leave_status,
+                v_reasons,
+                v_delegation_id,
+                v_incident_status
+            );
+        ELSIF v_count &gt; 0 THEN
+            RAISE leave_exception;
+        END IF;
+
+    /*
+        --start of alerting the assigned_to
+        SELECT
+            emp.firstname || &apos; &apos; || emp.lastname, --assigned_to&apos;s firstname
+            del.employee_id, --assigned_to
+            emp.primary_tel, --assigned_to&apos;s telephone
+            ( SELECT
+                    &apos;Hi &apos; || emp.firstname || &apos;, &apos; || firstname || &apos; &apos; || lastname || &apos; &apos; || &apos;(EmpID#&apos; || id || &apos;) &apos; || &apos;has requested for &apos; || v_leave_name || nvl2(v_upto_date,
+                                                                                                                                                                     &apos; from &apos; || to_char(v_from_date, &apos;Dy, DD-Mon-YYYY&apos;) || &apos; to &apos; || to_char(v_upto_date, &apos;Dy, DD-Mon-YYYY&apos;) || &apos;.&apos;,
+                                                                                                                                                                     &apos; on &apos; || to_char(v_from_date, &apos;Dy, DD-Mon-YYYY&apos;)) || &apos;...leave req alert!&apos;
+                FROM
+                    employee
+              WHERE
+                  id = v_employee_id
+            )
+        INTO
+            v_assigned_to_name,
+            v_assigned_to_id,
+            v_assigned_to_tel,
+            v_assigned_to_message --message to assigned_to
+        FROM
+                 delegation del
+            INNER JOIN employee emp
+            ON ( del.employee_id = emp.id )
+        WHERE
+            del.id = v_assigned_to;
+
+        ---sending sms
+        leadsuser.pristine_pckg.sendsms(v_assigned_to_tel, v_assigned_to_message);
+
+        ---recording the sms in sms_log
+        ---insert the sms log 
+        INSERT INTO leadsuser.sms_log (
+            person#,
+            telephone,
+            person_name,
+            message,
+            reason
+        ) VALUES (
+            v_assigned_to_id,
+            v_assigned_to_tel,
+            v_assigned_to_name,
+            v_assigned_to_message,
+            &apos;Leave Request Alert&apos;
+        );
+    */
+    --end of alerting the assigned_to
+    EXCEPTION
+        WHEN leave_exception THEN
+            raise_application_error(-20181, &apos;You&apos;&apos;re trying to apply redundant leaves&apos;);
+        WHEN ex_date_error THEN
+            raise_application_error(-20182, &apos;Check effective_from and effective_upto&apos;);
+    END eleave_request_ui_proc;
+END leave_pckg;</source>
+</body>
+</PackageOracle>

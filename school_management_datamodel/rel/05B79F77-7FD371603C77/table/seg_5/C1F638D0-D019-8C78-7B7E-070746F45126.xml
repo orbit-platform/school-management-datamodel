@@ -1,0 +1,149 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_5" id="C1F638D0-D019-8C78-7B7E-070746F45126" name="curriculum_ordinal">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:29:28 UTC</createdTime>
+<generatorID>989BCA94-14AC-2593-9EAA-C9AD6C794769</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>curriculum_ordinal</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="no" id="E15A4745-74C1-FD3E-8E2F-189441E13E0B">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:29:28 UTC</createdTime>
+<comment><![CDATA[Heriarchy of Order]]></comment>
+<commentInRDBMS><![CDATA[Heriarchy of Order]]></commentInRDBMS>
+<generatorID>FF8760C7-853C-794C-D8C2-7504C0A566A8</generatorID>
+<notes><![CDATA[Heriarchy of Order]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FDF9ABEA-FD2E-5692-0D7F-6C71E3934860" referredColumn="465F82AA-DC86-CCD0-61CA-0EB70691009C"/>
+</associations>
+</Column>
+<Column name="name" id="55F34A6B-91B7-E7E6-B436-5EFE54DB3439">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:29:28 UTC</createdTime>
+<comment><![CDATA[name - FIRST /SECOND /THIRD/FOURTH /FIFTH]]></comment>
+<commentInRDBMS><![CDATA[name - FIRST /SECOND /THIRD/FOURTH /FIFTH]]></commentInRDBMS>
+<generatorID>4FD683ED-1D25-B267-D659-532C63D0010A</generatorID>
+<notes><![CDATA[name - FIRST /SECOND /THIRD/FOURTH /FIFTH]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pseudo" id="F5C62490-4A62-A04C-B65E-4B17C07CD8AA">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:29:28 UTC</createdTime>
+<comment><![CDATA[order - 1st/2nd/3rd/4th/5th]]></comment>
+<commentInRDBMS><![CDATA[order - 1st/2nd/3rd/4th/5th]]></commentInRDBMS>
+<generatorID>1DB8C572-F8D4-EF13-1B5A-BC166EC76D73</generatorID>
+<notes><![CDATA[order - 1st/2nd/3rd/4th/5th]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>90B036C7-C776-9355-8F80-DD6128DA0B91</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="F430BCF3-B904-C5E7-F476-11B5696686C0">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:29:28 UTC</createdTime>
+<generatorID>0A87B3CF-20D3-DA96-C7DB-51D635DCFE3C</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="17C58F67-F3B3-75EB-D133-4604CBDA48B2" name="curriculum_ordinal_PK">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:29:28 UTC</createdTime>
+<generatorID>C7ADC31A-644E-7AF5-9F54-12765E7D0780</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E15A4745-74C1-FD3E-8E2F-189441E13E0B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A90F2263-2C33-9823-DBDD-FCDE095EA6F9" name="curriculum_ordinal_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:29:28 UTC</createdTime>
+<generatorID>F0EA105E-D28E-C4A6-4346-AF98F5711247</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="55F34A6B-91B7-E7E6-B436-5EFE54DB3439"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="196476ED-8BA2-DACE-D1B6-85AF4E9FD40E" name="curriculum_ordinal_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:29:28 UTC</createdTime>
+<generatorID>7A7443A0-B2BC-93F1-A1B0-3DB4DF06C002</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F5C62490-4A62-A04C-B65E-4B17C07CD8AA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="253A3C71-3128-7439-55C4-3D15FB2C706E" name="curriculum_ordinal_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:30:16 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E15A4745-74C1-FD3E-8E2F-189441E13E0B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B01DB398-92D2-B12E-E0C1-410220D09DD5" name="curriculum_ordinal_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:35:58 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="55F34A6B-91B7-E7E6-B436-5EFE54DB3439"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1683A95B-9CDA-9C77-DDD3-88608E10F1D1" name="curriculum_ordinal_un2_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:35:58 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F5C62490-4A62-A04C-B65E-4B17C07CD8AA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ABE3E995-ADFC-EA91-3DA5-A1EB076C62DC" name="CurrOrd_Ordinal_FK">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:29:28 UTC</createdTime>
+<generatorID>2C3DD8C9-6D28-560D-5020-6DFD3EEEDAAB</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E15A4745-74C1-FD3E-8E2F-189441E13E0B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

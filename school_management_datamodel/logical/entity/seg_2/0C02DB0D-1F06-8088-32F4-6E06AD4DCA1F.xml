@@ -1,0 +1,294 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="0C02DB0D-1F06-8088-32F4-6E06AD4DCA1F" name="inbox">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-29 10:58:19 UTC</createdTime>
+<comment><![CDATA[Inbox - internal communication]]></comment>
+<commentInRDBMS><![CDATA[Inbox - internal communication]]></commentInRDBMS>
+<notes><![CDATA[Inbox - internal communication]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>inbox</preferredAbbreviation>
+<shortName>inbox</shortName>
+<synonym>inbox</synonym>
+<synonymToDisplay>inbox</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ireceiver_flag" id="6A58D72A-AD4E-8166-BCEE-522004E54676">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-29 11:27:27 UTC</createdTime>
+<comment><![CDATA[Inbox Flag - TO/CC/BCC]]></comment>
+<commentInRDBMS><![CDATA[Inbox Flag - TO/CC/BCC]]></commentInRDBMS>
+<generatorID>DF3E2E11-74A1-F99F-E491-C45CF9D19C47</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<constraintName>inbox_receiverflag_cons</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>D25080FF-53EE-F639-370C-85357F7C07C1</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>TO</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="subject" id="E8D5B9ED-12F6-02FD-84BD-C2F17BE1CF08">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-29 11:00:35 UTC</createdTime>
+<comment><![CDATA[Subject of the Conversation]]></comment>
+<commentInRDBMS><![CDATA[Subject of the Conversation]]></commentInRDBMS>
+<notes><![CDATA[Subject of the Conversation]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="message" id="58CF7C6C-48C9-3396-4397-58CBB8177B87">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-29 11:00:53 UTC</createdTime>
+<comment><![CDATA[Content of the Message..,]]></comment>
+<commentInRDBMS><![CDATA[Content of the Message..,]]></commentInRDBMS>
+<notes><![CDATA[Content of the Message..,]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="reply" id="56917765-13C2-1269-2F5D-041431B98F3A">
+<createdBy>leads</createdBy>
+<createdTime>2018-11-03 10:38:59 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="sent_on" id="D5E01BE8-7094-69D9-CDF5-E4181D104449">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-29 11:04:48 UTC</createdTime>
+<comment><![CDATA[Sent date and time]]></comment>
+<commentInRDBMS><![CDATA[Sent date and time]]></commentInRDBMS>
+<notes><![CDATA[Sent date and time]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="idraft_flag" id="F1DB3B7D-235C-D74E-705A-7CEBC9785EE9">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-30 07:16:56 UTC</createdTime>
+<comment><![CDATA[Inbox Draft Flag - YES/NO]]></comment>
+<commentInRDBMS><![CDATA[Inbox Draft Flag - YES/NO]]></commentInRDBMS>
+<generatorID>FB8D839E-5A46-B005-DFA2-16C5A6B7961B</generatorID>
+<notes><![CDATA[Inbox Draft Flag - YES/NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<constraintName>inbo_draft_cons</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>337742E6-D929-E9A7-87A8-4216D947A096</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>NO</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="iread_flag" id="0F5EE12A-2321-BEA3-79BE-6DAC18D8C61B">
+<createdBy>leads</createdBy>
+<createdTime>2018-11-12 05:18:03 UTC</createdTime>
+<comment><![CDATA[Inbox read (YES) or unread (NO)]]></comment>
+<commentInRDBMS><![CDATA[Inbox read (YES) or unread (NO)]]></commentInRDBMS>
+<generatorID>048FC453-D1A9-72EC-DBA4-6F4FBD0B88C0</generatorID>
+<notes><![CDATA[Inbox read (YES) or unread (NO)]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<constraintName>iread_con</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>7FE40F82-00D5-902A-6840-6C9C81D73299</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>NO</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="istarred_flag" id="DC330E7C-F239-371E-3A65-04710B8602E6">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-30 07:20:41 UTC</createdTime>
+<comment><![CDATA[Flag - YES/NO]]></comment>
+<generatorID>81DEAAFB-ACAE-5B36-2C66-D109C79E6E5E</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<constraintName>inboxstarred_cons</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>0B45DC97-E928-DFB5-3CE7-67983C244F3B</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>NO</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="idelete_flag" id="97CC54F9-2D99-60E6-838D-2F37B121B77C">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-30 07:46:01 UTC</createdTime>
+<comment><![CDATA[Inbox Delete flag - YES/NO]]></comment>
+<commentInRDBMS><![CDATA[Inbox Delete flag - YES/NO]]></commentInRDBMS>
+<generatorID>DE3D6830-4698-6373-08FD-4918DAFEBEED</generatorID>
+<notes><![CDATA[Inbox Delete flag - YES/NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<constraintName>inboxdelete_cons</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>ADDDC0F8-DCB5-B2F4-D20D-48A8FE717CD3</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>NO</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="receiver_snapshot_to" id="F0F13B01-29D8-0709-782A-17D0CA2685F4">
+<createdBy>leads</createdBy>
+<createdTime>2018-11-05 03:36:30 UTC</createdTime>
+<comment><![CDATA[Receiver Snapshot from the sender's perspective]]></comment>
+<commentInRDBMS><![CDATA[Receiver Snapshot from the sender's perspective]]></commentInRDBMS>
+<notes><![CDATA[Receiver Snapshot from the sender's perspective]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="receiver_snapshot_cc" id="F1111E07-EFDC-9399-97A5-4F0341C035B8">
+<createdBy>leads</createdBy>
+<createdTime>2018-11-05 04:25:33 UTC</createdTime>
+<comment><![CDATA[Receiver Snapshot from the sender's perspective]]></comment>
+<commentInRDBMS><![CDATA[Receiver Snapshot from the sender's perspective]]></commentInRDBMS>
+<notes><![CDATA[Receiver Snapshot from the sender's perspective]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="receiver_snapshot_bcc" id="262DCB10-19DB-E9EF-A0AF-4E60786AE281">
+<createdBy>leads</createdBy>
+<createdTime>2018-11-05 04:26:07 UTC</createdTime>
+<comment><![CDATA[Receiver Snapshot from the sender's perspective]]></comment>
+<commentInRDBMS><![CDATA[Receiver Snapshot from the sender's perspective]]></commentInRDBMS>
+<notes><![CDATA[Receiver Snapshot from the sender's perspective]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="changedate" id="97C1CC46-28A4-78E2-1B99-C87219B33874">
+<createdBy>leads</createdBy>
+<createdTime>2018-10-31 05:17:38 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

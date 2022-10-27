@@ -1,0 +1,116 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="3B86B075-AD76-2726-2A80-64D09F109B1B" name="percategory">
+<createdBy>leads</createdBy>
+<createdTime>2018-09-25 04:10:26 UTC</createdTime>
+<comment><![CDATA[Performance's Category of Employees]]></comment>
+<commentInRDBMS><![CDATA[Performance's Category of Employees]]></commentInRDBMS>
+<notes><![CDATA[Performance's Category of Employees]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>percategory</preferredAbbreviation>
+<shortName>percategory</shortName>
+<synonym>percategory</synonym>
+<synonymToDisplay>percategory</synonymToDisplay>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="code" id="EA86ACC5-B778-EC2A-61E8-95A0E5E816C4">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-10 11:34:40 UTC</createdTime>
+<comment><![CDATA[Performance Category Code]]></comment>
+<commentInRDBMS><![CDATA[Performance Category Code]]></commentInRDBMS>
+<notes><![CDATA[Performance Category Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>631F8558-905A-F7C7-6DD6-94782F56776F</domain>
+<defaultValue>0001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0000</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="name" id="0B569188-C1EC-3DD9-78E2-9CB40B12F564">
+<createdBy>leads</createdBy>
+<createdTime>2018-09-25 04:11:14 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>AFB565EB-530B-C812-D408-DD01B4006660</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="descriptions" id="15B12968-16A1-616F-DD76-E12628024AB7">
+<createdBy>leads</createdBy>
+<createdTime>2018-09-25 04:11:36 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="D94EEC2A-CBCB-CE1F-E8C4-30545EE3A84B" name="percategory_UN">
+<createdBy>leads</createdBy>
+<createdTime>2018-09-25 04:11:49 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
+</engineerTo>
+<newElementsIDs>0B569188-C1EC-3DD9-78E2-9CB40B12F564</newElementsIDs>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<usedAttributes>
+<attributeRef>0B569188-C1EC-3DD9-78E2-9CB40B12F564</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="F9A1227D-48EF-C974-6CF7-B3B97238759E" name="percategory_PK">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-10 11:34:56 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>EA86ACC5-B778-EC2A-61E8-95A0E5E816C4</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

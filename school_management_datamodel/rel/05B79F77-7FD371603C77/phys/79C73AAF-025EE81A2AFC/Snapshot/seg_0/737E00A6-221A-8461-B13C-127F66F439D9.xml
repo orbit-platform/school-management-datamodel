@@ -1,0 +1,32 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="mv_student" directorySegmentName="seg_0" id="737E00A6-221A-8461-B13C-127F66F439D9">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-01 14:35:18 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<nextDate>sysdate + (60*24)/1440</nextDate>
+<refresh>YES</refresh>
+<refreshType>FORCE</refreshType>
+<startDate>sysdate</startDate>
+<subquery><![CDATA[SELECT
+    scs.school_code,
+    scs.batch_no#,
+    scs.class_code,
+    scs.stream_code,
+    scs.section_code,
+    std.id AS student_id,
+    first_name || nvl2(
+        middle_name, ' ' || middle_name || ' ', ' '
+    ) || last_name AS student_name
+FROM
+    student std
+    INNER JOIN std_class_sec scs
+    ON ( scs.school_code = std.school_code
+         AND scs.student_id = std.id )
+WHERE
+    scs.status_name = 'ACTIVE'
+ORDER BY
+    student_name]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with>ROWID</with>
+</SnapshotOraclev11g>

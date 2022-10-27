@@ -1,0 +1,115 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_2" id="46DBDB62-2B0E-6FA2-28B7-094A2615A1D5" name="privilege">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-22 12:31:39 UTC</createdTime>
+<comment><![CDATA[Privilege of student - staff/regular/new student/scholarship/etc]]></comment>
+<commentInRDBMS><![CDATA[Privilege of student - staff/regular/new student/scholarship/etc]]></commentInRDBMS>
+<generatorID>7C243C7D-4F26-012D-9930-46FBFBFFD486</generatorID>
+<notes><![CDATA[Privilege of student - staff/regular/new student/scholarship/etc]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<usedAsRemoteObject>true</usedAsRemoteObject>
+<abbreviation>privilege</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="code" id="93996669-C241-ADC1-27B4-87A2E235D071">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-22 12:31:39 UTC</createdTime>
+<comment><![CDATA[Privilege Code]]></comment>
+<commentInRDBMS><![CDATA[Privilege Code]]></commentInRDBMS>
+<generatorID>F0B0C937-1C15-69E4-0EA1-5AE44A13BBFA</generatorID>
+<notes><![CDATA[Privilege Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>4D253EF8-3DEF-3360-BAB9-BCC45034B2EB</domain>
+<defaultValue>0001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0000</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="name" id="FA57060F-C17D-6CB5-E06F-F15F952211D9">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-22 12:31:39 UTC</createdTime>
+<comment><![CDATA[Privilege Name]]></comment>
+<commentInRDBMS><![CDATA[Privilege Name]]></commentInRDBMS>
+<generatorID>85D12BDC-EAEF-F40B-BC3E-3C455EDCAF0D</generatorID>
+<notes><![CDATA[Privilege Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>E74F2835-00FD-2322-F70C-0D65F5A6C885</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="C803106B-5BA3-CEEB-689D-9EB6CF41C5A3">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-22 12:31:39 UTC</createdTime>
+<comment><![CDATA[Privilege Description]]></comment>
+<commentInRDBMS><![CDATA[Privilege Description]]></commentInRDBMS>
+<generatorID>F8D9CECF-45BD-9A35-9F3E-CE775629DF4B</generatorID>
+<notes><![CDATA[Privilege Description]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3A94F055-5676-836A-863A-E942A408E1F4" name="privilege_pk">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-22 12:31:39 UTC</createdTime>
+<generatorID>F578BBE0-B930-5569-368A-8FA38C5957BA</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="93996669-C241-ADC1-27B4-87A2E235D071"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="583E8916-0584-0D6F-A875-FA7913FB9CA1" name="privilege_un">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-22 12:31:39 UTC</createdTime>
+<generatorID>46471D2B-77A2-3DA8-671E-7B32B83435B6</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FA57060F-C17D-6CB5-E06F-F15F952211D9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="818487C1-9061-FE61-178A-01AADCB7CFC2" name="privilege_code_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-22 12:34:14 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="93996669-C241-ADC1-27B4-87A2E235D071"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DA1BDB26-E3AA-7A65-67D4-A53F7C2C73B4" name="privilege_name_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-22 12:34:14 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FA57060F-C17D-6CB5-E06F-F15F952211D9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

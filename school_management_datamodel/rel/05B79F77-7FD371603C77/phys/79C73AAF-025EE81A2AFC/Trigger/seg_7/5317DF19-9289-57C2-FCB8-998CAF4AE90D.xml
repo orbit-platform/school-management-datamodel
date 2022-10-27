@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="ilabel_delete_trg" directorySegmentName="seg_7" id="5317DF19-9289-57C2-FCB8-998CAF4AE90D">
+<createdBy>leads</createdBy>
+<createdTime>2019-02-10 07:55:19 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>DELETE</actions>
+<body><![CDATA[BEGIN
+    UPDATE leadsuser.inbox
+    SET
+        ilabel_id = ''
+    WHERE
+        ilabel_id =:old.id;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<table>209FE120-717A-B0F6-356E-122807E3D711</table>
+</TriggerOraclev10g>

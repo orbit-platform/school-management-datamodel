@@ -1,0 +1,118 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_5" id="64038C9F-12F4-9CAA-B128-6E2064C91C8B" name="book_ordinal">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-06 05:07:29 UTC</createdTime>
+<comment><![CDATA[The series of Book recommended/prescribed]]></comment>
+<commentInRDBMS><![CDATA[The series of Book recommended/prescribed]]></commentInRDBMS>
+<notes><![CDATA[The series of Book recommended/prescribed]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>book_ordinal</preferredAbbreviation>
+<shortName>book_ordinal</shortName>
+<synonym>book_ordinal</synonym>
+<synonymToDisplay>book_ordinal</synonymToDisplay>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="no" id="C231B8D0-4847-9A0A-8283-562B518F3B50">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:16:12 UTC</createdTime>
+<comment><![CDATA[Heriarchy of Order]]></comment>
+<commentInRDBMS><![CDATA[Heriarchy of Order]]></commentInRDBMS>
+<generatorID>3252487E-D57E-5B55-94A8-78D3B91A2C58</generatorID>
+<notes><![CDATA[Heriarchy of Order]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>D9C5BBCD-DDC7-39E3-8911-361CD2B2189B</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="853B46FB-9281-3B72-507E-A29719C3111B">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-06 05:08:37 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="1594D701-043B-1834-6F2F-8AB395ACD234">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-06 05:08:49 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="C284C305-77E2-3174-E389-F7B8BFD1D5AA">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 05:50:12 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="0690A271-03BA-9B7C-B8C9-B4A9263743BB" name="book_ordinal_PK">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-06 05:09:13 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>C231B8D0-4847-9A0A-8283-562B518F3B50</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="5E79920C-8193-5C1E-C3DF-0CD41E1DB6EC" name="book_ordinal_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-06 05:09:18 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>853B46FB-9281-3B72-507E-A29719C3111B</newElementsIDs>
+<usedAttributes>
+<attributeRef>853B46FB-9281-3B72-507E-A29719C3111B</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="AEC34EFF-98FE-B8B4-896D-04B4A856A68C" name="book_ordinal_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-06 05:10:15 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>1594D701-043B-1834-6F2F-8AB395ACD234</newElementsIDs>
+<usedAttributes>
+<attributeRef>1594D701-043B-1834-6F2F-8AB395ACD234</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

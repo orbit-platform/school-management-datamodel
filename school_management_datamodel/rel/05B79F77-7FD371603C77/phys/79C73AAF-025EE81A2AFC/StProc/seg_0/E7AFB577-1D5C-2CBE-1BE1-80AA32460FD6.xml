@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_marksheet_padding_flg" directorySegmentName="seg_0" id="E7AFB577-1D5C-2CBE-1BE1-80AA32460FD6">
+<createdBy>leads</createdBy>
+<createdTime>2022-10-18 10:40:48 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_marksheet_padding_flg (
+    p_school_code  IN VARCHAR,
+    p_batch_no     IN DATE,
+    p_class_code   IN VARCHAR2,
+    p_stream_code  IN VARCHAR2,
+    p_term_code    IN VARCHAR2,
+    p_padding_flag IN OUT VARCHAR2
+) AS
+    v_subject_cnt NUMBER;
+
+    ---cursor
+    CURSOR cur (
+        p_school_code VARCHAR2,
+        p_batch_no    DATE,
+        p_class_code  VARCHAR2,
+        p_stream_code VARCHAR2,
+        p_term_code   VARCHAR2
+    ) IS
+    SELECT
+        COUNT(1)
+    FROM
+        ( SELECT
+                  school_code,
+                  batch_no#,
+                  class_code,
+                  stream_code,
+                  term_code,
+                  subject_code
+              FROM
+                  class_subject
+            WHERE
+                    status_name = &apos;ACTIVE&apos;
+                AND school_code = p_school_code
+                AND batch_no# = p_batch_no
+                AND class_code = p_class_code
+                AND stream_code = p_stream_code
+                AND term_code = p_term_code
+          GROUP BY
+              school_code,
+              batch_no#,
+              class_code,
+              stream_code,
+              term_code,
+              subject_code
+        );
+BEGIN
+    OPEN cur(p_school_code, p_batch_no, p_class_code, p_stream_code, p_term_code);
+    FETCH cur INTO v_subject_cnt;
+    IF cur%found THEN
+        SELECT
+            CASE
+                WHEN v_subject_cnt BETWEEN 1 AND 16  THEN
+                    &apos;BIG-PADDING&apos;
+                WHEN v_subject_cnt BETWEEN 17 AND 32 THEN
+                    &apos;SMALL-PADDING&apos;
+                ELSE
+                    &apos;SMALL-PADDING&apos;
+            END
+        INTO p_padding_flag
+        FROM
+            dual;
+    END IF;
+    IF cur%notfound THEN
+        SELECT
+            &apos;SMALL-PADDING&apos;
+        INTO p_padding_flag
+        FROM
+            dual;
+    END IF;
+    CLOSE cur;
+END;</source>
+</StoredProcedureOraclev10g>

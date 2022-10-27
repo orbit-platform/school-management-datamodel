@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_5" id="0BF9328F-9D93-4140-5464-9DE714A42985" name="book_usage">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-30 09:41:21 UTC</createdTime>
+<comment><![CDATA[Book Usage - Textbook/Reference]]></comment>
+<commentInRDBMS><![CDATA[Book Usage - Textbook/Reference]]></commentInRDBMS>
+<notes><![CDATA[Book Usage - Textbook/Reference]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>book_usage</preferredAbbreviation>
+<shortName>book_usage</shortName>
+<synonym>book_usage</synonym>
+<synonymToDisplay>book_usage</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="type" id="809506CE-77B4-B55C-4506-F470312AE1FF">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-30 09:42:57 UTC</createdTime>
+<comment><![CDATA[Usage Type]]></comment>
+<commentInRDBMS><![CDATA[Usage Type]]></commentInRDBMS>
+<notes><![CDATA[Usage Type]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="1054257A-8E74-F1AF-F809-D4FDB7CCAC90">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-30 09:43:08 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>90B036C7-C776-9355-8F80-DD6128DA0B91</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="0E615CD3-90B6-A2FC-7B31-A4EE38A0AE9F">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-30 09:43:19 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="F2DAED89-08C4-B435-6FBB-46F320D0C106" name="book_usage_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-30 09:44:50 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>809506CE-77B4-B55C-4506-F470312AE1FF</newElementsIDs>
+<usedAttributes>
+<attributeRef>809506CE-77B4-B55C-4506-F470312AE1FF</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="11EFEF5B-A861-86AB-A050-610ECBF8DF82" name="book_usage_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-30 09:45:06 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>1054257A-8E74-F1AF-F809-D4FDB7CCAC90</newElementsIDs>
+<usedAttributes>
+<attributeRef>1054257A-8E74-F1AF-F809-D4FDB7CCAC90</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

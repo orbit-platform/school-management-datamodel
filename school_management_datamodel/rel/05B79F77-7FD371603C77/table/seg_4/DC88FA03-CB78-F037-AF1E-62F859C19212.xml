@@ -1,0 +1,110 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_4" id="DC88FA03-CB78-F037-AF1E-62F859C19212" name="religion">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-07 07:07:51 UTC</createdTime>
+<generatorID>A924C811-B03E-9C06-DF33-239F8B5DA521</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>religion</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="code" id="8DDB978B-2B21-487B-FE7C-3B76CC908FB5">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-07 07:36:38 UTC</createdTime>
+<comment><![CDATA[Religion Code]]></comment>
+<commentInRDBMS><![CDATA[Religion Code]]></commentInRDBMS>
+<generatorID>A6C54C90-5424-149B-1FE8-9861E3EC7483</generatorID>
+<notes><![CDATA[Religion Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>2E8FCBCC-ABAB-E7CE-2130-35A4CEA9628E</domain>
+<defaultValue>0001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0000</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="name" id="71B9DA8C-7E85-AB92-9EBC-68EE1275D70F">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-07 07:07:51 UTC</createdTime>
+<comment><![CDATA[Name of the Religion]]></comment>
+<commentInRDBMS><![CDATA[Name of the Religion]]></commentInRDBMS>
+<generatorID>E585D245-40FD-671F-354B-0E26D74A2463</generatorID>
+<notes><![CDATA[Name of the Religion]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>834E401D-6805-AFFE-2BF0-1038A5005D88</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="942229AE-4710-3D2F-ACE3-1F1C5A93B93D">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-07 07:27:39 UTC</createdTime>
+<comment><![CDATA[Any description of the community.]]></comment>
+<commentInRDBMS><![CDATA[Any description of the community.]]></commentInRDBMS>
+<generatorID>A5F9FB34-6BB0-DDEF-6536-DC34BAA2438F</generatorID>
+<notes><![CDATA[Any description of the community.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="51248FE6-4F5B-806B-248F-7FFC77FE9B09" name="religion_PK">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-07 07:47:48 UTC</createdTime>
+<generatorID>B532953A-2DCA-2AF9-326C-9EC5F338E6A5</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8DDB978B-2B21-487B-FE7C-3B76CC908FB5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="92D4C09A-7101-B6FC-3307-4B1BAA727CA1" name="religion_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-07 07:07:51 UTC</createdTime>
+<generatorID>2A50EE20-B9E6-C61F-7BA1-94439AE00FD0</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="71B9DA8C-7E85-AB92-9EBC-68EE1275D70F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="639C9C50-677F-E7FC-391F-79C214B1BA7B" name="religion_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-07 07:09:05 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8DDB978B-2B21-487B-FE7C-3B76CC908FB5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="33BB8C7A-2C7E-8CE9-5B4E-202F4DAFB5C5" name="religion_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-07 07:38:00 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="71B9DA8C-7E85-AB92-9EBC-68EE1275D70F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

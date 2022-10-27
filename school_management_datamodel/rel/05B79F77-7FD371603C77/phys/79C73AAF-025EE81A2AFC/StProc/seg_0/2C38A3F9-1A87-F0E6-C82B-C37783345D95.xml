@@ -1,0 +1,94 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_company_payroll_auto" directorySegmentName="seg_0" id="2C38A3F9-1A87-F0E6-C82B-C37783345D95">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-04 14:23:34 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>create or replace PROCEDURE proc_company_payroll_auto IS
+
+    v_company_code     company_payroll.company_code%TYPE;
+    v_department_code  company_payroll.department_code%TYPE;
+    v_batch_no         company_payroll.batch_no#%TYPE;
+    v_employee_id      company_payroll.employee_id%TYPE;
+    v_group_code       company_payroll.group_code%TYPE;
+    v_status_name      company_payroll.status_name%TYPE;
+    v_descriptions     company_payroll.descriptions%TYPE;
+    CURSOR cur IS
+    SELECT
+        cpay.company_code,
+        cpay.department_code,
+        add_months(MAX(cpay.batch_no#), 12) AS batch_no#,
+        cpay.employee_id,
+        cpay.group_code,
+        cpay.status_name,
+        cpay.descriptions
+    FROM
+             employee emp
+        INNER JOIN company_payroll cpay ON ( cpay.employee_id = emp.id )
+    WHERE
+            emp.status_name = &apos;ACTIVE&apos;
+        AND cpay.status_name = &apos;ACTIVE&apos;
+    GROUP BY
+        cpay.company_code,
+        cpay.department_code,
+        cpay.employee_id,
+        cpay.group_code,
+        cpay.status_name,
+        cpay.descriptions;
+
+    CURSOR cur_company_payroll (
+        p_company_code  VARCHAR2,
+        p_batch_no      DATE,
+        p_employee_id   VARCHAR2
+    ) IS
+    SELECT
+        company_code,
+        department_code,
+        batch_no#,
+        employee_id,
+        group_code,
+        status_name,
+        descriptions
+    FROM
+        company_payroll
+    WHERE
+            company_code = p_company_code
+        AND batch_no# = p_batch_no
+        AND employee_id = p_employee_id;
+
+BEGIN
+    FOR indx IN cur LOOP
+        OPEN cur_company_payroll(p_company_code =&gt; indx.company_code, p_batch_no =&gt; indx.batch_no#, p_employee_id =&gt; indx.employee_id);
+
+        FETCH cur_company_payroll INTO
+            v_company_code,
+            v_department_code,
+            v_batch_no,
+            v_employee_id,
+            v_group_code,
+            v_status_name,
+            v_descriptions;
+        IF cur_company_payroll%notfound THEN
+            INSERT INTO company_payroll (
+                company_code,
+                department_code,
+                batch_no#,
+                employee_id,
+                group_code,
+                status_name,
+                descriptions
+            ) VALUES (
+                indx.company_code,
+                indx.department_code,
+                indx.batch_no#,
+                indx.employee_id,
+                indx.group_code,
+                indx.status_name,
+                indx.descriptions
+            );
+
+        END IF;
+
+        CLOSE cur_company_payroll;
+    END LOOP;
+END;</source>
+</StoredProcedureOraclev10g>

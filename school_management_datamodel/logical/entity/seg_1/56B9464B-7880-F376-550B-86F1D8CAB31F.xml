@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="56B9464B-7880-F376-550B-86F1D8CAB31F" name="priority">
+<createdBy>leads</createdBy>
+<createdTime>2018-08-21 07:12:30 UTC</createdTime>
+<comment><![CDATA[Priority Level - VERY HIGH=1/HIGH=2/MEDIUM=3/LOW=4]]></comment>
+<commentInRDBMS><![CDATA[Priority Level - VERY HIGH=1/HIGH=2/MEDIUM=3/LOW=4]]></commentInRDBMS>
+<notes><![CDATA[Priority Level - VERY HIGH=1/HIGH=2/MEDIUM=3/LOW=4]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>priority</preferredAbbreviation>
+<shortName>priority</shortName>
+<synonym>priority</synonym>
+<synonymToDisplay>priority</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="plevel" id="86339E4B-B012-3DD7-AE0F-35CD5AFC3B48">
+<createdBy>leads</createdBy>
+<createdTime>2018-08-21 07:13:11 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="pseudo" id="74DDF8D3-A69D-B7D4-74C0-B6BA05E47EA0">
+<createdBy>leads</createdBy>
+<createdTime>2022-05-21 10:36:01 UTC</createdTime>
+<comment><![CDATA[Priority Level - VERY HIGH/HIGH/MEDIUM/LOW]]></comment>
+<commentInRDBMS><![CDATA[Priority Level - VERY HIGH/HIGH/MEDIUM/LOW]]></commentInRDBMS>
+<notes><![CDATA[Priority Level - VERY HIGH/HIGH/MEDIUM/LOW]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>90B036C7-C776-9355-8F80-DD6128DA0B91</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="9E64A86A-F267-B181-69AD-146FEBA57192">
+<createdBy>leads</createdBy>
+<createdTime>2018-08-21 07:14:06 UTC</createdTime>
+<comment><![CDATA[Description of Priority Level]]></comment>
+<commentInRDBMS><![CDATA[Description of Priority Level]]></commentInRDBMS>
+<notes><![CDATA[Description of Priority Level]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="D09FBE9B-3B4B-1632-4906-E4C1A29FEB51" name="priority_UN">
+<createdBy>leads</createdBy>
+<createdTime>2022-05-21 10:48:10 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>86339E4B-B012-3DD7-AE0F-35CD5AFC3B48</newElementsIDs>
+<usedAttributes>
+<attributeRef>86339E4B-B012-3DD7-AE0F-35CD5AFC3B48</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

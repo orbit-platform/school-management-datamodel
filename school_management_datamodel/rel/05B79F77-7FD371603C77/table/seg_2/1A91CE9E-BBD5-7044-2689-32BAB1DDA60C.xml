@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_2" id="1A91CE9E-BBD5-7044-2689-32BAB1DDA60C" name="subscriber">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-06 09:01:13 UTC</createdTime>
+<comment><![CDATA[subscriber - type : student/teacher/staff/etc/]]></comment>
+<commentInRDBMS><![CDATA[subscriber - type : student/teacher/staff/etc/]]></commentInRDBMS>
+<notes><![CDATA[subscriber - type : student/teacher/staff/etc/]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteDesignID>8C6DDE97-B4FE-D62E-0482-5FBF623D80EF</remoteDesignID>
+<remoteModelID>2B8CB683-CF09-45A5-3EDA-4E4281210CFD</remoteModelID>
+<remoteObjectID>03E0B543-D277-34B3-9144-1DD8D29DBE26</remoteObjectID>
+<remoteObjectRelativeStorageName>/rel/2B8CB683-4E4281210CFD/table/seg_1/03E0B543-D277-34B3-9144-1DD8D29DBE26.xml</remoteObjectRelativeStorageName>
+<remoteSchemaName>leadsuser</remoteSchemaName>
+<abbreviation>subscriber</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="27E959BD-88F2-6D91-5228-FD0185871D20">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>5F74CDAF-10C2-6160-58D3-B7653AF044E8</remoteObjectID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="type" id="0562BAA8-60CE-D78C-9ED5-435414A958AA">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<comment><![CDATA[subscriber type - teacher/student/staff/etc/]]></comment>
+<commentInRDBMS><![CDATA[subscriber type - teacher/student/staff/etc/]]></commentInRDBMS>
+<generatorID>436B58CF-721B-5EBD-2AB1-0CBE3DAD8C76</generatorID>
+<notes><![CDATA[subscriber type - teacher/student/staff/etc/]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>850BA0E6-48A7-751E-67B7-66E699363BA9</remoteObjectID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="5B4AA846-0820-72E3-B94E-EDCD0249E2B8">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<comment><![CDATA[subscriber type description - teacher/student/staff/etc/]]></comment>
+<commentInRDBMS><![CDATA[subscriber type description - teacher/student/staff/etc/]]></commentInRDBMS>
+<generatorID>3ABB230C-0377-2794-C336-8E5C0ADCB34F</generatorID>
+<notes><![CDATA[subscriber type description - teacher/student/staff/etc/]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>A96380FF-1008-48E6-8FC6-F65ADF12BC41</remoteObjectID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5B48B39C-0339-7E90-F82E-259CC63C23A4" name="subscriber_pk">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>4A5952C2-7C94-AFF5-034E-581F5BE8C26E</remoteObjectID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="27E959BD-88F2-6D91-5228-FD0185871D20"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E2C05E6F-D385-0126-321E-FA131D2C52AA" name="subscriber_un">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<generatorID>EC59F02B-2611-2FBE-9902-D2C8CC964290</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>E8F35965-3DF7-4CBE-BE71-F23FC2151941</remoteObjectID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0562BAA8-60CE-D78C-9ED5-435414A958AA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="82C0E1C7-BC08-12C9-39B4-0A7416F7C8F4" name="subscriber_id_idx">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:55:34 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>F5E65DD0-0DE4-4441-EF26-20F595CC4FD4</remoteObjectID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="27E959BD-88F2-6D91-5228-FD0185871D20"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="646D24EB-BE7F-ED18-014D-A935602F86A6" name="subscriber_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-20 06:55:34 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>974E6AF3-9858-AC45-9683-6C199FCEC315</remoteObjectID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0562BAA8-60CE-D78C-9ED5-435414A958AA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

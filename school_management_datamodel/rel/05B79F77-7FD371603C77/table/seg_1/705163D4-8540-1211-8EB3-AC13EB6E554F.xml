@@ -1,0 +1,137 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="705163D4-8540-1211-8EB3-AC13EB6E554F" name="leave">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-06 05:59:05 UTC</createdTime>
+<comment><![CDATA[employee leave]]></comment>
+<commentInRDBMS><![CDATA[employee leave]]></commentInRDBMS>
+<generatorID>42D35609-39D3-3FF6-046B-B0F6CC356DE3</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<usedAsRemoteObject>true</usedAsRemoteObject>
+<abbreviation>leave</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="code" id="8CD4EF4D-BC9B-C74B-B1B6-681200F014C0">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-06 05:59:05 UTC</createdTime>
+<comment><![CDATA[Leave Code]]></comment>
+<commentInRDBMS><![CDATA[Leave Code]]></commentInRDBMS>
+<generatorID>FEC6BACA-D798-04AB-C41A-44E0FA839C52</generatorID>
+<notes><![CDATA[Leave Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>411A7036-AE28-9018-332B-691EBC096EF9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="38D6946C-E952-7F32-1493-A4585E212964">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-06 05:59:05 UTC</createdTime>
+<comment><![CDATA[leave type]]></comment>
+<commentInRDBMS><![CDATA[leave type]]></commentInRDBMS>
+<generatorID>89AEE608-3BDE-E476-C54C-5B3586064701</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FCF40FD2-658F-71B5-EA0B-1055E4223B0E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pseudo" id="FDF3D320-E6F5-87AE-8678-62CB59E027F7">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-26 05:36:27 UTC</createdTime>
+<generatorID>BD30877B-CE49-66C8-4AC1-8C2039B42011</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FCF40FD2-658F-71B5-EA0B-1055E4223B0E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="278ECD85-65F9-9246-D070-BB03098131F2">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-06 05:59:05 UTC</createdTime>
+<comment><![CDATA[leave type description]]></comment>
+<commentInRDBMS><![CDATA[leave type description]]></commentInRDBMS>
+<generatorID>31F88594-11A1-4B50-2519-BF2ECCC64701</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="94FA564D-E59C-9349-2744-A7A61993ABB9" name="leave_PK">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-06 05:59:05 UTC</createdTime>
+<generatorID>E85576D5-A05E-D962-516D-9D6892286055</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8CD4EF4D-BC9B-C74B-B1B6-681200F014C0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5D3530A2-BEFC-DB17-E6CA-8ADCD813A93B" name="leave_UN">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-06 05:59:05 UTC</createdTime>
+<generatorID>16A7CB3D-2A72-AA09-4C3E-1AF848D4CF7A</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="38D6946C-E952-7F32-1493-A4585E212964"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DBD204B9-03B6-8EA2-707A-70B8090F001E" name="leave_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-23 11:46:50 UTC</createdTime>
+<generatorID>32A2328D-34FE-CB85-8597-5C64E5DA154E</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FDF3D320-E6F5-87AE-8678-62CB59E027F7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="776B4FE9-F79A-45DB-9A4D-9727077870AB" name="leave_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-06 05:59:56 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8CD4EF4D-BC9B-C74B-B1B6-681200F014C0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1983B37A-061C-85DE-4DCD-C11E81A9EC32" name="leave_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-06 05:59:56 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="38D6946C-E952-7F32-1493-A4585E212964"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B3373746-807C-451B-828A-628FDCB23E00" name="leave_un2_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-23 11:48:35 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FDF3D320-E6F5-87AE-8678-62CB59E027F7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="shift_code_trg" directorySegmentName="seg_2" id="796F3425-0386-B204-5F3E-796867BDF319">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-05 11:38:47 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+    SELECT
+        lpad(nvl(MAX(to_number(code)), 0) + 1, 3, '0')
+    INTO :new.code
+    FROM
+        shift;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<condition><![CDATA[new.code IS NULL]]></condition>
+<table>A2D40E73-5132-E96B-9984-872954A115D0</table>
+</TriggerOraclev10g>

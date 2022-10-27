@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="calendar_id_trg" directorySegmentName="seg_7" id="5631B4F9-A50E-979B-6E72-6B565CF04DC9">
+<createdBy>leads</createdBy>
+<createdTime>2021-11-12 10:30:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+    :new.id := calendar_id_seq.nextval;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<condition><![CDATA[new.id IS NULL]]></condition>
+<table>A10F3EBE-B81E-6C10-2190-FDBE9EEEDA19</table>
+</TriggerOraclev10g>

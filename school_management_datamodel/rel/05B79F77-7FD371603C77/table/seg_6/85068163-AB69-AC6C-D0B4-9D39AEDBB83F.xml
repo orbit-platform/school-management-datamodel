@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_6" id="85068163-AB69-AC6C-D0B4-9D39AEDBB83F" name="app_domain_integrity">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-30 07:00:41 UTC</createdTime>
+<comment><![CDATA[Application Domain Integrity]]></comment>
+<commentInRDBMS><![CDATA[Application Domain Integrity]]></commentInRDBMS>
+<generatorID>9CCAAA07-4265-E945-0B8D-3547A05B5ACF</generatorID>
+<notes><![CDATA[Application Domain Integrity]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>app_domain_integrity</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="10BBC161-1BA5-2F3C-0EA0-02891C1AF27D">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-30 07:00:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="app_domain_name" id="DB09C901-7017-0BA3-6A6D-537C6C552DBD">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-30 07:00:41 UTC</createdTime>
+<comment><![CDATA[Application Domain Name]]></comment>
+<commentInRDBMS><![CDATA[Application Domain Name]]></commentInRDBMS>
+<generatorID>D5DD7A16-9EEB-91BE-B49D-1C238136C5AD</generatorID>
+<notes><![CDATA[Application Domain Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D78D8DC4-8ABB-7792-56D0-CBD32955FFFF</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8EFF10FB-6D98-4602-EE28-AC9F93A9AB3C" referredColumn="CF8FDDE1-F06C-4503-8575-B3DFD2A8187D"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B1735D2C-6E73-0E8E-EEAB-FE946F84413A" name="app_domain_integrity_pk">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-30 07:00:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="10BBC161-1BA5-2F3C-0EA0-02891C1AF27D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="92020D40-B608-5346-67BD-B689AFCD2121" name="app_domain_integrity__idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-30 07:05:04 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DB09C901-7017-0BA3-6A6D-537C6C552DBD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="12B8C437-0BFB-4712-2819-ACF0C831E8F5" name="appdomsec_appdomain_fk">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-30 07:00:41 UTC</createdTime>
+<generatorID>E5657587-930A-F7A6-7A15-7D7DB700E26F</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DB09C901-7017-0BA3-6A6D-537C6C552DBD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="survey_choice_id_trg" directorySegmentName="seg_1" id="A3474B26-DADD-C24F-9668-C47742FCC7CA">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-17 05:43:04 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+    SELECT
+        nvl(MAX(id), 0) + 1
+    INTO :new.id
+    FROM
+        survey_choice;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<condition><![CDATA[new.id IS NULL]]></condition>
+<table>E52A0AB0-40A6-6A55-FD64-BB530009E7AE</table>
+</TriggerOraclev10g>

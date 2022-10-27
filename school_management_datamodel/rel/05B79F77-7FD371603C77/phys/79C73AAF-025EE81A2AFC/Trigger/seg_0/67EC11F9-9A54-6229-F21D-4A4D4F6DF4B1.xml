@@ -1,0 +1,225 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="emp_parent_relative_trg" directorySegmentName="seg_0" id="67EC11F9-9A54-6229-F21D-4A4D4F6DF4B1">
+<createdBy>leads</createdBy>
+<createdTime>2022-05-30 08:16:17 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[DECLARE
+    ---variables
+    v_employee_id   emp_relative.employee_id%TYPE;
+    v_title_name    emp_relative.title_name%TYPE;
+    v_first_name    emp_relative.first_name%TYPE;
+    v_middle_name   emp_relative.middle_name%TYPE;
+    v_last_name     emp_relative.last_name%TYPE;
+    v_relation_type emp_relative.relation_type%TYPE;
+      
+    ---cursor on emp_relative
+    CURSOR cur_relative (
+        p_employee_id   NUMBER,
+        p_relation_type VARCHAR2
+    ) IS
+    SELECT
+        employee_id,
+        title_name,
+        first_name,
+        middle_name,
+        last_name,
+        relation_type
+    FROM
+        emp_relative
+    WHERE
+            employee_id = p_employee_id
+        AND relation_type = p_relation_type;
+BEGIN
+    IF inserting THEN
+        ---father
+        BEGIN
+            OPEN cur_relative(p_employee_id => :new.employee_id, p_relation_type => 'FATHER');
+            FETCH cur_relative INTO
+                v_employee_id,
+                v_title_name,
+                v_first_name,
+                v_middle_name,
+                v_last_name,
+                v_relation_type;
+            
+            ---insert
+            IF cur_relative%notfound THEN
+                INSERT INTO emp_relative (
+                    employee_id,
+                    title_name,
+                    first_name,
+                    middle_name,
+                    last_name,
+                    relation_type
+                ) VALUES (
+                    :new.employee_id,
+                    'Mr.',
+                    :new.father_first_name,
+                    :new.father_middle_name,
+                    :new.father_last_name,
+                    'FATHER'
+                );
+            END IF;
+        
+            ---update
+            IF cur_relative%found THEN
+                IF ( v_first_name <> :new.father_first_name OR v_middle_name <> :new.father_middle_name OR v_last_name <> :new.father_last_name ) THEN
+                    UPDATE emp_relative
+                    SET
+                        first_name = :new.father_first_name,
+                        middle_name = :new.father_middle_name,
+                        last_name = :new.father_last_name
+                    WHERE
+                            employee_id = v_employee_id
+                        AND relation_type = v_relation_type;
+                END IF;
+            END IF;
+            CLOSE cur_relative;
+        END; ---father
+        
+        ---mother
+        BEGIN
+            OPEN cur_relative(p_employee_id => :new.employee_id, p_relation_type => 'MOTHER');
+            FETCH cur_relative INTO
+                v_employee_id,
+                v_title_name,
+                v_first_name,
+                v_middle_name,
+                v_last_name,
+                v_relation_type;
+            
+            ---insert
+            IF cur_relative%notfound THEN
+                INSERT INTO emp_relative (
+                    employee_id,
+                    title_name,
+                    first_name,
+                    middle_name,
+                    last_name,
+                    relation_type
+                ) VALUES (
+                    :new.employee_id,
+                    'Mrs.',
+                    :new.father_first_name,
+                    :new.father_middle_name,
+                    :new.father_last_name,
+                    'MOTHER'
+                );
+            END IF;
+        
+            ---update
+            IF cur_relative%found THEN
+                IF ( v_first_name <> :new.mother_first_name OR v_middle_name <> :new.mother_middle_name OR v_last_name <> :new.mother_last_name ) THEN
+                    UPDATE emp_relative
+                    SET
+                        first_name = :new.mother_first_name,
+                        middle_name = :new.mother_middle_name,
+                        last_name = :new.mother_last_name
+                    WHERE
+                            employee_id = v_employee_id
+                        AND relation_type = v_relation_type;
+                END IF;
+            END IF;
+            CLOSE cur_relative;
+        END; ---mother
+    END IF; ---end inserting
+
+    IF updating THEN
+        ---father
+        BEGIN
+            OPEN cur_relative(p_employee_id => :old.employee_id, p_relation_type => 'FATHER');
+            FETCH cur_relative INTO
+                v_employee_id,
+                v_title_name,
+                v_first_name,
+                v_middle_name,
+                v_last_name,
+                v_relation_type;
+            
+            ---insert
+            IF cur_relative%notfound THEN
+                INSERT INTO emp_relative (
+                    employee_id,
+                    title_name,
+                    first_name,
+                    middle_name,
+                    last_name,
+                    relation_type
+                ) VALUES (
+                    :old.employee_id,
+                    'Mr.',
+                    :new.father_first_name,
+                    :new.father_middle_name,
+                    :new.father_last_name,
+                    'FATHER'
+                );
+            END IF;
+        
+            ---update
+            IF cur_relative%found THEN
+                IF ( v_first_name <> :new.father_first_name OR v_middle_name <> :new.father_middle_name OR v_last_name <> :new.father_last_name ) THEN
+                    UPDATE emp_relative
+                    SET
+                        first_name = :new.father_first_name,
+                        middle_name = :new.father_middle_name,
+                        last_name = :new.father_last_name
+                    WHERE
+                            employee_id = v_employee_id
+                        AND relation_type = v_relation_type;
+                END IF;
+            END IF;
+            CLOSE cur_relative;
+        END; ---father
+        
+        ---mother
+        BEGIN
+            OPEN cur_relative(p_employee_id => :old.employee_id, p_relation_type => 'MOTHER');
+            FETCH cur_relative INTO
+                v_employee_id,
+                v_title_name,
+                v_first_name,
+                v_middle_name,
+                v_last_name,
+                v_relation_type;
+            
+            ---insert
+            IF cur_relative%notfound THEN
+                INSERT INTO emp_relative (
+                    employee_id,
+                    title_name,
+                    first_name,
+                    middle_name,
+                    last_name,
+                    relation_type
+                ) VALUES (
+                    :old.employee_id,
+                    'Mrs.',
+                    :new.father_first_name,
+                    :new.father_middle_name,
+                    :new.father_last_name,
+                    'MOTHER'
+                );
+            END IF;
+        
+            ---update
+            IF cur_relative%found THEN
+                IF ( v_first_name <> :new.mother_first_name OR v_middle_name <> :new.mother_middle_name OR v_last_name <> :new.mother_last_name ) THEN
+                    UPDATE emp_relative
+                    SET
+                        first_name = :new.mother_first_name,
+                        middle_name = :new.mother_middle_name,
+                        last_name = :new.mother_last_name
+                    WHERE
+                            employee_id = v_employee_id
+                        AND relation_type = v_relation_type;
+                END IF;
+            END IF;
+            CLOSE cur_relative;
+        END; ---mother
+    END IF; ---end updating
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>439FEB38-5E0A-DCDA-1021-561E0AF4D6F0, D8A81676-6501-E1D3-FB46-603731BBFF94, 436EAFB5-CB09-AEB9-5D5B-7E239CA1FE81, 515233A9-2083-DE31-F455-0F99B698FD29, 40910699-E66F-2440-64F8-219A48C1CFEE, D814BEF7-27C7-0062-ED9C-DAE63BFCA24F, 83B6DD4B-5CAF-D6C2-2142-E231BCE6831C</columns>
+<table>A7B4B405-3E8B-2EEE-EDB3-657F327BF4D6</table>
+</TriggerOraclev10g>

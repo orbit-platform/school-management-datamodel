@@ -1,0 +1,543 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="appjob_emp_com_trg" directorySegmentName="seg_2" id="A35B3302-DEA5-3BDC-5B92-07FDE69050C6">
+<createdBy>leads</createdBy>
+<createdTime>2022-03-29 08:35:55 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>UPDATE</actions>
+<body><![CDATA[COMPOUND TRIGGER
+    TYPE applicant_employee_rt IS RECORD (
+        v_applicant_id     applicant.id%TYPE,
+        v_title_name       applicant.title_name%TYPE,
+        v_firstname        applicant.firstname%TYPE,
+        v_middlename       applicant.middlename%TYPE,
+        v_lastname         applicant.lastname%TYPE,
+        v_sex_name         applicant.sex_name%TYPE,
+        v_dob              applicant.dob%TYPE,
+        v_marital_status   applicant.marital_status%TYPE,
+        v_primary_tel      applicant.primary_tel%TYPE,
+        v_secondary_tel    applicant.secondary_tel%TYPE,
+        v_primary_email    applicant.primary_email%TYPE,
+        v_father_name      applicant.father_name%TYPE,
+        v_mother_name      applicant.mother_name%TYPE,
+        v_date_of_joining  applicant.date_of_joining%TYPE
+    );
+    TYPE row_level_info_t IS
+        TABLE OF applicant_employee_rt INDEX BY PLS_INTEGER;
+    g_row_level_info row_level_info_t;
+    CURSOR cur_emp_document (
+        p_applicant_id NUMBER
+    ) IS
+    SELECT
+        no#,
+        document_code,
+        issuing_authority,
+        issued_on,
+        valid_upto,
+        uploaded_file,
+        mime_type
+    FROM
+        app_document
+    WHERE
+            status_name = 'ACTIVE'
+        AND applicant_id = p_applicant_id;
+
+    AFTER EACH ROW IS BEGIN
+        g_row_level_info(g_row_level_info.count + 1).v_applicant_id := :new.id;
+        g_row_level_info(g_row_level_info.count).v_title_name := :new.title_name;
+        g_row_level_info(g_row_level_info.count).v_firstname := :new.firstname;
+        g_row_level_info(g_row_level_info.count).v_middlename := :new.middlename;
+        g_row_level_info(g_row_level_info.count).v_lastname := :new.lastname;
+        g_row_level_info(g_row_level_info.count).v_sex_name := :new.sex_name;
+        g_row_level_info(g_row_level_info.count).v_dob := :new.dob;
+        g_row_level_info(g_row_level_info.count).v_marital_status := :new.marital_status;
+        g_row_level_info(g_row_level_info.count).v_primary_tel := :new.primary_tel;
+        g_row_level_info(g_row_level_info.count).v_secondary_tel := :new.secondary_tel;
+        g_row_level_info(g_row_level_info.count).v_primary_email := :new.primary_email;
+        g_row_level_info(g_row_level_info.count).v_father_name := :new.father_name;
+        g_row_level_info(g_row_level_info.count).v_mother_name := :new.mother_name;
+        g_row_level_info(g_row_level_info.count).v_date_of_joining := :new.date_of_joining;
+    END AFTER EACH ROW;
+    AFTER STATEMENT IS
+        v_employee_id          employee.id%TYPE;
+        v_status_name          employee.status_name%TYPE;
+        v_effective_upto       DATE;
+        v_effective_from       DATE;
+        v_notes                VARCHAR2(4000);
+        v_company_code         job_opening.company_code%TYPE;
+        v_department_code      job_opening.department_code%TYPE;
+        v_school_code          job_opening.school_code%TYPE;
+        v_category_code        job_opening.category_code%TYPE;
+        v_designation_code     job_opening.designation_code%TYPE;
+        v_employment_code      job_opening.employment_code%TYPE;
+        v_grade_code           job_opening.grade_code%TYPE;
+        v_role_code            job_opening.role_code%TYPE;
+        v_band_code            job_opening.band_code%TYPE;
+        v_manager_id           job_opening.manager_id%TYPE;
+        v_location_code        job_opening.location_code%TYPE;
+        v_father_name          applicant.father_name%TYPE;
+        v_mother_name          applicant.mother_name%TYPE;
+        v_curr_address1        app_curraddress.address1%TYPE;
+        v_curr_address2        app_curraddress.address2%TYPE;
+        v_curr_region_code     app_curraddress.region_code%TYPE;
+        v_curr_country_code    app_curraddress.country_code%TYPE;
+        v_curr_state_code      app_curraddress.state_code%TYPE;
+        v_curr_city_code       app_curraddress.city_code%TYPE;
+        v_curr_pin             app_curraddress.pin%TYPE;
+        v_curr_landmark        app_curraddress.landmark%TYPE;
+        v_curr_residing_since  app_curraddress.residing_since%TYPE;
+        v_perm_address1        app_permaddress.address1%TYPE;
+        v_perm_address2        app_permaddress.address2%TYPE;
+        v_perm_region_code     app_permaddress.region_code%TYPE;
+        v_perm_country_code    app_permaddress.country_code%TYPE;
+        v_perm_state_code      app_permaddress.state_code%TYPE;
+        v_perm_city_code       app_permaddress.city_code%TYPE;
+        v_perm_pin             app_permaddress.pin%TYPE;
+        v_perm_landmark        app_permaddress.landmark%TYPE;
+        v_perm_residing_since  app_permaddress.residing_since%TYPE;
+        v_re_headline          app_resume.headline%TYPE;
+        v_re_descriptions      app_resume.descriptions%TYPE;
+        v_re_uploaded_file     app_resume.uploaded_file%TYPE;
+        v_re_mime_type         app_resume.mime_type%TYPE;
+        v_document_no          app_document.no#%TYPE;
+        v_document_code        app_document.document_code%TYPE;
+        v_issuing_authority    app_document.issuing_authority%TYPE;
+        v_issued_on            app_document.issued_on%TYPE;
+        v_valid_upto           app_document.valid_upto%TYPE;
+        v_uploaded_file        app_document.uploaded_file%TYPE;
+        v_mime_type            app_document.mime_type%TYPE;
+    BEGIN
+        v_employee_id := employee_id_seq.nextval;
+        v_status_name := 'ACTIVE';
+        v_effective_upto := TO_DATE('31-Dec-2099', 'DD-Mon-YYYY');
+        v_notes := 'New resource';
+        FOR indx IN 1..g_row_level_info.count LOOP
+            v_effective_from := g_row_level_info(indx).v_date_of_joining;
+            SELECT
+                jo.company_code,
+                jo.department_code,
+                jo.school_code,
+                jo.category_code,
+                jo.designation_code,
+                jo.employment_code,
+                jo.grade_code,
+                jo.role_code,
+                jo.band_code,
+                jo.manager_id,
+                jo.location_code
+            INTO
+                v_company_code,
+                v_department_code,
+                v_school_code,
+                v_category_code,
+                v_designation_code,
+                v_employment_code,
+                v_grade_code,
+                v_role_code,
+                v_band_code,
+                v_manager_id,
+                v_location_code
+            FROM
+                     job_opening jo
+                INNER JOIN app_job aj ON ( aj.job_code = jo.code )
+                INNER JOIN applicant appl ON ( appl.id = aj.applicant_id
+                                               AND appl.job_code = aj.job_code )
+            WHERE
+                aj.applicant_id = g_row_level_info(indx).v_applicant_id;
+
+            SELECT
+                headline,
+                descriptions,
+                uploaded_file,
+                mime_type
+            INTO
+                v_re_headline,
+                v_re_descriptions,
+                v_re_uploaded_file,
+                v_re_mime_type
+            FROM
+                app_resume
+            WHERE
+                applicant_id = g_row_level_info(indx).v_applicant_id;
+
+            SELECT
+                address1,
+                address2,
+                region_code,
+                country_code,
+                state_code,
+                city_code,
+                pin,
+                landmark,
+                residing_since
+            INTO
+                v_curr_address1,
+                v_curr_address2,
+                v_curr_region_code,
+                v_curr_country_code,
+                v_curr_state_code,
+                v_curr_city_code,
+                v_curr_pin,
+                v_curr_landmark,
+                v_curr_residing_since
+            FROM
+                app_curraddress
+            WHERE
+                applicant_id = g_row_level_info(indx).v_applicant_id;
+
+            SELECT
+                address1,
+                address2,
+                region_code,
+                country_code,
+                state_code,
+                city_code,
+                pin,
+                landmark,
+                residing_since
+            INTO
+                v_perm_address1,
+                v_perm_address2,
+                v_perm_region_code,
+                v_perm_country_code,
+                v_perm_state_code,
+                v_perm_city_code,
+                v_perm_pin,
+                v_perm_landmark,
+                v_perm_residing_since
+            FROM
+                app_permaddress
+            WHERE
+                applicant_id = g_row_level_info(indx).v_applicant_id;
+
+            SELECT
+                father_name,
+                mother_name
+            INTO
+                v_father_name,
+                v_mother_name
+            FROM
+                applicant
+            WHERE
+                id = g_row_level_info(indx).v_applicant_id;
+
+            BEGIN
+                INSERT INTO employee (
+                    id,
+                    title_name,
+                    firstname,
+                    middlename,
+                    lastname,
+                    status_name,
+                    sex_name,
+                    dob,
+                    doj,
+                    personal_email,
+                    primary_tel,
+                    secondary_tel,
+                    last_working_day,
+                    applicant_id,
+                    company_code,
+                    department_code,
+                    school_code,
+                    category_code,
+                    designation_code,
+                    marital_status,
+                    employment_code,
+                    grade_code,
+                    role_code,
+                    band_code,
+                    manager_id,
+                    location_code
+                ) VALUES (
+                    v_employee_id,
+                    g_row_level_info(indx).v_title_name,
+                    g_row_level_info(indx).v_firstname,
+                    g_row_level_info(indx).v_middlename,
+                    g_row_level_info(indx).v_lastname,
+                    v_status_name,
+                    g_row_level_info(indx).v_sex_name,
+                    g_row_level_info(indx).v_dob,
+                    g_row_level_info(indx).v_date_of_joining,
+                    g_row_level_info(indx).v_primary_email,
+                    g_row_level_info(indx).v_primary_tel,
+                    g_row_level_info(indx).v_secondary_tel,
+                    v_effective_upto,
+                    g_row_level_info(indx).v_applicant_id,
+                    v_company_code,
+                    v_department_code,
+                    v_school_code,
+                    v_category_code,
+                    v_designation_code,
+                    g_row_level_info(indx).v_marital_status,
+                    v_employment_code,
+                    v_grade_code,
+                    v_role_code,
+                    v_band_code,
+                    v_manager_id,
+                    v_location_code
+                );
+
+                INSERT INTO emp_department (
+                    employee_id,
+                    company_code,
+                    department_code,
+                    effective_from,
+                    effective_upto,
+                    status_name,
+                    notes
+                ) VALUES (
+                    v_employee_id,
+                    v_company_code,
+                    v_department_code,
+                    v_effective_from,
+                    v_effective_upto,
+                    v_status_name,
+                    v_notes
+                );
+
+                INSERT INTO emp_school (
+                    employee_id,
+                    school_code,
+                    category_code,
+                    effective_from,
+                    effective_upto,
+                    status_name,
+                    notes
+                ) VALUES (
+                    v_employee_id,
+                    v_school_code,
+                    v_category_code,
+                    v_effective_from,
+                    v_effective_upto,
+                    v_status_name,
+                    v_notes
+                );
+
+                INSERT INTO emp_designation (
+                    employee_id,
+                    designation_code,
+                    effective_from,
+                    effective_upto,
+                    notes,
+                    status_name
+                ) VALUES (
+                    v_employee_id,
+                    v_designation_code,
+                    v_effective_from,
+                    v_effective_upto,
+                    v_notes,
+                    v_status_name
+                );
+
+                INSERT INTO emp_employment (
+                    employee_id,
+                    employment_code,
+                    effective_from,
+                    effective_upto,
+                    status_name,
+                    notes
+                ) VALUES (
+                    v_employee_id,
+                    v_employment_code,
+                    v_effective_from,
+                    v_effective_upto,
+                    v_status_name,
+                    v_notes
+                );
+
+                INSERT INTO emp_grade (
+                    employee_id,
+                    grade_code,
+                    effective_from,
+                    effective_upto,
+                    status_name,
+                    notes
+                ) VALUES (
+                    v_employee_id,
+                    v_grade_code,
+                    v_effective_from,
+                    v_effective_upto,
+                    v_status_name,
+                    v_notes
+                );
+
+                INSERT INTO emp_role (
+                    employee_id,
+                    role_code,
+                    effective_from,
+                    effective_upto,
+                    status_name,
+                    notes
+                ) VALUES (
+                    v_employee_id,
+                    v_role_code,
+                    v_effective_from,
+                    v_effective_upto,
+                    v_status_name,
+                    v_notes
+                );
+
+                INSERT INTO emp_band (
+                    employee_id,
+                    band_code,
+                    effective_from,
+                    effective_upto,
+                    status_name,
+                    notes
+                ) VALUES (
+                    v_employee_id,
+                    v_band_code,
+                    v_effective_from,
+                    v_effective_upto,
+                    v_status_name,
+                    v_notes
+                );
+
+                INSERT INTO emp_manager (
+                    employee_id,
+                    manager_id,
+                    effective_from,
+                    effective_upto,
+                    status_name,
+                    notes
+                ) VALUES (
+                    v_employee_id,
+                    v_manager_id,
+                    v_effective_from,
+                    v_effective_upto,
+                    v_status_name,
+                    v_notes
+                );
+
+                INSERT INTO emp_location (
+                    employee_id,
+                    location_code,
+                    effective_from,
+                    effective_upto,
+                    status_name,
+                    notes
+                ) VALUES (
+                    v_employee_id,
+                    v_location_code,
+                    v_effective_from,
+                    v_effective_upto,
+                    v_status_name,
+                    v_notes
+                );
+
+                INSERT INTO emp_resume (
+                    employee_id,
+                    headline,
+                    descriptions,
+                    uploaded_file,
+                    mime_type
+                ) VALUES (
+                    v_employee_id,
+                    v_re_headline,
+                    v_re_descriptions,
+                    v_re_uploaded_file,
+                    v_re_mime_type
+                );
+
+                FOR i IN cur_emp_document(p_applicant_id => g_row_level_info(indx).v_applicant_id) LOOP
+                    INSERT INTO emp_document (
+                        no#,
+                        employee_id,
+                        document_code,
+                        issuing_authority,
+                        issued_on,
+                        valid_upto,
+                        uploaded_file,
+                        mime_type,
+                        status_name
+                    ) VALUES (
+                        i.no#,
+                        v_employee_id,
+                        i.document_code,
+                        i.issuing_authority,
+                        i.issued_on,
+                        i.valid_upto,
+                        i.uploaded_file,
+                        i.mime_type,
+                        v_status_name
+                    );
+
+                END LOOP;
+
+                INSERT INTO emp_curraddress (
+                    employee_id,
+                    address1,
+                    address2,
+                    region_code,
+                    country_code,
+                    state_code,
+                    city_code,
+                    pin,
+                    landmark,
+                    residing_since,
+                    status_name
+                ) VALUES (
+                    v_employee_id,
+                    v_curr_address1,
+                    v_curr_address2,
+                    v_curr_region_code,
+                    v_curr_country_code,
+                    v_curr_state_code,
+                    v_curr_city_code,
+                    v_curr_pin,
+                    v_curr_landmark,
+                    v_curr_residing_since,
+                    v_status_name
+                );
+
+                INSERT INTO emp_permaddress (
+                    employee_id,
+                    address1,
+                    address2,
+                    region_code,
+                    country_code,
+                    state_code,
+                    city_code,
+                    pin,
+                    landmark,
+                    residing_since,
+                    status_name
+                ) VALUES (
+                    v_employee_id,
+                    v_perm_address1,
+                    v_perm_address2,
+                    v_perm_region_code,
+                    v_perm_country_code,
+                    v_perm_state_code,
+                    v_perm_city_code,
+                    v_perm_pin,
+                    v_perm_landmark,
+                    v_perm_residing_since,
+                    v_status_name
+                );
+
+                INSERT INTO emp_relative (
+                    employee_id,
+                    title_name,
+                    fullname,
+                    relation_type,
+                    status_name
+                ) VALUES (
+                    v_employee_id,
+                    'MISTRESS',
+                    v_mother_name,
+                    'MOTHER',
+                    v_status_name
+                );
+
+            END;
+
+        END LOOP;
+
+    END AFTER STATEMENT;
+END;]]></body>
+<triggerTime>COMPOUND</triggerTime>
+<columns>0226816E-21AE-DD92-A7C2-A983EDE76721</columns>
+<condition><![CDATA[new.status_name = 'OFFERED']]></condition>
+<table>1E8CA884-3A94-E374-2EF8-873A08B6D48C</table>
+</TriggerOraclev10g>

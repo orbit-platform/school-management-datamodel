@@ -1,0 +1,87 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_payday_auto" directorySegmentName="seg_0" id="82309BF1-6E7C-BC56-842A-2C8ACEF6813A">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-08 04:15:19 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_payday_auto AS
+
+    v_company_code       payday.company_code%TYPE;
+    v_batch_no           payday.batch_no#%TYPE;
+    v_accounting_period  payday.accounting_period%TYPE;
+    v_group_code         payday.group_code%TYPE;
+    v_status_name        payday.status_name%TYPE;
+    CURSOR cur IS
+    SELECT
+        cpg.company_code,
+        cpg.batch_no#,
+        cacc.accounting_period,
+        cpg.group_code,
+        ( cacc.accounting_period + 16 ) AS pay_date,
+        cacc.status_name
+    FROM
+             ( SELECT
+              company_code,
+              add_months(MAX(batch_no#), 12) AS batch_no#
+          FROM
+              payday
+          GROUP BY
+              company_code
+        ) v
+        INNER JOIN company_pay_group cpg ON ( cpg.company_code = v.company_code
+                                              AND cpg.batch_no# = v.batch_no# )
+        INNER JOIN company_accounting cacc ON ( cacc.company_code = cpg.company_code
+                                                AND cacc.batch_no# = cpg.batch_no# )
+    WHERE
+        cacc.status_name = &apos;ACTIVE&apos;;
+
+    CURSOR cur_payday (
+        p_company_code       VARCHAR2,
+        p_accounting_period  DATE,
+        p_group_code         VARCHAR2
+    ) IS
+    SELECT
+        company_code,
+        batch_no#,
+        accounting_period,
+        group_code,
+        status_name
+    FROM
+        payday
+    WHERE
+            company_code = p_company_code
+        AND accounting_period = p_accounting_period
+        AND group_code = p_group_code;
+
+BEGIN
+    FOR indx IN cur LOOP
+        OPEN cur_payday(p_company_code =&gt; indx.company_code, p_accounting_period =&gt; indx.accounting_period, p_group_code =&gt; indx.group_code);
+
+        FETCH cur_payday INTO
+            v_company_code,
+            v_batch_no,
+            v_accounting_period,
+            v_group_code,
+            v_status_name;
+        IF cur_payday%notfound THEN
+            INSERT INTO payday (
+                company_code,
+                batch_no#,
+                accounting_period,
+                group_code,
+                pay_date,
+                status_name
+            ) VALUES (
+                indx.company_code,
+                indx.batch_no#,
+                indx.accounting_period,
+                indx.group_code,
+                indx.pay_date,
+                indx.status_name
+            );
+
+        END IF;
+
+        CLOSE cur_payday;
+    END LOOP;
+END;</source>
+</StoredProcedureOraclev10g>

@@ -1,0 +1,91 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_5" id="0257AD98-3C01-F1E0-C45B-AF20DB4A4E4F" name="staggered_group">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-22 11:01:20 UTC</createdTime>
+<comment><![CDATA[Staggering of group in the class]]></comment>
+<commentInRDBMS><![CDATA[Staggering of group in the class]]></commentInRDBMS>
+<notes><![CDATA[Staggering of group in the class]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>staggered_group</preferredAbbreviation>
+<shortName>staggered_group</shortName>
+<synonym>staggered_group</synonym>
+<synonymToDisplay>staggered_group</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="name" id="957425CD-1C53-74FA-D06D-51ACC25DB227">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-22 11:02:20 UTC</createdTime>
+<commentInRDBMS><![CDATA[Group A/B/C/D]]></commentInRDBMS>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo_name" id="7A93B78D-9C92-B650-520D-D9D3D51A17DD">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-22 11:02:38 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="26DF5871-D7D8-1530-B4F7-852AE5F1487B">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-22 11:02:48 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="DED18A1C-0AD9-94F4-F969-A3AD7FE7286E" name="staggered_group_UN">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-22 11:03:03 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>957425CD-1C53-74FA-D06D-51ACC25DB227</newElementsIDs>
+<usedAttributes>
+<attributeRef>957425CD-1C53-74FA-D06D-51ACC25DB227</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="452F64A9-25C1-E94B-0322-74EF6C1572BB" name="staggered_group_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-24 06:08:28 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>7A93B78D-9C92-B650-520D-D9D3D51A17DD</newElementsIDs>
+<usedAttributes>
+<attributeRef>7A93B78D-9C92-B650-520D-D9D3D51A17DD</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,232 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="attendance_pckg" directorySegmentName="seg_0" id="B4A99E2C-4881-E8C0-EB9C-CC8BA04D8BF4">
+<createdBy>leads</createdBy>
+<createdTime>2021-10-21 02:56:02 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>create or replace PACKAGE           attendance_pckg AS 
+--manual entry of attendance
+    PROCEDURE attendance_manual_proc (
+        p_person_id        IN                 VARCHAR2,
+        p_punch            IN                 VARCHAR2,
+        p_direction_type   IN                 VARCHAR2,
+        p_status_name      IN                 VARCHAR2,
+        p_notes            IN                 VARCHAR2
+    );
+    --SENDING SMS TO THE ABSENTEES
+
+    PROCEDURE sms_abs_proc (
+        pschool_code     IN              VARCHAR2,
+        presource_type   IN              VARCHAR2,
+        pexception      IN              VARCHAR2,
+        pmessage        IN              VARCHAR2,
+        pforday         IN              DATE
+    );
+
+END;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="attendance_pckg" id="B4A99E2C-4881-E8C0-EB9C-CC8BA04D8BF4">
+<createdBy>leads</createdBy>
+<createdTime>2021-10-21 02:59:30 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE BODY attendance_pckg AS
+
+     --manual entry of attendance
+
+    PROCEDURE attendance_manual_proc (
+        p_person_id IN VARCHAR2,
+        p_punch IN VARCHAR2,
+        p_direction_type IN VARCHAR2,
+        p_status_name IN VARCHAR2,
+        p_notes IN VARCHAR2
+    ) AS
+        v_person_id attendance.person#%TYPE;
+        v_punch attendance.punch%TYPE;
+        v_direction_type attendance.direction_type%TYPE;
+        v_status_name attendance.status_name%TYPE;
+        v_entries_type attendance.entries_type%TYPE;
+        v_notes attendance.notes%TYPE;
+    BEGIN 
+    -- person id
+        v_person_id := p_person_id;
+
+    -- punch time in hour and min
+        v_punch := to_date(p_punch, &apos;DD-MON-YYYY HH24:MI&apos;);
+        v_direction_type := p_direction_type;
+        v_status_name := p_status_name;
+
+        --notes
+        v_notes := p_notes;
+
+        ---entries code
+        SELECT
+            type
+        INTO v_entries_type
+        FROM
+            entries
+        WHERE
+            REGEXP_LIKE ( type,
+                          &apos;^manual&apos;,
+                          &apos;i&apos; );
+
+    -- insert value to alog table
+
+        INSERT INTO leadsuser.attendance (
+            person#,
+            punch,
+            entries_type,
+            direction_type,
+            status_name,
+            recorded_on,
+            notes
+        ) VALUES (
+            v_person_id,
+            v_punch,
+            v_entries_type,
+            v_direction_type,
+            v_status_name,
+            sysdate,
+            v_notes
+        );
+    END attendance_manual_proc;
+
+ ----sending absenteeism proc
+
+    PROCEDURE sms_abs_proc (
+        pschool_code IN VARCHAR2,
+        presource_type IN VARCHAR2,
+        pexception IN VARCHAR2,
+        pmessage IN VARCHAR2,
+        pforday IN DATE
+    ) AS
+    ---message variable
+
+        v_message VARCHAR2(4000);
+
+    ---cursor declaration
+        CURSOR cur_sms (
+            p_school_code IN VARCHAR2,
+            p_resource_type IN VARCHAR2,
+            p_exception IN VARCHAR2,
+            p_message IN VARCHAR2,
+            p_forday IN DATE
+        ) IS
+        SELECT
+            res.id AS id,
+            res.fullname AS fullname,
+            res.telephone AS telephone,
+            res.category_name,
+            (
+                CASE
+                    WHEN category_name &lt;&gt; &apos;STUDENTS_GUARDIAN&apos; THEN
+                        res.fullname || &apos;, &apos; || p_message || &apos; (&apos; || to_char(to_date(p_forday), &apos;Dy, dd-mm-yyyy&apos;) || &apos;)&apos;
+                    WHEN category_name = &apos;STUDENTS_GUARDIAN&apos;  THEN
+                        &apos;Dear Guardian, &apos; || res.fullname || &apos; is absent today&apos; || &apos; (&apos; || to_char(to_date(p_forday), &apos;Dy, dd-mm-yyyy&apos;) || &apos;)&apos;
+                END
+            ) AS message
+        FROM
+            (
+                SELECT
+                    emp.id,
+                    ( emp.first_name || &apos; &apos; || nvl(substr(emp.middle_name, 1, 1), &apos;&apos;) || &apos; &apos; || substr(emp.last_name, 1, 1) ) AS fullname,
+                    emp.primary_tel AS telephone,
+                    &apos;999&apos; AS class_code,
+                    &apos;EMPLOYEES&apos; AS category_name
+                FROM
+                         employee emp
+                    INNER JOIN emp_school esch ON ( esch.employee_id = emp.id )
+                WHERE
+                        emp.status_name = &apos;ACTIVE&apos;
+                    AND esch.status_name = &apos;ACTIVE&apos;
+                    AND esch.school_code = p_school_code
+                  /*AND emp.id NOT IN ( SELECT
+                                          empexp.employee_id
+                                      FROM
+                                          emp_exception empexp
+                                          INNER JOIN sms_exception smsexp ON ( empexp.sms_exception_code = smsexp.code )
+                                      WHERE
+                                          empexp.status_name = &apos;ACTIVE&apos;
+                                          AND REGEXP_LIKE ( smsexp.name,
+                                                            &apos;ABSENTEEISM SMS&apos;,
+                                                            &apos;i&apos; )
+                                    )*/
+                UNION
+                SELECT
+                    std.id,
+                    ( std.first_name || &apos; &apos; || nvl(substr(std.middle_name, 1, 1), &apos;&apos;) || &apos; &apos; || substr(std.last_name, 1, 1) ) AS fullname,
+                    g.primary_tel,
+                    scs.class_code,
+                    &apos;STUDENTS_GUARDIAN&apos;
+                FROM
+                         student std
+                    INNER JOIN std_guardian g ON ( std.guardian_id = g.id )
+                    INNER JOIN std_class_sec scs ON ( scs.student_id = std.id )
+                    INNER JOIN school_batch sbat ON ( sbat.school_code = std.school_code
+                                                      AND sbat.batch_no# = scs.batch_no# )
+                WHERE
+                        std.status_name = &apos;ACTIVE&apos;
+                    AND std.school_code = p_school_code
+                    AND (
+                        CASE
+                            WHEN sysdate BETWEEN sbat.effective_from AND sbat.effective_upto THEN
+                                1
+                        END
+                    ) = 1
+            ) res
+        WHERE
+            id NOT IN (
+                SELECT
+                    person#
+                FROM
+                    leadsuser.attendance
+                WHERE
+                    trunc(punch, &apos;ddd&apos;) = p_forday --TO_DATE(&apos;20-Jul-2018&apos;,&apos;dd-mon-yyyy&apos;) --
+            )
+            AND (
+                CASE
+                    WHEN p_resource_type = &apos;ALL&apos; THEN
+                        1
+                    WHEN p_resource_type = &apos;STUDENTS_GUARDIAN&apos;
+                         AND id IN (
+                        SELECT
+                            id
+                        FROM
+                            leadsuser.student
+                    ) THEN
+                        1
+                    WHEN p_resource_type = &apos;EMPLOYEES&apos;
+                         AND id IN (
+                        SELECT
+                            id
+                        FROM
+                            leadsuser.employee
+                    ) THEN
+                        1
+                END
+            ) = 1
+            AND instr(&apos;:&apos; || p_exception || &apos;:&apos;, res.class_code) = 0
+        ORDER BY
+            id ASC;
+    BEGIN
+        FOR indx IN cur_sms(p_school_code =&gt; pschool_code, p_resource_type =&gt; presource_type, p_exception =&gt; pexception, p_message =&gt; pmessage, p_forday =&gt; pforday) LOOP
+
+        ---start sending sms
+            leadsuser.pristine_pckg.sendsms(indx.telephone, indx.message);
+
+            --insert the sms log 
+            INSERT INTO leadsuser.sms_log (
+                person#,
+                telephone,
+                person_name,
+                message,
+                reason
+            ) VALUES (
+                indx.id,
+                indx.telephone,
+                indx.fullname,
+                indx.message,
+                &apos;ABSENTEEISM&apos;
+            );
+        END LOOP;
+    END sms_abs_proc;
+END attendance_pckg;</source>
+</body>
+</PackageOracle>

@@ -1,0 +1,231 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="pckg_daily_absenteeism" directorySegmentName="seg_0" id="C373C289-AB6B-DCC0-3346-F7338C95ECB6">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-04 07:23:36 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE pckg_daily_absenteeism AS
+    ---student
+    PROCEDURE daily_std_absent_proc (
+        pschool_code   IN VARCHAR2,
+        pbatch_no      IN DATE DEFAULT trunc(sysdate, &apos;year&apos;),
+        psector_code   IN VARCHAR2,
+        pclass_code    IN VARCHAR2,
+        psection_code  IN VARCHAR2,
+        psms_code      IN VARCHAR2,
+        ptemplate_type IN VARCHAR2,
+        ptext_message  IN VARCHAR2,
+        pforday        IN DATE DEFAULT trunc(sysdate, &apos;ddd&apos;)
+    );
+    
+    ----employeee
+    PROCEDURE daily_emp_absent_proc (
+        pcompany_code    IN VARCHAR2,
+        pdepartment_code IN VARCHAR2,
+        pemployee_id     IN VARCHAR2,
+        psms_code        IN VARCHAR2,
+        ptext_message         IN VARCHAR2,
+        preason          IN VARCHAR2,
+        pforday          IN DATE DEFAULT trunc(sysdate, &apos;ddd&apos;)
+    );
+END;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="pckg_daily_absenteeism" id="C373C289-AB6B-DCC0-3346-F7338C95ECB6">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-04 07:24:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE BODY pckg_daily_absenteeism AS
+    ---student
+    PROCEDURE daily_std_absent_proc (
+        pschool_code   IN VARCHAR2,
+        pbatch_no      IN DATE DEFAULT trunc(sysdate, &apos;year&apos;),
+        psector_code   IN VARCHAR2,
+        pclass_code    IN VARCHAR2,
+        psection_code  IN VARCHAR2,
+        psms_code      IN VARCHAR2,
+        ptemplate_type IN VARCHAR2,
+        ptext_message  IN VARCHAR2,
+        pforday        IN DATE DEFAULT trunc(sysdate, &apos;ddd&apos;)
+    ) AS
+        v_counter PLS_INTEGER;
+
+        ---cursor
+        CURSOR cur_sms (
+            p_school_code   VARCHAR2,
+            p_batch_no      DATE,
+            p_sector_code   VARCHAR2,
+            p_class_code    VARCHAR2,
+            p_section_code  VARCHAR2,
+            p_sms_code      VARCHAR2,
+            p_template_type VARCHAR2,
+            p_text_message  VARCHAR2,
+            p_forday        DATE
+        ) IS
+        SELECT
+            std.first_name || &apos; &apos; || std.last_name AS person_name,
+            std.id AS person#,
+            g.primary_tel AS telephone,
+            replace(replace(p_text_message, &apos;{#STUDENT#}&apos;, std.first_name || &apos; &apos; || std.last_name), &apos;{#DATE#}&apos;, to_char(to_date(p_forday, &apos;dd-mon-yyyy&apos;), &apos;DD-Mon-YYYY&apos;)) AS message,
+            p_sms_code AS sms_code,
+            p_template_type AS reason
+        FROM
+                 student std
+            INNER JOIN std_class_sec scs
+            ON ( scs.student_id = std.id )
+            INNER JOIN std_guardian g
+            ON ( g.id = std.guardian_id )
+            INNER JOIN school_sector ss
+            ON ( ss.school_code = std.school_code
+                 AND ss.batch_no# = scs.batch_no#
+                 AND ss.class_code = scs.class_code )
+        WHERE
+                scs.status_name = &apos;ACTIVE&apos;
+            AND ss.monetary_type = &apos;REVENUE&apos;
+            AND std.school_code = p_school_code
+            AND scs.batch_no# = p_batch_no
+            AND ss.sector_code = nvl(p_sector_code, ss.sector_code)
+            AND scs.class_code = nvl(p_class_code, scs.class_code)
+            AND scs.section_code = nvl(p_section_code, scs.section_code)
+            AND scs.student_id NOT IN ( SELECT
+                                            person#
+                                        FROM
+                                            leadsuser.attendance
+                                        WHERE
+                                            trunc(punch, &apos;ddd&apos;) = p_forday
+                                      )
+        ORDER BY
+            person_name;
+    BEGIN
+        v_counter := 1;
+        FOR indx IN cur_sms(p_school_code =&gt; pschool_code, p_batch_no =&gt; pbatch_no, p_sector_code =&gt; psector_code, p_class_code =&gt; pclass_code, p_section_code =&gt; psection_code,
+                           p_sms_code =&gt; psms_code, p_template_type =&gt; ptemplate_type, p_text_message =&gt; ptext_message, p_forday =&gt; pforday) LOOP
+
+            ---send sms
+            leadsuser.pristine_pckg.sendsms(indx.telephone, indx.message);
+
+            ---record logs
+            INSERT INTO leadsuser.sms_log (
+                person#,
+                person_name,
+                sms_code,
+                telephone,
+                message,
+                reason
+            ) VALUES (
+                indx.person#,
+                indx.person_name,
+                indx.sms_code,
+                indx.telephone,
+                indx.message,
+                indx.reason
+            );
+
+            ---counter
+            IF v_counter &gt;= 50 THEN
+                v_counter := 1;
+                COMMIT;
+            ELSE
+                v_counter := v_counter + 1;
+            END IF;
+        END LOOP;
+    END daily_std_absent_proc;
+
+    ---employee
+    PROCEDURE daily_emp_absent_proc (
+        pcompany_code    IN VARCHAR2,
+        pdepartment_code IN VARCHAR2,
+        pemployee_id     IN VARCHAR2,
+        psms_code        IN VARCHAR2,
+        ptext_message    IN VARCHAR2,
+        preason          IN VARCHAR2,
+        pforday          IN DATE DEFAULT trunc(sysdate, &apos;ddd&apos;)
+    ) AS
+        ---counter
+        v_counter PLS_INTEGER;
+
+        ---cursor
+        CURSOR cur_sms (
+            p_company_code    VARCHAR2,
+            p_department_code VARCHAR2,
+            p_employee_id     VARCHAR2,
+            p_sms_code        VARCHAR2,
+            p_text_message    VARCHAR2,
+            p_reason          VARCHAR2,
+            p_forday          DATE
+        ) IS
+        SELECT
+            emp.first_name || &apos; &apos; || emp.last_name AS person_name,
+            ed.employee_id AS person#,
+            emp.primary_tel AS telephone,
+            p_sms_code AS sms_code,
+            replace(replace(p_text_message, &apos;{#EMPLOYEE#}&apos;, emp.first_name || &apos; &apos; || emp.last_name), &apos;{#DATE#}&apos;, to_char(to_date(p_forday, &apos;dd-mon-yyyy&apos;), &apos;Dy, DD-Mon-YYYY&apos;)) AS message,
+            p_reason AS reason
+        FROM
+                 employee emp
+            INNER JOIN emp_department ed
+            ON ( ed.employee_id = emp.id )
+        WHERE
+                emp.status_name = &apos;ACTIVE&apos;
+            AND sysdate BETWEEN ed.effective_from AND ed.effective_upto
+            AND ed.company_code = p_company_code
+            AND ed.department_code = nvl(p_department_code, ed.department_code)
+            AND ed.employee_id = nvl(p_employee_id, ed.employee_id)
+            AND ed.employee_id NOT IN ( SELECT
+                                            ex.employee_id
+                                        FROM
+                                            emp_attendance_ex ex
+                                        WHERE
+                                                company_code = ed.company_code
+                                            AND department_code = ed.department_code
+                                      )
+            AND ed.employee_id NOT IN ( SELECT
+                                            person#
+                                        FROM
+                                            attendance att
+                                        WHERE
+                                            trunc(sysdate, &apos;ddd&apos;) = trunc(punch, &apos;ddd&apos;)
+                                      )
+        GROUP BY
+            emp.first_name || &apos; &apos; || emp.last_name,
+            ed.employee_id,
+            emp.primary_tel,
+            p_sms_code,
+            replace(replace(p_text_message, &apos;{#EMPLOYEE#}&apos;, emp.first_name || &apos; &apos; || emp.last_name), &apos;{#DATE#}&apos;, to_char(to_date(p_forday, &apos;dd-mon-yyyy&apos;), &apos;Dy, DD-Mon-YYYY&apos;)),
+            p_reason
+        ORDER BY
+            person_name;
+    BEGIN
+        v_counter := 1;
+        FOR indx IN cur_sms(p_company_code =&gt; pcompany_code, p_department_code =&gt; pdepartment_code, p_employee_id =&gt; pemployee_id, p_sms_code =&gt; psms_code, p_text_message =&gt; ptext_message,
+                           p_reason =&gt; preason, p_forday =&gt; pforday) LOOP
+
+            ---send sms
+            leadsuser.pristine_pckg.sendsms(indx.telephone, indx.message);
+
+            ---record logs
+            INSERT INTO leadsuser.sms_log (
+                person#,
+                person_name,
+                sms_code,
+                telephone,
+                message,
+                reason
+            ) VALUES (
+                indx.person#,
+                indx.person_name,
+                indx.sms_code,
+                indx.telephone,
+                indx.message,
+                indx.reason
+            );
+
+            ---counter
+            IF v_counter &gt;= 50 THEN
+                v_counter := 1;
+                COMMIT;
+            ELSE
+                v_counter := v_counter + 1;
+            END IF;
+        END LOOP;
+    END daily_emp_absent_proc;
+END pckg_daily_absenteeism;</source>
+</body>
+</PackageOracle>

@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_financial_year_auto" directorySegmentName="seg_0" id="F4A85728-BEAA-12B4-795F-8B23AFE80DB3">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-04 14:24:21 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>create or replace PROCEDURE proc_financial_year_auto IS
+
+    v_company_code    financial_year.company_code%TYPE;
+    v_batch_no        financial_year.batch_no#%TYPE;
+    v_effective_from  financial_year.effective_from%TYPE;
+    v_effective_upto  financial_year.effective_upto%TYPE;
+    v_status_name     financial_year.status_name%TYPE;
+    CURSOR cur IS
+    SELECT
+        company_code,
+        add_months(MAX(batch_no#), 12) AS batch_no#,
+        add_months(MAX(effective_from), 12) AS effective_from,
+        add_months(MAX(effective_upto), 12) AS effective_upto,
+        status_name
+    FROM
+        financial_year
+    GROUP BY
+        company_code,
+        status_name;
+
+    CURSOR cur_financial_year (
+        p_company_code  VARCHAR2,
+        p_batch_no      DATE
+    ) IS
+    SELECT
+        company_code,
+        batch_no#,
+        effective_from,
+        effective_upto,
+        status_name
+    FROM
+        financial_year
+    WHERE
+            company_code = p_company_code
+        AND batch_no# = p_batch_no;
+
+BEGIN
+    FOR indx IN cur LOOP
+        OPEN cur_financial_year(p_company_code =&gt; indx.company_code, p_batch_no =&gt; indx.batch_no#);
+        FETCH cur_financial_year INTO
+            v_company_code,
+            v_batch_no,
+            v_effective_from,
+            v_effective_upto,
+            v_status_name;
+        IF cur_financial_year%notfound THEN
+            INSERT INTO financial_year (
+                company_code,
+                batch_no#,
+                effective_from,
+                effective_upto,
+                status_name
+            ) VALUES (
+                indx.company_code,
+                indx.batch_no#,
+                indx.effective_from,
+                indx.effective_upto,
+                indx.status_name
+            );
+
+        END IF;
+
+        CLOSE cur_financial_year;
+    END LOOP;
+END;</source>
+</StoredProcedureOraclev10g>

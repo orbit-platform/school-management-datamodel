@@ -1,0 +1,98 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="1A33DE0D-5AD5-F062-5215-4AA254717187" name="assistant">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-31 11:54:17 UTC</createdTime>
+<comment><![CDATA[Assistant - Class Teacher/Assistant Class Teacher/Helper/]]></comment>
+<commentInRDBMS><![CDATA[Assistant - Class Teacher/Assistant Class Teacher/Helper/]]></commentInRDBMS>
+<notes><![CDATA[Assistant - Class Teacher/Assistant Class Teacher/Helper/]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>assistant</preferredAbbreviation>
+<shortName>assistant</shortName>
+<synonym>assistant</synonym>
+<synonymToDisplay>assistant</synonymToDisplay>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="code" id="29DFC380-3C43-5270-AFD9-30F84B45C24D">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-31 11:55:24 UTC</createdTime>
+<comment><![CDATA[Assistant Code]]></comment>
+<commentInRDBMS><![CDATA[Assistant Code]]></commentInRDBMS>
+<notes><![CDATA[Assistant Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>22D72C18-6474-DEB7-5520-1C5508AB56CA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="A3312DC8-491B-0D89-31AA-6BC84310010A">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-31 11:55:34 UTC</createdTime>
+<comment><![CDATA[Assistance Name/Type]]></comment>
+<commentInRDBMS><![CDATA[Assistance Name/Type]]></commentInRDBMS>
+<notes><![CDATA[Assistance Name/Type]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D082F8D3-F698-C26E-BDF7-9E819C72079E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="47D78F67-F3DF-0A0F-E3DA-FAA6D8D88978">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-31 11:58:55 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="0213359C-55E7-B1CF-D014-A6976E5B2E6C" name="assistant_PK">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-31 11:56:02 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>29DFC380-3C43-5270-AFD9-30F84B45C24D</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="9336A7B1-C331-E96F-1366-64ECEC0DB259" name="assistant_UN">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-31 11:56:09 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
+</engineerTo>
+<newElementsIDs>A3312DC8-491B-0D89-31AA-6BC84310010A</newElementsIDs>
+<usedAttributes>
+<attributeRef>A3312DC8-491B-0D89-31AA-6BC84310010A</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

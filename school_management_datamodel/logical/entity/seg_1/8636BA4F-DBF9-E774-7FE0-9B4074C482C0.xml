@@ -1,0 +1,187 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="8636BA4F-DBF9-E774-7FE0-9B4074C482C0" name="email_log">
+<createdBy>leads</createdBy>
+<createdTime>2018-07-31 04:26:36 UTC</createdTime>
+<comment><![CDATA[email log]]></comment>
+<commentInRDBMS><![CDATA[email log]]></commentInRDBMS>
+<notes><![CDATA[email log]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>email_log</preferredAbbreviation>
+<shortName>email_log</shortName>
+<synonym>email_log</synonym>
+<synonymToDisplay>email_log</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="send_to" id="D8DFC4A8-5CCF-4A1E-D8C6-ED9B376F1242">
+<createdBy>leads</createdBy>
+<createdTime>2018-07-31 04:26:50 UTC</createdTime>
+<comment><![CDATA[sending to]]></comment>
+<commentInRDBMS><![CDATA[sending to]]></commentInRDBMS>
+<notes><![CDATA[sending to]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="send_from" id="2C4131D8-41AA-EA29-4F2A-81C2E4EEC5E4">
+<createdBy>leads</createdBy>
+<createdTime>2018-07-31 04:28:01 UTC</createdTime>
+<comment><![CDATA[sending from]]></comment>
+<commentInRDBMS><![CDATA[sending from]]></commentInRDBMS>
+<notes><![CDATA[sending from]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>yourmailID@domain.com</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="subject" id="19CC979A-4150-5B1D-2DF7-F685E830A49D">
+<createdBy>leads</createdBy>
+<createdTime>2018-07-31 04:28:24 UTC</createdTime>
+<comment><![CDATA[subject of the email]]></comment>
+<commentInRDBMS><![CDATA[subject of the email]]></commentInRDBMS>
+<notes><![CDATA[subject of the email]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="message" id="1B68F006-0359-11DE-F3DF-193730B8DF62">
+<createdBy>leads</createdBy>
+<createdTime>2018-07-31 04:28:54 UTC</createdTime>
+<comment><![CDATA[Message content or body of the email.]]></comment>
+<commentInRDBMS><![CDATA[Message content or body of the email.]]></commentInRDBMS>
+<notes><![CDATA[Message content or body of the email.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="send_cc" id="F2DD72F3-7D7B-4E28-A9D6-A9924BB2D575">
+<createdBy>leads</createdBy>
+<createdTime>2018-07-31 09:49:25 UTC</createdTime>
+<comment><![CDATA[Carbon Copy]]></comment>
+<commentInRDBMS><![CDATA[Carbon Copy]]></commentInRDBMS>
+<notes><![CDATA[Carbon Copy]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>yourmailID@domain.com</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="send_bcc" id="40940D76-72FC-3D72-0CDA-C76216076F38">
+<createdBy>leads</createdBy>
+<createdTime>2018-07-31 09:49:27 UTC</createdTime>
+<comment><![CDATA[Blind Carbon Copy]]></comment>
+<commentInRDBMS><![CDATA[Blind Carbon Copy]]></commentInRDBMS>
+<notes><![CDATA[Blind Carbon Copy]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>yourmailID@domain.com</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="replyto" id="A100A4B2-8A3D-8B9E-4074-3174FEB5F97B">
+<createdBy>leads</createdBy>
+<createdTime>2018-07-31 09:49:28 UTC</createdTime>
+<comment><![CDATA[Reply to]]></comment>
+<commentInRDBMS><![CDATA[Reply to]]></commentInRDBMS>
+<notes><![CDATA[Reply to]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>yourmailID@domain.com</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="changedate" id="2AA55C5A-588C-2630-B3F1-B7F3188B5D3C">
+<createdBy>leads</createdBy>
+<createdTime>2018-07-31 04:29:20 UTC</createdTime>
+<comment><![CDATA[change date and time of the email sent.]]></comment>
+<commentInRDBMS><![CDATA[change date and time of the email sent.]]></commentInRDBMS>
+<notes><![CDATA[change date and time of the email sent.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+</Entity>

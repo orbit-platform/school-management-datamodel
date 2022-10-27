@@ -1,0 +1,98 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_salary_component_auto" directorySegmentName="seg_0" id="EA84812B-5CEF-8EA6-E383-D640FD778F07">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-03 07:09:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_salary_component_auto IS
+
+    v_company_code      salary_component.company_code%TYPE;
+    v_batch_no          salary_component.batch_no#%TYPE;
+    v_component_code    salary_component.component_code%TYPE;
+    v_serial_no         salary_component.serial_no%TYPE;
+    v_net_multiplier    salary_component.net_multiplier%TYPE;
+    v_gross_multiplier  salary_component.gross_multiplier%TYPE;
+    v_status_name       salary_component.status_name%TYPE;
+    v_descriptions      salary_component.descriptions%TYPE;
+    CURSOR cur IS
+    SELECT
+        company_code,
+        add_months(MAX(batch_no#), 12) AS batch_no#,
+        component_code,
+        serial_no,
+        net_multiplier,
+        gross_multiplier,
+        status_name,
+        descriptions
+    FROM
+        salary_component
+    GROUP BY
+        company_code,
+        component_code,
+        serial_no,
+        net_multiplier,
+        gross_multiplier,
+        status_name,
+        descriptions;
+
+    CURSOR cur_salary_component (
+        p_company_code    VARCHAR2,
+        p_batch_no        DATE,
+        p_component_code  VARCHAR2
+    ) IS
+    SELECT
+        company_code,
+        batch_no#,
+        component_code,
+        serial_no,
+        net_multiplier,
+        gross_multiplier,
+        status_name,
+        descriptions
+    FROM
+        salary_component
+    WHERE
+            company_code = p_company_code
+        AND batch_no# = p_batch_no
+        AND component_code = p_component_code;
+
+BEGIN
+    FOR indx IN cur LOOP
+        OPEN cur_salary_component(p_company_code =&gt; indx.company_code, p_batch_no =&gt; indx.batch_no#, p_component_code =&gt; indx.component_code);
+
+        FETCH cur_salary_component INTO
+            v_company_code,
+            v_batch_no,
+            v_component_code,
+            v_serial_no,
+            v_net_multiplier,
+            v_gross_multiplier,
+            v_status_name,
+            v_descriptions;
+
+        IF cur_salary_component%notfound THEN
+            INSERT INTO salary_component (
+                company_code,
+                batch_no#,
+                component_code,
+                serial_no,
+                net_multiplier,
+                gross_multiplier,
+                status_name,
+                descriptions
+            ) VALUES (
+                indx.company_code,
+                indx.batch_no#,
+                indx.component_code,
+                indx.serial_no,
+                indx.net_multiplier,
+                indx.gross_multiplier,
+                indx.status_name,
+                indx.descriptions
+            );
+
+        END IF;
+
+        CLOSE cur_salary_component;
+    END LOOP;
+END;</source>
+</StoredProcedureOraclev10g>

@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="leave_chg_trg" directorySegmentName="seg_4" id="1792A6BF-34E9-DE73-7C79-E96B2418D02F">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-06 06:12:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[BEGIN
+    IF inserting THEN
+        :new.name := upper(:new.name);
+    END IF;
+
+    IF updating THEN
+        :new.name := upper(:new.name);
+    END IF;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>8CD4EF4D-BC9B-C74B-B1B6-681200F014C0, 38D6946C-E952-7F32-1493-A4585E212964, FDF3D320-E6F5-87AE-8678-62CB59E027F7, E6F03805-FEA1-3F22-95EB-7E4F00847772, 278ECD85-65F9-9246-D070-BB03098131F2</columns>
+<table>705163D4-8540-1211-8EB3-AC13EB6E554F</table>
+</TriggerOraclev10g>

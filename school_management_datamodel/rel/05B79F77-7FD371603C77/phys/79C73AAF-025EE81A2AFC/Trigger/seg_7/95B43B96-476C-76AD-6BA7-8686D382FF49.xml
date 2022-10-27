@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="work_role_code_trg" directorySegmentName="seg_7" id="95B43B96-476C-76AD-6BA7-8686D382FF49">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-06 03:59:11 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+    SELECT
+        lpad(nvl(MAX(to_number(code)), 0) + 1, 4, '0')
+    INTO :new.code
+    FROM
+        work_role;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<condition><![CDATA[new.code IS NULL]]></condition>
+<table>D3041AEE-8837-1AE9-1E3E-C17D99D9C7F8</table>
+</TriggerOraclev10g>

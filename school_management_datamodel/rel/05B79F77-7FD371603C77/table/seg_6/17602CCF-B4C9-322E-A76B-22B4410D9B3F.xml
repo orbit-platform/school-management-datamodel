@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_6" id="17602CCF-B4C9-322E-A76B-22B4410D9B3F" name="readwrite">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-24 04:35:48 UTC</createdTime>
+<generatorID>0E0819CB-5930-E921-7836-D8631A0DD9B1</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>readwrite</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="3C6779CE-75DF-9F98-DADD-D33D2AAB896C">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-24 04:35:48 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="type" id="BC5038CC-EB71-21F1-55B9-0EB864117DBE">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-24 04:35:48 UTC</createdTime>
+<comment><![CDATA[READ/WRITE/]]></comment>
+<commentInRDBMS><![CDATA[READ/WRITE/]]></commentInRDBMS>
+<generatorID>5760D616-DD36-538A-D190-FCB7C4F69572</generatorID>
+<notes><![CDATA[READ/WRITE/]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="FBAF20C3-69B6-B561-4C86-DCDCFACD96F9">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-24 04:35:48 UTC</createdTime>
+<generatorID>3A498F8C-C942-E22E-4F4A-45D54E3A0035</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8F97E3AC-0165-D4E2-5B30-8592939DB0AF" name="readwrite_pk">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-24 04:35:48 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="3C6779CE-75DF-9F98-DADD-D33D2AAB896C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="77C966C4-B92C-F772-14C0-675EA15F755B" name="readwrite_UN">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-24 04:35:48 UTC</createdTime>
+<generatorID>57DE9978-0FD6-86E0-E557-5703C4A065F6</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BC5038CC-EB71-21F1-55B9-0EB864117DBE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="26662F66-7D47-4211-DD32-9C1062CFF669" name="readwrite_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-30 07:10:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3C6779CE-75DF-9F98-DADD-D33D2AAB896C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4B40BA57-CC0E-B9D4-C75D-A542CD5D57B2" name="readwrite_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-30 07:10:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BC5038CC-EB71-21F1-55B9-0EB864117DBE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

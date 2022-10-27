@@ -1,0 +1,1002 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableView class="oracle.dbtools.crest.model.design.relational.TableView" directorySegmentName="seg_0" id="6CE93ADF-F68A-BE98-0534-84DE4E0E0D70" name="vv_std_score">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:55:26 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<ordsAlias>view_3</ordsAlias>
+<userDefined>true</userDefined>
+<userDefinedSQL><![CDATA[SELECT
+        wd.school_code,
+        wd.batch_no,
+        wd.class_code,
+        wd.section_code AS sec,
+        wd.section_code,
+        wd.term_code,
+        wd.student_id,
+        student_name,
+        part_name,
+        academic,
+        academic_code,
+        category_code,
+        domain,
+        (
+            CASE
+                WHEN domain IS NOT NULL THEN
+                    nvl2(subject, subject, 'Aggregate (' || super_subject || ')')
+                WHEN domain IS NULL THEN
+                    'Grand Aggregate'
+            END
+        ) AS subject,
+        nvl(main, '-ab-') AS main,
+        (
+            CASE
+                WHEN examination_type = 'INTERNAL' THEN
+                    nvl(internal, '-ab-')
+                WHEN examination_type IS NULL THEN
+                    nvl(internal, '-na-')
+            END
+        ) AS internal,
+        nvl(total, '-ab-') AS total,
+        maximum,
+        (
+            CASE
+                WHEN status = 'FAILED' THEN
+                    nvl((
+                        SELECT
+                            ovf.name
+                        FROM
+                            overall_failed ovf
+                        WHERE
+                                ovf.status_name = 'ACTIVE'
+                            AND ovf.school_code = wd.school_code
+                            AND ovf.batch_no# = wd.batch_no
+                            AND ovf.class_code = wd.class_code
+                            AND ovf.term_code = wd.term_code
+                    ), 'FAILED')
+                ELSE
+                    status
+            END
+        ) AS status,
+        percentage
+    FROM
+        (
+            SELECT
+                (
+                    SELECT
+                        pseudo
+                    FROM
+                        school
+                    WHERE
+                        code = school_code
+                ) AS school,
+                school_code,
+                batch_no,
+                class_code,
+                (
+                    SELECT
+                        pseudo
+                    FROM
+                        class
+                    WHERE
+                        code = class_code
+                ) AS class,
+                section_code,
+                term_code,
+                student_id,
+                (
+                    SELECT
+                        first_name || nvl2(middle_name, ' ' || middle_name || ' ', ' ') || last_name
+                    FROM
+                        student
+                    WHERE
+                        id = student_id
+                ) AS student_name,
+                domain_code,
+                ranking_type,
+                part_name,
+                academic_code,
+                (
+                    SELECT
+                        pseudo
+                    FROM
+                        academic_category
+                    WHERE
+                        code = academic_code
+                ) AS academic,
+                category_code,
+                (
+                    SELECT
+                        pseudo
+                    FROM
+                        subject_category
+                    WHERE
+                        code = category_code
+                ) AS domain,
+                super_code,
+                (
+                    SELECT
+                        pseudo
+                    FROM
+                        super_subject
+                    WHERE
+                        code = super_code
+                ) AS super_subject,
+                subject_code,
+                (
+                    SELECT
+                        pseudo
+                    FROM
+                        subject
+                    WHERE
+                        code = subject_code
+                ) AS subject,
+                (
+                    CASE
+                        WHEN score_type = 'GRADE' THEN
+                            (
+                                SELECT
+                                    b.abbrv
+                                FROM
+                                         school_grade a
+                                    INNER JOIN grade_score b ON ( b.name = a.grade_name )
+                                WHERE
+                                        a.status_name = 'ACTIVE'
+                                    AND a.school_code = school_code
+                                    AND round(inter_score / inter_maximum * 100) BETWEEN a.range_from AND a.range_upto
+                            )
+                        ELSE
+                            to_char(round(inter_score))
+                    END
+                ) AS internal,
+                (
+                    CASE
+                        WHEN score_type = 'GRADE' THEN
+                            (
+                                SELECT
+                                    b.abbrv
+                                FROM
+                                         school_grade a
+                                    INNER JOIN grade_score b ON ( b.name = a.grade_name )
+                                WHERE
+                                        a.status_name = 'ACTIVE'
+                                    AND a.school_code = school_code
+                                    AND round(main_score / main_maximum * 100) BETWEEN a.range_from AND a.range_upto
+                            )
+                        ELSE
+                            to_char(round(main_score))
+                    END
+                ) AS main,
+                (
+                    CASE
+                        WHEN score_type = 'GRADE' THEN
+                            (
+                                SELECT
+                                    b.abbrv
+                                FROM
+                                         school_grade a
+                                    INNER JOIN grade_score b ON ( b.name = a.grade_name )
+                                WHERE
+                                        a.status_name = 'ACTIVE'
+                                    AND a.school_code = school_code
+                                    AND round(total_score / total_maximum * 100) BETWEEN a.range_from AND a.range_upto
+                            )
+                        ELSE
+                            to_char(round(total_score))
+                    END
+                ) AS total,
+                round(total_maximum) AS maximum,
+                (
+                    CASE
+                        WHEN ranking_type = 'YES' THEN
+                            (
+                                CASE
+                                    WHEN overall_status = 'PASSED'
+                                         AND grp_academic_code = 0
+                                         AND grp_category_code = 1
+                                         AND grp_domain_code = 1
+                                         AND grp_score_type = 0
+                                         AND grp_optional_type = 1
+                                         AND grp_ranking_type = 0
+                                         AND grp_part_name = 0
+                                         AND grp_super_code = 1
+                                         AND grp_subject_code = 1 THEN
+                                        (
+                                            SELECT
+                                                division_name
+                                            FROM
+                                                school_division a
+                                            WHERE
+                                                    a.school_code = wd.school_code
+                                                AND a.class_code = wd.class_code
+                                                AND round(total_score / total_maximum * 100) BETWEEN a.range_from AND a.range_upto
+                                        )
+                                    WHEN overall_status = 'FAILED'
+                                         AND grp_academic_code = 0
+                                         AND grp_category_code = 1
+                                         AND grp_domain_code = 1
+                                         AND grp_score_type = 0
+                                         AND grp_optional_type = 1
+                                         AND grp_ranking_type = 0
+                                         AND grp_part_name = 0
+                                         AND grp_super_code = 1
+                                         AND grp_subject_code = 1 THEN
+                                        'FAILED'
+                                    ELSE
+                                        (
+                                            CASE
+                                                WHEN round(nvl(main_score, 0)) >= round(main_minimum)
+                                                     AND round(nvl(total_score, 0)) >= round(total_passed) THEN
+                                                    'PASSED'
+                                                WHEN round(nvl(main_score, 0)) < round(main_minimum)
+                                                     OR round(nvl(total_score, 0)) < round(total_passed) THEN
+                                                    'FAILED'
+                                            END
+                                        )
+                                END
+                            )
+                    END
+                ) AS status,
+                nvl(to_char(round(total_score / total_maximum * 100)), '-') AS percentage
+            FROM
+                (
+                    SELECT
+                        school_code,
+                        batch_no,
+                        class_code,
+                        section_code,
+                        term_code,
+                        student_id,
+                        overall_status,
+                        part_name,
+                        ranking_type,
+                        academic_code,
+                        category_code,
+                        domain_code,
+                        super_code,
+                        subject_code,
+                        score_type,
+                        optional_type,
+                        SUM(score) AS score,
+                        SUM(passed) AS passed,
+                        SUM(minimum) AS min_mark,
+                        SUM(maximum) AS max_mark,
+                        GROUPING(part_name) AS grp_part_name,
+                        GROUPING(ranking_type) AS grp_ranking_type,
+                        GROUPING(academic_code) AS grp_academic_code,
+                        GROUPING(category_code) AS grp_category_code,
+                        GROUPING(domain_code) AS grp_domain_code,
+                        GROUPING(super_code) AS grp_super_code,
+                        GROUPING(subject_code) AS grp_subject_code,
+                        GROUPING(score_type) AS grp_score_type,
+                        GROUPING(optional_type) AS grp_optional_type,
+                        CASE
+                            WHEN GROUPING(examination_type) = 1 THEN
+                                'TOTAL'
+                            ELSE
+                                examination_type
+                        END AS examination_type
+                    FROM
+                        mv_std_score
+                    GROUP BY
+                        school_code,
+                        batch_no,
+                        class_code,
+                        section_code,
+                        term_code,
+                        student_id,
+                        overall_status,
+                        CUBE(part_name,
+                             ranking_type,
+                             academic_code,
+                             category_code,
+                             domain_code,
+                             super_code,
+                             subject_code,
+                             score_type,
+                             optional_type,
+                             examination_type)
+                ) PIVOT (
+                    SUM ( score )
+                AS score, SUM ( passed ) AS passed, SUM ( min_mark ) AS minimum, SUM ( max_mark ) AS maximum
+                    FOR examination_type
+                    IN ( 'EXTERNAL' AS main, 'INTERNAL' AS inter, 'TOTAL' AS total )
+                )
+                wd
+            WHERE
+                (
+                    CASE
+                        WHEN grp_academic_code = 0
+                             AND grp_category_code = 0
+                             AND grp_domain_code = 0
+                             AND grp_score_type = 0
+                             AND grp_optional_type = 0
+                             AND grp_ranking_type = 0
+                             AND grp_part_name = 0
+                             AND grp_super_code = 0
+                             AND grp_subject_code = 0 THEN
+                            1
+                        WHEN ranking_type = 'YES'
+                             AND grp_academic_code = 0
+                             AND grp_category_code = 1
+                             AND grp_domain_code = 1
+                             AND grp_score_type = 0
+                             AND grp_optional_type = 1
+                             AND grp_ranking_type = 0
+                             AND grp_part_name = 0
+                             AND grp_super_code = 1
+                             AND grp_subject_code = 1 THEN
+                            1
+                        WHEN ranking_type = 'YES'
+                             AND grp_academic_code = 0
+                             AND grp_category_code = 0
+                             AND grp_domain_code = 0
+                             AND grp_score_type = 0
+                             AND grp_optional_type = 0
+                             AND grp_ranking_type = 0
+                             AND grp_part_name = 0
+                             AND grp_super_code = 0
+                             AND grp_subject_code = 1
+                             AND EXISTS (
+                            SELECT
+                                ssubj.super_code
+                            FROM
+                                     school_subject ssubj
+                                INNER JOIN class_subject csubj ON ( csubj.school_code = ssubj.school_code
+                                                                    AND csubj.batch_no# = ssubj.batch_no#
+                                                                    AND csubj.class_code = ssubj.class_code
+                                                                    AND csubj.subject_code = ssubj.subject_code )
+                            WHERE
+                                    ssubj.status_name = 'ACTIVE'
+                                AND csubj.status_name = 'ACTIVE'
+                                AND ssubj.school_code = wd.school_code
+                                AND ssubj.class_code = wd.class_code
+                                AND csubj.batch_no# = wd.batch_no
+                                AND csubj.term_code = wd.term_code
+                                AND ssubj.super_code = wd.super_code
+                            GROUP BY
+                                ssubj.super_code
+                            HAVING
+                                COUNT(1) > 1
+                        ) THEN
+                            1
+                    END
+                ) = 1
+        ) wd
+        LEFT OUTER JOIN (
+            SELECT
+                seval.school_code,
+                salloc.batch_no# AS batch_no,
+                salloc.class_code,
+                salloc.term_code,
+                salloc.student_id,
+                salloc.super_code,
+                seval.examination_type
+            FROM
+                     std_score_alloc salloc
+                INNER JOIN school_evaluation seval ON ( seval.school_code = salloc.school_code
+                                                        AND seval.evaluation_code = salloc.evaluation_code )
+            WHERE
+                    salloc.status_name = 'ACTIVE'
+                AND seval.examination_type = 'INTERNAL'
+            GROUP BY
+                seval.school_code,
+                salloc.batch_no#,
+                salloc.class_code,
+                salloc.term_code,
+                salloc.student_id,
+                salloc.super_code,
+                seval.examination_type
+        ) z ON ( z.school_code = wd.school_code
+                 AND z.batch_no = wd.batch_no
+                 AND z.class_code = wd.class_code
+                 AND z.term_code = wd.term_code
+                 AND z.student_id = wd.student_id
+                 AND z.super_code = wd.super_code )
+    ORDER BY
+        school_code,
+        batch_no,
+        class_code,
+        section_code,
+        term_code,
+        student_id,
+        part_name,
+        ranking_type,
+        (
+            SELECT
+                a.serial_no
+            FROM
+                subject_category a
+            WHERE
+                a.code = wd.category_code
+        ) ASC NULLS LAST,
+        (
+            SELECT
+                a.serial_no
+            FROM
+                school_domain a
+            WHERE
+                    a.school_code = wd.school_code
+                AND a.class_code = wd.class_code
+                AND a.domain_code = wd.domain_code
+        ) ASC NULLS LAST,
+        (
+            SELECT
+                a.serial_no
+            FROM
+                school_super a
+            WHERE
+                    a.school_code = wd.school_code
+                AND a.batch_no# = wd.batch_no
+                AND a.class_code = wd.class_code
+                AND a.super_code = wd.super_code
+        ) ASC NULLS LAST,
+        (
+            SELECT
+                serial_no
+            FROM
+                school_subject
+            WHERE
+                    school_code = wd.school_code
+                AND batch_no# = wd.batch_no
+                AND class_code = wd.class_code
+                AND subject_code = wd.subject_code
+        ) ASC NULLS LAST
+]]></userDefinedSQL>
+<validSQL>false</validSQL>
+<parsed>true</parsed>
+<viewElements>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="school_code" id="DC8C7461-5A6B-B91D-162C-1FBDF5D8E137">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<headerAlias>school_code</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="batch_no" id="8EA2954B-8A15-D4C1-0D32-EA3D1B34902F">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<headerAlias>batch_no</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="class_code" id="D7E61187-F7D5-6D15-3094-C0E6D3D95785">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<headerAlias>class_code</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="sec" id="F410620F-80D2-A751-3B62-FA4595632B4C">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>sec</alias>
+<dataType>UNKNOWN</dataType>
+<headerAlias>sec</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="section_code" id="100A0A04-13DE-3587-76E2-360430FC5DD4">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<headerAlias>section_code</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="term_code" id="3A4BF5F3-63C1-6BE6-4DD9-4A2F26F572F6">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<headerAlias>term_code</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="student_id" id="737BA519-420A-952F-D7FF-8689CF62A736">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<headerAlias>student_id</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="student_name" id="8253839B-59D4-3CD5-36A2-CDF48E4CB686">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<headerAlias>student_name</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="part_name" id="A76578A8-BC40-A65F-65F8-547870F1DAA6">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<headerAlias>part_name</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="academic" id="2C418C70-1EDB-DA33-E115-3CC542418F0B">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<headerAlias>academic</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="academic_code" id="C66C4C96-B3A0-B9AD-1344-85E26E7E9ABC">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<headerAlias>academic_code</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="category_code" id="2ADB7B5F-CDFF-3AD9-F94F-9B08F6D0485E">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<headerAlias>category_code</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="domain" id="F9B0E427-5B38-9830-AEF1-77E800D1FE7E">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<headerAlias>domain</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="subject" id="93A5C1C2-0581-6D2F-98C3-8CC4F4FABA2A">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>subject</alias>
+<dataType>VARCHAR2</dataType>
+<headerAlias>subject</headerAlias>
+<expression>(CASEWHENdomainISNOTNULLTHENnvl2(subject,subject,&apos;Aggregate (&apos;||super_subject||&apos;)&apos;)WHENdomainISNULLTHEN&apos;Grand Aggregate&apos;END)</expression>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="main" id="702816D3-E787-FC83-57E5-6329AF2B4265">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>main</alias>
+<dataType>UNKNOWN</dataType>
+<headerAlias>main</headerAlias>
+<expression>nvl(main,&apos;-ab-&apos;)</expression>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="internal" id="D8ED0921-04CA-ADB1-047D-1A5710257090">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>internal</alias>
+<dataType>UNKNOWN</dataType>
+<headerAlias>internal</headerAlias>
+<expression>(CASEWHENexamination_type=&apos;INTERNAL&apos;THENnvl(internal,&apos;-ab-&apos;)WHENexamination_typeISNULLTHENnvl(internal,&apos;-na-&apos;)END)</expression>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="total" id="B2CDCE33-0C46-196B-8036-9F2C5A4FFF18">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>total</alias>
+<dataType>UNKNOWN</dataType>
+<headerAlias>total</headerAlias>
+<expression>nvl(total,&apos;-ab-&apos;)</expression>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="maximum" id="7B8043A4-6B6A-5DB4-58BD-D5A875328BA2">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<headerAlias>maximum</headerAlias>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="status" id="B0A620C4-2EED-EF99-01C7-85C0CF140524">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<alias>status</alias>
+<dataType>UNKNOWN</dataType>
+<headerAlias>status</headerAlias>
+<expression>(CASEWHENstatus=&apos;FAILED&apos;THENnvl((SELECTovf.nameFROMoverall_failedovfWHEREovf.status_name=&apos;ACTIVE&apos;ANDovf.school_code=wd.school_codeANDovf.batch_no#=wd.batch_noANDovf.class_code=wd.class_codeANDovf.term_code=wd.term_code),&apos;FAILED&apos;)ELSEstatusEND)</expression>
+<reference>false</reference>
+</viewElement>
+<viewElement class="oracle.dbtools.crest.model.design.relational.ColumnView" name="percentage" id="086FB048-B815-B879-9526-E42102122E8D">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 09:56:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<dataType>UNKNOWN</dataType>
+<headerAlias>percentage</headerAlias>
+<reference>false</reference>
+</viewElement>
+</viewElements>
+<usedObjects>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="79DEEB8F-3E8C-5A93-EF5B-5C398722339E">
+<container>true</container>
+<tableName>overall_failed</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="2CC39D85-793E-C374-B8EA-25A5C6543A38">
+<container>true</container>
+<tableName>school</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="08819E82-5E24-BB9A-C5CE-48D9D6F0F75B">
+<container>true</container>
+<tableName>class</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C31DD924-4ECE-BECD-A83E-9730F9B7721C">
+<container>true</container>
+<tableName>student</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="DC73ABBE-E879-74BA-874B-F8EA842F658C">
+<container>true</container>
+<tableName>academic_category</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="E8738BC0-46F9-8E48-14B3-9F03F5C9D514">
+<container>true</container>
+<tableName>subject_category</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="B0EF5F4F-4C83-8D9F-6F61-543179C16ACB">
+<container>true</container>
+<tableName>super_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="6CF7BA83-1589-3EB0-0897-CD4504D3057B">
+<container>true</container>
+<tableName>subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="646D54F7-08B0-8A6C-F49C-DF9D6EAA46D2">
+<container>true</container>
+<tableName>school_grade</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="0D46379B-C569-B6CD-AB0B-63333BB7E2E4">
+<container>true</container>
+<tableName>grade_score</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="AC554A35-5E0E-896C-CAC9-C27787C4DF14">
+<container>true</container>
+<tableName>school_division</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="E62D09EA-0836-56B1-304D-B54499D0354B">
+<container>true</container>
+<tableName>school_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="E044BD9B-51C1-0575-2782-764969DAEC27">
+<container>true</container>
+<tableName>class_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="EBD87DFE-FF88-B55C-C1FF-89700D7AD770">
+<container>true</container>
+<tableName>std_score_alloc</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="088D24DC-A187-1551-CAF3-9119B73AD036">
+<container>true</container>
+<tableName>school_evaluation</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="D711F567-6FFE-7C87-3667-CA63C71BFA4D">
+<container>true</container>
+<tableName>school_domain</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="89CF1871-99DF-0DFF-6A53-9AADCD882C5C">
+<container>true</container>
+<tableName>school_super</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="011C75BF-EB13-CD28-8AD5-6D0977CE59AA">
+<columnName>class_code</columnName>
+<tableName>school_super</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="98610B13-78CC-4ABE-C888-50F5FEE5E8DD">
+<columnName>grade_name</columnName>
+<tableName>school_grade</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="30912515-EA46-3AD3-3AC2-83B90B8B5B77">
+<columnName>school_code</columnName>
+<tableName>school_evaluation</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="20EFD5A3-D82B-6304-1598-0D53F4E9F6A2">
+<columnName>term_code</columnName>
+<tableName>overall_failed</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="0E6A2BE0-3917-CF8D-EAC7-85743D1602E1">
+<columnName>status_name</columnName>
+<tableName>class_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="77287723-A0C0-8A6A-9EB6-B1B18A32ABC2">
+<columnName>batch_no#</columnName>
+<tableName>school_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="F2C395DA-1EC1-8631-760E-F2C1A2473408">
+<columnName>subject_code</columnName>
+<tableName>class_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="CC9FD1EC-64EF-6523-4138-02F21A6E1B34">
+<columnName>range_upto</columnName>
+<tableName>school_division</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A9605835-16BC-394A-1F45-5CAD26BDE7A2">
+<columnName>school_code</columnName>
+<tableName>school_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="93549598-D21D-E215-71C3-8860590C13A6">
+<columnName>batch_no#</columnName>
+<tableName>std_score_alloc</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="09CCB536-AEED-EB2E-4C23-8665C637945E">
+<columnName>serial_no</columnName>
+<tableName>subject_category</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="BD91DC52-6508-3799-EEC9-4D617E444649">
+<columnName>pseudo</columnName>
+<tableName>subject_category</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A91FC8FC-F9E9-4F26-AA3A-09638E7FD061">
+<columnName>code</columnName>
+<tableName>class</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="AACEA072-F71C-6E64-CFBB-919C215787F4">
+<columnName>examination_type</columnName>
+<tableName>school_evaluation</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="2A0610B6-69F2-D8ED-1128-233E67A165E3">
+<columnName>pseudo</columnName>
+<tableName>super_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="06AE225B-6B59-9956-20BA-C999A5683295">
+<columnName>school_code</columnName>
+<tableName>overall_failed</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="02E6DDE6-839C-2984-3012-E27CC376721B">
+<columnName>term_code</columnName>
+<tableName>std_score_alloc</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1F5F2B4F-B31A-5179-CDBC-3362C7B9B904">
+<columnName>school_code</columnName>
+<tableName>school_division</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C0F67355-C7AF-17DE-BCC0-ADBCF2030F53">
+<columnName>batch_no#</columnName>
+<tableName>school_super</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1392FF8A-F05D-14C0-326F-011C5E43072B">
+<columnName>student_id</columnName>
+<tableName>std_score_alloc</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C82DBEE3-6118-73B9-B6A4-1788501C399A">
+<columnName>term_code</columnName>
+<tableName>class_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="1DD2BE9B-6707-22EB-DE66-433CCEC90C7C">
+<columnName>serial_no</columnName>
+<tableName>school_domain</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="F140929D-2E6E-D10C-587B-62796A7F5BB2">
+<columnName>class_code</columnName>
+<tableName>school_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="373CECD6-61E8-A756-B940-2D2126393EBA">
+<columnName>abbrv</columnName>
+<tableName>grade_score</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="042C29FD-2080-9963-A053-BC6F643D3EAB">
+<columnName>status_name</columnName>
+<tableName>overall_failed</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="5CC646D5-E6BA-C4B7-38CC-4C97258FF54E">
+<columnName>code</columnName>
+<tableName>subject_category</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3225990D-573C-CE0D-1C96-8B1966A8BB20">
+<columnName>status_name</columnName>
+<tableName>school_grade</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="9AF49BB4-8790-0482-6038-964218BA9F6D">
+<columnName>range_upto</columnName>
+<tableName>school_grade</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A4F7D1D6-63B4-897E-4151-7D601B7F0798">
+<columnName>first_name</columnName>
+<tableName>student</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="0AB19FF0-937C-7C65-4693-7FCABE5A5ADE">
+<columnName>status_name</columnName>
+<tableName>school_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A4ADF577-7A65-1836-6A82-93CA9BB68604">
+<columnName>name</columnName>
+<tableName>grade_score</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="209C8A13-EFB1-474C-4A59-0355C7C93DF5">
+<columnName>code</columnName>
+<tableName>subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A296EBB6-9426-517A-8EF3-D09A48F1301F">
+<columnName>pseudo</columnName>
+<tableName>academic_category</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C590D53C-E8F2-9ABE-17DE-C688866170B6">
+<columnName>super_code</columnName>
+<tableName>school_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="B0D999F8-3D60-B679-2088-FC2B2C92BBA6">
+<columnName>last_name</columnName>
+<tableName>student</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="014948F0-536B-FD5A-C098-3CE5A44A2EE9">
+<columnName>division_name</columnName>
+<tableName>school_division</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="135F2F9E-9ACD-B1F4-ABE7-CD83D1D3370D">
+<columnName>class_code</columnName>
+<tableName>class_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="DDBDF55E-99BD-E5C1-559D-4044F71B6C0D">
+<columnName>middle_name</columnName>
+<tableName>student</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="75AE416B-2206-CC13-B1D5-36175492971C">
+<columnName>super_code</columnName>
+<tableName>std_score_alloc</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="D1A14A28-C6D1-0E36-8FF5-55EB51F9DDA9">
+<columnName>pseudo</columnName>
+<tableName>school</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="D6D1BBC7-27A0-E51D-C8E3-B72B46047F00">
+<columnName>school_code</columnName>
+<tableName>school_grade</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="9E717064-202E-581C-E44E-2038DF2BFC06">
+<columnName>code</columnName>
+<tableName>super_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="15579F74-7211-0FCC-0CB0-B6762C2DAF79">
+<columnName>domain_code</columnName>
+<tableName>school_domain</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A5D99BC3-A5B8-AB57-EEAB-18C916634B82">
+<columnName>pseudo</columnName>
+<tableName>class</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="CC6BE5E4-428F-E3E9-D912-AB2BF590BE4F">
+<columnName>range_from</columnName>
+<tableName>school_grade</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="2470D1BD-7452-F382-FF3A-F03BA1E8C139">
+<columnName>name</columnName>
+<tableName>overall_failed</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="BB58FABC-ABB5-FFBD-885C-B3543D7FE7BF">
+<columnName>subject_code</columnName>
+<tableName>school_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="87F0FE1C-653E-5997-B82E-12B3AD133CC5">
+<columnName>school_code</columnName>
+<tableName>std_score_alloc</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="AA10E848-94A9-204D-ED66-3806BFEE5AD2">
+<columnName>id</columnName>
+<tableName>student</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="41BDE4CF-A35D-0B5C-94C5-C23E3A3319D4">
+<columnName>evaluation_code</columnName>
+<tableName>school_evaluation</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="04DFDFC9-1C5A-24F3-45ED-DF2C2F2A2678">
+<columnName>range_from</columnName>
+<tableName>school_division</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="6493CC9E-23D0-2ED5-7F27-9FEE30219021">
+<columnName>pseudo</columnName>
+<tableName>subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="AA16C4FF-C010-7E0F-C092-DD64A42F7032">
+<columnName>class_code</columnName>
+<tableName>school_division</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3C33A292-13A1-505E-DAE0-D4C9D5AF04A2">
+<columnName>code</columnName>
+<tableName>academic_category</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="C5FDE8FC-F0EF-091D-2E42-92DCFD641182">
+<columnName>status_name</columnName>
+<tableName>std_score_alloc</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="45BFB5B6-DE43-8846-9D3A-BC616EE74CB4">
+<columnName>batch_no#</columnName>
+<tableName>overall_failed</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="5EF632BB-DDEB-3256-2703-36E52011C8FA">
+<columnName>school_code</columnName>
+<tableName>school_super</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="793D53F2-3D5F-32B5-B540-4F8081CB335B">
+<columnName>class_code</columnName>
+<tableName>overall_failed</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="3095F4BD-C794-EABD-97CC-5FE39090A9F8">
+<columnName>serial_no</columnName>
+<tableName>school_super</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="778951FB-6A0D-6954-C829-753C7EF63AD7">
+<columnName>class_code</columnName>
+<tableName>school_domain</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="E8EB2B37-D704-A9AD-3E40-E00AA426ADA2">
+<columnName>batch_no#</columnName>
+<tableName>class_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="CC626A70-57A6-6FAC-E939-F7F18B94395C">
+<columnName>evaluation_code</columnName>
+<tableName>std_score_alloc</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="02BF2289-FFBA-9327-709A-6FE55414C4BD">
+<columnName>school_code</columnName>
+<tableName>class_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="A7E0BA20-09B6-BFF2-0E0E-A1FE60BA987F">
+<columnName>school_code</columnName>
+<tableName>school_domain</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="587CEF6C-8C0F-1C7A-0706-190D6BF5E7D0">
+<columnName>serial_no</columnName>
+<tableName>school_subject</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="EC992F8A-E046-664A-FC00-700FF72143AB">
+<columnName>class_code</columnName>
+<tableName>std_score_alloc</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="2CD56B01-05AA-F92F-B172-845E1EFB0B47">
+<columnName>super_code</columnName>
+<tableName>school_super</tableName>
+</UsedObject>
+<UsedObject class="oracle.dbtools.crest.swingui.editor.viewbuilder.SQLNameHelper" id="89499592-86B9-DF9F-6D55-09652996EFC6">
+<columnName>code</columnName>
+<tableName>school</tableName>
+</UsedObject>
+</usedObjects>
+</TableView>

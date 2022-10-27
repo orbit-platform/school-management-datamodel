@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="emp_certificate_id_trg" directorySegmentName="seg_0" id="86A2FC5E-62D2-CC34-7B73-1546AE506725">
+<createdBy>leads</createdBy>
+<createdTime>2021-04-29 11:34:21 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+    :new.id := leadsuser.emp_certificate_id_seq.nextval;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<condition><![CDATA[new.id IS NULL]]></condition>
+<table>A4ADFD1B-D158-A2A6-F803-F265C421911E</table>
+</TriggerOraclev10g>

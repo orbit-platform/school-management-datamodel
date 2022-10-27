@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="std_invoice_id_trg" directorySegmentName="seg_4" id="712C42C7-4E2F-FDC5-174A-4D71AA24525E">
+<createdBy>leads</createdBy>
+<createdTime>2022-02-07 15:15:06 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+	:new.id := std_invoice_id_seq.nextval;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<condition><![CDATA[new.ID IS NULL]]></condition>
+<table>B8897FF9-2E76-71D8-68A9-FEB961CF44AC</table>
+</TriggerOraclev10g>

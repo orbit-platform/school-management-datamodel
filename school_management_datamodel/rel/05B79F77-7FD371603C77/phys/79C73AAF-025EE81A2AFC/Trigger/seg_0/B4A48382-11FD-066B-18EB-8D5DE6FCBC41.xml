@@ -1,0 +1,270 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="company_offday_comhol_trg" directorySegmentName="seg_0" id="B4A48382-11FD-066B-18EB-8D5DE6FCBC41">
+<createdBy>leads</createdBy>
+<createdTime>2021-11-11 10:29:55 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[COMPOUND TRIGGER
+    ---declaration of record type
+    TYPE company_offday_rt IS RECORD (
+        v_company_code    company_offday.company_code%TYPE,
+        v_batch_no#       company_offday.batch_no#%TYPE,
+        v_department_code company_offday.department_code%TYPE,
+        v_calendar_id     company_offday.calendar_id%TYPE,
+        v_effective_from  company_offday.effective_from%TYPE,
+        v_effective_upto  company_offday.effective_upto%TYPE,
+        v_status_name     company_offday.status_name%TYPE,
+        v_descriptions    company_offday.descriptions%TYPE
+    );
+
+    ---declaration of type
+    TYPE t_company_offday IS
+        TABLE OF company_offday_rt INDEX BY PLS_INTEGER;
+
+    ---declaration of global variable
+    g_company_offday t_company_offday;
+
+    ---index initialization
+    v_index          PLS_INTEGER := 0;
+
+    ---maximum number of rows to write in one go
+    v_threshhold     CONSTANT SIMPLE_INTEGER := 5;
+
+    ---procedure 
+    PROCEDURE proc_flush_logs IS
+    
+        ---declaration of variables
+        v_company_code    company_holiday.company_code%TYPE;
+        v_batch_no#       company_holiday.batch_no#%TYPE;
+        v_department_code company_holiday.department_code%TYPE;
+        v_holiday_date    company_holiday.holiday_date%TYPE;
+        v_holiday_type    company_holiday.holiday_type%TYPE;
+        v_event_code      company_holiday.event_code%TYPE;
+        v_event_name      company_holiday.event_name%TYPE;
+        v_status_name     company_holiday.status_name%TYPE;
+        v_descriptions    company_holiday.descriptions%TYPE;
+
+        ---declaration of record variable
+        v_updates         CONSTANT PLS_INTEGER := g_company_offday.count();
+        
+        ---cursor company_offday
+        CURSOR cur_company_offday (
+            p_company_code    VARCHAR2,
+            p_batch_no        DATE,
+            p_department_code VARCHAR2,
+            p_calendar_id     NUMBER,
+            p_effective_from  DATE,
+            p_effective_upto  DATE,
+            p_status_name     VARCHAR2,
+            p_descriptions    VARCHAR2
+        ) IS
+        SELECT
+            cal.company_code AS company_code,
+            cal.batch_no# AS batch_no#,
+            p_department_code AS department_code,
+            cal.id AS calendar_id,
+            to_date(p_effective_from) + delta AS holiday_date,
+            cal.daytype_name AS holiday_type,
+            cal.event_code AS event_code,
+            cal.headline AS event_name,
+            p_status_name AS status_name,
+            p_descriptions AS descriptions
+        FROM
+                 dual
+            CROSS JOIN calendar cal,
+            ( SELECT
+                  level - 1 AS delta
+              FROM
+                  dual
+              CONNECT BY
+                  level - 1 <= ( SELECT
+                                     MAX(to_date(p_effective_upto) - to_date(p_effective_from))
+                                 FROM
+                                     dual
+                               )
+            )
+        WHERE
+                to_date(p_effective_from) + delta < to_date(p_effective_upto) + 1
+            AND cal.company_code = p_company_code
+            AND cal.id = p_calendar_id;
+
+        ---cursor company_holiday
+        CURSOR cur_company_holiday (
+            p_company_code    VARCHAR2,
+            p_department_code VARCHAR2,
+            p_holiday_date    DATE
+        ) IS
+        SELECT
+            company_code,
+            batch_no#,
+            department_code,
+            holiday_date,
+            holiday_type,
+            event_code,
+            event_name,
+            status_name,
+            descriptions
+        FROM
+            company_holiday
+        WHERE
+                company_code = p_company_code
+            AND department_code = p_department_code
+            AND holiday_date = p_holiday_date;
+    BEGIN
+        FOR v_count IN 1..v_updates LOOP
+            FOR indx IN cur_company_offday(p_company_code => g_company_offday(v_count).v_company_code, p_batch_no => g_company_offday(v_count).v_batch_no#, p_department_code => g_company_offday(v_count).v_department_code, p_calendar_id => g_company_offday(v_count).v_calendar_id, p_effective_from => g_company_offday(
+            v_count).v_effective_from,
+                                          p_effective_upto => g_company_offday(v_count).v_effective_upto, p_status_name => g_company_offday(v_count).v_status_name, p_descriptions => g_company_offday(v_count).v_descriptions) LOOP
+                    
+                ---open cursor on company_holiday
+                OPEN cur_company_holiday(p_company_code => indx.company_code, p_department_code => indx.department_code, p_holiday_date => indx.holiday_date);
+                FETCH cur_company_holiday INTO
+                    v_company_code,
+                    v_batch_no#,
+                    v_department_code,
+                    v_holiday_date,
+                    v_holiday_type,
+                    v_event_code,
+                    v_event_name,
+                    v_status_name,
+                    v_descriptions;
+
+                ---insert statement
+                IF inserting THEN
+                    IF cur_company_holiday%notfound THEN
+                        INSERT INTO company_holiday (
+                            company_code,
+                            batch_no#,
+                            department_code,
+                            holiday_date,
+                            holiday_type,
+                            event_code,
+                            event_name,
+                            status_name,
+                            descriptions
+                        ) VALUES (
+                            indx.company_code,
+                            indx.batch_no#,
+                            indx.department_code,
+                            indx.holiday_date,
+                            indx.holiday_type,
+                            indx.event_code,
+                            indx.event_name,
+                            indx.status_name,
+                            indx.descriptions
+                        );
+                    END IF;
+                END IF;
+
+                ---update statement
+                IF updating THEN
+                    IF cur_company_holiday%notfound THEN
+                        INSERT INTO company_holiday (
+                            company_code,
+                            batch_no#,
+                            department_code,
+                            holiday_date,
+                            holiday_type,
+                            event_code,
+                            event_name,
+                            status_name,
+                            descriptions
+                        ) VALUES (
+                            indx.company_code,
+                            indx.batch_no#,
+                            indx.department_code,
+                            indx.holiday_date,
+                            indx.holiday_type,
+                            indx.event_code,
+                            indx.event_name,
+                            indx.status_name,
+                            indx.descriptions
+                        );
+                    END IF;
+                    IF cur_company_holiday%found THEN
+                        UPDATE company_holiday
+                        SET
+                            event_name = indx.event_name,
+                            status_name = indx.status_name,
+                            descriptions = indx.descriptions
+                        WHERE
+                                company_code = indx.company_code
+                            AND department_code = indx.department_code
+                            AND holiday_date = indx.holiday_date
+                            AND event_code = indx.event_code;
+                    END IF;
+                END IF;
+
+                ---delete statement
+                IF deleting THEN
+                    IF cur_company_holiday%found THEN
+                        DELETE company_holiday
+                        WHERE
+                                company_code = indx.company_code
+                            AND department_code = indx.department_code
+                            AND holiday_date = indx.holiday_date
+                            AND event_code = indx.event_code;
+                    END IF;
+                END IF;
+                CLOSE cur_company_holiday;
+            END LOOP;
+        END LOOP;
+
+        ---delete the records
+        g_company_offday.DELETE();
+
+        --resetting threshold for next bulk-insert.
+        v_index := 0;
+    END proc_flush_logs;
+    AFTER EACH ROW IS BEGIN
+        IF inserting THEN
+            v_index := v_index + 1;
+            g_company_offday(v_index).v_company_code := :new.company_code;
+            g_company_offday(v_index).v_batch_no# := :new.batch_no#;
+            g_company_offday(v_index).v_department_code := :new.department_code;
+            g_company_offday(v_index).v_calendar_id := :new.calendar_id;
+            g_company_offday(v_index).v_effective_from := :new.effective_from;
+            g_company_offday(v_index).v_effective_upto := :new.effective_upto;
+            g_company_offday(v_index).v_status_name := :new.status_name;
+            g_company_offday(v_index).v_descriptions := :new.descriptions;
+        END IF;
+        IF updating THEN
+            v_index := v_index + 1;
+            g_company_offday(v_index).v_company_code := :old.company_code;
+            g_company_offday(v_index).v_batch_no# := :old.batch_no#;
+            g_company_offday(v_index).v_department_code := :old.department_code;
+            g_company_offday(v_index).v_calendar_id := :old.calendar_id;
+
+            ---changes
+            IF ( :old.effective_from <> :new.effective_from OR :old.effective_upto <> :new.effective_upto OR :old.status_name <> :new.status_name OR nvl(:old.descriptions, 'na') <> nvl(:new.descriptions, 'na') ) THEN
+                g_company_offday(v_index).v_effective_from := :new.effective_from;
+                g_company_offday(v_index).v_effective_upto := :new.effective_upto;
+                g_company_offday(v_index).v_status_name := :new.status_name;
+                g_company_offday(v_index).v_descriptions := :new.descriptions;
+            END IF;
+        END IF;
+        IF deleting THEN
+            v_index := v_index + 1;
+            g_company_offday(v_index).v_company_code := :old.company_code;
+            g_company_offday(v_index).v_batch_no# := :old.batch_no#;
+            g_company_offday(v_index).v_department_code := :old.department_code;
+            g_company_offday(v_index).v_calendar_id := :old.calendar_id;
+            g_company_offday(v_index).v_effective_from := :old.effective_from;
+            g_company_offday(v_index).v_effective_upto := :old.effective_upto;
+            g_company_offday(v_index).v_status_name := :old.status_name;
+            g_company_offday(v_index).v_descriptions := :old.descriptions;
+        END IF;
+
+        ---threshold
+        IF v_index >= v_threshhold THEN
+            proc_flush_logs();
+        END IF;
+    END AFTER EACH ROW;
+    AFTER STATEMENT IS BEGIN
+        proc_flush_logs();
+    END AFTER STATEMENT;
+END;]]></body>
+<triggerTime>COMPOUND</triggerTime>
+<columns>0A182B41-790E-89E9-992F-F3E8F0B5C8E5, 095A72A1-FC29-37D0-B5AC-C9F877247267, CA3E54BE-FC39-6E00-85D3-A99CDB517939, 51594271-3305-46A0-8446-62D8571D30E1, AB7AC0CE-6347-405F-ED22-73F2600AC13B, 307CD6A6-8874-D978-CCD8-6B3EC47DCED9, FD07F297-2B66-A65C-4A9A-0FA0C7CE59D3, C7ECC70F-31EF-B7C7-1FB4-689408401F91</columns>
+<table>872958F5-BDEC-F15D-A2A9-44862822353F</table>
+</TriggerOraclev10g>

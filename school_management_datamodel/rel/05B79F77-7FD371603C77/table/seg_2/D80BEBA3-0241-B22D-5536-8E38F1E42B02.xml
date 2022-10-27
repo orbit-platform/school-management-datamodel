@@ -1,0 +1,120 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_2" id="D80BEBA3-0241-B22D-5536-8E38F1E42B02" name="education">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-12 06:18:31 UTC</createdTime>
+<comment><![CDATA[education body: NCERT/etc]]></comment>
+<commentInRDBMS><![CDATA[education body: NCERT/etc]]></commentInRDBMS>
+<generatorID>9ADC2E7A-5580-38CF-5F79-B388A30DF4F1</generatorID>
+<notes><![CDATA[education body: NCERT/etc]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>education</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="code" id="99E554FC-0450-6034-A7A4-C2969704E17D">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-12 06:18:31 UTC</createdTime>
+<comment><![CDATA[Education System Code]]></comment>
+<commentInRDBMS><![CDATA[Education System Code]]></commentInRDBMS>
+<generatorID>E784CBAA-840A-7EAB-996F-10C7020A30C7</generatorID>
+<notes><![CDATA[Education System Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>411A7036-AE28-9018-332B-691EBC096EF9</domain>
+<defaultValue>0001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0000</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
+</Column>
+<Column name="name" id="66E0CBA5-BD73-50EC-5913-4CE1BC0D6FEB">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-12 06:18:31 UTC</createdTime>
+<comment><![CDATA[Name of the Education System (NCERT/IB/etc)]]></comment>
+<commentInRDBMS><![CDATA[Name of the Education System (NCERT/IB/etc)]]></commentInRDBMS>
+<generatorID>B5333936-2EED-0372-0F9B-F6591190772B</generatorID>
+<notes><![CDATA[Name of the Education System (NCERT/IB/etc)]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>AFB565EB-530B-C812-D408-DD01B4006660</domain>
+<defaultValue>Main</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pseudo" id="25641353-ECE9-BA7B-AA60-83900B0FE1AB">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-12 06:18:31 UTC</createdTime>
+<comment><![CDATA[Pseudo Name of the Education System]]></comment>
+<commentInRDBMS><![CDATA[Pseudo Name of the Education System]]></commentInRDBMS>
+<generatorID>1D297DC0-6D54-5B2E-4E45-6B54B2B2D788</generatorID>
+<notes><![CDATA[Pseudo Name of the Education System]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>AFB565EB-530B-C812-D408-DD01B4006660</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="AAC226ED-F41F-7780-1EE6-BFA878BC6834">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-12 06:18:31 UTC</createdTime>
+<comment><![CDATA[description]]></comment>
+<commentInRDBMS><![CDATA[description]]></commentInRDBMS>
+<generatorID>EBF7EEE6-C3B3-29CE-CC10-E0C81839ED5F</generatorID>
+<notes><![CDATA[description]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A98052C1-E1E8-EE3B-164C-74C49A9371DC" name="education_PK">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-12 06:18:31 UTC</createdTime>
+<generatorID>47CBCE06-E8BC-D9A0-3533-1EF069C94D47</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="99E554FC-0450-6034-A7A4-C2969704E17D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="09448327-8213-D915-98F3-3C976554A7C5" name="education_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-12 06:18:31 UTC</createdTime>
+<generatorID>61537747-496E-BCB5-438D-1F77F3AB0D23</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="66E0CBA5-BD73-50EC-5913-4CE1BC0D6FEB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D314D18F-D34A-A99E-9A3E-D1F65FC7F0EC" name="education_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-12 06:18:31 UTC</createdTime>
+<generatorID>B1EB3342-DD70-DC30-9AAB-6D7ABF6106A6</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="25641353-ECE9-BA7B-AA60-83900B0FE1AB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

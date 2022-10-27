@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="std_physique_rec_trg" directorySegmentName="seg_5" id="59A02235-E00C-5B8B-EF78-FC06A4C4B7CE">
+<createdBy>leads</createdBy>
+<createdTime>2019-05-09 07:12:58 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[BEGIN
+	IF inserting THEN
+		INSERT INTO std_physique_rec(std_physique_id, unit_name, notes, assessed_on, dml_flag, created_by, created_on, updated_by, changedate)
+			VALUES(:NEW.id, :NEW.unit_name, :NEW.notes, :NEW.assessed_on, 'INSERT', :NEW.created_by, :NEW.created_on, :NEW.updated_by, :NEW.changedate);
+	END IF;
+
+	IF updating THEN
+		INSERT INTO std_physique_rec(std_physique_id, unit_name, notes, assessed_on, dml_flag, created_by, created_on, updated_by, changedate)
+			VALUES(:OLD.id, :NEW.unit_name, :NEW.notes, :NEW.assessed_on, 'UPDATED', :OLD.created_by, :OLD.created_on, :NEW.updated_by, :NEW.changedate);
+	END IF;
+
+	IF deleting THEN
+		UPDATE std_physique_rec
+		SET std_physique_id = ''
+		WHERE std_physique_id = :OLD.id;
+
+		--inserting the deleted records
+		INSERT INTO std_physique_rec(std_physique_id, unit_name, notes, assessed_on, dml_flag, created_by, created_on, updated_by, changedate)
+			VALUES('', :OLD.unit_name, :OLD.notes, :OLD.assessed_on, 'DELETE', :OLD.created_by, :OLD.created_on, NVL(V('APP_USER'), USER), current_timestamp);
+	END IF;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<columns>8FCBB8ED-F1BC-FD49-E3DD-62776E88B9E1, A0347B06-5394-26CC-A7C4-FCFAD2605DD8, 5CE95E5D-A884-71A9-EA2E-C0368AACE026, 0E1E5B42-E225-7F2F-3A85-A23A431146C5, F4903439-8C88-3136-73F8-27CCD7FB2097</columns>
+<table>322936E9-33EA-1355-E845-CFE100A15489</table>
+</TriggerOraclev10g>

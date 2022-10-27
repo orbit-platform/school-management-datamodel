@@ -1,0 +1,134 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_5" id="975B540F-DD24-538C-8A78-E1A9C3B72485" name="compulsory">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:10:24 UTC</createdTime>
+<comment><![CDATA[Compulsory Subject Types - MAIN/ADDITIONAL/CO-CURRICULAR are Flagged 'YES',
+Preferrable Subject Types - OPTIONAL SUBJECT/SECOND LANGUAGE/FOURTH SUBJECT are flagged 'NO']]></comment>
+<commentInRDBMS><![CDATA[Compulsory Subject Types - MAIN/ADDITIONAL/CO-CURRICULAR are Flagged 'YES',
+Preferrable Subject Types - OPTIONAL SUBJECT/SECOND LANGUAGE/FOURTH SUBJECT are flagged 'NO']]></commentInRDBMS>
+<generatorID>43B6BA39-336C-FCF4-B8A3-EB6D005E55F8</generatorID>
+<notes><![CDATA[Compulsory Subject Types - MAIN/ADDITIONAL/CO-CURRICULAR are Flagged 'YES',
+Preferrable Subject Types - OPTIONAL SUBJECT/SECOND LANGUAGE/FOURTH SUBJECT are flagged 'NO']]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>compulsory</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="E5736CDE-4019-026C-3FEA-5D3EEB06C405">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:10:24 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="type" id="655A4C83-8BA5-F542-C094-160ECFDA4D75">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:10:24 UTC</createdTime>
+<comment><![CDATA[Optional is set YES, NO for Compulsory Subject]]></comment>
+<commentInRDBMS><![CDATA[Optional is set YES, NO for Compulsory Subject]]></commentInRDBMS>
+<generatorID>BA026020-0AF3-40C0-48A4-7E0527934130</generatorID>
+<notes><![CDATA[Optional is set YES, NO for Compulsory Subject]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<defaultValue>YES</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pseudo" id="5A4FA9BC-FF9E-8530-FD71-8433F203E099">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:10:24 UTC</createdTime>
+<generatorID>1B697BF4-0DBC-6D5F-2A85-36FA5E929BD7</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="4D15243D-C8E5-FD4C-ED38-D6B7D75E5353">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:10:24 UTC</createdTime>
+<generatorID>C96970A0-3FB0-49AE-F399-2C149F7D28D1</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="06B56AD9-1FB1-E8D9-A17D-4DF4E7EF74CE" name="compulsory_pk">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:10:24 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="E5736CDE-4019-026C-3FEA-5D3EEB06C405"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B6214F67-F89D-77E6-EC48-1D6CC996172A" name="compulsory_UN">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:10:24 UTC</createdTime>
+<generatorID>B33AD49F-3278-73F9-0AA3-5F09583496FD</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="655A4C83-8BA5-F542-C094-160ECFDA4D75"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="38F3C1A1-DD62-7A77-A13A-72C8D86A86FA" name="compulsory_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:10:24 UTC</createdTime>
+<generatorID>98505D92-39D8-1401-02AE-3D4EB03E67C2</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5A4FA9BC-FF9E-8530-FD71-8433F203E099"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9D8A9CBB-52F3-C033-2963-F2FE21AC34AA" name="compulsory_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:14:35 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E5736CDE-4019-026C-3FEA-5D3EEB06C405"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="833B677D-0DFD-B0F0-E7D8-7D5BD19BD614" name="compulsory_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:14:35 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="655A4C83-8BA5-F542-C094-160ECFDA4D75"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C9C69525-2624-1F80-CD2B-15C9868B041E" name="compulsory_un2_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-03-17 07:14:35 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5A4FA9BC-FF9E-8530-FD71-8433F203E099"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,111 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="18A64E08-74EC-9617-BB42-B20336BB9C50" name="idelete">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-06 09:01:13 UTC</createdTime>
+<comment><![CDATA[Inbox Delete flag - YES/NO]]></comment>
+<commentInRDBMS><![CDATA[Inbox Delete flag - YES/NO]]></commentInRDBMS>
+<notes><![CDATA[Inbox Delete flag - YES/NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteDesignID>8C6DDE97-B4FE-D62E-0482-5FBF623D80EF</remoteDesignID>
+<remoteModelID>2B8CB683-CF09-45A5-3EDA-4E4281210CFD</remoteModelID>
+<remoteObjectID>415899CC-0056-CE17-E22E-C0BE66CB5C8A</remoteObjectID>
+<remoteObjectRelativeStorageName>/rel/2B8CB683-4E4281210CFD/table/seg_0/415899CC-0056-CE17-E22E-C0BE66CB5C8A.xml</remoteObjectRelativeStorageName>
+<remoteSchemaName>leadsuser</remoteSchemaName>
+<abbreviation>idelete</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="6B8B56DA-A96E-620B-CFFB-0D2DC4FC7DB4">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>CE75AD83-2670-D2CA-24CE-B121FCFCA4FC</remoteObjectID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="flag" id="CD195056-1A09-56C2-9CBF-38B8703F1E47">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<comment><![CDATA[Inbox Delete flag - YES/NO]]></comment>
+<commentInRDBMS><![CDATA[Inbox Delete flag - YES/NO]]></commentInRDBMS>
+<generatorID>ADDDC0F8-DCB5-B2F4-D20D-48A8FE717CD3</generatorID>
+<notes><![CDATA[Inbox Delete flag - YES/NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>819E69FD-5EFC-A2FD-F4FD-DE7FDFEFF46F</remoteObjectID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>PENDING</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="13378A53-6CC0-7D06-E1EA-00E524D4FB93">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<generatorID>5910C4C7-C248-E72A-2190-EA0E57F4FF35</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>12C7B1FF-A22D-CF61-97C7-38EB5F049FC8</remoteObjectID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9BCED08A-F08B-4C1F-BAC0-D5B74339E53C" name="idelete_pk">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>04CD5924-AB5A-5ACD-7334-74A9D4924289</remoteObjectID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="6B8B56DA-A96E-620B-CFFB-0D2DC4FC7DB4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A2C671A5-F8B8-E2E3-8D5B-F99F7DB86BEF" name="delete_un">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<generatorID>85B8B5E3-5F3A-9C81-3B54-DB4BA44764E4</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>F4865657-6ED4-ECE5-DC5B-6812C6DA3F0B</remoteObjectID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CD195056-1A09-56C2-9CBF-38B8703F1E47"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="45D8C2E2-1FE2-1904-3A7A-7F11EA68F6C5" name="idelete_id_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-01-04 09:46:19 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>83F79312-87C8-71F7-F57B-9EC31B1ECAFC</remoteObjectID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6B8B56DA-A96E-620B-CFFB-0D2DC4FC7DB4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3D4CF6DF-573C-E95B-5FAE-B946442539F6" name="idelete_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-01-04 09:46:19 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>FD1C2634-EBA3-597B-51A6-CBAC1BDF70BA</remoteObjectID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CD195056-1A09-56C2-9CBF-38B8703F1E47"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

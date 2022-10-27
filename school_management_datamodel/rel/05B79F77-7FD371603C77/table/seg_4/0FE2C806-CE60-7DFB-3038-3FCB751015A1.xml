@@ -1,0 +1,105 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_4" id="0FE2C806-CE60-7DFB-3038-3FCB751015A1" name="sex">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-07 07:09:46 UTC</createdTime>
+<comment><![CDATA[sex/gender]]></comment>
+<commentInRDBMS><![CDATA[sex - gender]]></commentInRDBMS>
+<generatorID>E17284C1-1C00-1882-C0B2-F2F746487621</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>sex</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="name" id="EB7D4497-74A1-7E97-3BEE-9B0B6336E708">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-07 07:09:46 UTC</createdTime>
+<comment><![CDATA[sex = M/F/O]]></comment>
+<commentInRDBMS><![CDATA[sex = M/F/O]]></commentInRDBMS>
+<generatorID>47C1EA55-E639-D928-B36B-D6CC71CF9D25</generatorID>
+<notes><![CDATA[sex = M/F/O]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<defaultValue>A</defaultValue>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pseudo" id="B8C762D3-B29E-1C21-1B30-84DEB5BBD174">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-07 07:09:46 UTC</createdTime>
+<comment><![CDATA[Pseudo Name of the Gender]]></comment>
+<commentInRDBMS><![CDATA[Pseudo Name of the Gender]]></commentInRDBMS>
+<generatorID>429D3C80-F6EB-3A99-668D-13A4E2B25C8A</generatorID>
+<notes><![CDATA[Pseudo Name of the Gender]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<domain>90B036C7-C776-9355-8F80-DD6128DA0B91</domain>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="21E974E9-3739-1F0B-6682-F73BDEB1F927">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-07 07:09:46 UTC</createdTime>
+<generatorID>FCF4DFF5-4B3F-BBAB-F3AE-BBB9B1E4C7E7</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="9EC50E1F-4DA2-0EC1-E169-6293D3519CA0" name="sex_PK">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-07 07:09:46 UTC</createdTime>
+<generatorID>EFF5968F-CA1F-4DA6-FDBA-131AB0275B3F</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EB7D4497-74A1-7E97-3BEE-9B0B6336E708"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="019CDE96-F4C1-8098-BCD8-C5FECC84080B" name="sex_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-07 07:09:46 UTC</createdTime>
+<generatorID>7DA68EE3-F4BC-EF77-CEE2-DD9E2D87DA3B</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B8C762D3-B29E-1C21-1B30-84DEB5BBD174"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="066DFCCD-44B8-60E7-7277-AF14179B66B5" name="sex_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-07 07:10:01 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EB7D4497-74A1-7E97-3BEE-9B0B6336E708"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DC07C251-D5AE-ABEF-B6DF-4C061AF82ACA" name="sex_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-12 10:59:58 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B8C762D3-B29E-1C21-1B30-84DEB5BBD174"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

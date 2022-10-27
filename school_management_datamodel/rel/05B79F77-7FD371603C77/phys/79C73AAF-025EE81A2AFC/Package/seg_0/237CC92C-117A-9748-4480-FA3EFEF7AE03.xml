@@ -1,0 +1,125 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="fee_pckg" directorySegmentName="seg_0" id="237CC92C-117A-9748-4480-FA3EFEF7AE03">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-23 10:38:57 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE fee_pckg AS
+    PROCEDURE fee_payment_proc (
+        p_school_code IN VARCHAR2,
+        p_batch_no IN DATE,
+        p_student_id IN NUMBER,
+        p_fee_amount IN NUMBER,
+        p_late_fee IN NUMBER,
+        p_paid_on IN DATE,
+        p_payment_mode IN VARCHAR2,
+        p_notes IN VARCHAR2
+    );
+    PROCEDURE std_trans_fee_pay_proc (
+        p_school_code IN VARCHAR2,
+        p_batch_no IN DATE,
+        p_student_id IN NUMBER,
+        p_fee_amount IN NUMBER,
+        p_paid_on IN DATE,
+        p_notes IN VARCHAR2
+    );
+END fee_pckg;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="fee_pckg" id="237CC92C-117A-9748-4480-FA3EFEF7AE03">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-23 10:41:56 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE BODY fee_pckg AS
+    PROCEDURE fee_payment_proc (
+        p_school_code IN VARCHAR2,
+        p_batch_no IN DATE,
+        p_student_id IN NUMBER,
+        p_fee_amount IN NUMBER,
+        p_late_fee IN NUMBER,
+        p_paid_on IN DATE,
+        p_payment_mode IN VARCHAR2,
+        p_notes IN VARCHAR2
+    ) AS
+    BEGIN
+        IF ( p_student_id IS NOT NULL ) THEN
+            IF (
+                ( p_fee_amount IS NOT NULL )
+                AND ( round(p_fee_amount) &lt;&gt; 0 )
+            ) THEN
+                INSERT INTO leadsuser.fee_payment (
+                    school_code,
+                    batch_no#,
+                    student_id,
+                    amount,
+                    paid_on,
+                    payment_mode,
+                    notes
+                ) VALUES (
+                    p_school_code,
+                    p_batch_no,
+                    p_student_id,
+                    p_fee_amount,
+                    p_paid_on,
+                    p_payment_mode,
+                    p_notes
+                );
+            END IF;
+            IF (
+                ( p_late_fee IS NOT NULL )
+                AND ( round(p_late_fee) &lt;&gt; 0 )
+            ) THEN
+                INSERT INTO leadsuser.fee_payment (
+                    school_code,
+                    batch_no#,
+                    student_id,
+                    fee_code,
+                    amount,
+                    paid_on,
+                    payment_mode,
+                    notes
+                ) VALUES (
+                    p_school_code,
+                    p_batch_no,
+                    p_student_id,
+                    &apos;008&apos;,
+                    p_late_fee,
+                    p_paid_on,
+                    p_payment_mode,
+                    p_notes
+                );
+            END IF;
+        END IF;
+    END fee_payment_proc;
+    PROCEDURE std_trans_fee_pay_proc (
+        p_school_code IN VARCHAR2,
+        p_batch_no IN DATE,
+        p_student_id IN NUMBER,
+        p_fee_amount IN NUMBER,
+        p_paid_on IN DATE,
+        p_notes IN VARCHAR2
+    ) AS
+    BEGIN
+        IF ( p_student_id IS NOT NULL ) THEN
+            IF (
+                ( p_fee_amount IS NOT NULL )
+                AND ( round(p_fee_amount) &lt;&gt; 0 )
+            ) THEN
+                INSERT INTO leadsuser.std_transport_fee (
+                    school_code,
+                    batch_no#,
+                    student_id,
+                    amount,
+                    paid_on,
+                    notes
+                ) VALUES (
+                    p_school_code,
+                    p_batch_no,
+                    p_student_id,
+                    p_fee_amount,
+                    p_paid_on,
+                    p_notes
+                );
+            END IF;
+        END IF;
+    END std_trans_fee_pay_proc;
+END fee_pckg;</source>
+</body>
+</PackageOracle>

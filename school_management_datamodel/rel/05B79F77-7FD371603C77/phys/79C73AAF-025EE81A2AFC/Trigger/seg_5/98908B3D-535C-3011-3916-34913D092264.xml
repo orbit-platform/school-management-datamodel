@@ -1,0 +1,41 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="emp_designation_emp_trg" directorySegmentName="seg_5" id="98908B3D-535C-3011-3916-34913D092264">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-13 05:12:07 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[DECLARE
+    ---variable
+    v_designation_code emp_designation.designation_code%TYPE;
+    CURSOR cur (
+        p_employee_id VARCHAR2
+    ) IS
+    SELECT
+        designation_code
+    INTO v_designation_code
+    FROM
+        employee
+    WHERE
+        id = p_employee_id;
+
+BEGIN
+   
+    ---update school_code in employee table
+    OPEN cur(p_employee_id => :new.employee_id);
+    FETCH cur INTO v_designation_code;
+    IF ( nvl(v_designation_code, 'na') <> :new.designation_code ) THEN
+        UPDATE employee
+        SET
+            designation_code = :new.designation_code
+        WHERE
+            id = :new.employee_id;
+
+    END IF;
+
+    CLOSE cur;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<columns>B38F15DB-F8E6-A153-9CC0-B0E7A06B8C88</columns>
+<condition><![CDATA[new.employee_id <> old.employee_id OR new.designation_code <> old.designation_code OR new.status_name = 'ACTIVE']]></condition>
+<table>9CA760F6-2307-B52E-58DA-0522AF985B93</table>
+</TriggerOraclev10g>

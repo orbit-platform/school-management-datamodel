@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_4" id="6BC57B82-DC23-4F83-3B45-27B358EDE419" name="learn_assessment">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-22 07:03:12 UTC</createdTime>
+<generatorID>D1769D70-341B-BE5B-0B70-31A44DB5DBD6</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>learn_assessment</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="7A3E8232-632B-7FA6-52AC-A1B68A36F512">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-22 07:03:12 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="type" id="917519B9-F61D-B807-783F-1022870254F8">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-22 07:03:12 UTC</createdTime>
+<comment><![CDATA[Assessment Type: COMPREHENSION QUESTION/SHORT PRESENTATION/DRILLS/SHORT QUIZ/WRITTEN ASSIGNMENT/GROUP ACTIVITY]]></comment>
+<commentInRDBMS><![CDATA[Assessment Type: COMPREHENSION QUESTION/SHORT PRESENTATION/DRILLS/SHORT QUIZ/WRITTEN ASSIGNMENT/GROUP ACTIVITY]]></commentInRDBMS>
+<generatorID>36F620BB-32F5-8FD0-1369-22D90A0AD3B7</generatorID>
+<notes><![CDATA[Assessment Type: COMPREHENSION QUESTION/SHORT PRESENTATION/DRILLS/SHORT QUIZ/WRITTEN ASSIGNMENT/GROUP ACTIVITY]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="CEDAB6FD-A770-921C-8D40-0514F0D0D79C">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-22 07:03:12 UTC</createdTime>
+<generatorID>F1A77476-25F2-582A-D13F-42C8A2811CDE</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="50B3BFBB-8068-6F1F-8D4D-D0D3F50E8A02" name="learning_assessment_pk">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-22 07:03:12 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="7A3E8232-632B-7FA6-52AC-A1B68A36F512"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5F9C8AA6-E402-6326-3E14-CE17E04E8A16" name="learn_assessment_UN">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-22 07:03:12 UTC</createdTime>
+<generatorID>9B4575B6-2125-5941-B117-FA1FAA387BED</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="917519B9-F61D-B807-783F-1022870254F8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1121C0A9-E857-1CD8-C5C8-68DC6D77945A" name="learn_assessment_id_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-22 07:11:57 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7A3E8232-632B-7FA6-52AC-A1B68A36F512"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BEBC427C-D83A-A2EE-1F50-C5F07393FFB7" name="learn_assessment_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-22 07:11:57 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="917519B9-F61D-B807-783F-1022870254F8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

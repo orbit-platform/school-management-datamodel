@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FunctionOracle class="oracle.dbtools.crest.model.design.storage.oracle.FunctionOracle" name="func_num_ordinal" directorySegmentName="seg_0" id="B8AFF120-1F00-BFE0-4683-C3D16B6C527D">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-01 21:42:40 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE FUNCTION func_num_ordinal (
+    p_num IN NUMBER
+) RETURN VARCHAR2 AS
+BEGIN
+    RETURN to_char(
+                  to_date(
+                         p_num,
+                         &apos;j&apos;
+                  ),
+                  &apos;JSPTH&apos;
+           )||&apos; POSITION&apos;;
+END;</source>
+</FunctionOracle>

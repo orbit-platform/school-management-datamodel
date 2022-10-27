@@ -1,0 +1,193 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="fee_alert_sms_comp_trg" directorySegmentName="seg_7" id="97F32EAC-F660-2B19-FF9A-E2231CFC7C87">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-17 08:34:56 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[COMPOUND TRIGGER
+    --record type declaration
+    TYPE fee_alert_rt IS RECORD (
+        fee_alert_id    fee_alert.id%TYPE,
+        school_code     fee_alert.school_code%TYPE,
+        batch_no#       fee_alert.batch_no#%TYPE,
+        template_code   fee_alert.template_code%TYPE,
+        medium_type     fee_alert.medium_type%TYPE,
+        frequency_no    fee_alert.frequency_no%TYPE,
+        effective_from  fee_alert.effective_from%TYPE,
+        effective_upto  fee_alert.effective_upto%TYPE,
+        status_name     fee_alert.status_name%TYPE,
+        descriptions    fee_alert.descriptions%TYPE
+    );
+    ---table type declaration
+    TYPE row_level_info_t IS
+        TABLE OF fee_alert_rt INDEX BY PLS_INTEGER;
+    g_row_level_info row_level_info_t;
+    
+    ---row level
+    AFTER EACH ROW IS BEGIN
+        g_row_level_info(g_row_level_info.count + 1).fee_alert_id := :new.id;
+        g_row_level_info(g_row_level_info.count).school_code := :new.school_code;
+        g_row_level_info(g_row_level_info.count).batch_no# := :new.batch_no#;
+        g_row_level_info(g_row_level_info.count).template_code := :new.template_code;
+        g_row_level_info(g_row_level_info.count).medium_type := :new.medium_type;
+        g_row_level_info(g_row_level_info.count).frequency_no := :new.frequency_no;
+        g_row_level_info(g_row_level_info.count).effective_from := :new.effective_from;
+        g_row_level_info(g_row_level_info.count).effective_upto := :new.effective_upto;
+        g_row_level_info(g_row_level_info.count).status_name := :new.status_name;
+        g_row_level_info(g_row_level_info.count).descriptions := :new.descriptions;
+    END AFTER EACH ROW;
+    
+    ---statement level
+    AFTER STATEMENT IS 
+        ---variables
+        v_school_code    sms_fee_alert.school_code%TYPE;
+        v_batch_no#      sms_fee_alert.batch_no#%TYPE;
+        v_template_code  sms_fee_alert.template_code%TYPE;
+        v_alert_date     sms_fee_alert.alert_date%TYPE;
+        v_fee_alert_id   sms_fee_alert.fee_alert_id%TYPE;
+        v_status_name    sms_fee_alert.status_name%TYPE;
+        v_descriptions   sms_fee_alert.descriptions%TYPE;
+        CURSOR cur (
+            p_fee_alert_id    NUMBER,
+            p_school_code     VARCHAR2,
+            p_batch_no#       DATE,
+            p_template_code   VARCHAR2,
+            p_frequency_no    NUMBER,
+            p_effective_from  DATE,
+            p_effective_upto  DATE,
+            p_status_name     VARCHAR2,
+            p_descriptions    VARCHAR2
+        ) IS
+        SELECT
+            school_code,
+            batch_no#,
+            template_code,
+            alert_date,
+            fee_alert_id,
+            status_name,
+            descriptions
+        FROM
+            ( SELECT
+                  p_fee_alert_id AS fee_alert_id,
+                  p_school_code AS school_code,
+                  to_date(p_batch_no#) AS batch_no#,
+                  p_template_code AS template_code,
+                  to_date(p_effective_from) + level * p_frequency_no - 1 AS alert_date,
+                  to_date(p_effective_upto) AS effective_upto,
+                  p_status_name AS status_name,
+                  p_descriptions AS descriptions
+              FROM
+                  dual
+              CONNECT BY
+                  level < ( to_date(p_effective_upto) - to_date(p_effective_from) + 2 )
+            )
+        WHERE
+                alert_date <= effective_upto
+            AND to_char(alert_date, 'DY') NOT IN ( 'SAT', 'SUN' );
+
+        CURSOR cur_sms_fee_alert (
+            p_school_code    VARCHAR2,
+            p_template_code  VARCHAR2,
+            p_alert_date     DATE
+        ) IS
+        SELECT
+            school_code,
+            batch_no#,
+            template_code,
+            alert_date,
+            fee_alert_id,
+            status_name,
+            descriptions
+        FROM
+            sms_fee_alert
+        WHERE
+                school_code = p_school_code
+            AND template_code = p_template_code
+            AND trunc(alert_date, 'dd') = trunc(p_alert_date, 'dd');
+
+    BEGIN
+        FOR i IN 1..g_row_level_info.count LOOP
+            FOR indx IN cur(p_fee_alert_id => g_row_level_info(i).fee_alert_id, p_school_code => g_row_level_info(i).school_code, p_batch_no# => g_row_level_info(i).batch_no#, p_template_code => g_row_level_info(i).template_code, p_frequency_no => g_row_level_info(i).frequency_no, p_effective_from => g_row_level_info(i).effective_from, p_effective_upto => g_row_level_info(i).effective_upto, p_status_name => g_row_level_info(i).status_name, p_descriptions => g_row_level_info(i).descriptions) LOOP
+                OPEN cur_sms_fee_alert(p_school_code => indx.school_code, p_template_code => indx.template_code, p_alert_date => indx.alert_date);
+
+                FETCH cur_sms_fee_alert INTO
+                    v_school_code,
+                    v_batch_no#,
+                    v_template_code,
+                    v_alert_date,
+                    v_fee_alert_id,
+                    v_status_name,
+                    v_descriptions;
+                IF inserting THEN
+                    IF cur_sms_fee_alert%notfound THEN
+                        INSERT INTO sms_fee_alert (
+                            school_code,
+                            batch_no#,
+                            template_code,
+                            alert_date,
+                            fee_alert_id,
+                            status_name,
+                            descriptions
+                        ) VALUES (
+                            indx.school_code,
+                            indx.batch_no#,
+                            indx.template_code,
+                            indx.alert_date,
+                            indx.fee_alert_id,
+                            indx.status_name,
+                            indx.descriptions
+                        );
+
+                    END IF;
+                END IF;
+
+                IF updating THEN
+                    IF cur_sms_fee_alert%notfound THEN
+                        INSERT INTO sms_fee_alert (
+                            school_code,
+                            batch_no#,
+                            template_code,
+                            alert_date,
+                            fee_alert_id,
+                            status_name,
+                            descriptions
+                        ) VALUES (
+                            indx.school_code,
+                            indx.batch_no#,
+                            indx.template_code,
+                            indx.alert_date,
+                            indx.fee_alert_id,
+                            indx.status_name,
+                            indx.descriptions
+                        );
+
+                    END IF;
+
+                    IF cur_sms_fee_alert%found THEN
+                        UPDATE sms_fee_alert
+                        SET
+                            batch_no# = indx.batch_no#,
+                            template_code = indx.template_code,
+                            alert_date = indx.alert_date,
+                            status_name = indx.status_name,
+                            descriptions = indx.descriptions
+                        WHERE
+                                school_code = indx.school_code
+                            AND template_code = indx.template_code
+                            AND fee_alert_id = indx.fee_alert_id
+                            AND alert_date = indx.alert_date;
+
+                    END IF;
+
+                END IF;
+
+                CLOSE cur_sms_fee_alert;
+            END LOOP;
+        END LOOP;
+    END AFTER STATEMENT;
+END;]]></body>
+<triggerTime>COMPOUND</triggerTime>
+<columns>66E3ADEB-436D-6603-2E06-20720E26F0BC, 01DB7934-F946-BA06-6B1F-CBADD638BB86, 85819557-E4D1-64A7-0F18-867234CA08AE, 28817533-D494-E3FE-6B2B-195F4C02E25F, E71D87A1-B5BB-4D28-A233-CE381D1FF86B, 4E45868E-BD4C-EEE8-9444-F797AEDFECE9, 720FF487-2AE4-B8CA-3456-BB1079CAC58F, 933C3A7E-40C1-54BF-721D-ECAE179DEAFB, B361B557-D7BE-D8D7-B887-29734C6860DB</columns>
+<condition><![CDATA[new.medium_type = 'SMS']]></condition>
+<table>1861EAFE-2612-C04A-C133-60E4FD8460F2</table>
+</TriggerOraclev10g>

@@ -1,0 +1,77 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_company_accounting_auto" directorySegmentName="seg_0" id="1DBFE61E-2556-322C-776E-87E12BD39E23">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-07 06:50:07 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_company_accounting_auto AS
+
+    v_company_code       company_accounting.company_code%TYPE;
+    v_accounting_period  company_accounting.accounting_period%TYPE;
+    CURSOR cur IS
+    SELECT
+        fy.company_code,
+        fy.batch_no#,
+        add_months(fy.effective_from, level - 1) AS accounting_period,
+        add_months(fy.effective_from, level - 1) AS effective_from,
+        last_day(add_months(fy.effective_from, level - 1)) AS effective_upto,
+        &apos;ACTIVE&apos; AS status_name
+    FROM
+             ( SELECT
+              cacc.company_code,
+              add_months(MAX(cacc.batch_no#), 12) AS batch_no#
+          FROM
+              company_accounting cacc
+          WHERE
+              cacc.status_name = &apos;ACTIVE&apos;
+          GROUP BY
+              cacc.company_code
+        ) v
+        INNER JOIN financial_year fy ON ( fy.company_code = v.company_code
+                                          AND fy.batch_no# = v.batch_no# )
+    CONNECT BY
+        level &lt; ( months_between(fy.effective_upto, fy.effective_from) + 1 );
+
+    CURSOR cur_company_accounting (
+        p_company_code       VARCHAR2,
+        p_accounting_period  DATE
+    ) IS
+    SELECT
+        company_code,
+        accounting_period
+    FROM
+        company_accounting
+    WHERE
+            company_code = p_company_code
+        AND accounting_period = p_accounting_period;
+
+BEGIN
+    FOR indx IN cur LOOP
+        OPEN cur_company_accounting(p_company_code =&gt; indx.company_code, p_accounting_period =&gt; indx.accounting_period);
+        FETCH cur_company_accounting INTO
+            v_company_code,
+            v_accounting_period;
+        IF cur_company_accounting%notfound THEN
+            INSERT INTO company_accounting (
+                company_code,
+                batch_no#,
+                accounting_period,
+                effective_from,
+                effective_upto,
+                status_name
+            ) VALUES (
+                indx.company_code,
+                indx.batch_no#,
+                indx.accounting_period,
+                indx.effective_from,
+                indx.effective_upto,
+                indx.status_name
+            );
+
+        END IF;
+
+        CLOSE cur_company_accounting;
+    END LOOP;
+
+    COMMIT;
+END;</source>
+</StoredProcedureOraclev10g>

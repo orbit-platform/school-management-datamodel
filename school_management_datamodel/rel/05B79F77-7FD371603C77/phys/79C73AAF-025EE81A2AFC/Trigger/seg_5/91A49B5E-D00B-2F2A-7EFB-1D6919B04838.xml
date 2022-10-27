@@ -1,0 +1,294 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="school_weeklyoff_schol_trg" directorySegmentName="seg_5" id="91A49B5E-D00B-2F2A-7EFB-1D6919B04838">
+<createdBy>leads</createdBy>
+<createdTime>2021-10-11 12:03:01 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[COMPOUND TRIGGER
+    
+    ---declaration of record type
+    TYPE school_weeklyoff_rt IS RECORD (
+        v_school_code  school_weeklyoff.school_code%TYPE,
+        v_batch_no     school_weeklyoff.batch_no#%TYPE,
+        v_class_code   school_weeklyoff.class_code%TYPE,
+        v_section_code school_weeklyoff.section_code%TYPE,
+        v_week_no      school_weeklyoff.week_no#%TYPE,
+        v_weekday_name school_weeklyoff.weekday_name%TYPE,
+        v_status_name  school_weeklyoff.status_name%TYPE,
+        v_descriptions school_weeklyoff.descriptions%TYPE
+    );
+    
+    ---type declaration
+    TYPE t_school_weeklyoff IS
+        TABLE OF school_weeklyoff_rt INDEX BY PLS_INTEGER;
+
+    ---global variable
+    g_school_weeklyoff t_school_weeklyoff;
+    
+    ---index
+    v_index            PLS_INTEGER := 0;
+    
+    ---counter - maximum number of rows to write in one go
+    v_threshhold       CONSTANT SIMPLE_INTEGER := 5;
+
+    -- variables declared here have firing-statement duration.
+    PROCEDURE flush_insert_logs IS
+    
+        ---declaration of variables
+        v_school_code  school_holiday.school_code%TYPE;
+        v_batch_no     school_holiday.batch_no#%TYPE;
+        v_class_code   school_holiday.class_code%TYPE;
+        v_section_code school_holiday.section_code%TYPE;
+        v_holiday_date school_holiday.holiday_date%TYPE;
+        v_holiday_type school_holiday.holiday_type%TYPE;
+        v_event_code   school_holiday.event_code%TYPE;
+        v_event_name   school_holiday.event_name%TYPE;
+        v_status_name  school_holiday.status_name%TYPE;
+        v_descriptions school_holiday.descriptions%TYPE;
+
+        ---declaration of record variable
+        v_updates      CONSTANT PLS_INTEGER := g_school_weeklyoff.count();
+        
+        ---cursor school_weeklyoff
+        CURSOR cur_school_weeklyoff (
+            p_school_code  VARCHAR2,
+            p_batch_no     DATE,
+            p_class_code   VARCHAR2,
+            p_section_code VARCHAR2,
+            p_week_no      VARCHAR2,
+            p_weekday_name VARCHAR2,
+            p_status_name  VARCHAR2,
+            p_descriptions VARCHAR2
+        ) IS
+        SELECT
+            ssess.school_code AS school_code,
+            ssess.batch_no# AS batch_no#,
+            p_class_code AS class_code,
+            p_section_code AS section_code,
+            ssess.effective_from + delta AS holiday_date,
+            'NON-WORKING DAY' AS holiday_type,
+            '011' AS event_code,
+            'Weekly Off' AS event_name,
+            p_status_name AS status_name,
+            p_descriptions AS descriptions
+        FROM
+            school_session ssess,
+            ( SELECT
+                  level - 1 AS delta
+              FROM
+                  dual
+              CONNECT BY
+                  level - 1 <= ( SELECT
+                                     MAX(effective_upto - effective_from)
+                                 FROM
+                                     school_session
+                                 WHERE
+                                         school_code = p_school_code
+                                     AND batch_no# = p_batch_no
+                                     AND class_code = p_class_code
+                               )
+            )
+        WHERE
+                ssess.effective_from + delta < ssess.effective_upto + 1
+            AND ssess.school_code = p_school_code
+            AND ssess.batch_no# = p_batch_no
+            AND ssess.class_code = p_class_code
+            AND to_char(ssess.effective_from + delta, 'fmW') = p_week_no
+            AND upper(to_char(ssess.effective_from + delta, 'fmday')) = upper(p_weekday_name);
+
+        ---cursor school_holiday
+        CURSOR cur_school_holiday (
+            p_school_code  VARCHAR2,
+            p_batch_no     DATE,
+            p_class_code   VARCHAR2,
+            p_section_code VARCHAR2,
+            p_holiday_date DATE
+        ) IS
+        SELECT
+            school_code,
+            batch_no#,
+            class_code,
+            section_code,
+            holiday_date,
+            holiday_type,
+            event_code,
+            event_name,
+            status_name,
+            descriptions
+        FROM
+            school_holiday
+        WHERE
+                school_code = p_school_code
+            AND batch_no# = p_batch_no
+            AND class_code = p_class_code
+            AND section_code = p_section_code
+            AND holiday_date = p_holiday_date;
+    BEGIN
+        FOR v_count IN 1..v_updates LOOP
+            FOR indx IN cur_school_weeklyoff(p_school_code => g_school_weeklyoff(v_count).v_school_code, p_batch_no => g_school_weeklyoff(v_count).v_batch_no, p_class_code => g_school_weeklyoff(v_count).v_class_code, p_section_code => g_school_weeklyoff(v_count).v_section_code, p_week_no => g_school_weeklyoff(
+            v_count).v_week_no,
+                                            p_weekday_name => g_school_weeklyoff(v_count).v_weekday_name, p_status_name => g_school_weeklyoff(v_count).v_status_name, p_descriptions => g_school_weeklyoff(v_count).v_descriptions) LOOP
+
+                ---cursor opening
+                OPEN cur_school_holiday(p_school_code => indx.school_code, p_batch_no => indx.batch_no#, p_class_code => indx.class_code, p_section_code => indx.section_code, p_holiday_date => indx.holiday_date);
+                FETCH cur_school_holiday INTO
+                    v_school_code,
+                    v_batch_no,
+                    v_class_code,
+                    v_section_code,
+                    v_holiday_date,
+                    v_holiday_type,
+                    v_event_code,
+                    v_event_name,
+                    v_status_name,
+                    v_descriptions;
+                    
+                ---inserting
+                IF inserting THEN
+                    IF cur_school_holiday%notfound THEN
+                        INSERT INTO school_holiday (
+                            school_code,
+                            batch_no#,
+                            class_code,
+                            section_code,
+                            holiday_date,
+                            holiday_type,
+                            event_code,
+                            event_name,
+                            status_name,
+                            descriptions
+                        ) VALUES (
+                            indx.school_code,
+                            indx.batch_no#,
+                            indx.class_code,
+                            indx.section_code,
+                            indx.holiday_date,
+                            indx.holiday_type,
+                            indx.event_code,
+                            indx.event_name,
+                            indx.status_name,
+                            indx.descriptions
+                        );
+                    END IF;
+                END IF;
+                
+                ---updating
+                IF updating THEN
+                    IF cur_school_holiday%found THEN
+                        UPDATE school_holiday
+                        SET
+                            event_code = indx.event_code,
+                            event_name = indx.event_name,
+                            status_name = indx.status_name,
+                            descriptions = indx.descriptions
+                        WHERE
+                                school_code = indx.school_code
+                            AND batch_no# = indx.batch_no#
+                            AND class_code = indx.class_code
+                            AND section_code = indx.section_code
+                            AND holiday_date = indx.holiday_date;
+                    END IF;
+                    
+                    ---inserting
+                    IF cur_school_holiday%notfound THEN
+                        INSERT INTO school_holiday (
+                            school_code,
+                            batch_no#,
+                            class_code,
+                            section_code,
+                            holiday_date,
+                            holiday_type,
+                            event_code,
+                            event_name,
+                            status_name,
+                            descriptions
+                        ) VALUES (
+                            indx.school_code,
+                            indx.batch_no#,
+                            indx.class_code,
+                            indx.section_code,
+                            indx.holiday_date,
+                            indx.holiday_type,
+                            indx.event_code,
+                            indx.event_name,
+                            indx.status_name,
+                            indx.descriptions
+                        );
+                    END IF;
+                END IF;
+                IF deleting THEN
+                    IF cur_school_holiday%found THEN
+                        DELETE FROM school_holiday
+                        WHERE
+                                school_code = indx.school_code
+                            AND batch_no# = indx.batch_no#
+                            AND class_code = indx.class_code
+                            AND section_code = indx.section_code
+                            AND holiday_date = indx.holiday_date;
+                    END IF;
+                END IF;
+                CLOSE cur_school_holiday;
+                NULL;
+            END LOOP;
+        END LOOP;
+
+        ---delete the records
+        g_school_weeklyoff.DELETE();
+        --resetting threshold for next bulk-insert.
+        v_index := 0;
+    END flush_insert_logs;
+
+    --Executed aftereach row change- :NEW, :OLD are available
+    AFTER EACH ROW IS BEGIN
+        ---inserting
+        IF inserting THEN
+            v_index := v_index + 1;
+            g_school_weeklyoff(v_index).v_school_code := :new.school_code;
+            g_school_weeklyoff(v_index).v_batch_no := :new.batch_no#;
+            g_school_weeklyoff(v_index).v_class_code := :new.class_code;
+            g_school_weeklyoff(v_index).v_section_code := :new.section_code;
+            g_school_weeklyoff(v_index).v_week_no := :new.week_no#;
+            g_school_weeklyoff(v_index).v_weekday_name := :new.weekday_name;
+            g_school_weeklyoff(v_index).v_status_name := :new.status_name;
+            g_school_weeklyoff(v_index).v_descriptions := :new.descriptions;
+        END IF;
+        IF updating THEN
+            IF ( :new.status_name <> :old.status_name OR nvl(:new.descriptions, 'na') <> nvl(:old.descriptions, 'na') ) THEN
+                v_index := v_index + 1;
+                g_school_weeklyoff(v_index).v_school_code := :old.school_code;
+                g_school_weeklyoff(v_index).v_batch_no := :old.batch_no#;
+                g_school_weeklyoff(v_index).v_class_code := :old.class_code;
+                g_school_weeklyoff(v_index).v_section_code := :old.section_code;
+                g_school_weeklyoff(v_index).v_week_no := :old.week_no#;
+                g_school_weeklyoff(v_index).v_weekday_name := :old.weekday_name;
+                g_school_weeklyoff(v_index).v_status_name := :new.status_name;
+                g_school_weeklyoff(v_index).v_descriptions := :new.descriptions;
+            END IF;
+        END IF;
+        IF deleting THEN
+            v_index := v_index + 1;
+            g_school_weeklyoff(v_index).v_school_code := :old.school_code;
+            g_school_weeklyoff(v_index).v_batch_no := :old.batch_no#;
+            g_school_weeklyoff(v_index).v_class_code := :old.class_code;
+            g_school_weeklyoff(v_index).v_section_code := :old.section_code;
+            g_school_weeklyoff(v_index).v_week_no := :old.week_no#;
+            g_school_weeklyoff(v_index).v_weekday_name := :old.weekday_name;
+            g_school_weeklyoff(v_index).v_status_name := :old.status_name;
+            g_school_weeklyoff(v_index).v_descriptions := :old.descriptions;
+        END IF;
+        
+        ---flushing
+        IF v_index >= v_threshhold THEN
+            flush_insert_logs();
+        END IF;
+    END AFTER EACH ROW;
+
+    --executed after DML statement
+    AFTER STATEMENT IS BEGIN
+        flush_insert_logs();
+    END AFTER STATEMENT;
+END school_weeklyoff_schol_trg;]]></body>
+<triggerTime>COMPOUND</triggerTime>
+<columns>0918BF14-3785-78CD-5978-852628C36ADC, 6F3A8850-98E3-C517-D859-03FA0CF48989, AD0D34FA-B135-77A5-E3C0-66BD5C56D34C, 66AA8F63-F23B-AA1A-BB06-5B667CD17312, 5AEC6787-5C67-0E0A-FC9C-03874776C14E, E5C9F4A0-68D7-E618-F2B1-6D8EF32F9452, B9561A65-ABD9-4E89-A1BB-907CFA860BE5, 26F8F73E-BCFA-E756-E753-F501491DA089</columns>
+<table>08D82F73-82AB-99C1-200A-E8B8DAE34A5F</table>
+</TriggerOraclev10g>

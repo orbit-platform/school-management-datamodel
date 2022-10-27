@@ -1,0 +1,103 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="D9215C45-DC5B-E807-E8F2-92606100502B" name="part">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-10 05:15:14 UTC</createdTime>
+<comment><![CDATA[Part Table related to markcard, section, etc. Part I/Part II/Part III/etc]]></comment>
+<commentInRDBMS><![CDATA[Part Table related to markcard, section, etc. Part I/Part II/Part III/etc]]></commentInRDBMS>
+<notes><![CDATA[Part Table related to markcard, section, etc. Part I/Part II/Part III/etc]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>part</preferredAbbreviation>
+<shortName>part</shortName>
+<synonym>part</synonym>
+<synonymToDisplay>part</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="name" id="A3BBE170-425D-AE7B-DBAB-496264ECECFF">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-10 05:16:43 UTC</createdTime>
+<comment><![CDATA[PART I/II/III/etc]]></comment>
+<commentInRDBMS><![CDATA[PART I/II/III/etc]]></commentInRDBMS>
+<notes><![CDATA[PART I/II/III/etc]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="pseudo" id="6288AD22-A800-E4FD-2A11-98BC4D9A2DFE">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-10 05:16:43 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="E961DBD4-60B1-1C80-511F-C21779537F9B">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-10 05:16:43 UTC</createdTime>
+<comment><![CDATA[the term is the yearly term - 1st term and 2nd term]]></comment>
+<commentInRDBMS><![CDATA[the term is the yearly term - 1st term and 2nd term]]></commentInRDBMS>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="91AB3C26-578A-9384-75FC-41E9F090B48F" name="part_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-10 05:17:51 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>6288AD22-A800-E4FD-2A11-98BC4D9A2DFE</newElementsIDs>
+<usedAttributes>
+<attributeRef>6288AD22-A800-E4FD-2A11-98BC4D9A2DFE</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="497D369C-3925-3DC2-5BED-E044E226A038" name="part_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-14 11:15:25 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>A3BBE170-425D-AE7B-DBAB-496264ECECFF</newElementsIDs>
+<usedAttributes>
+<attributeRef>A3BBE170-425D-AE7B-DBAB-496264ECECFF</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

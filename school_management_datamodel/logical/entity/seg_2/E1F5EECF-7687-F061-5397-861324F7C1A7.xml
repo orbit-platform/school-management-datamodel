@@ -1,0 +1,105 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="E1F5EECF-7687-F061-5397-861324F7C1A7" name="semester">
+<createdBy>leads</createdBy>
+<createdTime>2018-09-27 04:10:21 UTC</createdTime>
+<comment><![CDATA[Semester Table - I Semester/II Semester/III Semester/IV Semester]]></comment>
+<commentInRDBMS><![CDATA[Semester Table - I Semester/II Semester/III Semester/IV Semester]]></commentInRDBMS>
+<notes><![CDATA[Semester Table - I Semester/II Semester/III Semester/IV Semester]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>semester</preferredAbbreviation>
+<shortName>semester</shortName>
+<synonym>semester</synonym>
+<synonymToDisplay>semester</synonymToDisplay>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="code" id="4B4DA355-62E4-A379-2F6D-89A8DD715784">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-29 11:59:50 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="C72A5B04-D1C5-922A-D033-A51C78D27E3B">
+<createdBy>leads</createdBy>
+<createdTime>2018-09-27 04:11:13 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<constraintName>semester_default_cons</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>107D2248-3970-71B3-96D1-16C26501CFAF</domain>
+<defaultValue>NOT APPLICABLE</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="descriptions" id="5CCB21E8-5AD7-E11D-E604-680B73574DC4">
+<createdBy>leads</createdBy>
+<createdTime>2018-09-27 04:11:34 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="00C330D9-C216-44B5-8C0F-74B90C2F99D9" name="semester_UN">
+<createdBy>leads</createdBy>
+<createdTime>2018-09-27 04:11:56 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>C72A5B04-D1C5-922A-D033-A51C78D27E3B</newElementsIDs>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<usedAttributes>
+<attributeRef>C72A5B04-D1C5-922A-D033-A51C78D27E3B</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="C0556242-B6E6-ADA8-4AEC-174CC70AAE8A" name="semester_PK">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-29 11:59:59 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>4B4DA355-62E4-A379-2F6D-89A8DD715784</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

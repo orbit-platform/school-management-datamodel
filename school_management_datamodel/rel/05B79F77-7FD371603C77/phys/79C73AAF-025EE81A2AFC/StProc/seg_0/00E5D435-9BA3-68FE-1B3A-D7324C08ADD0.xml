@@ -1,0 +1,50 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_perform_rep_template" directorySegmentName="seg_0" id="00E5D435-9BA3-68FE-1B3A-D7324C08ADD0">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-02 09:38:37 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_perform_rep_template (
+    p_company_code    IN VARCHAR2,
+    p_department_code IN VARCHAR2,
+    p_batch_no        IN DATE,
+    p_parameter_type  IN OUT VARCHAR2
+) IS
+
+    ---cursor 
+    CURSOR cur_perform_rep_template (
+        pcompany_code    VARCHAR2,
+        pdepartment_code VARCHAR2,
+        pbatch_no        DATE,
+        pparameter_type  VARCHAR2
+    ) IS
+    SELECT
+        pseudo_name
+    FROM
+        ( SELECT
+              company_code,
+              department_code,
+              batch_no#,
+              parameter_type,
+              pseudo_name,
+              status_name,
+              ROW_NUMBER()
+              OVER(PARTITION BY company_code, department_code, parameter_type
+                   ORDER BY
+                       batch_no# DESC
+              ) AS my_rank
+          FROM
+              perform_rep_template
+        )
+    WHERE
+            my_rank = 1
+        AND status_name = &apos;ACTIVE&apos;
+        AND company_code = pcompany_code
+        AND department_code = pdepartment_code
+        AND batch_no# = pbatch_no
+        AND parameter_type = pparameter_type;
+BEGIN
+    OPEN cur_perform_rep_template(pcompany_code =&gt; p_company_code, pdepartment_code =&gt; p_department_code, pbatch_no =&gt; p_batch_no, pparameter_type =&gt; p_parameter_type);
+    FETCH cur_perform_rep_template INTO p_parameter_type;
+    CLOSE cur_perform_rep_template;
+END proc_perform_rep_template;</source>
+</StoredProcedureOraclev10g>

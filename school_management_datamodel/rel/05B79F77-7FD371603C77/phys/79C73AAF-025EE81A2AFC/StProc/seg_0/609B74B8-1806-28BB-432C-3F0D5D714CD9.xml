@@ -1,0 +1,89 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_school_accounting_auto" directorySegmentName="seg_0" id="609B74B8-1806-28BB-432C-3F0D5D714CD9">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-07 10:26:33 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_school_accounting_auto IS
+
+    v_school_code        school_accounting.school_code%TYPE;
+    v_batch_no#          school_accounting.batch_no#%TYPE;
+    v_accounting_period  school_accounting.accounting_period%TYPE;
+    v_effective_from     school_accounting.effective_from%TYPE;
+    v_effective_upto     school_accounting.effective_upto%TYPE;
+    v_status_name        school_accounting.status_name%TYPE;
+    CURSOR cur IS
+    SELECT
+        sb.school_code,
+        sb.batch_no#,
+        add_months(sb.effective_from, level - 1) AS accounting_period,
+        add_months(sb.effective_from, level - 1) AS effective_from,
+        last_day(add_months(sb.effective_from, level - 1)) AS effective_upto,
+        &apos;ACTIVE&apos; AS status_name
+    FROM
+             ( SELECT
+              sacc.school_code,
+              add_months(MAX(sacc.batch_no#), 12) AS batch_no#
+          FROM
+              school_accounting sacc
+          WHERE
+              sacc.status_name = &apos;ACTIVE&apos;
+          GROUP BY
+              sacc.school_code
+        ) v
+        INNER JOIN school_batch sb ON ( sb.school_code = v.school_code
+                                        AND sb.batch_no# = v.batch_no# )
+    CONNECT BY
+        level &lt; ( months_between(sb.effective_upto, sb.effective_from) + 1 );
+
+    CURSOR cur_school_accounting (
+        p_school_code        VARCHAR2,
+        p_accounting_period  DATE
+    ) IS
+    SELECT
+        school_code,
+        batch_no#,
+        accounting_period,
+        effective_from,
+        effective_upto,
+        status_name
+    FROM
+        school_accounting
+    WHERE
+            school_code = p_school_code
+        AND accounting_period = p_accounting_period;
+
+BEGIN
+    FOR indx IN cur LOOP
+        OPEN cur_school_accounting(p_school_code =&gt; indx.school_code, p_accounting_period =&gt; indx.accounting_period);
+        FETCH cur_school_accounting INTO
+            v_school_code,
+            v_batch_no#,
+            v_accounting_period,
+            v_effective_from,
+            v_effective_upto,
+            v_status_name;
+        IF cur_school_accounting%notfound THEN
+            INSERT INTO school_accounting (
+                school_code,
+                batch_no#,
+                accounting_period,
+                effective_from,
+                effective_upto,
+                status_name
+            ) VALUES (
+                indx.school_code,
+                indx.batch_no#,
+                indx.accounting_period,
+                indx.effective_from,
+                indx.effective_upto,
+                indx.status_name
+            );
+
+        END IF;
+
+        CLOSE cur_school_accounting;
+    END LOOP;
+
+    COMMIT;
+END;</source>
+</StoredProcedureOraclev10g>

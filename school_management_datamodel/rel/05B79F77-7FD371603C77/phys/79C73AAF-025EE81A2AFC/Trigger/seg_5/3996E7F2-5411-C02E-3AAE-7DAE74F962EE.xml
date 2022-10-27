@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="syllabus_unit_id_trg" directorySegmentName="seg_5" id="3996E7F2-5411-C02E-3AAE-7DAE74F962EE">
+<createdBy>leads</createdBy>
+<createdTime>2021-01-08 08:25:28 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+    SELECT
+        nvl(MAX(id), 0) + 1
+    INTO :new.id
+    FROM
+        syllabus_unit;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<condition><![CDATA[new.id IS NULL]]></condition>
+<table>D43C80CE-5886-B765-075B-5BA0124F9664</table>
+</TriggerOraclev10g>

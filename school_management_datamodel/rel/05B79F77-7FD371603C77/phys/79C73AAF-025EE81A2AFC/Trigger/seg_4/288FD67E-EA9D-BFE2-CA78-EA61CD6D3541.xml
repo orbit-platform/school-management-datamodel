@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="stream_code_trg" directorySegmentName="seg_4" id="288FD67E-EA9D-BFE2-CA78-EA61CD6D3541">
+<createdBy>leads</createdBy>
+<createdTime>2022-06-24 04:44:17 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+    SELECT
+        lpad(nvl(MAX(to_number(code)), 0) + 1, 4, '0')
+    INTO :new.code
+    FROM
+        stream;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<condition><![CDATA[new.code IS NULL]]></condition>
+<table>40483D3B-4630-E731-FE1E-73C3144AC1F3</table>
+</TriggerOraclev10g>

@@ -1,0 +1,35 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="mv_std_assessment" directorySegmentName="seg_0" id="587C16E6-915F-4A8C-80C5-ECA4E721CDFC">
+<createdBy>leads</createdBy>
+<createdTime>2021-11-29 05:13:43 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<nextDate>sysdate + (60 * 24 * 30)/1440</nextDate>
+<refresh>YES</refresh>
+<refreshType>FORCE</refreshType>
+<startDate>sysdate</startDate>
+<subquery><![CDATA[SELECT
+    school_code,
+    batch_no#,
+    class_code,
+    stream_code,
+    term_code,
+    subject_code,
+    evaluation_code,
+    student_id,
+    AVG(score) AS score,
+    AVG(maxmark) AS maxmark
+FROM
+    std_assessment
+GROUP BY
+    school_code,
+    batch_no#,
+    class_code,
+    stream_code,
+    term_code,
+    subject_code,
+    evaluation_code,
+    student_id]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with>ROWID</with>
+</SnapshotOraclev11g>

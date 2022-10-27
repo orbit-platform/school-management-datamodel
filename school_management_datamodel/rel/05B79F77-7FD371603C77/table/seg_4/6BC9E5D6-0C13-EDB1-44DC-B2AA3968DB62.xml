@@ -1,0 +1,131 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_4" id="6BC9E5D6-0C13-EDB1-44DC-B2AA3968DB62" name="weekday">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-08 10:23:31 UTC</createdTime>
+<comment><![CDATA[weekday - SUN/MON/TUE/WED/THU/FRI/SAT]]></comment>
+<commentInRDBMS><![CDATA[weekday - SUN/MON/TUE/WED/THU/FRI/SAT]]></commentInRDBMS>
+<generatorID>9DDDB0C2-6FC1-A686-3F55-EF279F7EB543</generatorID>
+<notes><![CDATA[weekday - SUN/MON/TUE/WED/THU/FRI/SAT]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<usedAsRemoteObject>true</usedAsRemoteObject>
+<abbreviation>weekday</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="name" id="F80406D3-8549-0288-727C-CD10D228D2AE">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-08 10:23:31 UTC</createdTime>
+<comment><![CDATA[Weekday Name]]></comment>
+<commentInRDBMS><![CDATA[Weekday Name]]></commentInRDBMS>
+<generatorID>E2EB49D5-CA9D-4DD3-A6EE-56EF0DA02A6D</generatorID>
+<notes><![CDATA[Weekday Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>8DDAC84A-8AF2-A78D-6E0D-5FA34B694C46</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="abbrv" id="F3DE322C-601C-67E7-329E-29D059D15104">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-08 10:23:31 UTC</createdTime>
+<comment><![CDATA[Abbreviation of Weekday]]></comment>
+<commentInRDBMS><![CDATA[Abbreviation of Weekday]]></commentInRDBMS>
+<generatorID>5932DBAC-9254-EFC8-3B68-AAB5E50D889F</generatorID>
+<notes><![CDATA[Abbreviation of Weekday]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>9E81D49F-7F07-4FA1-2B22-C13A79C8D44E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="serial_no" id="67CFBD37-2C48-8DDC-3CE9-96B577B70835">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 10:50:36 UTC</createdTime>
+<comment><![CDATA[1, 2, 3, 4,...]]></comment>
+<commentInRDBMS><![CDATA[1, 2, 3, 4,...]]></commentInRDBMS>
+<generatorID>19DA0094-3750-07F6-0E6D-88A32A2DBD8D</generatorID>
+<notes><![CDATA[1, 2, 3, 4,...]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="55CA0187-0D97-DA28-6876-F930E161F402" referredColumn="3EEFA456-36C0-82E9-9C63-19BE91D5602B"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4E538C11-4CC5-2938-B6E0-569B3C83966D" name="weekday_PK">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-08 10:23:31 UTC</createdTime>
+<generatorID>D650E2C9-C761-EEAD-1B89-278DFDFF6120</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F80406D3-8549-0288-727C-CD10D228D2AE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5A33506C-AFE2-A9BA-D196-CC8049881A76" name="weekday_UN">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-08 10:23:31 UTC</createdTime>
+<generatorID>42602B83-568B-1006-EBA8-442C323783C3</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F3DE322C-601C-67E7-329E-29D059D15104"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3B454D2A-882E-395A-81E2-73270FA3243A" name="weekday_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-02-27 11:14:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F80406D3-8549-0288-727C-CD10D228D2AE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F93AA8E1-7BEF-0187-A425-B065DAF721D7" name="weekday_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-02-27 11:14:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F3DE322C-601C-67E7-329E-29D059D15104"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="08D5537F-02C7-58DC-3E91-DADA8CE4A29B" name="weekday_slno_idx">
+<createdBy>leads</createdBy>
+<createdTime>2020-02-27 11:13:05 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="67CFBD37-2C48-8DDC-3CE9-96B577B70835"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="218E0A44-3627-7DB2-BBA7-0C96C57B617F" name="Wkday_Serial_FK">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 10:50:36 UTC</createdTime>
+<generatorID>93D8E876-5801-2F34-FD81-93548AB14FBC</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="67CFBD37-2C48-8DDC-3CE9-96B577B70835"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

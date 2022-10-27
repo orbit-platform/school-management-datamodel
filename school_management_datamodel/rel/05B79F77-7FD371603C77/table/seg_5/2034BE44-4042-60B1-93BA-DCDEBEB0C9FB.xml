@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_5" id="2034BE44-4042-60B1-93BA-DCDEBEB0C9FB" name="period">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-20 06:38:42 UTC</createdTime>
+<comment><![CDATA[time table period - 1st Period/2nd Period/etc]]></comment>
+<commentInRDBMS><![CDATA[time table period - 1st Period/2nd Period/etc]]></commentInRDBMS>
+<generatorID>D8350618-87EC-69F2-AA06-A5E247EA2A46</generatorID>
+<notes><![CDATA[time table period - 1st Period/2nd Period/etc]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>period</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="name" id="0CBD8AB5-C829-1E26-9985-84DF9274D689">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-20 06:38:42 UTC</createdTime>
+<comment><![CDATA[Period Name]]></comment>
+<commentInRDBMS><![CDATA[Period Name]]></commentInRDBMS>
+<generatorID>C22EB5AC-A21B-1E46-DB6E-5BF80DE7BD71</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="1F1D9DC3-87C4-F4AA-CD9D-7F3F006298F8">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-20 06:38:42 UTC</createdTime>
+<generatorID>A2FC8868-B74C-CCCB-97D6-4F301DD6B321</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id" id="81BC8A1A-72D9-5C5B-013D-2939079F4AF3">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-20 06:38:42 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="DF4A553E-D547-6690-9CBC-C3D3D044BE0F" name="period_pk">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-20 06:38:42 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="81BC8A1A-72D9-5C5B-013D-2939079F4AF3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FC7AD76B-A573-7371-7BB9-AD4B87A16324" name="period_un">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-20 06:38:42 UTC</createdTime>
+<generatorID>41422070-0DFC-8699-AC10-9139CF2EB6C1</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0CBD8AB5-C829-1E26-9985-84DF9274D689"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

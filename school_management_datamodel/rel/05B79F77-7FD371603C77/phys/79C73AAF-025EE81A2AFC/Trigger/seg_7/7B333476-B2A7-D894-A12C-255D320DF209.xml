@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="student_chg_trg" directorySegmentName="seg_7" id="7B333476-B2A7-D894-A12C-255D320DF209">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-06 11:14:45 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[BEGIN
+    IF inserting THEN
+        :new.primary_email := lower(:new.primary_email);
+        :new.secondary_email := lower(:new.secondary_email);
+        :new.created_by := nvl(v('APP_USER'), user);
+        :new.created_on := current_timestamp;
+        :new.changed_on := current_timestamp;
+    END IF;
+
+    IF updating THEN
+        :new.primary_email := lower(:new.primary_email);
+        :new.secondary_email := lower(:new.secondary_email);
+        :new.updated_by := nvl(v('APP_USER'), user);
+        :new.changed_on := current_timestamp;
+    END IF;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>A4F7D1D6-63B4-897E-4151-7D601B7F0798, DDBDF55E-99BD-E5C1-559D-4044F71B6C0D, B0D999F8-3D60-B679-2088-FC2B2C92BBA6, B4E3272D-BE6F-1055-5FE5-3B51ED7A30B5, 3FCCD511-F3C5-7727-FFD3-52E70C3A9A3D, 3A0B1A24-84B1-CB94-B110-ED268ABB1BF1, 61BA5E27-702F-8E25-1E5B-A96003115573, BFC4176C-2B31-5AA0-2B48-45BF95D475AC, 58D61614-DD81-AC04-7630-9132FB5B7753, 71367619-AA3A-00EA-9198-E5732151727F, C9316D14-333B-5FB0-094C-64F41F2F34DD, C758CA34-09EA-4225-B214-314B8298CEFE, 6D92BCE7-CEA9-C8C7-FF90-E8ADB7780D26, 3B037330-3314-DBB7-AB1C-7FB24E46D15D, 1AAC9F24-67FC-B2CA-77C4-B331292F2B23, 4425564C-2BCA-4D4D-A333-776F249EEAFB, BD7E0F99-7921-6AE1-BB04-218A3F6AAFB3, B4C7B082-7107-227D-650C-8862D4359F07, AA4EB453-A7AE-420E-C405-10DADBF5FEC1, 9248D96B-D87A-054F-6E83-1E2E0076BAA8, 61ACF587-633B-0B98-7142-FB86FB5679B9, DEF3B8AD-B285-0C96-46CF-ECF2DB6FA269</columns>
+<table>C31DD924-4ECE-BECD-A83E-9730F9B7721C</table>
+</TriggerOraclev10g>

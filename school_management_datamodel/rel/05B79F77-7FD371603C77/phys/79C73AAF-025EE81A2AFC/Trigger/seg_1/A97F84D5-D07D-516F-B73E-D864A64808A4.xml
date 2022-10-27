@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="emp_resume_chg_trg" directorySegmentName="seg_1" id="A97F84D5-D07D-516F-B73E-D864A64808A4">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-31 11:25:31 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[BEGIN
+    IF inserting THEN
+        :new.created_by := nvl(v('APP_USER'), user);
+        :new.created_on := current_timestamp;
+        :new.changed_on := current_timestamp;
+    END IF;
+
+    IF updating THEN
+        :new.updated_by := nvl(v('APP_USER'), user);
+        :new.changed_on := current_timestamp;
+    END IF;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>1DE72624-421B-510D-765E-09986B99E8D5, A361561F-945D-A2D6-3DFC-716C5C88647B, 6393A3E9-42B9-BCB3-C0E0-70E45833D3D2</columns>
+<table>6EDCAA2E-7EBB-31E7-58D8-F73D667D6641</table>
+</TriggerOraclev10g>

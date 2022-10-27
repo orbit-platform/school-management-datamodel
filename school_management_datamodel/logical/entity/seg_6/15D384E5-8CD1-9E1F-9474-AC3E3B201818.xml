@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_6" id="15D384E5-8CD1-9E1F-9474-AC3E3B201818" name="part_ordinal">
+<createdBy>leads</createdBy>
+<createdTime>2021-09-01 08:17:02 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>part_ordinal</preferredAbbreviation>
+<shortName>part_ordinal</shortName>
+<synonym>part_ordinal</synonym>
+<synonymToDisplay>part_ordinal</synonymToDisplay>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="no" id="DD75DF55-571E-C82F-B748-5C2B5F0FC88E">
+<createdBy>leads</createdBy>
+<createdTime>2022-01-19 05:47:17 UTC</createdTime>
+<comment><![CDATA[Heriarchy of Order]]></comment>
+<commentInRDBMS><![CDATA[Heriarchy of Order]]></commentInRDBMS>
+<generatorID>82558DD3-94CF-7D6C-0411-64AA2DFCF835</generatorID>
+<notes><![CDATA[Heriarchy of Order]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>D9C5BBCD-DDC7-39E3-8911-361CD2B2189B</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="part_name" id="DED44A89-E3F9-8D6E-7716-BD91D3F14BCF">
+<createdBy>leads</createdBy>
+<createdTime>2021-09-01 08:18:02 UTC</createdTime>
+<comment><![CDATA[PART I/II/III/etc]]></comment>
+<commentInRDBMS><![CDATA[PART I/II/III/etc]]></commentInRDBMS>
+<generatorID>7152624F-F44E-2849-E88A-9DD33C838D27</generatorID>
+<notes><![CDATA[PART I/II/III/etc]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>A3BBE170-425D-AE7B-DBAB-496264ECECFF</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="640BD80D-3A3C-9A07-0DE6-C50A190980B2" name="part_ordinal_UN">
+<createdBy>leads</createdBy>
+<createdTime>2021-09-01 08:18:50 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>DED44A89-E3F9-8D6E-7716-BD91D3F14BCF</newElementsIDs>
+<usedAttributes>
+<attributeRef>DED44A89-E3F9-8D6E-7716-BD91D3F14BCF</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="23C0F468-ECC2-C189-6D09-2FA63DADBB04" name="part_ordinal_PK">
+<createdBy>leads</createdBy>
+<createdTime>2022-01-19 05:47:36 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>DD75DF55-571E-C82F-B748-5C2B5F0FC88E</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

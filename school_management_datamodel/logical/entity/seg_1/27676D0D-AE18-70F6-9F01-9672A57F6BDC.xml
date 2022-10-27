@@ -1,0 +1,146 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_1" id="27676D0D-AE18-70F6-9F01-9672A57F6BDC" name="bank">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-20 06:49:42 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>bank</preferredAbbreviation>
+<shortName>bank</shortName>
+<synonym>bank</synonym>
+<synonymToDisplay>bank</synonymToDisplay>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="code" id="4DD23586-FDA2-43F4-6515-F9C05556E328">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-20 06:49:56 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="A5DB1116-3038-0142-2C3E-10A2EEDB6979">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-20 06:50:13 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>F5EBC8AD-15A4-F592-D0D4-6C34E7BDCFB2</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="597DFE7A-58B7-1B07-D223-990D7428868F">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-20 06:50:34 UTC</createdTime>
+<comment><![CDATA[Bank's Pseudo Name]]></comment>
+<commentInRDBMS><![CDATA[Bank's Pseudo Name]]></commentInRDBMS>
+<notes><![CDATA[Bank's Pseudo Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>F5EBC8AD-15A4-F592-D0D4-6C34E7BDCFB2</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="abbrv" id="C71FD75C-40B4-ABEE-AE74-D20650609DCA">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-20 07:10:09 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>F364AA9E-7E59-5BEE-3C47-2A05C8773FAB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="bcode" id="13B7DF48-E8BA-F94A-0F66-3AACE2DE784D">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-20 07:56:04 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>0000</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<listOfRanges>
+<rangeDef class="oracle.dbtools.crest.model.design.constraint.AVT">
+<beginValue>0000</beginValue>
+<endValue>9999</endValue>
+</rangeDef>
+</listOfRanges>
+</Attribute>
+<Attribute name="descriptions" id="6B521705-8A32-6D43-7682-75E4665B2E76">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-20 07:09:48 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="2C4315D6-3EA8-ACCF-D214-A53C87FA9579" name="bank_PK">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-20 06:50:09 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>4DD23586-FDA2-43F4-6515-F9C05556E328</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="ED090616-817E-3B15-6904-D0F76C4E1E6B" name="bank_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-05-20 07:10:36 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>A5DB1116-3038-0142-2C3E-10A2EEDB6979</newElementsIDs>
+<usedAttributes>
+<attributeRef>A5DB1116-3038-0142-2C3E-10A2EEDB6979</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="ED8D7014-6548-2F36-EFDE-4D4A93576EE5" name="bank_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-08 10:55:49 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>597DFE7A-58B7-1B07-D223-990D7428868F</newElementsIDs>
+<usedAttributes>
+<attributeRef>597DFE7A-58B7-1B07-D223-990D7428868F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

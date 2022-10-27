@@ -1,0 +1,99 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="emp_bulleting_sms_trg" directorySegmentName="seg_7" id="696995A2-7749-1B93-1830-2530B60BA7B6">
+<createdBy>leads</createdBy>
+<createdTime>2020-03-13 07:53:00 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[DECLARE
+    ---encapsulation
+    v_company_code      emp_bulletin.company_code%TYPE;
+    v_department_code   emp_bulletin.department_code%TYPE;
+    v_headline          emp_bulletin.headline%TYPE;
+    v_message           VARCHAR2(400);
+--cursor
+    CURSOR cur_employee (
+        p_company_code VARCHAR2,
+        p_department_code VARCHAR2
+    ) IS
+    SELECT
+        emp.id            AS employee_id,
+        emp.firstname     AS fullname,
+        emp.primary_tel   AS telephone
+    FROM
+        employee emp
+        INNER JOIN emp_department ed ON ( ed.employee_id = emp.id
+                                          AND ed.company_code = emp.company_code )
+    WHERE
+        emp.status_name = 'ACTIVE'
+        AND ed.status_name = 'ACTIVE'
+        AND emp.company_code = p_company_code
+        AND ed.department_code = nvl(p_department_code, ed.department_code)
+    GROUP BY
+        emp.id,
+        emp.firstname,
+        emp.primary_tel;
+
+BEGIN
+    ---ENCAPSULATION
+    v_company_code := :new.company_code;
+    v_department_code := :new.department_code;
+    v_headline := :new.headline;
+
+    ---start of sms and insert to sms_log
+    IF inserting THEN
+        FOR indx IN cur_employee(p_company_code => v_company_code, p_department_code => v_department_code) LOOP
+            ---composing message
+            v_message := 'Hi ' || indx.fullname || ', bulletin - headline: "' || substr(v_headline, 1, 100) || '...". For details login to SMS. Thanks...Admin';
+            ---send sms to employees
+
+            leadsuser.pristine_pckg.sendsms(indx.telephone, v_message);
+
+            --insert the sms log 
+            INSERT INTO leadsuser.sms_log (
+                person#,
+                telephone,
+                person_name,
+                message,
+                reason
+            ) VALUES (
+                indx.employee_id,
+                indx.telephone,
+                indx.fullname,
+                v_message,
+                'EMPLOYEE BULLETIN'
+            );
+
+        END LOOP; ---end of loop
+    END IF;
+
+    IF updating THEN
+        FOR indx IN cur_employee(p_company_code => v_company_code, p_department_code => v_department_code) LOOP
+            ---composing message
+            v_message := 'Hi ' || indx.fullname || ', bulletin - headline: "' || substr(v_headline, 1, 100) || '...". For details login to SMS. Thanks...Admin';
+            ---send sms to employees
+
+            leadsuser.pristine_pckg.sendsms(indx.telephone, v_message);
+
+            --insert the sms log 
+            INSERT INTO leadsuser.sms_log (
+                person#,
+                telephone,
+                person_name,
+                message,
+                reason
+            ) VALUES (
+                indx.employee_id,
+                indx.telephone,
+                indx.fullname,
+                v_message,
+                'EMPLOYEE BULLETIN'
+            );
+
+        END LOOP; ---end of loop
+    END IF;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>DC9D8857-189B-A192-7FA7-F3379E7095AD, A97A8981-573C-2DA8-2AF4-EE1C5E2CA08C</columns>
+<table>55D4F8A6-C065-22E2-CD62-EAFB2EA49CB7</table>
+</TriggerOraclev10g>

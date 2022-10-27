@@ -1,0 +1,42 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="std_guardian_std_trg" directorySegmentName="seg_3" id="6DC0A999-C14D-EC35-78CA-68C6473A6E77">
+<createdBy>leads</createdBy>
+<createdTime>2020-07-15 08:54:59 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>UPDATE</actions>
+<body><![CDATA[DECLARE
+    ---variable
+    v_guardian_id std_guardian.id%TYPE;
+    CURSOR cur (
+        p_admission_id VARCHAR2
+    ) IS
+    SELECT
+        guardian_id
+    INTO v_guardian_id
+    FROM
+        student
+    WHERE
+        admission_id = p_admission_id;
+
+BEGIN
+    OPEN cur(p_admission_id => :new.admission_id);
+    FETCH cur INTO v_guardian_id;
+    IF cur%found THEN
+	---update guardian_id in student table
+        IF v_guardian_id <> :new.id THEN
+            UPDATE student
+            SET
+                guardian_id = :new.id
+            WHERE
+                admission_id = :new.admission_id;
+
+        END IF;
+    END IF;
+
+    CLOSE cur;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<columns>BAF021F4-EBE2-4A9D-6A26-7245149CD58D, 9A385E87-F803-86C9-5E23-DA1972274CC5</columns>
+<condition><![CDATA[new.admission_id <> old.admission_id OR new.status_name = 'ACTIVE']]></condition>
+<table>B1B3AFE2-9322-FDBF-BC98-2B15DFA5846A</table>
+</TriggerOraclev10g>

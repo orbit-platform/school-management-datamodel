@@ -1,0 +1,57 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="emp_school_emp_trg" directorySegmentName="seg_6" id="CC687C42-7621-9321-FC3F-D21C2F71ED2E">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-20 09:06:25 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[DECLARE
+    ---variable
+    v_school_code    emp_school.school_code%TYPE;
+    v_category_code  emp_school.category_code%TYPE;
+    CURSOR cur (
+        p_employee_id VARCHAR2
+    ) IS
+    SELECT
+        school_code,
+        category_code
+    INTO
+        v_school_code,
+        v_category_code
+    FROM
+        employee
+    WHERE
+        id = p_employee_id;
+
+BEGIN
+    OPEN cur(p_employee_id => :new.employee_id);
+    FETCH cur INTO
+        v_school_code,
+        v_category_code;
+        
+    ---update school_code in employee table
+    IF ( nvl(v_school_code, 'na') <> :new.school_code ) THEN
+        UPDATE employee
+        SET
+            school_code = :new.school_code
+        WHERE
+            id = :new.employee_id;
+
+    END IF;
+
+    ---update category_code in employee table
+    IF ( nvl(v_category_code, 'na') <> :new.category_code ) THEN
+        UPDATE employee
+        SET
+            category_code = :new.category_code
+        WHERE
+            id = :new.employee_id;
+
+    END IF;
+
+    CLOSE cur;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<columns>E118A680-8D9A-0CE6-24CA-03FE791B12BF, F690B187-ED9B-AEAC-FA3A-12AA28BB571E</columns>
+<condition><![CDATA[new.employee_id <> old.employee_id OR new.school_code <> old.school_code OR new.category_code <> old.category_code OR new.status_name = 'ACTIVE']]></condition>
+<table>4AD53FDB-D4C2-5C5B-4555-8CDDD3D5E9A8</table>
+</TriggerOraclev10g>

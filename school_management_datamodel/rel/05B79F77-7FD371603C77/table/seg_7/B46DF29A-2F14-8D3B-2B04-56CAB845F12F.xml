@@ -1,0 +1,149 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_7" id="B46DF29A-2F14-8D3B-2B04-56CAB845F12F" name="postal_office">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:44:09 UTC</createdTime>
+<generatorID>1D1C2B57-4624-E233-D991-4BE8F3EFAC19</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>postal_office</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="826AF07C-6A8D-2BFE-2C3D-E9FE0CBB3164">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:46:35 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="name" id="0017769C-F374-77AC-D6E8-D7816E027738">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:44:09 UTC</createdTime>
+<comment><![CDATA[country name]]></comment>
+<commentInRDBMS><![CDATA[country name]]></commentInRDBMS>
+<generatorID>F6F28DA8-6169-5E60-BC48-0A9BC4DBC690</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>C53373E2-F314-0647-905E-3D61C9965182</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pin_code" id="D5B77EE7-33A9-D111-0CF3-D9B3956782F6">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:44:09 UTC</createdTime>
+<comment><![CDATA[Postal Identification No.]]></comment>
+<commentInRDBMS><![CDATA[Postal Identification No.]]></commentInRDBMS>
+<generatorID>38BF8C3B-8F74-F9E5-0932-C0E8D4EEE2F5</generatorID>
+<notes><![CDATA[Postal Identification No.]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>9134A9AC-0FFF-5A44-981C-E1E3CFCFC0B0</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="city_ID" id="E64C286F-50BF-DFE2-BF5F-4B449B7CC1C8">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:44:09 UTC</createdTime>
+<comment><![CDATA[City ID]]></comment>
+<commentInRDBMS><![CDATA[City ID]]></commentInRDBMS>
+<generatorID>7FD4A8E4-8236-7401-58D0-57A1D9C43BF0</generatorID>
+<notes><![CDATA[City ID]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="359B7D0C-C81C-6707-59C1-D7F59D33E2DE" referredColumn="6374BE15-6B2B-56F4-319A-FDAE02AF9769"/>
+</associations>
+</Column>
+<Column name="descriptions" id="68B82B1F-0C7C-2DE5-8A48-52E346137709">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:44:09 UTC</createdTime>
+<generatorID>8E25C786-DEAE-7658-183C-ECD307AE975A</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A8FEACB3-622C-9E96-B25C-C02F9111634A" name="postal_office_pk">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:46:35 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="826AF07C-6A8D-2BFE-2C3D-E9FE0CBB3164"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D1252D0A-5A3D-2CBC-EB8A-E98F08FAA7A4" name="postal_office_UN">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:44:09 UTC</createdTime>
+<generatorID>57342ADF-C634-BE62-DDC4-1AF3FCA7CAF3</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0017769C-F374-77AC-D6E8-D7816E027738"/>
+<colUsage columnID="D5B77EE7-33A9-D111-0CF3-D9B3956782F6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="85254F4D-FC61-ACF4-CC58-62DF08574928" name="postal_office_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:54:50 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="826AF07C-6A8D-2BFE-2C3D-E9FE0CBB3164"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C0AC154E-AE69-0D60-28C0-A9D24EF4F877" name="postal_office_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:54:50 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0017769C-F374-77AC-D6E8-D7816E027738"/>
+<colUsage columnID="D5B77EE7-33A9-D111-0CF3-D9B3956782F6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2F266AA5-095D-7110-0B6F-D040AD394770" name="postal_office_cty_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:47:09 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E64C286F-50BF-DFE2-BF5F-4B449B7CC1C8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8889A484-01DD-1AF3-DE6B-7898690608BC" name="PostOffice_City_FK">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-25 10:44:09 UTC</createdTime>
+<generatorID>5265C441-81E1-50A0-6699-4FFD865AF04A</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E64C286F-50BF-DFE2-BF5F-4B449B7CC1C8"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

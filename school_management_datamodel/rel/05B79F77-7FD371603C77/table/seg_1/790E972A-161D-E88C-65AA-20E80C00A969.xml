@@ -1,0 +1,111 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="790E972A-161D-E88C-65AA-20E80C00A969" name="ireceiver">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-06 09:01:13 UTC</createdTime>
+<comment><![CDATA[Inbox receiver Flag - TO/CC/BCC]]></comment>
+<commentInRDBMS><![CDATA[Inbox receiver Flag - TO/CC/BCC]]></commentInRDBMS>
+<notes><![CDATA[Inbox receiver Flag - TO/CC/BCC]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteDesignID>8C6DDE97-B4FE-D62E-0482-5FBF623D80EF</remoteDesignID>
+<remoteModelID>2B8CB683-CF09-45A5-3EDA-4E4281210CFD</remoteModelID>
+<remoteObjectID>2ED95630-608A-9304-BE81-3E4F54C13FA4</remoteObjectID>
+<remoteObjectRelativeStorageName>/rel/2B8CB683-4E4281210CFD/table/seg_0/2ED95630-608A-9304-BE81-3E4F54C13FA4.xml</remoteObjectRelativeStorageName>
+<remoteSchemaName>leadsuser</remoteSchemaName>
+<abbreviation>ireceiver</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="F4E69AF5-64AB-1429-A937-CC024FA9809C">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>8DFD9534-35C9-DD37-852E-8C861C59FC57</remoteObjectID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="flag" id="A04F52FC-635D-98E9-B744-71B7F8B25F22">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<comment><![CDATA[Inbox Flag - TO/CC/BCC]]></comment>
+<commentInRDBMS><![CDATA[Inbox Flag - TO/CC/BCC]]></commentInRDBMS>
+<generatorID>D25080FF-53EE-F639-370C-85357F7C07C1</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>A807BB5C-C447-220B-A343-BD53B4B6E89F</remoteObjectID>
+<constraintName>receiver_cons</constraintName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>TO</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="description" id="6DBA2654-4BF4-4568-541B-16C48C8778B2">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<generatorID>3A47F11D-DC1E-73AF-683B-DF5C6BAEE2B6</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>32D3056B-6A26-2E91-E7CB-BCA5F8EBCAAB</remoteObjectID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6FC3FF19-A277-8369-1C81-8C85B1CAFCA2" name="ireceiver_pk">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>26FDACB3-3E06-BB75-E4B0-219EC5A9942D</remoteObjectID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="F4E69AF5-64AB-1429-A937-CC024FA9809C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2E4527D2-A215-8C6F-296C-2CE1A50183C3" name="receiver_un">
+<createdBy>leads</createdBy>
+<createdTime>2018-12-03 04:43:08 UTC</createdTime>
+<generatorID>0BEF8A0D-917F-ACC1-065A-2289068D5A26</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>B545504A-C2EE-4970-396F-C40C92735521</remoteObjectID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A04F52FC-635D-98E9-B744-71B7F8B25F22"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1BA00574-1D1A-CF7E-6758-01BBC5B92450" name="ireceiver_id_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-01-04 09:43:06 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>92DBDD5C-00BC-7D2B-5FD4-AF8C10FF5E2E</remoteObjectID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F4E69AF5-64AB-1429-A937-CC024FA9809C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FE52DF42-782F-1EB1-A198-DF0D799186A2" name="ireceiver_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-01-04 09:43:06 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<remoteObjectID>59FCA5DE-B83C-AFA1-5DB6-C2B3110752A5</remoteObjectID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A04F52FC-635D-98E9-B744-71B7F8B25F22"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

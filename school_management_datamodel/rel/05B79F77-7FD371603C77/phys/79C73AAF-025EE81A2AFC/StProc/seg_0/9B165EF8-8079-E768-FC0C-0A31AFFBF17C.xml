@@ -1,0 +1,387 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_markcard_archived" directorySegmentName="seg_0" id="9B165EF8-8079-E768-FC0C-0A31AFFBF17C">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-13 08:34:44 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>create or replace PROCEDURE proc_markcard_archived (
+    p_school_code  IN VARCHAR2,
+    p_batch_no     IN DATE,
+    p_sector_code  IN VARCHAR2 DEFAULT NULL,
+    p_class_code   IN VARCHAR2 DEFAULT NULL,
+    p_section_code IN VARCHAR2 DEFAULT NULL,
+    p_term_code    IN VARCHAR2 DEFAULT NULL,
+    p_student_id   IN VARCHAR2 DEFAULT NULL
+) AS
+    ---variables
+    v_school_code         arc_std_marksheet.school_code%TYPE;
+    v_batch_no            arc_std_marksheet.batch_no#%TYPE;
+    v_class_code          arc_std_marksheet.class_code%TYPE;
+    v_section_code        arc_std_marksheet.section_code%TYPE;
+    v_term_code           arc_std_marksheet.term_code%TYPE;
+    v_student_id          arc_std_marksheet.student_id%TYPE;
+    v_part_name           arc_std_marksheet.part_name%TYPE;
+    v_ranking_type        arc_std_marksheet.ranking_type%TYPE;
+    v_academic_code       arc_std_marksheet.academic_code%TYPE;
+    v_category_code       arc_std_marksheet.category_code%TYPE;
+    v_domain_code         arc_std_marksheet.domain_code%TYPE;
+    v_super_code          arc_std_marksheet.super_code%TYPE;
+    v_subject_code        arc_std_marksheet.subject_code%TYPE;
+    v_domain              arc_std_marksheet.domain%TYPE;
+    v_subject             arc_std_marksheet.subject%TYPE;
+    v_main_max_mark       arc_std_marksheet.main_max_mark%TYPE;
+    v_inter_max_mark      arc_std_marksheet.inter_max_mark%TYPE;
+    v_total_max_mark      arc_std_marksheet.total_max_mark%TYPE;
+    v_main_pass_mark      arc_std_marksheet.main_pass_mark%TYPE;
+    v_inter_pass_mark     arc_std_marksheet.inter_pass_mark%TYPE;
+    v_total_pass_mark     arc_std_marksheet.total_pass_mark%TYPE;
+    v_main_mark_obtained  arc_std_marksheet.main_mark_obtained%TYPE;
+    v_inter_mark_obtained arc_std_marksheet.inter_mark_obtained%TYPE;
+    v_total_mark_obtained arc_std_marksheet.total_mark_obtained%TYPE;
+    v_status              arc_std_marksheet.status%TYPE;
+    v_percentage          arc_std_marksheet.percentage%TYPE;
+
+    ---cursor view score records
+    CURSOR cur_vc_marksheet (
+        p1_school_code  VARCHAR2,
+        p1_batch_no     DATE,
+        p1_sector_code  VARCHAR2,
+        p1_class_code   VARCHAR2,
+        p1_section_code VARCHAR2,
+        p1_term_code    VARCHAR2,
+        p1_student_id   VARCHAR2
+    ) IS
+    SELECT
+        wd.school_code,
+        wd.batch_no,
+        wd.class_code,
+        wd.section_code,
+        wd.term_code,
+        wd.student_id,
+        wd.part_name,
+        wd.ranking_type,
+        wd.academic_code,
+        wd.category_code,
+        wd.domain_code,
+        wd.super_code,
+        wd.subject_code,
+        wd.domain,
+        wd.subject,
+        wd.main_max_mark,
+        wd.inter_max_mark,
+        wd.total_max_mark,
+        wd.main_pass_mark,
+        wd.inter_pass_mark,
+        wd.total_pass_mark,
+        wd.main_mark_obtained,
+        wd.inter_mark_obtained,
+        wd.total_mark_obtained,
+        wd.status,
+        wd.percentage
+    FROM
+             vc_marksheet wd
+        INNER JOIN school_sector ssec
+        ON ( ssec.school_code = wd.school_code
+             AND ssec.batch_no# = wd.batch_no
+             AND ssec.class_code = wd.class_code )
+    WHERE
+            wd.school_code = p1_school_code
+        AND wd.batch_no = p1_batch_no
+        AND ssec.sector_code = nvl(p1_sector_code, ssec.sector_code)
+        AND wd.class_code = nvl(p1_class_code, wd.class_code)
+        AND wd.section_code = nvl(p1_section_code, wd.section_code)
+        AND term_code = nvl(p1_term_code, wd.term_code)
+        AND student_id = nvl(p1_student_id, wd.student_id);
+
+    ---cursor archived
+    CURSOR cur_arc_std_marksheet (
+        p2_school_code  VARCHAR2,
+        p2_batch_no     DATE,
+        p2_class_code   VARCHAR2,
+        p2_section_code VARCHAR2,
+        p2_term_code    VARCHAR2,
+        p2_student_id   VARCHAR2,
+        p2_subject      VARCHAR2
+    ) IS
+    SELECT
+        school_code,
+        batch_no#,
+        class_code,
+        section_code,
+        term_code,
+        student_id,
+        part_name,
+        ranking_type,
+        academic_code,
+        category_code,
+        domain_code,
+        super_code,
+        subject_code,
+        domain,
+        subject,
+        main_max_mark,
+        inter_max_mark,
+        total_max_mark,
+        main_pass_mark,
+        inter_pass_mark,
+        total_pass_mark,
+        main_mark_obtained,
+        inter_mark_obtained,
+        total_mark_obtained,
+        status,
+        percentage
+    FROM
+        arc_std_marksheet
+    WHERE
+            school_code = p2_school_code
+        AND batch_no# = p2_batch_no
+        AND class_code = p2_class_code
+        AND section_code = p2_section_code
+        AND term_code = p2_term_code
+        AND student_id = p2_student_id
+        AND subject = p2_subject;
+
+    ---delete from archive marksheet (arc_std_marksheet)
+    CURSOR cur_del_std_marksheet (
+        p_school_code  VARCHAR2,
+        p_batch_no     DATE,
+        p_class_code   VARCHAR2,
+        p_section_code VARCHAR2,
+        p_term_code    VARCHAR2,
+        p_student_id   VARCHAR2,
+        p_subject      VARCHAR2
+    ) IS
+    SELECT
+        a.school_code,
+        a.batch_no# AS batch_no,
+        a.class_code,
+        a.section_code,
+        a.term_code,
+        a.student_id,
+        a.subject
+    FROM
+             arc_std_marksheet a
+        INNER JOIN ( SELECT
+                         school_code,
+                         batch_no# AS batch_no,
+                         class_code,
+                         section_code,
+                         term_code,
+                         student_id,
+                         subject
+                     FROM
+                         arc_std_marksheet
+                     WHERE
+                             school_code = p_school_code
+                         AND batch_no# = p_batch_no
+                         AND class_code = p_class_code
+                         AND section_code = p_section_code
+                         AND term_code = p_term_code
+                         AND student_id = p_student_id
+                     MINUS
+                     SELECT
+                         school_code,
+                         batch_no,
+                         class_code,
+                         section_code,
+                         term_code,
+                         student_id,
+                         subject
+                     FROM
+                         mvc_marksheet
+                     WHERE
+                             school_code = p_school_code
+                         AND batch_no = p_batch_no
+                         AND class_code = p_class_code
+                         AND section_code = p_section_code
+                         AND term_code = p_term_code
+                         AND student_id = p_student_id
+        ) b
+        ON ( a.school_code = b.school_code
+             AND a.batch_no# = b.batch_no
+             AND a.class_code = b.class_code
+             AND a.section_code = b.section_code
+             AND a.term_code = b.term_code
+             AND a.student_id = b.student_id
+             AND a.subject = b.subject );
+BEGIN
+    FOR indx IN cur_vc_marksheet(
+                    p1_school_code =&gt; p_school_code, 
+                    p1_batch_no =&gt; p_batch_no, 
+                    p1_sector_code =&gt; p_sector_code, 
+                    p1_class_code =&gt; p_class_code, 
+                    p1_section_code =&gt; p_section_code,
+                    p1_term_code =&gt; p_term_code, 
+                    p1_student_id =&gt; p_student_id) LOOP
+
+        ---open the cursor to check the table arc_std_marksheet
+        OPEN cur_arc_std_marksheet(
+                            p2_school_code =&gt; indx.school_code, 
+                            p2_batch_no =&gt; indx.batch_no, 
+                            p2_class_code =&gt; indx.class_code, 
+                            p2_section_code =&gt; indx.section_code, 
+                            p2_term_code =&gt; indx.term_code,
+                            p2_student_id =&gt; indx.student_id, 
+                            p2_subject =&gt; indx.subject);
+        FETCH cur_arc_std_marksheet INTO
+            v_school_code,
+            v_batch_no,
+            v_class_code,
+            v_section_code,
+            v_term_code,
+            v_student_id,
+            v_part_name,
+            v_ranking_type,
+            v_academic_code,
+            v_category_code,
+            v_domain_code,
+            v_super_code,
+            v_subject_code,
+            v_domain,
+            v_subject,
+            v_main_max_mark,
+            v_inter_max_mark,
+            v_total_max_mark,
+            v_main_pass_mark,
+            v_inter_pass_mark,
+            v_total_pass_mark,
+            v_main_mark_obtained,
+            v_inter_mark_obtained,
+            v_total_mark_obtained,
+            v_status,
+            v_percentage;
+
+        ---insert into arc_std_marksheet
+        IF cur_arc_std_marksheet%notfound THEN
+            INSERT INTO arc_std_marksheet (
+                school_code,
+                batch_no#,
+                class_code,
+                section_code,
+                term_code,
+                student_id,
+                part_name,
+                ranking_type,
+                academic_code,
+                category_code,
+                domain_code,
+                super_code,
+                subject_code,
+                domain,
+                subject,
+                main_max_mark,
+                inter_max_mark,
+                total_max_mark,
+                main_pass_mark,
+                inter_pass_mark,
+                total_pass_mark,
+                main_mark_obtained,
+                inter_mark_obtained,
+                total_mark_obtained,
+                status,
+                percentage
+            ) VALUES (
+                indx.school_code,
+                indx.batch_no,
+                indx.class_code,
+                indx.section_code,
+                indx.term_code,
+                indx.student_id,
+                indx.part_name,
+                indx.ranking_type,
+                indx.academic_code,
+                indx.category_code,
+                indx.domain_code,
+                indx.super_code,
+                indx.subject_code,
+                indx.domain,
+                indx.subject,
+                indx.main_max_mark,
+                indx.inter_max_mark,
+                indx.total_max_mark,
+                indx.main_pass_mark,
+                indx.inter_pass_mark,
+                indx.total_pass_mark,
+                indx.main_mark_obtained,
+                indx.inter_mark_obtained,
+                indx.total_mark_obtained,
+                indx.status,
+                indx.percentage
+            );
+        END IF;
+
+        ---update arc_std_marksheet
+        IF cur_arc_std_marksheet%found THEN
+            IF (v_part_name &lt;&gt; indx.part_name OR 
+                v_ranking_type &lt;&gt; indx.ranking_type OR 
+                nvl(v_academic_code, &apos;na&apos;) &lt;&gt; nvl(indx.academic_code, &apos;na&apos;) OR 
+                nvl(v_category_code, &apos;na&apos;) &lt;&gt; nvl(indx.category_code, &apos;na&apos;) OR 
+                nvl(v_domain_code, &apos;na&apos;) &lt;&gt; nvl(indx.domain_code, &apos;na&apos;) OR 
+                nvl(v_super_code, &apos;na&apos;) &lt;&gt; nvl(indx.super_code, &apos;na&apos;) OR 
+                nvl(v_subject_code, &apos;na&apos;) &lt;&gt; nvl(indx.subject_code, &apos;na&apos;) OR 
+                nvl(v_domain, &apos;na&apos;) &lt;&gt; nvl(indx.domain, &apos;na&apos;) OR 
+                v_main_max_mark &lt;&gt; indx.main_max_mark OR 
+                v_inter_max_mark &lt;&gt; indx.inter_max_mark OR 
+                v_total_max_mark &lt;&gt; indx.total_max_mark OR 
+                v_main_pass_mark &lt;&gt; indx.main_pass_mark OR 
+                v_inter_pass_mark &lt;&gt; indx.inter_pass_mark OR 
+                v_total_pass_mark &lt;&gt; indx.total_pass_mark OR 
+                v_main_mark_obtained &lt;&gt; indx.main_mark_obtained OR 
+                v_inter_mark_obtained &lt;&gt; indx.inter_mark_obtained OR 
+                v_total_mark_obtained &lt;&gt; indx.total_mark_obtained OR 
+                nvl(v_status, &apos;na&apos;) &lt;&gt; nvl(indx.status, &apos;na&apos;) OR 
+                v_percentage &lt;&gt; indx.percentage ) THEN
+                UPDATE arc_std_marksheet
+                SET
+                    part_name = indx.part_name,
+                    ranking_type = indx.ranking_type,
+                    academic_code = indx.academic_code,
+                    category_code = indx.category_code,
+                    domain_code = indx.domain_code,
+                    super_code = indx.super_code,
+                    subject_code = indx.subject_code,
+                    domain = indx.domain,
+                    main_max_mark = indx.main_max_mark,
+                    inter_max_mark = indx.inter_max_mark,
+                    total_max_mark = indx.total_max_mark,
+                    main_pass_mark = indx.main_pass_mark,
+                    inter_pass_mark = indx.inter_pass_mark,
+                    total_pass_mark = indx.total_pass_mark,
+                    main_mark_obtained = indx.main_mark_obtained,
+                    inter_mark_obtained = indx.inter_mark_obtained,
+                    total_mark_obtained = indx.total_mark_obtained,
+                    status = indx.status,
+                    percentage = indx.percentage
+                WHERE
+                        school_code = v_school_code
+                    AND batch_no# = v_batch_no
+                    AND class_code = v_class_code
+                    AND section_code = v_section_code
+                    AND term_code = v_term_code
+                    AND student_id = v_student_id
+                    AND subject = v_subject;
+            END IF;
+        END IF;
+        CLOSE cur_arc_std_marksheet;
+
+        ---delete from arc_std_marksheet
+        FOR indx3 IN cur_del_std_marksheet(
+                        p_school_code =&gt; indx.school_code, 
+                        p_batch_no =&gt; indx.batch_no, 
+                        p_class_code =&gt; indx.class_code, 
+                        p_section_code =&gt; indx.section_code, 
+                        p_term_code =&gt; indx.term_code,
+                        p_student_id =&gt; indx.student_id, 
+                        p_subject =&gt; indx.subject_code) LOOP
+            DELETE FROM arc_std_marksheet
+            WHERE
+                    school_code = indx3.school_code
+                AND batch_no# = indx3.batch_no
+                AND class_code = indx3.class_code
+                AND section_code = indx3.section_code
+                AND term_code = indx3.term_code
+                AND student_id = indx3.student_id
+                AND subject = indx3.subject;
+        END LOOP;
+    END LOOP;
+END;</source>
+</StoredProcedureOraclev10g>

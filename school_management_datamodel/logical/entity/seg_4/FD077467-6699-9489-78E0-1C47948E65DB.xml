@@ -1,0 +1,128 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_4" id="FD077467-6699-9489-78E0-1C47948E65DB" name="teacher_ordinal">
+<createdBy>leads</createdBy>
+<createdTime>2020-02-25 04:09:33 UTC</createdTime>
+<comment><![CDATA[Ordinal of Teacher (sometime a subject is shared by more than one teacher)]]></comment>
+<commentInRDBMS><![CDATA[Ordinal of Teacher (sometime a subject is shared by more than one teacher)]]></commentInRDBMS>
+<notes><![CDATA[Ordinal of Teacher (sometime a subject is shared by more than one teacher)]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>teacher_ordinal</preferredAbbreviation>
+<shortName>teacher_ordinal</shortName>
+<synonym>teacher_ordinal</synonym>
+<synonymToDisplay>teacher_ordinal</synonymToDisplay>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="no" id="D8CEDA57-BC32-10BB-0FB7-68BAC2D4912E">
+<createdBy>leads</createdBy>
+<createdTime>2020-02-25 04:22:47 UTC</createdTime>
+<comment><![CDATA[Heriarchy of Order]]></comment>
+<commentInRDBMS><![CDATA[Heriarchy of Order]]></commentInRDBMS>
+<generatorID>C3C27BE0-8B35-5111-0764-61E2E37CD6DE</generatorID>
+<notes><![CDATA[Heriarchy of Order]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>D9C5BBCD-DDC7-39E3-8911-361CD2B2189B</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="411C5FB9-7639-969E-7289-E23C065FF086">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:13:45 UTC</createdTime>
+<comment><![CDATA[name - FIRST /SECOND /THIRD/FOURTH /FIFTH]]></comment>
+<commentInRDBMS><![CDATA[name - FIRST /SECOND /THIRD/FOURTH /FIFTH]]></commentInRDBMS>
+<notes><![CDATA[name - FIRST /SECOND /THIRD/FOURTH /FIFTH]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="9E791E0C-10BB-1C15-1A4B-A1721166D880">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:13:45 UTC</createdTime>
+<comment><![CDATA[order - 1st/2nd/3rd/4th/5th]]></comment>
+<commentInRDBMS><![CDATA[order - 1st/2nd/3rd/4th/5th]]></commentInRDBMS>
+<notes><![CDATA[order - 1st/2nd/3rd/4th/5th]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="1E334C7D-1E4E-30EE-CC30-5B8EEEDA9A08">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:13:45 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="A53A356A-32B1-ED21-06D3-F3AC201C0155" name="teacher_ordinal_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-02-25 04:26:10 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>411C5FB9-7639-969E-7289-E23C065FF086</newElementsIDs>
+<usedAttributes>
+<attributeRef>411C5FB9-7639-969E-7289-E23C065FF086</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="5D9F4DF0-EF7A-C98D-722B-C3C240DA282F" name="teacher_ordinal_PK">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:14:15 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>D8CEDA57-BC32-10BB-0FB7-68BAC2D4912E</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="25F3BEE9-4759-268B-52CB-B7F6AB14EDB2" name="teacher_ordinal_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-05 06:14:48 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>9E791E0C-10BB-1C15-1A4B-A1721166D880</newElementsIDs>
+<usedAttributes>
+<attributeRef>9E791E0C-10BB-1C15-1A4B-A1721166D880</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_1" id="CCA1742D-29C2-0661-554F-1AF9B07F35D1" name="league">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-17 01:06:36 UTC</createdTime>
+<generatorID>E2707A50-85B4-5C1E-8EA1-FABEA963CD2B</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<usedAsRemoteObject>true</usedAsRemoteObject>
+<abbreviation>league</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="code" id="E288B57F-DE1F-2693-B274-B7E303BCDC1D">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-17 01:06:36 UTC</createdTime>
+<comment><![CDATA[League Code - CANDIDATE/EMPLOYEE]]></comment>
+<commentInRDBMS><![CDATA[League Code - CANDIDATE/EMPLOYEE]]></commentInRDBMS>
+<generatorID>8DC26AFD-976F-03F6-2A99-41E579B53BF0</generatorID>
+<notes><![CDATA[League Code - CANDIDATE/EMPLOYEE]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57163073-BB6D-095E-07A3-23F4BB96C17A</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="AC9B4F68-BACF-7C77-D00C-04B7464F47A3">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-17 01:06:36 UTC</createdTime>
+<generatorID>8D8FEB73-B980-64DC-C39D-6B9729A13798</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="13AE8F0E-7DB6-B0BB-7130-6ECBC17A9488">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-17 01:06:36 UTC</createdTime>
+<comment><![CDATA[performance parameter description]]></comment>
+<commentInRDBMS><![CDATA[performance parameter description]]></commentInRDBMS>
+<generatorID>583853C5-1388-5935-699B-2927067EB682</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B8933007-9E87-A0EF-56CD-599F48F06C92" name="league_pk">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-17 01:06:36 UTC</createdTime>
+<generatorID>2F909E9D-02AB-5EE7-CE10-AC1D6164B5BF</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E288B57F-DE1F-2693-B274-B7E303BCDC1D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5FEAA2B8-B11C-CFFD-71C7-E9AD5CE3131B" name="league_un">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-17 01:06:36 UTC</createdTime>
+<generatorID>ABBDE7D3-D814-4E15-6486-B834E170DE5E</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AC9B4F68-BACF-7C77-D00C-04B7464F47A3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="21CDD652-3366-D999-23AE-1EA81E970B3D" name="league_code_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-17 01:11:40 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E288B57F-DE1F-2693-B274-B7E303BCDC1D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="40C8ABFB-25C3-F002-11A7-68993D300581" name="league_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-17 01:11:40 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AC9B4F68-BACF-7C77-D00C-04B7464F47A3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

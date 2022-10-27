@@ -1,0 +1,27 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="employee_chg_trg" directorySegmentName="seg_0" id="5D2D0FC8-B820-618A-115E-8FB5139DBC5C">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-16 04:06:57 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[BEGIN
+    IF inserting THEN
+    	   :new.official_email := lower(:new.official_email);
+    	   :new.personal_email := lower(:new.personal_email);
+        :new.created_by := nvl(v('APP_USER'), user);
+        :new.created_on := current_timestamp;
+        :new.changed_on := current_timestamp;
+    END IF;
+
+    IF updating THEN
+    	   :new.official_email := lower(:new.official_email);
+    	   :new.personal_email := lower(:new.personal_email);
+        :new.updated_by := nvl(v('APP_USER'), user);
+        :new.changed_on := current_timestamp;
+    END IF;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>CDD37E08-2169-88E0-3FE0-A38E6D207EC2, 6326536F-D662-4F42-BFA1-8F7630592975, D7093781-9E50-2A34-2D31-EAD4A84F5CBA, 5A2D3F47-24B5-0B01-7844-2BF3F5AEA769, 0D852EEA-7340-0755-5541-FEC3B3E93441, 45C654B5-81F0-8E61-64E1-FCDC17CD43DC, 1A1861E8-54DA-872B-1F32-809623720D23, 6B2A61D2-6C34-B249-4072-17E1ED79FBF8, B00E785E-4CAE-B3CE-73EE-FB2D652BFD47, B3BA8668-81C5-CDA4-E209-8EFB0177D1E3, 8F472491-B419-269C-A9F0-AA89C9AE7537, 1DF02910-147E-74DA-9A77-31FAA684DCA1, D364EE19-9096-D842-A6B7-73A6A479A857, 6EC3E43E-2A7C-8D62-67DA-048DE2C618AC, AF22D292-7622-A4B8-C372-0F8B28BD0061, 0E5E0689-B0FC-ACFB-09B0-CE43DCE23E83, B620B335-22C1-618A-D13A-75F17D3C6112</columns>
+<table>3451E805-A98C-EE3B-67AE-77E0870970F9</table>
+</TriggerOraclev10g>

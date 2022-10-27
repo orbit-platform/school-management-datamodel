@@ -1,0 +1,12 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="workday_chg_trg" directorySegmentName="seg_6" id="1B90F362-3B7E-A7FD-2D61-FB9DA6D25A9D">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-09 06:31:40 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[BEGIN
+	:NEW.name := UPPER(:NEW.name);
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>D8F0957A-F3AF-926A-964E-03E3BC96D51A</columns>
+</TriggerOraclev10g>

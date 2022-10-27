@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_markcard_footnote" directorySegmentName="seg_0" id="B8F27161-E692-CCC7-E11D-A182503817F3">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-01 20:35:21 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_markcard_footnote (
+    p_school_code IN VARCHAR2,
+    p_class_code IN VARCHAR2,
+    p_footnote IN OUT VARCHAR2
+) AS
+    CURSOR cur_footnote (
+        pp_school_code VARCHAR2,
+        pp_class_code VARCHAR2
+    ) IS
+    SELECT
+        &apos;***&apos; ||
+        LISTAGG(footnote, &apos;, * &apos;) WITHIN GROUP(
+            ORDER BY
+                ROWNUM
+            )
+        AS footnote
+    FROM
+        ( SELECT
+              a.school_code,
+              a.class_code,
+              b.pseudo || a.footnote AS footnote
+          FROM
+              school_division a
+              INNER JOIN score_division b
+              ON ( b.name = a.division_name )
+          WHERE
+              a.school_code = pp_school_code
+              AND a.class_code = pp_class_code
+          ORDER BY
+              a.range_from
+        );
+BEGIN
+    OPEN cur_footnote(
+                     pp_school_code =&gt; p_school_code,
+                     pp_class_code =&gt; p_class_code
+         );
+    FETCH cur_footnote INTO p_footnote;
+    CLOSE cur_footnote;
+END;</source>
+</StoredProcedureOraclev10g>

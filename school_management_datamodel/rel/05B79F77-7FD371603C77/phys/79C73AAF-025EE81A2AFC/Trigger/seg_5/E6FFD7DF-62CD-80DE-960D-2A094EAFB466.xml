@@ -1,0 +1,23 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="route_perimeter_chg_trg" directorySegmentName="seg_5" id="E6FFD7DF-62CD-80DE-960D-2A094EAFB466">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-03 08:51:11 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE</actions>
+<body><![CDATA[BEGIN
+    IF inserting THEN
+        :new.created_by := nvl(v('APP_USER'), user);
+        :new.created_on := current_timestamp;
+        :new.changed_on := current_timestamp;
+    END IF;
+
+    IF updating THEN
+        :new.updated_by := nvl(v('APP_USER'), user);
+        :new.changed_on := current_timestamp;
+    END IF;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>9612B6C0-D932-A444-CFF0-6D15454DD24C, 301CDB13-D5E9-469B-99C9-E90ECE3146FE, 19508859-8F59-9FFF-B0B6-6074964C3515, AA0A93BD-1713-EE4C-D36E-2F81255379DA, 440A86BF-ED2D-7521-FDED-912985A0CD3E, DC5C1C3F-E614-AD9F-C00F-9182B9964178, 01AA2F4B-67FD-CAE2-B729-42831D07A486, 3D6CF5B6-128F-0663-F056-97B3687130D2, 15C8CC13-E027-C98C-15E0-5ADE45FFCD06, E0026CA8-281F-628E-A8B8-DCB7EDFC82AD, ED52E303-2BC1-1FFD-9D81-8F945582D0CB</columns>
+<table>7DAB2D92-E44C-7DB6-6891-7BB19B4C1C8C</table>
+</TriggerOraclev10g>

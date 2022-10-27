@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="qualification_code_trg" directorySegmentName="seg_6" id="913CEC01-0E85-3B08-9856-D9B4225D5B6E">
+<createdBy>leads</createdBy>
+<createdTime>2020-03-19 10:34:35 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+    SELECT
+        lpad(nvl(MAX(code), 0) + 1, 4, '0')
+    INTO :new.code
+    FROM
+        qualification;
+
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<condition><![CDATA[NEW.code IS NULL]]></condition>
+<table>60B06117-1A43-8462-BBD3-941C4AAECCFD</table>
+</TriggerOraclev10g>

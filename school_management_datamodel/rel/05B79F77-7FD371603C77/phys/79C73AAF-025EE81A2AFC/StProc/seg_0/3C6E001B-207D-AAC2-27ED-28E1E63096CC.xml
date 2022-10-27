@@ -1,0 +1,44 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_markcard_term_remark" directorySegmentName="seg_0" id="3C6E001B-207D-AAC2-27ED-28E1E63096CC">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-10 12:40:04 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_markcard_term_remark (
+    p_school_code IN VARCHAR2,
+    p_batch_no IN DATE,
+    p_class_code IN VARCHAR2,
+    p_term_code IN VARCHAR2,
+    p_student_id IN VARCHAR2,
+    p_term_remark IN OUT VARCHAR2
+) AS
+    ---cursor remark
+    CURSOR cur_term_remark (
+        pp_school_code VARCHAR2,
+        pp_batch_no DATE,
+        pp_class_code VARCHAR2,
+        pp_term_code VARCHAR2,
+        pp_student_id VARCHAR
+    ) IS
+    SELECT
+        srem.descriptions AS term_remark
+    FROM
+        std_term_remark srem
+    WHERE
+        status_name = &apos;ACTIVE&apos;
+        AND school_code = pp_school_code
+        AND batch_no# = pp_batch_no
+        AND class_code = pp_class_code
+        AND term_code = pp_term_code
+        AND student_id = pp_student_id;
+BEGIN
+    OPEN cur_term_remark(
+                        pp_school_code =&gt; p_school_code,
+                        pp_batch_no =&gt; p_batch_no,
+                        pp_class_code =&gt; p_class_code,
+                        pp_term_code =&gt; p_term_code,
+                        pp_student_id =&gt; p_student_id
+         );
+    FETCH cur_term_remark INTO p_term_remark;
+    CLOSE cur_term_remark;
+END;</source>
+</StoredProcedureOraclev10g>

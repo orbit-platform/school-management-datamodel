@@ -1,0 +1,111 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E17284C1-1C00-1882-C0B2-F2F746487621" name="sex">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-07 12:04:25 UTC</createdTime>
+<comment><![CDATA[sex/gender]]></comment>
+<commentInRDBMS><![CDATA[sex - gender]]></commentInRDBMS>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>sex</preferredAbbreviation>
+<shortName>sex</shortName>
+<synonym>gender</synonym>
+<synonymToDisplay>sex</synonymToDisplay>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="name" id="47C1EA55-E639-D928-B36B-D6CC71CF9D25">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-07 12:04:44 UTC</createdTime>
+<comment><![CDATA[sex = M/F/O]]></comment>
+<commentInRDBMS><![CDATA[sex = M/F/O]]></commentInRDBMS>
+<notes><![CDATA[sex = M/F/O]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1 CHAR</dataTypeSize>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<defaultValue>A</defaultValue>
+<ownDataTypeParameters>1 CHAR,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="pseudo" id="429D3C80-F6EB-3A99-668D-13A4E2B25C8A">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-07 12:05:05 UTC</createdTime>
+<comment><![CDATA[Pseudo Name of the Gender]]></comment>
+<commentInRDBMS><![CDATA[Pseudo Name of the Gender]]></commentInRDBMS>
+<notes><![CDATA[Pseudo Name of the Gender]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<domain>90B036C7-C776-9355-8F80-DD6128DA0B91</domain>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="descriptions" id="FCF4DFF5-4B3F-BBAB-F3AE-BBB9B1E4C7E7">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-10 10:04:15 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="EFF5968F-CA1F-4DA6-FDBA-131AB0275B3F" name="sex_PK">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-07 12:05:01 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<usedAttributes>
+<attributeRef>47C1EA55-E639-D928-B36B-D6CC71CF9D25</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="7DA68EE3-F4BC-EF77-CEE2-DD9E2D87DA3B" name="sex_UN">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-21 13:21:23 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>429D3C80-F6EB-3A99-668D-13A4E2B25C8A</newElementsIDs>
+<usedAttributes>
+<attributeRef>429D3C80-F6EB-3A99-668D-13A4E2B25C8A</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

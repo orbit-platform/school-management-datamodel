@@ -1,0 +1,102 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_2" id="9F35431B-81B9-A8F3-3FB4-6E59E0039B02" name="payment">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-06 07:40:28 UTC</createdTime>
+<comment><![CDATA[Payment Mode - Cash/Debit Card/Credit Card/Cheque/]]></comment>
+<commentInRDBMS><![CDATA[Payment Mode - Cash/Debit Card/Credit Card/Cheque/]]></commentInRDBMS>
+<generatorID>FFB837B3-3DBF-8A95-3054-4107F055F0AF</generatorID>
+<notes><![CDATA[Payment Mode - Cash/Debit Card/Credit Card/Cheque/]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>payment</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="4A2E725B-C09C-DE9A-DBB8-6252B4154AE9">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-06 07:40:28 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="modes" id="AB25FA79-1EA6-2FA8-0D9B-12BC0B8F38E9">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-06 07:40:28 UTC</createdTime>
+<comment><![CDATA[Payment Mode - Cash/Debit Card/Credit Card/Cheque/]]></comment>
+<commentInRDBMS><![CDATA[Payment Mode - Cash/Debit Card/Credit Card/Cheque/]]></commentInRDBMS>
+<generatorID>44E33392-53B4-4849-D71B-BB85E33CE3C6</generatorID>
+<notes><![CDATA[Payment Mode - Cash/Debit Card/Credit Card/Cheque/]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>C2E9CA3E-8607-4014-71D7-92FF9CF63B81</domain>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="38E2EF1E-24C4-92F0-B65A-B2B70A064CC7">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-06 07:40:28 UTC</createdTime>
+<generatorID>D9641746-5EA0-19FF-FF72-ADCDA0DB5430</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="66E388EE-E918-1053-6A66-E890CAF8C648" name="payment_pk">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-06 07:40:28 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="4A2E725B-C09C-DE9A-DBB8-6252B4154AE9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FD983570-674F-9447-CA25-5FBBC8A785C3" name="payment_un">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-06 07:40:28 UTC</createdTime>
+<generatorID>7EBE31CF-A6D6-872D-4136-40FBFD686045</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AB25FA79-1EA6-2FA8-0D9B-12BC0B8F38E9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8559136A-8D5B-E8DF-AE19-082CD9B07F8C" name="payment_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-06 07:45:28 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4A2E725B-C09C-DE9A-DBB8-6252B4154AE9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7EAFC490-5F40-1ED2-A24F-C2CF212CC414" name="payment_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-06 07:45:28 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AB25FA79-1EA6-2FA8-0D9B-12BC0B8F38E9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

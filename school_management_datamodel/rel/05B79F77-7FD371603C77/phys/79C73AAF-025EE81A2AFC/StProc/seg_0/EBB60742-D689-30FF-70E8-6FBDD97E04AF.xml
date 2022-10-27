@@ -1,0 +1,45 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_markcard_principal" directorySegmentName="seg_0" id="EBB60742-D689-30FF-70E8-6FBDD97E04AF">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-10 12:00:50 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_markcard_principal (
+    p_school_code IN VARCHAR2,
+    p_batch_no IN DATE,
+    p_class_code IN VARCHAR2,
+    p_term_code IN VARCHAR2,
+    p_principal_digital IN OUT VARCHAR2,
+    p_principal_name IN OUT VARCHAR2
+) AS
+    
+    ---cursor principal
+    CURSOR cur_school_principal (
+        pp_school_code VARCHAR2,
+        pp_batch_no DATE,
+        pp_class_code VARCHAR2,
+        pp_term_code VARCHAR2
+    ) IS
+    SELECT
+        principal_id,
+        principal_name
+    FROM
+        mv_school_principal
+    WHERE
+        school_code = pp_school_code
+        AND batch_no# = pp_batch_no
+        AND class_code = pp_class_code
+        AND term_code = pp_term_code;
+BEGIN
+    ---cursor school-principal
+    OPEN cur_school_principal(
+                             pp_school_code =&gt; p_school_code,
+                             pp_batch_no =&gt; p_batch_no,
+                             pp_class_code =&gt; p_class_code,
+                             pp_term_code =&gt; p_term_code
+         );
+    FETCH cur_school_principal INTO
+        p_principal_digital,
+        p_principal_name;
+    CLOSE cur_school_principal;
+END;</source>
+</StoredProcedureOraclev10g>

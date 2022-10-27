@@ -1,0 +1,454 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_7" id="1CECABEF-CB75-B871-928C-34BAD901D791" name="question_allocation">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:32:55 UTC</createdTime>
+<comment><![CDATA[Question Allocations by Individual Sections]]></comment>
+<commentInRDBMS><![CDATA[Question Allocations by Individual Sections]]></commentInRDBMS>
+<notes><![CDATA[Question Allocations by Individual Sections]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>question_allocation</preferredAbbreviation>
+<shortName>question_allocation</shortName>
+<synonym>question_allocation</synonym>
+<synonymToDisplay>question_allocation</synonymToDisplay>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="E5E7AEB6-ED85-9596-47DE-928415EB9B12">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:43:06 UTC</createdTime>
+<comment><![CDATA[Question Allocation ID]]></comment>
+<commentInRDBMS><![CDATA[Question Allocation ID]]></commentInRDBMS>
+<notes><![CDATA[Question Allocation ID]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="board_code" id="7ED1B95D-A7C5-B6EF-C66B-3E2B3206945A">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:33:36 UTC</createdTime>
+<comment><![CDATA[Education Board Code]]></comment>
+<commentInRDBMS><![CDATA[Education Board Code]]></commentInRDBMS>
+<generatorID>00A607EB-5C88-DE05-C5D7-854CAF2C474C</generatorID>
+<notes><![CDATA[Education Board Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>A5264FDC-F896-D040-B4A3-63A94CB5A02D</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>411A7036-AE28-9018-332B-691EBC096EF9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="school_code" id="61DA13D5-08B7-9C3F-CB41-D8F14CD8AC15">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:33:49 UTC</createdTime>
+<comment><![CDATA[School Code]]></comment>
+<commentInRDBMS><![CDATA[School Code]]></commentInRDBMS>
+<generatorID>F8265959-5606-A08E-8507-20A4DFCA1525</generatorID>
+<notes><![CDATA[School Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>F01AB060-8839-F920-4BBB-1D3C004E16ED</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>BCA2C68B-8CA1-F169-8432-04D84703CF46</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="batch_no#" id="4D51BEF3-0EB8-5045-5265-102C8F600DA0">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:34:06 UTC</createdTime>
+<comment><![CDATA[Batch Number expressed in date]]></comment>
+<commentInRDBMS><![CDATA[Batch Number expressed in date]]></commentInRDBMS>
+<generatorID>BDC213F3-FBC2-0D33-2BF7-E200CCFC0997</generatorID>
+<notes><![CDATA[Batch Number expressed in date]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>941B8596-FF99-A7A7-83C7-3538B79D0948</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<domain>57E4E726-0278-DC93-9196-ABB2B37DFF18</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="class_code" id="510D2944-6029-BEEC-862C-783CF9C25C40">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:34:31 UTC</createdTime>
+<comment><![CDATA[Class Code]]></comment>
+<commentInRDBMS><![CDATA[Class Code]]></commentInRDBMS>
+<generatorID>F9E9F76B-AF31-51EC-88BA-6B5E58FDBF90</generatorID>
+<notes><![CDATA[Class Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>BFF0C8F0-0EB7-6267-1D50-087F47C02E0F</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>411A7036-AE28-9018-332B-691EBC096EF9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="stream_code" id="995B663D-55A2-E34D-8480-F4F8FFE54EF3">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-21 05:00:24 UTC</createdTime>
+<comment><![CDATA[Stream Code]]></comment>
+<commentInRDBMS><![CDATA[Stream Code]]></commentInRDBMS>
+<generatorID>C403438C-FED8-6EDB-47B4-6A05AD06B92E</generatorID>
+<notes><![CDATA[Stream Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>F0332F80-9C12-832E-F763-D90675B98C5A</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>411A7036-AE28-9018-332B-691EBC096EF9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="term_code" id="0C8CD607-3195-AC6B-E344-C2F7203BE7B4">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:34:56 UTC</createdTime>
+<comment><![CDATA[Term Code]]></comment>
+<commentInRDBMS><![CDATA[Term Code]]></commentInRDBMS>
+<generatorID>16D57FEA-7AD1-6E95-0F27-82B0B058F4E0</generatorID>
+<notes><![CDATA[Term Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>0B2BE66C-CA23-065A-557F-6804A8B8126B</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>ACF0DD7C-A852-75FE-6C59-C34AFABE3CE0</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="evaluation_code" id="E9608506-497A-A95B-9AC7-02DB04403063">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-27 08:27:26 UTC</createdTime>
+<comment><![CDATA[Evaluation Code]]></comment>
+<commentInRDBMS><![CDATA[Evaluation Code]]></commentInRDBMS>
+<generatorID>D6A8FED4-0DE8-A133-6820-AA089F6E58D2</generatorID>
+<notes><![CDATA[Evaluation Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>7C2ACE93-7448-B772-7FB1-35EF26DA739C</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>34CBF979-543B-C317-B6B1-F54F7D70A5A6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="super_code" id="5DD93252-AD32-5EBF-A7DA-33B71437C7FE">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-28 09:09:59 UTC</createdTime>
+<comment><![CDATA[Super Subject Code]]></comment>
+<commentInRDBMS><![CDATA[Super Subject Code]]></commentInRDBMS>
+<generatorID>8AEB1DE2-9564-E34E-D314-F92E48BD54B8</generatorID>
+<notes><![CDATA[Super Subject Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>EDEF1431-4DB9-C361-882B-E60433D16464</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>8CEF871C-5705-BFD9-A003-783E663BBC80</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="section_name" id="83A4D6C6-2510-9FB4-F91A-16C00B1F50C9">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-25 13:42:00 UTC</createdTime>
+<comment><![CDATA[Section Name: Section I/Section II/Section III/Section IV]]></comment>
+<commentInRDBMS><![CDATA[Section Name: Section I/Section II/Section III/Section IV]]></commentInRDBMS>
+<generatorID>549A8426-63DD-3542-9A52-79FF733485C0</generatorID>
+<notes><![CDATA[Section Name: Section I/Section II/Section III/Section IV]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>083B8241-79F6-0333-92A7-7623896D83DF</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="section_title" id="550CAD7B-8922-F233-FE2B-2B62E4462D79">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:38:11 UTC</createdTime>
+<comment><![CDATA[Section Title]]></comment>
+<commentInRDBMS><![CDATA[Section Title]]></commentInRDBMS>
+<notes><![CDATA[Section Title]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>55E2A794-CB88-F353-C2F6-FA23C420C3AA</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="section_note" id="C572BD9C-5BD0-668A-C230-7A422A85BD01">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:48:43 UTC</createdTime>
+<comment><![CDATA[Any Note on the Section]]></comment>
+<commentInRDBMS><![CDATA[Any Note on the Section]]></commentInRDBMS>
+<notes><![CDATA[Any Note on the Section]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>F60E1FFE-5DA6-531C-BDFF-CB0CBCB7F7CD</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="total_no" id="A53050F3-D4C2-A843-3180-8942FFCA1FD3">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:39:21 UTC</createdTime>
+<comment><![CDATA[Total Number of Questions on each Section]]></comment>
+<commentInRDBMS><![CDATA[Total Number of Questions on each Section]]></commentInRDBMS>
+<notes><![CDATA[Total Number of Questions on each Section]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="total_score" id="F7D66152-1BAF-FA58-7178-20109651AC08">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:39:53 UTC</createdTime>
+<comment><![CDATA[Total Score on Each Section]]></comment>
+<commentInRDBMS><![CDATA[Total Score on Each Section]]></commentInRDBMS>
+<notes><![CDATA[Total Score on Each Section]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ordinal_no" id="7FB36918-E381-E059-331E-F652420E2FD3">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:37:48 UTC</createdTime>
+<comment><![CDATA[Heriarchy of Order]]></comment>
+<commentInRDBMS><![CDATA[Heriarchy of Order]]></commentInRDBMS>
+<generatorID>11C3C6AC-32D4-E73E-A6B8-990FCFE16437</generatorID>
+<notes><![CDATA[Heriarchy of Order]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>D9C5BBCD-DDC7-39E3-8911-361CD2B2189B</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="question_type" id="DE35DCAF-EADC-6576-B012-321160D3139E">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:37:12 UTC</createdTime>
+<comment><![CDATA[Question Type]]></comment>
+<commentInRDBMS><![CDATA[Question Type]]></commentInRDBMS>
+<generatorID>ADBBE35D-CD9A-422A-032B-C2B054B30D0D</generatorID>
+<notes><![CDATA[Question Type]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>F873E242-A081-54ED-B6F2-E53062736D9E</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="question_batch_ID" id="A0D21859-0BD4-A6E6-1BB8-4B1F21E4CDC8">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-27 08:32:36 UTC</createdTime>
+<comment><![CDATA[Batch Question ID/Code]]></comment>
+<commentInRDBMS><![CDATA[Batch Question ID/Code]]></commentInRDBMS>
+<generatorID>BF44D68F-001C-734F-A94A-EEF4D927D0B8</generatorID>
+<notes><![CDATA[Batch Question ID/Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>F4C974E9-EE9C-A1EB-A723-9EC5E6693F0A</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="status_name" id="085D2507-51D3-DBC1-F003-245CAAAD6510">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:41:35 UTC</createdTime>
+<comment><![CDATA[Status Name]]></comment>
+<commentInRDBMS><![CDATA[Status Name]]></commentInRDBMS>
+<generatorID>0DD5BA94-A429-C986-7043-D9DEBBD639BA</generatorID>
+<notes><![CDATA[Status Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>8D5DF3E8-8F74-1632-7641-0F9128C78A86</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="3511F9B9-8660-492C-770C-89DC3C9E6723">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:41:49 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="created_by" id="2E489B0B-6E06-CE26-F111-91965C7A050F">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:41:49 UTC</createdTime>
+<comment><![CDATA[User who created the record]]></comment>
+<commentInRDBMS><![CDATA[User who created the record]]></commentInRDBMS>
+<notes><![CDATA[User who created the record]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FCF40FD2-658F-71B5-EA0B-1055E4223B0E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="created_on" id="4AD70037-32B7-29FD-46D1-CA62DCBB7143">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:41:49 UTC</createdTime>
+<comment><![CDATA[Record created - date and time]]></comment>
+<commentInRDBMS><![CDATA[Record created - date and time]]></commentInRDBMS>
+<notes><![CDATA[Record created - date and time]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>4A67150B-1396-BA5B-65B0-74D0D4FA6D8A</domain>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="updated_by" id="010695F9-13E4-3399-9135-749DB2E5E25D">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:41:49 UTC</createdTime>
+<comment><![CDATA[User who updated the record]]></comment>
+<commentInRDBMS><![CDATA[User who updated the record]]></commentInRDBMS>
+<notes><![CDATA[User who updated the record]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FCF40FD2-658F-71B5-EA0B-1055E4223B0E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="changed_on" id="F50CBB83-EF64-8F0D-43E8-77ADA7289734">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:41:49 UTC</createdTime>
+<comment><![CDATA[Last record changed - date and time]]></comment>
+<commentInRDBMS><![CDATA[Last record changed - date and time]]></commentInRDBMS>
+<notes><![CDATA[Last record changed - date and time]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT015</logicalDatatype>
+<domain>4A67150B-1396-BA5B-65B0-74D0D4FA6D8A</domain>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="D63A35BE-0661-DA93-8D79-87DF1F687BD4" name="question_allocation_PK">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-07 12:43:18 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<newElementsIDs>E5E7AEB6-ED85-9596-47DE-928415EB9B12</newElementsIDs>
+<usedAttributes>
+<attributeRef>E5E7AEB6-ED85-9596-47DE-928415EB9B12</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="10388259-CFBD-5769-5E08-2DF2FD227ACE" name="question_allocation_UN">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-08 04:57:37 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>00A607EB-5C88-DE05-C5D7-854CAF2C474C,F8265959-5606-A08E-8507-20A4DFCA1525,BDC213F3-FBC2-0D33-2BF7-E200CCFC0997,F9E9F76B-AF31-51EC-88BA-6B5E58FDBF90,C403438C-FED8-6EDB-47B4-6A05AD06B92E,16D57FEA-7AD1-6E95-0F27-82B0B058F4E0,D6A8FED4-0DE8-A133-6820-AA089F6E58D2,8AEB1DE2-9564-E34E-D314-F92E48BD54B8,549A8426-63DD-3542-9A52-79FF733485C0</newElementsIDs>
+<usedAttributes>
+<attributeRef>7ED1B95D-A7C5-B6EF-C66B-3E2B3206945A</attributeRef>
+<attributeRef>61DA13D5-08B7-9C3F-CB41-D8F14CD8AC15</attributeRef>
+<attributeRef>4D51BEF3-0EB8-5045-5265-102C8F600DA0</attributeRef>
+<attributeRef>510D2944-6029-BEEC-862C-783CF9C25C40</attributeRef>
+<attributeRef>995B663D-55A2-E34D-8480-F4F8FFE54EF3</attributeRef>
+<attributeRef>0C8CD607-3195-AC6B-E344-C2F7203BE7B4</attributeRef>
+<attributeRef>E9608506-497A-A95B-9AC7-02DB04403063</attributeRef>
+<attributeRef>5DD93252-AD32-5EBF-A7DA-33B71437C7FE</attributeRef>
+<attributeRef>83A4D6C6-2510-9FB4-F91A-16C00B1F50C9</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_std_class_sec" directorySegmentName="seg_0" id="0FC4203B-F7DC-7445-3C09-D68B3626E5CC">
+<createdBy>leads</createdBy>
+<createdTime>2022-05-31 07:52:37 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_std_class_sec AS
+
+    ---variables
+    v_school_code    std_class_sec.school_code%TYPE;
+    v_batch_no       std_class_sec.batch_no#%TYPE;
+    v_class_code     std_class_sec.class_code%TYPE;
+    v_student_id     std_class_sec.student_id%TYPE;
+    v_effective_from std_class_sec.effective_from%TYPE;
+    v_effective_upto std_class_sec.effective_upto%TYPE;
+            
+    ---cursor on school_session
+    CURSOR cur_school_session IS
+    SELECT
+        sess.school_code,
+        sess.batch_no#,
+        sess.class_code,
+        scs.student_id,
+        sess.effective_from,
+        sess.effective_upto
+    FROM
+             school_session sess
+        INNER JOIN std_class_sec scs
+        ON ( scs.school_code = sess.school_code
+             AND scs.batch_no# = sess.batch_no#
+             AND scs.class_code = sess.class_code )
+    WHERE
+            scs.status_name = &apos;ACTIVE&apos;
+        AND scs.special_type = &apos;N&apos;;
+        
+    ---cursor on std_class_sec
+    CURSOR cur_std_class_sec (
+        p_school_code VARCHAR2,
+        p_batch_no    DATE,
+        p_class_code  VARCHAR2,
+        p_student_id  VARCHAR2
+    ) IS
+    SELECT
+        school_code,
+        batch_no#,
+        class_code,
+        student_id,
+        effective_from,
+        effective_upto
+    FROM
+        std_class_sec
+    WHERE
+            special_type = &apos;N&apos;
+        AND school_code = p_school_code
+        AND batch_no# = p_batch_no
+        AND class_code = p_class_code
+        AND student_id = p_student_id;
+BEGIN
+    FOR indx IN cur_school_session LOOP
+        ---open the cursor 
+        OPEN cur_std_class_sec(p_school_code =&gt; indx.school_code, p_batch_no =&gt; indx.batch_no#, p_class_code =&gt; indx.class_code, p_student_id =&gt; indx.student_id);
+        FETCH cur_std_class_sec INTO
+            v_school_code,
+            v_batch_no,
+            v_class_code,
+            v_student_id,
+            v_effective_from,
+            v_effective_upto;
+            
+        ---update
+        IF ( nvl(v_effective_from, sysdate + 1) &lt;&gt; indx.effective_from OR nvl(v_effective_upto, sysdate + 1) &lt;&gt; indx.effective_upto ) THEN
+            UPDATE std_class_sec
+            SET
+                effective_from = indx.effective_from,
+                effective_upto = indx.effective_upto
+            WHERE
+                    school_code = indx.school_code
+                AND batch_no# = indx.batch_no#
+                AND class_code = indx.class_code
+                AND student_id = indx.student_id;
+        END IF;
+            
+        ---close the cursor
+        CLOSE cur_std_class_sec;
+    END LOOP;
+END proc_std_class_sec;</source>
+</StoredProcedureOraclev10g>

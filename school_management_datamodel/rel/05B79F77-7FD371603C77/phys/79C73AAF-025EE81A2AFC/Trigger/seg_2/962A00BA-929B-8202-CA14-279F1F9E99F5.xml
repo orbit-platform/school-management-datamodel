@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="route_perimeter_id_trg" directorySegmentName="seg_2" id="962A00BA-929B-8202-CA14-279F1F9E99F5">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-28 10:54:42 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+    :new.id := route_perimeter_id_seq.nextval;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<condition><![CDATA[new.id IS NULL]]></condition>
+<table>7DAB2D92-E44C-7DB6-6891-7BB19B4C1C8C</table>
+</TriggerOraclev10g>

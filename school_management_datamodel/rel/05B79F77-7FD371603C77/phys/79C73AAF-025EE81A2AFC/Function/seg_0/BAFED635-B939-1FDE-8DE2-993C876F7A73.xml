@@ -1,0 +1,29 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FunctionOracle class="oracle.dbtools.crest.model.design.storage.oracle.FunctionOracle" name="func_markcard_param" directorySegmentName="seg_0" id="BAFED635-B939-1FDE-8DE2-993C876F7A73">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-01 14:53:50 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE FUNCTION func_markcard_param (
+    p_school_code VARCHAR2,
+    p_batch_no DATE,
+    p_class_code VARCHAR2,
+    p_term_code VARCHAR2,
+    p_parameter_name VARCHAR2
+) RETURN VARCHAR2 IS
+    v_parameter_name VARCHAR2(90);
+BEGIN
+    SELECT
+        pseudo_name
+    INTO v_parameter_name
+    FROM
+        school_rep_temp
+    WHERE
+        status_type = &apos;Y&apos;
+        AND school_code = p_school_code
+        AND batch_no# = p_batch_no
+        AND class_code = p_class_code
+        AND term_code = p_term_code
+        AND parameter_name = p_parameter_name;
+    RETURN v_parameter_name;
+END;</source>
+</FunctionOracle>

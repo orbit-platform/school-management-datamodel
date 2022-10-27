@@ -1,0 +1,43 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_markcard_result_status" directorySegmentName="seg_0" id="42A03BF8-DE6C-3B04-CAA2-FC0C1AF1A189">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-10 12:56:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_markcard_result_status (
+    p_school_code IN VARCHAR2,
+    p_batch_no IN DATE,
+    p_class_code IN VARCHAR2,
+    p_term_code IN VARCHAR2,
+    p_student_id IN VARCHAR2,
+    p_result_status IN OUT VARCHAR2
+) AS
+    ---cursor result status
+    CURSOR cur_result_status (
+        pp_school_code VARCHAR2,
+        pp_batch_no DATE,
+        pp_class_code VARCHAR2,
+        pp_term_code VARCHAR2,
+        pp_student_id VARCHAR2
+    ) IS
+    SELECT
+        pseudo_name AS result_status
+    FROM
+        std_term_result
+    WHERE
+        school_code = pp_school_code
+        AND batch_no# = pp_batch_no
+        AND class_code = pp_class_code
+        AND term_code = pp_term_code
+        AND student_id = pp_student_id;
+BEGIN
+    OPEN cur_result_status(
+                          pp_school_code =&gt; p_school_code,
+                          pp_batch_no =&gt; p_batch_no,
+                          pp_class_code =&gt; p_class_code,
+                          pp_term_code =&gt; p_term_code,
+                          pp_student_id =&gt; p_student_id
+         );
+    FETCH cur_result_status INTO p_result_status;
+    CLOSE cur_result_status;
+END;</source>
+</StoredProcedureOraclev10g>

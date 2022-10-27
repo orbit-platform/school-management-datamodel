@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="location_address_id_trg" directorySegmentName="seg_7" id="6A1F5E86-2F23-DC78-ED57-CB2363B157A5">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-26 08:03:58 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+    :new.id := location_address_id_seq.nextval;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<condition><![CDATA[new.ID IS NULL]]></condition>
+<table>CC5AC6FF-96C3-BF63-99C7-0C94CF43BDAC</table>
+</TriggerOraclev10g>

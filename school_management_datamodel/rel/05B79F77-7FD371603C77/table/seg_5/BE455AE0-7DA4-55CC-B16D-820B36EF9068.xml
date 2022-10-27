@@ -1,0 +1,128 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_5" id="BE455AE0-7DA4-55CC-B16D-820B36EF9068" name="staggered_group">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-24 06:02:18 UTC</createdTime>
+<comment><![CDATA[Staggering of group in the class]]></comment>
+<commentInRDBMS><![CDATA[Staggering of group in the class]]></commentInRDBMS>
+<generatorID>0257AD98-3C01-F1E0-C45B-AF20DB4A4E4F</generatorID>
+<notes><![CDATA[Staggering of group in the class]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>staggered_group</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="66B8DEA3-4E7F-1B57-CE82-C6A8A42F6B09">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-24 06:02:18 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="name" id="45416331-1DBA-5B8C-E883-65BA9D55E4CE">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-24 06:02:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[Group A/B/C/D]]></commentInRDBMS>
+<generatorID>957425CD-1C53-74FA-D06D-51ACC25DB227</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pseudo_name" id="B989A081-687D-A15D-DA35-D86F6AD46290">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-24 06:02:18 UTC</createdTime>
+<generatorID>7A93B78D-9C92-B650-520D-D9D3D51A17DD</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="0DBB941B-9275-2757-AE81-A9C001BF0EE4">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-24 06:02:18 UTC</createdTime>
+<generatorID>26DF5871-D7D8-1530-B4F7-852AE5F1487B</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3703ED97-E05C-4707-4D29-E7B82C0BB013" name="staggered_group_pk">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-24 06:02:18 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="66B8DEA3-4E7F-1B57-CE82-C6A8A42F6B09"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="99229FD9-7948-8CD7-9CEC-0AB24FF31D39" name="staggered_group_UN">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-24 06:02:18 UTC</createdTime>
+<generatorID>DED18A1C-0AD9-94F4-F969-A3AD7FE7286E</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="45416331-1DBA-5B8C-E883-65BA9D55E4CE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E7196D36-AB69-38D4-5B63-C5C895E6374E" name="staggered_group_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-24 06:08:58 UTC</createdTime>
+<generatorID>452F64A9-25C1-E94B-0322-74EF6C1572BB</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B989A081-687D-A15D-DA35-D86F6AD46290"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2D0A02E2-8C7E-A932-6744-21866C62B41F" name="staggered_group_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-24 06:08:17 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="66B8DEA3-4E7F-1B57-CE82-C6A8A42F6B09"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B127E91C-EE41-6085-0FAF-327A3504C2BB" name="staggered_group_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-24 06:08:17 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="45416331-1DBA-5B8C-E883-65BA9D55E4CE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7EE4A0BF-FCAD-A363-5451-A68C0543315E" name="staggered_group_un2_idx">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-24 06:21:54 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B989A081-687D-A15D-DA35-D86F6AD46290"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,54 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_markcard_std_ranking" directorySegmentName="seg_0" id="28153E64-B2C6-1CA1-5D6D-A41FCD82CCAC">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-10 13:35:43 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_markcard_std_ranking (
+    p_school_code IN VARCHAR2,
+    p_batch_no IN DATE,
+    p_class_code IN VARCHAR2,
+    p_term_code IN VARCHAR2,
+    p_student_id IN VARCHAR2,
+    p_std_percentage IN OUT VARCHAR2,
+    p_std_rank IN OUT VARCHAR2
+) AS
+    ---cursor student ranking
+    CURSOR cur_std_ranking (
+        pp_school_code VARCHAR2,
+        pp_batch_no DATE,
+        pp_class_code VARCHAR2,
+        pp_term_code VARCHAR2,
+        pp_student_id VARCHAR2
+    ) IS
+    SELECT
+        percentage,
+        (
+            CASE
+            WHEN overall_status = &apos;PASSED&apos; THEN
+            func_num_ordinal(ranking)
+            ELSE
+            NULL
+            END
+        ) AS ranking
+    FROM
+        mv_std_ranking
+    WHERE
+        school_code = pp_school_code
+        AND batch_no = pp_batch_no
+        AND class_code = pp_class_code
+        AND term_code = pp_term_code
+        AND student_id = pp_student_id;
+BEGIN
+    OPEN cur_std_ranking(
+                        pp_school_code =&gt; p_school_code,
+                        pp_batch_no =&gt; p_batch_no,
+                        pp_class_code =&gt; p_class_code,
+                        pp_term_code =&gt; p_term_code,
+                        pp_student_id =&gt; p_student_id
+         );
+    FETCH cur_std_ranking INTO
+        p_std_percentage,
+        p_std_rank;
+    CLOSE cur_std_ranking;
+END;</source>
+</StoredProcedureOraclev10g>

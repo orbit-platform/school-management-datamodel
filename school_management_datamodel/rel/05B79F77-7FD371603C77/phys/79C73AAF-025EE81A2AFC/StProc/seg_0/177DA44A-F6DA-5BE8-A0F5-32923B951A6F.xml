@@ -1,0 +1,51 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_batch_auto" directorySegmentName="seg_0" id="177DA44A-F6DA-5BE8-A0F5-32923B951A6F">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-04 14:21:32 UTC</createdTime>
+<comment><![CDATA[Auto Increment of the Batch Number]]></comment>
+<notes><![CDATA[Auto Increment of the Batch Number]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_batch_auto IS
+
+    v_batch_no DATE;
+    CURSOR cur IS
+    SELECT
+        add_months(MAX(no#), 12) AS batch_no,
+        &apos;YEAR &apos; || to_char(add_months(MAX(no#), 12), &apos;YYYY&apos;) AS name,
+        to_char(add_months(MAX(no#), 12), &apos;YYYY&apos;) AS pseudo
+    FROM
+        batch;
+
+    CURSOR cur_batch (
+        p_batch_no DATE
+    ) IS
+    SELECT
+        no#
+    FROM
+        batch
+    WHERE
+        no# = p_batch_no;
+
+BEGIN
+    FOR indx IN cur LOOP
+        OPEN cur_batch(p_batch_no =&gt; indx.batch_no);
+        FETCH cur_batch INTO v_batch_no;
+        IF cur_batch%notfound THEN
+            INSERT INTO batch (
+                no#,
+                name,
+                pseudo
+            ) VALUES (
+                indx.batch_no,
+                indx.name,
+                indx.pseudo
+            );
+
+        END IF;
+
+        CLOSE cur_batch;
+    END LOOP;
+
+    COMMIT;
+END;</source>
+</StoredProcedureOraclev10g>

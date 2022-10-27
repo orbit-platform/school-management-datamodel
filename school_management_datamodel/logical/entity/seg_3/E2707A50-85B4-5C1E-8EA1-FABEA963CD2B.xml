@@ -1,0 +1,98 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="E2707A50-85B4-5C1E-8EA1-FABEA963CD2B" name="league">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-17 00:41:34 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>league</preferredAbbreviation>
+<shortName>league</shortName>
+<synonym>league</synonym>
+<synonymToDisplay>league</synonymToDisplay>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="code" id="8DC26AFD-976F-03F6-2A99-41E579B53BF0">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-17 00:41:56 UTC</createdTime>
+<comment><![CDATA[League Code - CANDIDATE/EMPLOYEE]]></comment>
+<commentInRDBMS><![CDATA[League Code - CANDIDATE/EMPLOYEE]]></commentInRDBMS>
+<notes><![CDATA[League Code - CANDIDATE/EMPLOYEE]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>57163073-BB6D-095E-07A3-23F4BB96C17A</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="8D8FEB73-B980-64DC-C39D-6B9729A13798">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-17 00:42:17 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="583853C5-1388-5935-699B-2927067EB682">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-17 00:43:14 UTC</createdTime>
+<comment><![CDATA[performance parameter description]]></comment>
+<commentInRDBMS><![CDATA[performance parameter description]]></commentInRDBMS>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="2F909E9D-02AB-5EE7-CE10-AC1D6164B5BF" name="league_PK">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-17 00:42:13 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>8DC26AFD-976F-03F6-2A99-41E579B53BF0</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="ABBDE7D3-D814-4E15-6486-B834E170DE5E" name="league_UN">
+<createdBy>leads</createdBy>
+<createdTime>2019-10-17 00:42:30 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
+</engineerTo>
+<newElementsIDs>8D8FEB73-B980-64DC-C39D-6B9729A13798</newElementsIDs>
+<usedAttributes>
+<attributeRef>8D8FEB73-B980-64DC-C39D-6B9729A13798</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

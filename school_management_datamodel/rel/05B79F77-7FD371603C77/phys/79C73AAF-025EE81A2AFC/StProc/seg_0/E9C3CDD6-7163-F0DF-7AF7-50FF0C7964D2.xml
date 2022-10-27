@@ -1,0 +1,86 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_automated_fee_acknowledge" directorySegmentName="seg_0" id="E9C3CDD6-7163-F0DF-7AF7-50FF0C7964D2">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-20 11:50:08 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_automated_fee_acknowledge AS
+
+    v_counter NUMBER;
+
+    ---cursor declaration
+    CURSOR cur IS
+    SELECT
+        student_id AS person#,
+        guardian_name AS person_name,
+        sms_code AS sms_code,
+        telephone AS telephone,
+        &apos;FEE RECEIPT ACKNOWLEDGEMENT&apos; AS reason,
+        replace(replace(nvl(message, &apos;Select message template&apos;), &apos;$STUDENT_NAME$&apos;, student_name), &apos;$PAID$&apos;, TRIM(to_char(paid, &apos;99,999&apos;) || &apos;/-&apos;)) AS message
+    FROM
+        ( SELECT
+              std.school_code AS school_code,
+              trunc(fpay.created_on, &apos;dd&apos;) AS messaged_on,
+              std.id AS student_id,
+              std.first_name || &apos; &apos; || std.last_name AS student_name,
+              stem.code AS sms_code,
+              g.first_name || nvl2(g.middle_name, &apos; &apos; || g.middle_name || &apos; &apos;, &apos; &apos;) || g.last_name AS guardian_name,
+              g.primary_tel AS telephone,
+              stem.text_message AS message,
+              SUM(fpay.amount) AS paid
+          FROM
+                   student std
+              INNER JOIN std_guardian g ON ( g.id = std.guardian_id )
+              INNER JOIN fee_payment fpay ON ( fpay.school_code = std.school_code
+                                               AND fpay.student_id = std.id )
+              INNER JOIN company_school cs ON ( cs.school_code = std.school_code )
+              INNER JOIN sms_template stem ON ( stem.company_code = cs.company_code
+                                                AND stem.name = &apos;FEE RECEIPT ACKNOWLEDGEMENT&apos;
+                                                AND stem.resource_type = &apos;GUARDIAN&apos; )
+          WHERE
+                  g.status_name = &apos;ACTIVE&apos;
+              AND cs.status_name = &apos;ACTIVE&apos;
+              AND trunc(fpay.created_on, &apos;dd&apos;) = trunc(sysdate, &apos;dd&apos;)
+          GROUP BY
+              std.school_code,
+              trunc(fpay.created_on, &apos;dd&apos;),
+              std.id,
+              std.first_name || &apos; &apos; || std.last_name,
+              stem.code,
+              g.first_name || nvl2(g.middle_name, &apos; &apos; || g.middle_name || &apos; &apos;, &apos; &apos;) || g.last_name,
+              g.primary_tel,
+              stem.text_message
+          ORDER BY
+              student_name
+        );
+
+BEGIN
+    v_counter := 1;
+    FOR indx IN cur LOOP
+        leadsuser.pristine_pckg.sendsms(indx.telephone, indx.message);
+        INSERT INTO leadsuser.sms_log (
+            person#,
+            person_name,
+            sms_code,
+            telephone,
+            message,
+            reason
+        ) VALUES (
+            indx.person#,
+            indx.person_name,
+            indx.sms_code,
+            indx.telephone,
+            indx.message,
+            indx.reason
+        );
+
+        IF v_counter &gt;= 50 THEN
+            v_counter := 1;
+            COMMIT;
+        ELSE
+            v_counter := v_counter + 1;
+        END IF;
+
+    END LOOP;
+
+END;</source>
+</StoredProcedureOraclev10g>

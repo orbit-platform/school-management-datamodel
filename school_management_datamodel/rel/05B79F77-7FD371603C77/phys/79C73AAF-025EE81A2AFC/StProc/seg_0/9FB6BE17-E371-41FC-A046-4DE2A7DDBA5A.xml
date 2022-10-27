@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_salary_band_auto" directorySegmentName="seg_0" id="9FB6BE17-E371-41FC-A046-4DE2A7DDBA5A">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-03 07:10:51 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_salary_band_auto IS
+
+    v_company_code  salary_band.company_code%TYPE;
+    v_batch_no#     salary_band.batch_no#%TYPE;
+    v_band_code     salary_band.band_code%TYPE;
+    v_minimum       salary_band.minimum%TYPE;
+    v_maximum       salary_band.maximum%TYPE;
+    v_status_name   salary_band.status_name%TYPE;
+    CURSOR cur IS
+    SELECT
+        company_code,
+        add_months(MAX(batch_no#), 12) AS batch_no#,
+        band_code,
+        minimum,
+        maximum,
+        status_name
+    FROM
+        salary_band
+    GROUP BY
+        company_code,
+        band_code,
+        minimum,
+        maximum,
+        status_name;
+
+    CURSOR cur_salary_band (
+        p_company_code  VARCHAR2,
+        p_batch_no      DATE,
+        p_band_code     VARCHAR2
+    ) IS
+    SELECT
+        company_code,
+        batch_no#,
+        band_code,
+        minimum,
+        maximum,
+        status_name
+    FROM
+        salary_band
+    WHERE
+            company_code = p_company_code
+        AND batch_no# = p_batch_no
+        AND band_code = p_band_code;
+
+BEGIN
+    FOR indx IN cur LOOP
+        OPEN cur_salary_band(p_company_code =&gt; indx.company_code, p_batch_no =&gt; indx.batch_no#, p_band_code =&gt; indx.band_code);
+
+        FETCH cur_salary_band INTO
+            v_company_code,
+            v_batch_no#,
+            v_band_code,
+            v_minimum,
+            v_maximum,
+            v_status_name;
+        IF cur_salary_band%notfound THEN
+            INSERT INTO salary_band (
+                company_code,
+                batch_no#,
+                band_code,
+                minimum,
+                maximum,
+                status_name
+            ) VALUES (
+                indx.company_code,
+                indx.batch_no#,
+                indx.band_code,
+                indx.minimum,
+                indx.maximum,
+                indx.status_name
+            );
+
+        END IF;
+
+        CLOSE cur_salary_band;
+    END LOOP;
+END;</source>
+</StoredProcedureOraclev10g>

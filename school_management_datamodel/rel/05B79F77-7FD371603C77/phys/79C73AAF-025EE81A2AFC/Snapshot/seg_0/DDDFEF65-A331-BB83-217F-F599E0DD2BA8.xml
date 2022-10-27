@@ -1,0 +1,30 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="mv_school_principal" directorySegmentName="seg_0" id="DDDFEF65-A331-BB83-217F-F599E0DD2BA8">
+<createdBy>leads</createdBy>
+<createdTime>2021-12-01 13:08:28 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<nextDate>sysdate + 20/1440</nextDate>
+<refresh>YES</refresh>
+<refreshType>FORCE</refreshType>
+<startDate>sysdate</startDate>
+<subquery><![CDATA[SELECT
+    st.school_code,
+    st.batch_no#,
+    st.class_code,
+    st.term_code,
+    emp.id AS principal_id,
+    emp.first_name || nvl2(
+        emp.middle_name, ' ' || emp.middle_name || ' ', ' '
+    ) || emp.last_name AS principal_name
+FROM
+    school_term st
+    INNER JOIN school_principal sp
+    ON ( sp.school_code = st.school_code )
+    INNER JOIN employee emp
+    ON ( emp.id = sp.employee_id )
+WHERE
+    st.effective_upto BETWEEN sp.effective_from AND sp.effective_upto]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with>ROWID</with>
+</SnapshotOraclev11g>

@@ -1,0 +1,106 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_4" id="8EEE2A27-B0F0-7D2F-8D13-735369216A59" name="event">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-09 06:12:48 UTC</createdTime>
+<comment><![CDATA[holiday]]></comment>
+<commentInRDBMS><![CDATA[holiday]]></commentInRDBMS>
+<generatorID>5838A092-1884-3DE3-0EA4-0D00263E297B</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<usedAsRemoteObject>true</usedAsRemoteObject>
+<abbreviation>event</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="code" id="3897CA26-CF0B-9C23-A699-7B5CF38C97E1">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-09 06:12:48 UTC</createdTime>
+<comment><![CDATA[Event Code]]></comment>
+<commentInRDBMS><![CDATA[Event Code]]></commentInRDBMS>
+<generatorID>CE85D134-B146-DDBE-4875-CFE121AED6DF</generatorID>
+<notes><![CDATA[Event Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>A1E51C42-775D-0D27-083A-B47214B923FB</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="AB611CD8-F921-AF69-5C08-7C30B5D5BD33">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-09 06:12:48 UTC</createdTime>
+<comment><![CDATA[Event Name]]></comment>
+<commentInRDBMS><![CDATA[Event Name]]></commentInRDBMS>
+<generatorID>2FF62DAF-021D-87C6-202A-7753C21AD6C6</generatorID>
+<notes><![CDATA[Event Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>AFB565EB-530B-C812-D408-DD01B4006660</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="3DFEAFA9-1E12-3014-7F84-ABEBD6BF2D82">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-09 06:12:48 UTC</createdTime>
+<comment><![CDATA[holiday name description]]></comment>
+<commentInRDBMS><![CDATA[holiday name description]]></commentInRDBMS>
+<generatorID>B55EBC1D-ADC5-2BFD-A6C3-4A4724160852</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CF78C531-628A-BD95-3114-9ABB1F1497F8" name="event_pk">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-09 06:12:48 UTC</createdTime>
+<generatorID>E79C357E-1C1C-9D23-A143-EA0C9A2A721D</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3897CA26-CF0B-9C23-A699-7B5CF38C97E1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6F35CC51-F5D0-A6DC-46F7-2D1911D4169B" name="event_un">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-09 06:12:48 UTC</createdTime>
+<generatorID>D3206439-B4A9-540E-4255-D5A4B674B149</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AB611CD8-F921-AF69-5C08-7C30B5D5BD33"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F1944E59-E2B9-3CAE-F06E-04703AACE1B1" name="event_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-09 06:28:10 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3897CA26-CF0B-9C23-A699-7B5CF38C97E1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0819A5EE-5815-075E-5A3E-28C101321F23" name="event_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2019-08-09 06:28:10 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AB611CD8-F921-AF69-5C08-7C30B5D5BD33"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

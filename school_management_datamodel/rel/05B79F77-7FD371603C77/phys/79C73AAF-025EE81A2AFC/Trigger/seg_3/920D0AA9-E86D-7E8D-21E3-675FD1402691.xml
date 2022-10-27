@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="question_batch_id_trg" directorySegmentName="seg_3" id="920D0AA9-E86D-7E8D-21E3-675FD1402691">
+<createdBy>leads</createdBy>
+<createdTime>2022-09-26 10:40:45 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[BEGIN
+	:new.id : = question_batch_id_seq.nextval;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<condition><![CDATA[new.id IS NULL]]></condition>
+<table>9C94920D-462E-D1A9-4A56-4670F6A631A6</table>
+</TriggerOraclev10g>

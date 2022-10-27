@@ -1,0 +1,101 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="sms_log" directorySegmentName="seg_5" id="CDEC9243-D5D8-D8BB-064E-FB966795AC6E">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-20 06:56:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<defaultdir>E0496976-59B7-6E43-AF03-A672DDDC8C73</defaultdir>
+<defaultDirName>SMS_DIR</defaultDirName>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="telephone" id="1D67820F-840D-9567-18AC-40905C06E49B">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-20 06:56:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultValue>910000000000</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="created_by" id="1DAFB2C9-1B37-1D39-9697-13ABD497F122">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-20 06:56:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="person_name" id="3AAF4DD9-5E53-2FC6-DB3D-BDF14C8EEBE7">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-20 06:56:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="sms_code" id="429DD1D7-D30D-AB9A-85E5-AE9613F80B1D">
+<createdBy>leads</createdBy>
+<createdTime>2021-04-17 05:54:51 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultValue>0000</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="created_on" id="690E395C-F1FD-A305-D8E4-278B50C49302">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-20 06:56:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="updated_by" id="87D5C8D1-47BE-0AB2-53DE-31A2D32C4EA2">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-20 06:56:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="message" id="A76C82A2-81BF-F52A-9E41-20D28B4A6DEC">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-20 06:56:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="changed_on" id="B9E3BFD6-875D-277A-CB5C-50CE97207265">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-20 06:56:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="id" id="C2AD139B-7E6D-9E44-EDE8-DAC4D58D124A">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-20 06:56:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="person#" id="C626044C-3E65-2362-B633-0887FC00D22B">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-20 06:56:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="reason" id="CA80B406-5350-88FD-738B-BEAC95EB3D2B">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-20 06:56:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="sms_log_code_idx" id="6F344BF5-113E-E202-DB9B-1016D0F7E5F6">
+<createdBy>leads</createdBy>
+<createdTime>2021-04-17 05:55:47 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="sms_log_pk_idx" id="94CE2314-A339-CCA0-1C63-F576DBB8F2DD">
+<createdBy>leads</createdBy>
+<createdTime>2021-04-17 05:59:38 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SmsLog_SmsTem_FK" id="4A13665C-5393-62E9-A620-3239EE39D603">
+<createdBy>leads</createdBy>
+<createdTime>2021-04-17 05:54:51 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="sms_log_pk" id="3F93060F-D474-B2FF-C62F-108E192986F9">
+<createdBy>leads</createdBy>
+<createdTime>2020-10-20 06:56:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

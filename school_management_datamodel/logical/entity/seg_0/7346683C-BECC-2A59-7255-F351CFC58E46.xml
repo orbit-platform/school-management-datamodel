@@ -1,0 +1,110 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7346683C-BECC-2A59-7255-F351CFC58E46" name="status">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-14 10:59:21 UTC</createdTime>
+<comment><![CDATA[Status - APPROVED/REJECTED/ACTIVE/INACTIVE/DROPOUT/]]></comment>
+<commentInRDBMS><![CDATA[Status - APPROVED/REJECTED/ACTIVE/INACTIVE/DROPOUT/]]></commentInRDBMS>
+<notes><![CDATA[Status - APPROVED/REJECTED/ACTIVE/INACTIVE/DROPOUT/]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>status</preferredAbbreviation>
+<shortName>status</shortName>
+<synonym>status</synonym>
+<synonymToDisplay>status</synonymToDisplay>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="name" id="8D5DF3E8-8F74-1632-7641-0F9128C78A86">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-14 10:59:44 UTC</createdTime>
+<comment><![CDATA[Status Name]]></comment>
+<commentInRDBMS><![CDATA[Status Name]]></commentInRDBMS>
+<notes><![CDATA[Status Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<constraintName>status_default_cons</constraintName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<defaultValue>ACTIVE</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="pseudo" id="6028E7F5-8DFC-4EF5-969D-9A3EFF5F7498">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-02 09:17:18 UTC</createdTime>
+<comment><![CDATA[Pseudo Status Name]]></comment>
+<commentInRDBMS><![CDATA[Pseudo Status Name]]></commentInRDBMS>
+<notes><![CDATA[Pseudo Status Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>90B036C7-C776-9355-8F80-DD6128DA0B91</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="267505C9-3114-5BF3-C002-D8F26CA59695">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-14 11:00:01 UTC</createdTime>
+<comment><![CDATA[status type - pending/active/inactive/rejected description]]></comment>
+<commentInRDBMS><![CDATA[status type - pending/active/inactive/rejected description]]></commentInRDBMS>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="17ECBB08-19CE-70FE-35D5-3277A688DC19" name="status_UN">
+<createdBy>leads</createdBy>
+<createdTime>2020-11-30 07:14:22 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>6028E7F5-8DFC-4EF5-969D-9A3EFF5F7498</newElementsIDs>
+<usedAttributes>
+<attributeRef>6028E7F5-8DFC-4EF5-969D-9A3EFF5F7498</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="B10F9F61-0E4E-8D84-D319-D56550B1ED6A" name="status_PK">
+<createdBy>leads</createdBy>
+<createdTime>2021-07-16 15:09:24 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>8D5DF3E8-8F74-1632-7641-0F9128C78A86</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

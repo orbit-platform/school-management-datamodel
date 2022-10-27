@@ -1,0 +1,63 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C535D326-B839-D3A7-FE91-386BBD89770C" name="zip">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-09 11:21:54 UTC</createdTime>
+<comment><![CDATA[zip or PIN code]]></comment>
+<commentInRDBMS><![CDATA[zip or PIN code]]></commentInRDBMS>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>zip</preferredAbbreviation>
+<shortName>zip</shortName>
+<synonym>pin</synonym>
+<synonymToDisplay>zip</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="code" id="9BC9C4FE-553C-8A5A-C463-2645AEF1C3D3">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-09 11:22:17 UTC</createdTime>
+<comment><![CDATA[zip code]]></comment>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>793001</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="51C156CA-2BC1-4797-AEF0-C9A6D5B7369F" name="zip_PK">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-09 11:25:31 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<usedAttributes>
+<attributeRef>9BC9C4FE-553C-8A5A-C463-2645AEF1C3D3</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

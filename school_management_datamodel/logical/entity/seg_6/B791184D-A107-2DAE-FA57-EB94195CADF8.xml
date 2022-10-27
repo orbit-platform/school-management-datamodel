@@ -1,0 +1,96 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_6" id="B791184D-A107-2DAE-FA57-EB94195CADF8" name="monetary">
+<createdBy>leads</createdBy>
+<createdTime>2021-05-28 14:12:10 UTC</createdTime>
+<comment><![CDATA[monetary type: YES/NO]]></comment>
+<commentInRDBMS><![CDATA[monetary type: YES/NO]]></commentInRDBMS>
+<notes><![CDATA[monetary type: YES/NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>monetary</preferredAbbreviation>
+<shortName>monetary</shortName>
+<synonym>monetary</synonym>
+<synonymToDisplay>monetary</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="type" id="20FC774F-14CB-E47C-8B93-0FF011B80D2E">
+<createdBy>leads</createdBy>
+<createdTime>2021-05-28 14:12:27 UTC</createdTime>
+<comment><![CDATA[Type: REVENUE/NON-REVENUE]]></comment>
+<commentInRDBMS><![CDATA[Type: REVENUE/NON-REVENUE]]></commentInRDBMS>
+<notes><![CDATA[Type: REVENUE/NON-REVENUE]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="5850A8AD-03D8-E46A-F5DA-04C6A2B847EF">
+<createdBy>leads</createdBy>
+<createdTime>2021-05-28 14:12:53 UTC</createdTime>
+<comment><![CDATA[Monetary Pseudo Name]]></comment>
+<commentInRDBMS><![CDATA[Monetary Pseudo Name]]></commentInRDBMS>
+<notes><![CDATA[Monetary Pseudo Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="FA781D6F-9914-5B64-C521-8DB973739AE9">
+<createdBy>leads</createdBy>
+<createdTime>2021-05-28 14:13:06 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="63C8A58D-3225-2F39-5224-B616BC3BA8D4" name="monetary_UN">
+<createdBy>leads</createdBy>
+<createdTime>2021-05-28 14:13:20 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>20FC774F-14CB-E47C-8B93-0FF011B80D2E</newElementsIDs>
+<usedAttributes>
+<attributeRef>20FC774F-14CB-E47C-8B93-0FF011B80D2E</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="EDB4E838-8CD1-C602-7369-4E0A20859D52" name="monetary_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2021-05-28 14:13:33 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>5850A8AD-03D8-E46A-F5DA-04C6A2B847EF</newElementsIDs>
+<usedAttributes>
+<attributeRef>5850A8AD-03D8-E46A-F5DA-04C6A2B847EF</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

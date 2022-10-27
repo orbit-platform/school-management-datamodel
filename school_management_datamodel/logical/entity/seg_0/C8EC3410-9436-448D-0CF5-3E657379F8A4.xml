@@ -1,0 +1,129 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C8EC3410-9436-448D-0CF5-3E657379F8A4" name="shift">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-17 04:07:04 UTC</createdTime>
+<comment><![CDATA[shift timing for work]]></comment>
+<commentInRDBMS><![CDATA[shift timing]]></commentInRDBMS>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>shift</preferredAbbreviation>
+<shortName>shift</shortName>
+<synonym>shift</synonym>
+<synonymToDisplay>shift</synonymToDisplay>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="code" id="B4CB76E0-A1E1-3E83-599B-6B151874ED81">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-17 04:07:14 UTC</createdTime>
+<comment><![CDATA[the shift code]]></comment>
+<commentInRDBMS><![CDATA[the shift code]]></commentInRDBMS>
+<notes><![CDATA[the shift code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<defaultValue>A</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+<Attribute name="name" id="B8D47EC6-1D78-0F2C-9E2A-0916505C8F4E">
+<createdBy>leads</createdBy>
+<createdTime>2019-07-09 12:35:15 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FCF40FD2-658F-71B5-EA0B-1055E4223B0E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="E78C2A72-DA82-D7B7-9269-371011713B2B">
+<createdBy>leads</createdBy>
+<createdTime>2020-06-02 07:13:07 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>FCF40FD2-658F-71B5-EA0B-1055E4223B0E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="4018E892-88B6-5D75-F189-90F6FE1776BF">
+<createdBy>leads</createdBy>
+<createdTime>2018-05-17 04:08:52 UTC</createdTime>
+<comment><![CDATA[the shift code description]]></comment>
+<commentInRDBMS><![CDATA[the shift code description]]></commentInRDBMS>
+<notes><![CDATA[the shift code description]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="4F12508E-3F18-517F-63F0-A1B81BEB38C5" name="shift_PK">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-06 12:19:41 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>B4CB76E0-A1E1-3E83-599B-6B151874ED81</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="D41F7662-8FC7-F517-1789-669C81C85A20" name="shift_UN">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-06 12:23:23 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>B8D47EC6-1D78-0F2C-9E2A-0916505C8F4E</newElementsIDs>
+<usedAttributes>
+<attributeRef>B8D47EC6-1D78-0F2C-9E2A-0916505C8F4E</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="50E3544D-894A-125B-23A0-BB0A41A899B7" name="shift_UN2">
+<createdBy>leads</createdBy>
+<createdTime>2021-06-15 02:49:57 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>E78C2A72-DA82-D7B7-9269-371011713B2B</newElementsIDs>
+<usedAttributes>
+<attributeRef>E78C2A72-DA82-D7B7-9269-371011713B2B</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
