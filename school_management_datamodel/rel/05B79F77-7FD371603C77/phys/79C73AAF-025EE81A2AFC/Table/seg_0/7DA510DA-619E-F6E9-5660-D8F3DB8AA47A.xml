@@ -9,6 +9,11 @@
 <accessDriverType>oracle_loader</accessDriverType>
 <rejectLimit></rejectLimit>
 <columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="report_type" id="29F0EC7D-C4AA-EED5-C30E-43A56129AB55">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-01 04:38:34 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="id" id="63C3D27B-B54A-66C9-CB90-64FABCE95DA6">
 <createdBy>leads</createdBy>
 <createdTime>2021-11-20 01:28:07 UTC</createdTime>
@@ -99,6 +104,11 @@
 <createdTime>2021-11-20 01:31:48 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="school_rep_temp_rptyp_idx" id="416E07E7-D762-DD82-75A5-221B7A06DCCA">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-01 04:40:18 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="school_rep_temp_stat_idx" id="51193C9E-DC7C-0112-CAB4-9A35B5BF8B36">
 <createdBy>leads</createdBy>
 <createdTime>2021-11-20 01:31:59 UTC</createdTime>
@@ -141,42 +151,47 @@
 </IndexProxy>
 </indexProxies>
 <foreignKeys>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchRepTmp_Serial_FK" id="07FB43D0-CDD8-4466-7BD2-E2D11BAFA04A">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schrptmp_serial_fk" id="07FB43D0-CDD8-4466-7BD2-E2D11BAFA04A">
 <createdBy>leads</createdBy>
 <createdTime>2021-11-27 10:05:27 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchRepTmp_ReportParameter_FK" id="209596FB-4CFC-90A6-981A-375D1B7367EB">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schrptmp_reportparameter_fk" id="209596FB-4CFC-90A6-981A-375D1B7367EB">
 <createdBy>leads</createdBy>
 <createdTime>2021-11-20 01:28:07 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchRepTmp_StatusYN_FK" id="2D412844-447F-5BD2-AFDE-C63EC705C209">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schrptmp_statusyn_fk" id="2D412844-447F-5BD2-AFDE-C63EC705C209">
 <createdBy>leads</createdBy>
 <createdTime>2021-11-20 01:28:07 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchRepTmp_School_FK" id="409365FE-C99E-AC90-41AB-C363671A4D2B">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schrptmp_school_fk" id="409365FE-C99E-AC90-41AB-C363671A4D2B">
 <createdBy>leads</createdBy>
 <createdTime>2021-11-20 01:28:07 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchRepTmp_Stream_FK" id="476AE9A1-4AFD-F664-7935-46E3B5EAC699">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schrptmp_stream_fk" id="476AE9A1-4AFD-F664-7935-46E3B5EAC699">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-17 07:00:23 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchRepTmp_Batch_FK" id="7B2B65CD-8C41-0874-128A-34C32C77B7FA">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schrptmp_batch_fk" id="7B2B65CD-8C41-0874-128A-34C32C77B7FA">
 <createdBy>leads</createdBy>
 <createdTime>2021-11-20 01:28:07 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchRepTmp_Class_FK" id="CA1C77E0-E0EB-627A-C69A-FC0DD21CF42E">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schrptmp_class_fk" id="CA1C77E0-E0EB-627A-C69A-FC0DD21CF42E">
 <createdBy>leads</createdBy>
 <createdTime>2021-11-20 01:28:07 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchRepTmp_Term_FK" id="CFAB8698-55B8-26D7-2F26-5717338B9822">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schrptmp_reporttab_fk" id="CC56F381-6143-232E-C26E-6EDB34082CB4">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-01 04:38:34 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schrptmp_term_fk" id="CFAB8698-55B8-26D7-2F26-5717338B9822">
 <createdBy>leads</createdBy>
 <createdTime>2021-11-20 01:28:07 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -191,7 +206,7 @@
 </PrimaryKey>
 </primaryKeys>
 <uniqueKeys>
-<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="school_rep_temp_UN" id="14B222D8-A79F-A3AE-100E-62AC0A58D00A">
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="school_rep_temp_un" id="14B222D8-A79F-A3AE-100E-62AC0A58D00A">
 <createdBy>leads</createdBy>
 <createdTime>2021-11-20 01:28:07 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
