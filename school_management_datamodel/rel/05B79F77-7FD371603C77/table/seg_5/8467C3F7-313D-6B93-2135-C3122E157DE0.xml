@@ -12,7 +12,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="ID" id="6C0726C3-1AA9-9BAF-3AB8-A992D9A22A98">
+<Column name="id" id="6C0726C3-1AA9-9BAF-3AB8-A992D9A22A98">
 <createdBy>leads</createdBy>
 <createdTime>2022-09-17 09:03:25 UTC</createdTime>
 <comment><![CDATA[Lesson Topic ID]]></comment>
@@ -132,7 +132,7 @@
 <colAssociation fkAssociation="8E90205D-E29D-0FA2-E503-DB6FCB6B5A5B" referredColumn="209C8A13-EFB1-474C-4A59-0355C7C93DF5"/>
 </associations>
 </Column>
-<Column name="lesson_ID" id="0517E251-8CE1-942B-D065-C298555D5DE6">
+<Column name="lesson_id" id="0517E251-8CE1-942B-D065-C298555D5DE6">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-01 06:08:24 UTC</createdTime>
 <comment><![CDATA[Lesson ID]]></comment>
@@ -150,7 +150,7 @@
 <colAssociation fkAssociation="1684FAC8-0675-6AED-19EF-91C5FF87CC37" referredColumn="0F4A9A11-DC08-16C6-87E8-57E713CB890F"/>
 </associations>
 </Column>
-<Column name="lesson_obj_ID" id="E460469C-EF7A-E52B-910D-089755352ED9">
+<Column name="lesson_obj_id" id="E460469C-EF7A-E52B-910D-089755352ED9">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-01 06:08:24 UTC</createdTime>
 <comment><![CDATA[Lesson Objective Code]]></comment>
@@ -318,7 +318,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="27960C90-5149-47FC-B5A2-3CBE7293E971" name="lesson_topic_PK">
+<ind_PK_UK id="27960C90-5149-47FC-B5A2-3CBE7293E971" name="lesson_topic_pk">
 <createdBy>leads</createdBy>
 <createdTime>2022-09-17 09:03:25 UTC</createdTime>
 <generatorID>525FF8B7-2248-939E-1845-89D2212AA70C</generatorID>
@@ -330,7 +330,7 @@
 <colUsage columnID="6C0726C3-1AA9-9BAF-3AB8-A992D9A22A98"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="C090218C-7655-395C-0FB1-34D630546646" name="lesson_topic_UN">
+<ind_PK_UK id="C090218C-7655-395C-0FB1-34D630546646" name="lesson_topic_un">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-01 06:08:24 UTC</createdTime>
 <generatorID>0188FF45-B5B9-2A12-B493-09F67762B7EF</generatorID>
@@ -465,7 +465,7 @@
 <colUsage columnID="C0C751FA-0EFE-9AF6-E05E-53769D494C6A"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="25CB4816-39B4-0F43-FF85-20C396D68668" name="LssnTpc_Batch_FK">
+<ind_PK_UK id="25CB4816-39B4-0F43-FF85-20C396D68668" name="lssntpc_batch_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-01 06:08:24 UTC</createdTime>
 <generatorID>7B15EF5D-D78A-CEB1-EBB0-8F23ABA524D7</generatorID>
@@ -476,7 +476,7 @@
 <colUsage columnID="6414ADCB-1CFF-A0FF-87B7-D559AD8145AD"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="CD327C4A-6F2B-167A-43AE-1D3BC3894603" name="LssnTpc_Class_FK">
+<ind_PK_UK id="CD327C4A-6F2B-167A-43AE-1D3BC3894603" name="lssntpc_class_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-01 06:08:24 UTC</createdTime>
 <generatorID>B70785D5-8989-74BE-6E61-8F7F0DA09B99</generatorID>
@@ -487,7 +487,7 @@
 <colUsage columnID="B88A3B43-7C0E-B20C-66E5-DE67AE560B85"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="0FB12DAF-635A-FB18-7AF8-5F641959EE33" name="LssnTpc_Lesson_FK">
+<ind_PK_UK id="0FB12DAF-635A-FB18-7AF8-5F641959EE33" name="lssntpc_lesson_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-01 06:08:24 UTC</createdTime>
 <generatorID>7C2A5FD7-E82D-C31F-0D94-BBB27EB57F18</generatorID>
@@ -498,7 +498,7 @@
 <colUsage columnID="0517E251-8CE1-942B-D065-C298555D5DE6"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="E9A22C55-59E8-CBBF-BA1B-BB7D170FBC14" name="LssnTpc_LessonObjective_FK">
+<ind_PK_UK id="E9A22C55-59E8-CBBF-BA1B-BB7D170FBC14" name="lssntpc_lessonobjective_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-01 06:08:24 UTC</createdTime>
 <generatorID>E10A871D-490B-7FB1-0105-DC40779FD43C</generatorID>
@@ -509,7 +509,7 @@
 <colUsage columnID="E460469C-EF7A-E52B-910D-089755352ED9"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="6157F868-BEFD-10F2-5501-4AF5A53D1458" name="LssnTpc_School_FK">
+<ind_PK_UK id="6157F868-BEFD-10F2-5501-4AF5A53D1458" name="lssntpc_school_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-01 06:08:24 UTC</createdTime>
 <generatorID>6FE457C0-112E-8AB2-E847-0C5242D25379</generatorID>
@@ -520,7 +520,7 @@
 <colUsage columnID="03DE4401-7AC1-F1BD-441C-C4C00D2520C5"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="CA7AE082-CDC7-17F9-2594-6DFDF0963733" name="LssnTpc_Status_FK">
+<ind_PK_UK id="CA7AE082-CDC7-17F9-2594-6DFDF0963733" name="lssntpc_status_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-01 06:08:24 UTC</createdTime>
 <generatorID>CBF4F910-7675-3BE2-0664-C4D68AB58C53</generatorID>
@@ -531,7 +531,7 @@
 <colUsage columnID="824D7D26-1E60-6432-CED8-C0DC3F097123"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="3BEBC0D4-7B36-95E2-7E9E-52BCEA6D937A" name="LssnTpc_Subject_FK">
+<ind_PK_UK id="3BEBC0D4-7B36-95E2-7E9E-52BCEA6D937A" name="lssntpc_subject_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-01 06:08:24 UTC</createdTime>
 <generatorID>E3120FEF-F373-DC72-A771-9731BCF784E4</generatorID>
@@ -542,7 +542,7 @@
 <colUsage columnID="13938195-A508-5C15-AD92-91480B6C185F"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="96367172-A8C8-D34B-F145-6D8EF327275D" name="LssnTpc_Board_FK">
+<ind_PK_UK id="96367172-A8C8-D34B-F145-6D8EF327275D" name="lssntpc_board_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-05 05:48:21 UTC</createdTime>
 <generatorID>B5A21DF1-0E8D-B357-3956-48648C501249</generatorID>
@@ -553,7 +553,7 @@
 <colUsage columnID="D0C024AC-6BCF-C2C0-AE49-D51ADF48E387"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="69FA2422-5CFC-0EA8-0F1B-9B6BA9E0C53A" name="LssnTpc_Stream_FK">
+<ind_PK_UK id="69FA2422-5CFC-0EA8-0F1B-9B6BA9E0C53A" name="lssntpc_stream_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-18 11:19:27 UTC</createdTime>
 <generatorID>5A15B810-B12F-A811-AEF6-2371176F4986</generatorID>
@@ -564,7 +564,7 @@
 <colUsage columnID="8A497875-35CC-CAA2-3055-A7CE2DD5199F"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="3B9ED145-4C3A-8DFA-BD76-8669815B0E9F" name="LssnTp_Ordinal_FK">
+<ind_PK_UK id="3B9ED145-4C3A-8DFA-BD76-8669815B0E9F" name="lssntp_ordinal_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-09-17 10:19:41 UTC</createdTime>
 <generatorID>5DF094BB-C371-F3FC-0A97-0447475F0B13</generatorID>

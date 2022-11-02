@@ -1,0 +1,161 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="arc_std_score_rec_trg" directorySegmentName="seg_8" id="FD0D07C7-F9F9-D149-5BB4-0D2B267C9087">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-02 09:58:55 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[BEGIN
+    IF inserting THEN
+        INSERT INTO arc_std_score_rec (
+            rel_id,
+            school_code,
+            batch_no#,
+            class_code,
+            stream_code,
+            section_code,
+            term_code,
+            student_id,
+            subject_code,
+            super_code,
+            domain_code,
+            academic_code,
+            category_code,
+            part_name,
+            ranking_type,
+            score_type,
+            optional_type,
+            max_main,
+            max_internal,
+            score_main,
+            score_internal,
+            dml_flag
+        ) VALUES (
+            :new.id,
+            :new.school_code,
+            :new.batch_no#,
+            :new.class_code,
+            :new.stream_code,
+            :new.section_code,
+            :new.term_code,
+            :new.student_id,
+            :new.subject_code,
+            :new.super_code,
+            :new.domain_code,
+            :new.academic_code,
+            :new.category_code,
+            :new.part_name,
+            :new.ranking_type,
+            :new.score_type,
+            :new.optional_type,
+            :new.max_main,
+            :new.max_internal,
+            :new.score_main,
+            :new.score_internal,
+            'INSERT'
+        );
+    END IF;
+    
+    IF updating THEN
+        INSERT INTO arc_std_score_rec (
+            rel_id,
+            school_code,
+            batch_no#,
+            class_code,
+            stream_code,
+            section_code,
+            term_code,
+            student_id,
+            subject_code,
+            super_code,
+            domain_code,
+            academic_code,
+            category_code,
+            part_name,
+            ranking_type,
+            score_type,
+            optional_type,
+            max_main,
+            max_internal,
+            score_main,
+            score_internal,
+            dml_flag
+        ) VALUES (
+            :old.id,
+            :new.school_code,
+            :new.batch_no#,
+            :new.class_code,
+            :new.stream_code,
+            :new.section_code,
+            :new.term_code,
+            :new.student_id,
+            :new.subject_code,
+            :new.super_code,
+            :new.domain_code,
+            :new.academic_code,
+            :new.category_code,
+            :new.part_name,
+            :new.ranking_type,
+            :new.score_type,
+            :new.optional_type,
+            :new.max_main,
+            :new.max_internal,
+            :new.score_main,
+            :new.score_internal,
+            'UPDATE'
+        );
+    END IF;
+    
+    IF deleting THEN
+        INSERT INTO arc_std_score_rec (
+            rel_id,
+            school_code,
+            batch_no#,
+            class_code,
+            stream_code,
+            section_code,
+            term_code,
+            student_id,
+            subject_code,
+            super_code,
+            domain_code,
+            academic_code,
+            category_code,
+            part_name,
+            ranking_type,
+            score_type,
+            optional_type,
+            max_main,
+            max_internal,
+            score_main,
+            score_internal,
+            dml_flag
+        ) VALUES (
+            :old.id,
+            :old.school_code,
+            :old.batch_no#,
+            :old.class_code,
+            :old.stream_code,
+            :old.section_code,
+            :old.term_code,
+            :old.student_id,
+            :old.subject_code,
+            :old.super_code,
+            :old.domain_code,
+            :old.academic_code,
+            :old.category_code,
+            :old.part_name,
+            :old.ranking_type,
+            :old.score_type,
+            :old.optional_type,
+            :old.max_main,
+            :old.max_internal,
+            :old.score_main,
+            :old.score_internal,
+            'DELETE'
+        );
+    END IF;
+END;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<columns>D4FABBA0-DD60-DAC4-8127-2981FCC0C57D, FAE87688-078A-62F2-3D69-4CC62A0E43F7, D6760FF8-C110-DCF6-B50B-96CAA594E1F1, 24E11E27-05D9-616C-7D28-A949E2786CAC, E72B5FBA-2605-3687-8B4D-504C69300A28, 7F9820AA-7696-5A8A-99CE-E0A2EC684FFE, D5CAA60B-0008-B4D3-3BA5-ABA897F4C7EA, C7010410-8F15-9D28-806D-E014F49A522D, D2E9AD2E-1600-C1AD-7789-9DD18782E0B3, E228E779-958B-2FDF-00CC-E9BDCEFA3046, 0D8C4F78-7053-0A51-DD45-E5A81F3832A1, 7AE602F1-BC58-5948-28FD-DF10C15CB3F2, 14A13572-4BA8-64EF-3577-B726CCA785F9, 96354E85-C40F-A585-69C7-C134BD13CB99, EF0B41DD-4A48-3276-6465-DD1B85AA4232, 7B5DE980-81EC-476D-2558-CD42E72A82CB, 1DBEE08F-AFB3-227E-7CCB-7EEDCDAD0800, E4AFF2A7-3512-3FF2-3834-05139A02C97E, 6A5FE547-1BCB-A8DB-63A3-2CDEAC24D1FC, BE6057D9-3279-6FC2-1C22-B94B4A3B5BB8</columns>
+<table>15C86F17-A86B-4DC0-9A28-8014E7FA55EF</table>
+</TriggerOraclev10g>
