@@ -1,0 +1,237 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="v_marksheet" directorySegmentName="seg_0" id="53442E7A-2F4E-15E9-632E-17775364AF27">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-06 11:51:21 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<refreshType>FORCE</refreshType>
+<subquery><![CDATA[SELECT
+        wd.school_code,
+        wd.batch_no#,
+        wd.class_code,
+        wd.stream_code,
+        wd.section_code,
+        wd.term_code,
+        wd.student_id,
+        wd.part_name,
+        wd.academic_code,
+        wd.score_type,
+        wd.optional_type,
+        wd.category_code,
+        wd.ranking_type,
+        wd.super_code,
+        wd.subject_code,
+        scat.pseudo_name AS domain,
+        nvl2(ssup.pseudo_name,
+             nvl2(csub.pseudo_name, csub.pseudo_name, 'Aggregate (' || ssup.pseudo_name || ')'),
+             'Grand Aggregate') AS subject,
+        wd.max_main AS main_max_mark,
+        nvl(to_char(wd.max_internal),
+            '-NA-') AS inter_max_mark,
+        ( wd.max_main + nvl(wd.max_internal, 0) ) AS total_max_mark,
+        wd.min_main AS main_pass_mark,
+        nvl(to_char(wd.min_internal),
+            '-NA-') AS inter_pass_mark,
+        ( wd.min_main + nvl(wd.min_internal, 0) ) AS total_pass_mark,
+        func_std_grade(p_school_code => wd.school_code, p_class_code => wd.class_code, p_stream_code => wd.stream_code, p_score_type => wd.score_type, p_mark_obtained => wd.score_main,
+                      p_max_mark => wd.max_main) AS main_mark_obtained,
+        func_std_grade(p_school_code => wd.school_code, p_class_code => wd.class_code, p_stream_code => wd.stream_code, p_score_type => wd.score_type, p_mark_obtained => wd.score_internal,
+                      p_max_mark => wd.max_internal) AS inter_mark_obtained,
+        func_std_grade(p_school_code => wd.school_code, p_class_code => wd.class_code, p_stream_code => wd.stream_code, p_score_type => wd.score_type, p_mark_obtained =>(nvl(wd.score_main, 0) + nvl(wd.score_internal, 0)), p_max_mark =>(wd.max_main + nvl(wd.max_internal, 0))) AS total_mark_obtained,
+        (
+            CASE
+                WHEN wd.ranking_type = 'YES'
+                     AND grp_part_name = 0
+                     AND grp_academic_code = 0
+                     AND grp_score_type = 0
+                     AND grp_optional_type = 0
+                     AND grp_category_code = 1
+                     AND grp_ranking_type = 0
+                     AND grp_super_code = 1
+                     AND grp_subject_code = 1 THEN
+                    func_std_division(p_school_code => wd.school_code, p_batch_no => wd.batch_no#, p_term_code => wd.term_code, p_class_code => wd.class_code, p_stream_code => wd.stream_code,
+                                     p_student_id => wd.student_id, p_mark_obtained =>(nvl(score_main, 0) + nvl(score_internal, 0)), p_max_mark =>(nvl(max_main, 0) + nvl(max_internal, 0)))
+                WHEN wd.ranking_type = 'YES' THEN
+                    (
+                        CASE
+                            WHEN wd.min_main > nvl(wd.score_main, 0) THEN
+                                'FAILED'
+                            WHEN ( wd.min_main + wd.min_internal ) > ( nvl(wd.score_main, 0) + nvl(wd.score_internal, 0) )
+                                 AND wd.ranking_type = 'YES' THEN
+                                'FAILED'
+                            ELSE
+                                'PASSED'
+                        END
+                    )
+            END
+        ) AS status,
+        (
+            CASE
+                WHEN wd.ranking_type = 'YES' THEN
+                    nvl(to_char(round((nvl(wd.score_main, 0) + nvl(wd.score_internal, 0)) /(nvl(wd.max_main, 0) + nvl(wd.max_internal, 0)) * 100,
+                                      2),
+                                'fm999d00'),
+                        '-')
+            END
+        ) AS percentage
+    FROM
+             ( SELECT
+                school_code,
+                batch_no#,
+                class_code,
+                stream_code,
+                section_code,
+                term_code,
+                student_id,
+                part_name,
+                academic_code,
+                score_type,
+                optional_type,
+                category_code,
+                ranking_type,
+                super_code,
+                subject_code,
+                round(SUM(max_main),
+                      2) AS max_main,
+                round(SUM(max_internal),
+                      2) AS max_internal,
+                round(SUM(min_main),
+                      2) AS min_main,
+                round(SUM(min_internal),
+                      2) AS min_internal,
+                round(SUM(score_main),
+                      2) AS score_main,
+                round(SUM(score_internal),
+                      2) AS score_internal,
+                GROUPING(part_name) AS grp_part_name,
+                GROUPING(academic_code) AS grp_academic_code,
+                GROUPING(score_type) AS grp_score_type,
+                GROUPING(optional_type) AS grp_optional_type,
+                GROUPING(category_code) AS grp_category_code,
+                GROUPING(ranking_type) AS grp_ranking_type,
+                GROUPING(super_code) AS grp_super_code,
+                GROUPING(subject_code) AS grp_subject_code
+            FROM
+                arc_std_score wd
+          GROUP BY
+              school_code,
+              batch_no#,
+              class_code,
+              stream_code,
+              section_code,
+              term_code,
+              student_id,
+              score_type,
+              ranking_type,
+              ROLLUP(part_name,
+                     academic_code,
+                     optional_type,
+                     category_code,
+                     super_code,
+                     subject_code)
+        ) wd
+        INNER JOIN mv_std_overall_passed sop
+        ON ( sop.school_code = wd.school_code
+             AND sop.batch_no = wd.batch_no#
+             AND sop.class_code = wd.class_code
+             AND sop.stream_code = wd.stream_code
+             AND sop.term_code = wd.term_code
+             AND sop.student_id = wd.student_id )
+        LEFT OUTER JOIN subject_category scat
+        ON ( scat.code = wd.category_code )
+        LEFT OUTER JOIN school_super ssup
+        ON ( ssup.school_code = wd.school_code
+             AND ssup.batch_no# = wd.batch_no#
+             AND ssup.class_code = wd.class_code
+             AND ssup.stream_code = wd.stream_code
+             AND ssup.super_code = wd.super_code )
+        LEFT OUTER JOIN class_subject csub
+        ON ( csub.school_code = wd.school_code
+             AND csub.batch_no# = wd.batch_no#
+             AND csub.class_code = wd.class_code
+             AND csub.stream_code = wd.stream_code
+             AND csub.term_code = wd.term_code
+             AND csub.subject_code = wd.subject_code )
+    WHERE
+        (
+            CASE
+                WHEN grp_part_name = 0
+                     AND grp_academic_code = 0
+                     AND grp_score_type = 0
+                     AND grp_optional_type = 0
+                     AND grp_category_code = 0
+                     AND grp_ranking_type = 0
+                     AND grp_super_code = 0
+                     AND grp_subject_code = 0 THEN
+                    1
+                WHEN func_subject_cnt(p_school_code => wd.school_code, p_batch_no => wd.batch_no#, p_class_code => wd.class_code, p_stream_code => wd.stream_code, p_term_code => wd.term_code,
+                                         p_super_code => wd.super_code) > 1
+                     AND grp_part_name = 0
+                     AND grp_academic_code = 0
+                     AND grp_score_type = 0
+                     AND grp_optional_type = 0
+                     AND grp_category_code = 0
+                     AND grp_ranking_type = 0
+                     AND grp_super_code = 0
+                     AND grp_subject_code = 1 THEN
+                    1
+                WHEN wd.ranking_type = 'YES'
+                     AND grp_part_name = 0
+                     AND grp_academic_code = 0
+                     AND grp_score_type = 0
+                     AND grp_optional_type = 0
+                     AND grp_category_code = 1
+                     AND grp_ranking_type = 0
+                     AND grp_super_code = 1
+                     AND grp_subject_code = 1 THEN
+                    1
+            END
+        ) = 1
+    ORDER BY
+        school_code,
+        batch_no#,
+        class_code,
+        section_code,
+        term_code,
+        student_id,
+        (
+            CASE
+                WHEN ranking_type = 'YES' THEN
+                    1
+                ELSE
+                    2
+            END
+        ),
+        part_name,
+        ( SELECT
+                a.serial_no
+            FROM
+                subject_category a
+          WHERE
+              a.code = wd.category_code
+        ) ASC NULLS LAST,
+        ( SELECT
+                a.serial_no
+            FROM
+                school_super a
+          WHERE
+                  a.school_code = wd.school_code
+              AND a.batch_no# = wd.batch_no#
+              AND a.class_code = wd.class_code
+              AND a.stream_code = wd.stream_code
+              AND a.super_code = wd.super_code
+        ) ASC NULLS LAST,
+        ( SELECT
+                serial_no
+            FROM
+                school_subject
+          WHERE
+                  school_code = wd.school_code
+              AND batch_no# = wd.batch_no#
+              AND class_code = wd.class_code
+              AND stream_code = wd.stream_code
+              AND subject_code = wd.subject_code
+        ) ASC NULLS LAST]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with></with>
+</SnapshotOraclev11g>

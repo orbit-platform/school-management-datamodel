@@ -1,0 +1,12 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FunctionOracle class="oracle.dbtools.crest.model.design.storage.oracle.FunctionOracle" name="func_num_in_words" directorySegmentName="seg_0" id="B051C96D-8015-EFDC-AAB8-C89105422BE7">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-10 06:46:44 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE FUNCTION func_num_in_words (
+    p_num IN NUMBER
+) RETURN VARCHAR2 AS
+BEGIN
+    RETURN to_char(TO_DATE(nvl(p_num, 0), &apos;j&apos;), &apos;JSP&apos;);
+END;</source>
+</FunctionOracle>

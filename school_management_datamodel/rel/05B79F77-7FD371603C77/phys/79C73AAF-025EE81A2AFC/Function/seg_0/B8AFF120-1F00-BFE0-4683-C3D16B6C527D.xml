@@ -7,12 +7,6 @@
     p_num IN NUMBER
 ) RETURN VARCHAR2 AS
 BEGIN
-    RETURN to_char(
-                  to_date(
-                         p_num,
-                         &apos;j&apos;
-                  ),
-                  &apos;JSPTH&apos;
-           )||&apos; POSITION&apos;;
+    RETURN to_char(TO_DATE(nvl(p_num, 0), &apos;j&apos;), &apos;JSPTH&apos;) || &apos; POSITION&apos;;
 END;</source>
 </FunctionOracle>

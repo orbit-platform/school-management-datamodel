@@ -1,0 +1,163 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FunctionOracle class="oracle.dbtools.crest.model.design.storage.oracle.FunctionOracle" name="func_std_assessment_app" directorySegmentName="seg_0" id="234A8E8A-9A18-B088-1FF1-4706CFD66644">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-08 11:26:37 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE FUNCTION func_std_assessment_app (
+    pschool_code     VARCHAR2,
+    pbatch_no        VARCHAR2,
+    pclass_code      VARCHAR2,
+    pstream_code     VARCHAR2,
+    pterm_code       VARCHAR2,
+    pstudent_id      VARCHAR2,
+    psubject_code    VARCHAR2,
+    pevaluation_code VARCHAR2,
+    pemployee_id     VARCHAR2,
+    pordinal_no      NUMBER
+) RETURN VARCHAR2 AS
+    
+    ---variable
+    v_applicable VARCHAR2(10);
+    v_count      NUMBER;
+
+    ---cursor std_subject
+    CURSOR cur_std_subject (
+        p_school_code  VARCHAR2,
+        p_batch_no     DATE,
+        p_class_code   VARCHAR2,
+        p_stream_code  VARCHAR2,
+        p_term_code    VARCHAR2,
+        p_student_id   VARCHAR2,
+        p_subject_code VARCHAR2
+    ) IS
+    SELECT
+        scs.school_code,
+        scs.student_id,
+        scs.batch_no#,
+        scs.class_code,
+        csub.stream_code,
+        scs.section_code,
+        csub.term_code,
+        ssub.subject_code
+    FROM
+             std_class_sec scs
+        INNER JOIN std_subject ssub
+        ON ( ssub.student_id = scs.student_id
+             AND ssub.batch_no# = scs.batch_no#
+             AND ssub.class_code = scs.class_code
+             AND ssub.stream_code = scs.stream_code )
+        INNER JOIN class_subject csub
+        ON ( csub.school_code = scs.school_code
+             AND csub.batch_no# = scs.batch_no#
+             AND csub.class_code = scs.class_code
+             AND csub.term_code = ssub.term_code
+             AND csub.subject_code = ssub.subject_code )
+    WHERE
+            scs.status_name = &apos;ACTIVE&apos;
+        AND ssub.status_name = &apos;ACTIVE&apos;
+        AND scs.school_code = p_school_code
+        AND scs.batch_no# = p_batch_no
+        AND scs.class_code = p_class_code
+        AND scs.stream_code = p_stream_code
+        AND csub.term_code = p_term_code
+        AND scs.student_id = p_student_id
+        AND ssub.subject_code = p_subject_code
+    ORDER BY
+        scs.school_code,
+        scs.batch_no#,
+        scs.class_code,
+        scs.stream_code,
+        scs.student_id;
+    
+    ---cursor std_assessment
+    CURSOR cur_std_assessment (
+        p_school_code     VARCHAR2,
+        p_batch_no        DATE,
+        p_class_code      VARCHAR2,
+        p_stream_code     VARCHAR2,
+        p_term_code       VARCHAR2,
+        p_student_id      VARCHAR2,
+        p_subject_code    VARCHAR2,
+        p_evaluation_code VARCHAR2,
+        p_employee_id     VARCHAR2,
+        p_ordinal_no      NUMBER
+    ) IS
+    SELECT
+        COUNT(1)
+    FROM
+        std_assessment
+    WHERE
+            school_code = p_school_code
+        AND batch_no# = p_batch_no
+        AND class_code = p_class_code
+        AND stream_code = p_stream_code
+        AND term_code = p_term_code
+        AND student_id = p_student_id
+        AND subject_code = p_subject_code
+        AND evaluation_code = p_evaluation_code
+        AND employee_id = p_employee_id
+        AND ordinal_no = p_ordinal_no;
+        
+    ---cursor std_assessment2
+    CURSOR cur_std_assessment2 (
+        p_school_code     VARCHAR2,
+        p_batch_no        DATE,
+        p_class_code      VARCHAR2,
+        p_stream_code     VARCHAR2,
+        p_term_code       VARCHAR2,
+        p_subject_code    VARCHAR2,
+        p_evaluation_code VARCHAR2,
+        p_employee_id     VARCHAR2,
+        p_ordinal_no      NUMBER
+    ) IS
+    SELECT
+        COUNT(1)
+    FROM
+        std_assessment
+    WHERE
+            school_code = p_school_code
+        AND batch_no# = p_batch_no
+        AND class_code = p_class_code
+        AND stream_code = p_stream_code
+        AND term_code = p_term_code
+        AND subject_code = p_subject_code
+        AND evaluation_code = p_evaluation_code
+        AND employee_id = p_employee_id
+        AND ordinal_no = p_ordinal_no;
+BEGIN
+    FOR indx IN cur_std_subject(p_school_code =&gt; pschool_code, p_batch_no =&gt; pbatch_no, p_class_code =&gt; pclass_code, p_stream_code =&gt; pstream_code, p_term_code =&gt; pterm_code,
+                               p_student_id =&gt; pstudent_id, p_subject_code =&gt; psubject_code) LOOP
+        OPEN cur_std_assessment(p_school_code =&gt; indx.school_code, p_batch_no =&gt; indx.batch_no#, p_class_code =&gt; indx.class_code, p_stream_code =&gt; indx.stream_code, p_term_code =&gt; indx.term_code,
+                               p_student_id =&gt; indx.student_id, p_subject_code =&gt; indx.subject_code, p_evaluation_code =&gt; pevaluation_code, p_employee_id =&gt; pemployee_id, p_ordinal_no =&gt; pordinal_no);
+        FETCH cur_std_assessment INTO v_count;
+        
+        ---exists
+        CASE
+            WHEN indx.student_id IS NULL THEN
+                v_applicable := &apos;NO&apos;;
+            
+            ---not exists
+            WHEN indx.student_id IS NOT NULL THEN
+                IF cur_std_assessment%found THEN
+                    v_applicable := &apos;YES&apos;;
+                ELSIF cur_std_assessment%notfound THEN
+                    OPEN cur_std_assessment2(p_school_code =&gt; indx.school_code, p_batch_no =&gt; indx.batch_no#, p_class_code =&gt; indx.class_code, p_stream_code =&gt; indx.stream_code, p_term_code =&gt; indx.term_code,
+                                            p_subject_code =&gt; indx.subject_code, p_evaluation_code =&gt; pevaluation_code, p_employee_id =&gt; pemployee_id, p_ordinal_no =&gt; pordinal_no);
+                    FETCH cur_std_assessment2 INTO v_count;
+                
+                    ---not yet entered in std_assessment
+                    IF cur_std_assessment2%notfound THEN
+                        v_applicable := &apos;YES&apos;;
+                    ELSE
+                        v_applicable := &apos;NO&apos;;
+                    END IF;
+                    CLOSE cur_std_assessment2;
+                END IF;
+        END CASE;
+        
+        ---close cursor
+        CLOSE cur_std_assessment;
+    END LOOP;
+    RETURN v_applicable;
+END;</source>
+</FunctionOracle>

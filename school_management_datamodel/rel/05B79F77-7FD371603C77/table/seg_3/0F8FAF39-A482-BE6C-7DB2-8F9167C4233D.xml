@@ -9,7 +9,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id" id="0F4A9A11-DC08-16C6-87E8-57E713CB890F">
+<Column name="ID" id="0F4A9A11-DC08-16C6-87E8-57E713CB890F">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <comment><![CDATA[Lesson ID]]></comment>
@@ -132,7 +132,7 @@
 <colAssociation fkAssociation="ABF16238-52F3-0FCA-E211-510E8C73D224" referredColumn="A00EEA7B-4022-8D07-5BA6-400CB4DB688E"/>
 </associations>
 </Column>
-<Column name="no" id="265CF8FE-F3DC-7539-570B-AB37055F96AE">
+<Column name="lesson_no" id="265CF8FE-F3DC-7539-570B-AB37055F96AE">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <comment><![CDATA[Heriarchy of Order]]></comment>
@@ -150,7 +150,7 @@
 <colAssociation fkAssociation="00018B3D-79CD-6E5D-C8F9-3EC9F069D7BB" referredColumn="465F82AA-DC86-CCD0-61CA-0EB70691009C"/>
 </associations>
 </Column>
-<Column name="name" id="A6F6E004-4A6C-840D-FCAA-44B6773ACA28">
+<Column name="lesson_name" id="A6F6E004-4A6C-840D-FCAA-44B6773ACA28">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <comment><![CDATA[Name of the Lesson]]></comment>
@@ -323,7 +323,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="8DAEAFD5-24FF-0D3B-59EC-8402F681357C" name="lesson_pk">
+<ind_PK_UK id="8DAEAFD5-24FF-0D3B-59EC-8402F681357C" name="lesson_PK">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <generatorID>BF2354D9-2243-9C59-79A9-FC61073D2F1C</generatorID>
@@ -335,7 +335,7 @@
 <colUsage columnID="0F4A9A11-DC08-16C6-87E8-57E713CB890F"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="13DD70D1-805D-84AA-9532-B366AA1961A0" name="lesson_un">
+<ind_PK_UK id="13DD70D1-805D-84AA-9532-B366AA1961A0" name="lesson_UN">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:51:52 UTC</createdTime>
 <generatorID>F4913EAD-E9DF-BD41-DD9F-9BA1D2009C8B</generatorID>
@@ -478,7 +478,7 @@
 <colUsage columnID="581972BD-EA2E-00D1-CEE5-4E90BE66287B"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="28408E68-F304-A144-D1BC-9D16C4958D37" name="lssn_batch_fk">
+<ind_PK_UK id="28408E68-F304-A144-D1BC-9D16C4958D37" name="Lssn_Batch_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <generatorID>A68F468B-03FC-E99C-4B15-A1A47F158409</generatorID>
@@ -489,7 +489,7 @@
 <colUsage columnID="D89EEC1F-D2BD-79D8-D2D6-EACFEB30B725"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="71708370-B7C1-24D1-82D4-0CC58E4BD9AE" name="lssn_class_fk">
+<ind_PK_UK id="71708370-B7C1-24D1-82D4-0CC58E4BD9AE" name="Lssn_Class_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <generatorID>919C7EE1-27CF-10D8-4922-E39610D2007E</generatorID>
@@ -500,7 +500,7 @@
 <colUsage columnID="BF15720C-C60D-B9AD-D08D-0457452E6CE3"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="F6666EA4-6F73-6152-1FD1-AA0E74448A58" name="lssn_ordinal_fk">
+<ind_PK_UK id="F6666EA4-6F73-6152-1FD1-AA0E74448A58" name="Lssn_Ordinal_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <generatorID>1DB09002-38AD-A953-C658-CDC677859D17</generatorID>
@@ -511,7 +511,7 @@
 <colUsage columnID="265CF8FE-F3DC-7539-570B-AB37055F96AE"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="E20304DC-F372-4D9D-51E5-625E78A8E99F" name="lssn_school_fk">
+<ind_PK_UK id="E20304DC-F372-4D9D-51E5-625E78A8E99F" name="Lssn_School_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <generatorID>E760781E-D0AF-8CD8-D068-07F528F5349B</generatorID>
@@ -522,7 +522,7 @@
 <colUsage columnID="0AED0FA6-B045-1C3B-2258-656C280C3866"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="E90AFBF4-2702-4568-504F-4800E3ADF013" name="lssn_status_fk">
+<ind_PK_UK id="E90AFBF4-2702-4568-504F-4800E3ADF013" name="Lssn_Status_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <generatorID>FB53DA1F-2B01-A58E-A638-2DFF87EF4C12</generatorID>
@@ -533,7 +533,7 @@
 <colUsage columnID="581972BD-EA2E-00D1-CEE5-4E90BE66287B"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="A455F80C-772A-F780-8740-F372C2E7E0FA" name="lssn_subject_fk">
+<ind_PK_UK id="A455F80C-772A-F780-8740-F372C2E7E0FA" name="Lssn_Subject_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <generatorID>DF528C04-7665-D2DB-076E-B8B949436EBE</generatorID>
@@ -544,7 +544,7 @@
 <colUsage columnID="5105F12C-518C-DF35-04EF-E5EAC13C71D4"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="DE173F27-2C8D-1FAA-F26C-560F8F2F4216" name="lssn_syllabusunit_fk">
+<ind_PK_UK id="DE173F27-2C8D-1FAA-F26C-560F8F2F4216" name="Lssn_SyllabusUnit_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <generatorID>CD99DF79-1F9C-A51B-8CD0-D310940E25D7</generatorID>
@@ -555,7 +555,7 @@
 <colUsage columnID="C3EB7715-427C-5C30-6EAF-0C2DAFE1CD88"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="5261F287-B8E9-A156-6234-71A123913D6B" name="lssn_board_fk">
+<ind_PK_UK id="5261F287-B8E9-A156-6234-71A123913D6B" name="Lssn_Board_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 04:07:55 UTC</createdTime>
 <generatorID>F9A8A3B2-1738-F6B8-6597-623AB4DAD8C0</generatorID>
@@ -566,7 +566,7 @@
 <colUsage columnID="ADF052F9-C9A0-BCAB-252C-A0F09AE12DF1"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="917B2485-9C3A-37EE-0589-29A7E315174C" name="lssn_domain_fk">
+<ind_PK_UK id="917B2485-9C3A-37EE-0589-29A7E315174C" name="Lssn_Domain_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 05:14:18 UTC</createdTime>
 <generatorID>2E00DC4E-0615-6BAB-15AF-46AF63E078D8</generatorID>
@@ -577,7 +577,7 @@
 <colUsage columnID="32464E56-3E17-D8D7-26D6-23E73ED1001A"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="718B4DA0-CF62-0127-4551-9D8AE47B72AA" name="lssn_sector_fk">
+<ind_PK_UK id="718B4DA0-CF62-0127-4551-9D8AE47B72AA" name="Lssn_Sector_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-18 10:08:27 UTC</createdTime>
 <generatorID>A831E469-72A7-CC5F-5497-39E6975A030E</generatorID>
@@ -588,7 +588,7 @@
 <colUsage columnID="C5A3344D-4D00-FF49-86DF-5FAE02D78470"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="7731F9CA-2BC6-4663-6A57-B8C2902FBA54" name="lssn_stream_fk">
+<ind_PK_UK id="7731F9CA-2BC6-4663-6A57-B8C2902FBA54" name="Lssn_Stream_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-18 10:08:27 UTC</createdTime>
 <generatorID>6EBF330A-3534-60A8-2404-8C0051C63F5B</generatorID>

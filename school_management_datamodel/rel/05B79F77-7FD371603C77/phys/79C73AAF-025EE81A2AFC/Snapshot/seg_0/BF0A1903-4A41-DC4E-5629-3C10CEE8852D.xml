@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="mv_std_ranking" directorySegmentName="seg_0" id="BF0A1903-4A41-DC4E-5629-3C10CEE8852D">
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="v_std_ranking" directorySegmentName="seg_0" id="BF0A1903-4A41-DC4E-5629-3C10CEE8852D">
 <createdBy>leads</createdBy>
 <createdTime>2021-11-29 05:00:05 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -9,161 +9,74 @@
 <refreshType>FORCE</refreshType>
 <startDate>sysdate</startDate>
 <subquery><![CDATA[SELECT
-    school_code,
-    batch_no,
-    class_code,
-    section_code,
-    term_code,
-    student_id,
-    overall_status,
-    percentage,
-    RANK()
-    OVER(PARTITION BY school_code, batch_no, class_code, term_code
-         ORDER BY
-             overall_status DESC, percentage DESC NULLS LAST
-    ) AS ranking
-FROM
-    ( SELECT
-          school_code,
-          batch_no,
-          class_code,
-          section_code,
-          term_code,
-          student_id,
-          overall_status,
-          round(SUM(mark_obtained) / SUM(max_mark) * 100, 2) AS percentage
-      FROM
-          ( SELECT
-                sterm.school_code AS school_code,
-                sterm.batch_no# AS batch_no,
-                sterm.class_code AS class_code,
-                scs.section_code AS section_code,
-                sterm.term_code AS term_code,
-                scs.student_id AS student_id,
-                nvl(scct.part_name, ssup.part_name) AS part_name,
-                nvl(scct.ranking_type, ssup.ranking_type) AS ranking_type,
-                scat.academic_code AS academic_code,
-                nvl(scct.category_code, ssup.category_code) AS category_code,
-                subdom.domain_code AS domain_code,
-                scat.pseudo_name AS domain,
-                ssubj.super_code AS super_code,
-                supsub.pseudo AS super_subject,
-                csub.subject_code AS subject_code,
-                ssubj.pseudo_name AS subject,
-                ssup.score_type AS score_type,
-                ssup.optional_type AS optional_type,
-                nvl(overall.overall_status, 'PASSED') AS overall_status,
-                SUM(salloc.max_mark *(csub.ratio_ant / csub.ratio_con)) AS max_mark,
-                SUM(salloc.min_mark *(csub.ratio_ant / csub.ratio_con)) AS pass_mark,
-                round(SUM(csub.ratio_ant / csub.ratio_con * sa.score * salloc.max_mark / sa.maxmark), 2) AS mark_obtained
-            FROM
-                     school_term sterm
-                INNER JOIN school_super ssup
-                ON ( ssup.school_code = sterm.school_code
-                     AND ssup.batch_no# = sterm.batch_no#
-                     AND ssup.class_code = sterm.class_code )
-                INNER JOIN super_subject supsub
-                ON ( supsub.code = ssup.super_code )
-                INNER JOIN subject_category scat
-                ON ( scat.code = ssup.category_code )
-                INNER JOIN academic_category acat
-                ON ( acat.code = scat.academic_code )
-                INNER JOIN school_subject ssubj
-                ON ( ssubj.school_code = sterm.school_code
-                     AND ssubj.batch_no# = sterm.batch_no#
-                     AND ssubj.class_code = sterm.class_code
-                     AND ssup.super_code = ssubj.super_code )
-                INNER JOIN subject_domain subdom
-                ON ( subdom.school_code = sterm.school_code
-                     AND subdom.subject_code = ssubj.subject_code )
-                INNER JOIN class_subject csub
-                ON ( csub.school_code = sterm.school_code
-                     AND csub.batch_no# = sterm.batch_no#
-                     AND csub.class_code = sterm.class_code
-                     AND csub.term_code = sterm.term_code
-                     AND csub.subject_code = ssubj.subject_code )
-                INNER JOIN std_score_alloc salloc
-                ON ( salloc.school_code = csub.school_code
-                     AND salloc.batch_no# = csub.batch_no#
-                     AND salloc.class_code = csub.class_code
-                     AND salloc.term_code = csub.term_code
-                     AND salloc.super_code = ssubj.super_code )
-                INNER JOIN school_evaluation seval
-                ON ( seval.school_code = sterm.school_code
-                     AND seval.evaluation_code = salloc.evaluation_code )
-                INNER JOIN student std
-                ON ( std.school_code = sterm.school_code
-                     AND std.id = salloc.student_id )
-                INNER JOIN std_subject ssub
-                ON ( ssub.school_code = sterm.school_code
-                     AND ssub.batch_no# = sterm.batch_no#
-                     AND ssub.class_code = sterm.class_code
-                     AND ssub.term_code = sterm.term_code
-                     AND ssub.subject_code = csub.subject_code
-                     AND ssub.student_id = std.id )
-                INNER JOIN std_class_sec scs
-                ON ( scs.batch_no# = csub.batch_no#
-                     AND scs.class_code = csub.class_code
-                     AND ssub.student_id = scs.student_id )
-                LEFT OUTER JOIN mv_std_assessment sa
-                ON ( sa.school_code = sterm.school_code
-                     AND sa.batch_no# = sterm.batch_no#
-                     AND sa.class_code = scs.class_code
-                     AND sa.term_code = sterm.term_code
-                     AND sa.subject_code = ssub.subject_code
-                     AND sa.evaluation_code = salloc.evaluation_code
-                     AND sa.student_id = scs.student_id )
-                LEFT OUTER JOIN mv_std_fourth_sub scct
-                ON ( scct.school_code = sterm.school_code
-                     AND scct.batch_no# = sterm.batch_no#
-                     AND scct.class_code = sterm.class_code
-                     AND scct.term_code = sterm.term_code
-                     AND scct.student_id = scs.student_id
-                     AND scct.super_code = ssubj.super_code )
-                LEFT OUTER JOIN mv_std_overall_passed overall
-                ON ( overall.school_code = sterm.school_code
-                     AND overall.batch_no = sterm.batch_no#
-                     AND overall.class_code = sterm.class_code
-                     AND overall.term_code = sterm.term_code
-                     AND overall.student_id = scs.student_id )
+        school_code,
+        batch_no,
+        class_code,
+        stream_code,
+        section_code,
+        term_code,
+        student_id,
+        min_mark,
+        max_mark,
+        total_score,
+        overall_status,
+        percentage,
+        RANK()
+        OVER(PARTITION BY school_code, batch_no, class_code, stream_code, term_code
+             ORDER BY
+                 overall_status DESC,
+                 percentage DESC NULLS LAST
+        ) AS ranking
+    FROM
+        ( SELECT
+                  arc.school_code,
+                  arc.batch_no# AS batch_no,
+                  arc.class_code,
+                  arc.stream_code,
+                  arc.section_code,
+                  arc.term_code,
+                  arc.student_id,
+                  SUM(nvl(arc.max_main, 0)) + SUM(nvl(arc.max_internal, 0)) AS max_mark,
+                  SUM(nvl(arc.min_main, 0)) + SUM(nvl(arc.min_internal, 0)) AS min_mark,
+                  round(SUM(nvl(arc.score_main, 0)) + SUM(nvl(arc.score_internal, 0))) AS total_score,
+                  sop.overall_status,
+                  round((SUM(nvl(arc.score_main, 0)) + SUM(nvl(arc.score_internal, 0))) /(SUM(nvl(arc.max_main, 0)) + SUM(nvl(arc.max_internal, 0))) * 100,
+                        1) AS percentage
+              FROM
+                       arc_std_score arc
+                  INNER JOIN mv_std_overall_passed sop
+                  ON ( sop.school_code = arc.school_code
+                       AND sop.batch_no = arc.batch_no#
+                       AND sop.class_code = arc.class_code
+                       AND sop.stream_code = arc.stream_code
+                       AND sop.term_code = arc.term_code
+                       AND sop.student_id = arc.student_id )
             WHERE
-                    sterm.status_name = 'ACTIVE'
-                AND ssubj.status_name = 'ACTIVE'
-                AND ssub.status_name = 'ACTIVE'
-                AND csub.status_name = 'ACTIVE'
-                AND scs.status_name = 'ACTIVE'
-                AND salloc.status_name = 'ACTIVE'
-                AND nvl(scct.ranking_type, ssup.ranking_type) = 'YES'
-            GROUP BY
-                sterm.school_code,
-                sterm.batch_no#,
-                sterm.class_code,
-                scs.section_code,
-                sterm.term_code,
-                scs.student_id,
-                nvl(scct.part_name, ssup.part_name),
-                nvl(scct.ranking_type, ssup.ranking_type),
-                scat.academic_code,
-                nvl(scct.category_code, ssup.category_code),
-                subdom.domain_code,
-                scat.pseudo_name,
-                ssubj.super_code,
-                supsub.pseudo,
-                csub.subject_code,
-                ssubj.pseudo_name,
-                ssup.score_type,
-                ssup.optional_type,
-                nvl(overall.overall_status, 'PASSED')
-          )
-      GROUP BY
-          school_code,
-          batch_no,
-          class_code,
-          section_code,
-          term_code,
-          student_id,
-          overall_status
-    )]]></subquery>
+                arc.ranking_type = 'YES'
+          GROUP BY
+              arc.school_code,
+              arc.batch_no#,
+              arc.class_code,
+              arc.stream_code,
+              arc.section_code,
+              arc.term_code,
+              arc.student_id,
+              sop.overall_status
+        )
+    ORDER BY
+        school_code,
+        batch_no,
+        class_code,
+        stream_code,
+        section_code,
+        term_code,
+        ranking,
+        student_id,
+        min_mark,
+        max_mark,
+        total_score,
+        overall_status,
+        percentage]]></subquery>
 <subqueryNeedsMigration>false</subqueryNeedsMigration>
 <with>ROWID</with>
 </SnapshotOraclev11g>

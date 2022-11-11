@@ -4,23 +4,40 @@
 <createdTime>2021-11-29 14:11:08 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <source>CREATE OR REPLACE FUNCTION func_std_grade (
-    p_school_code VARCHAR2,
-    p_class_code VARCHAR2,
+    p_school_code   VARCHAR2,
+    p_class_code    VARCHAR2,
+    p_stream_code   VARCHAR2,
+    p_score_type    VARCHAR2,
     p_mark_obtained NUMBER,
-    p_max_mark NUMBER
+    p_max_mark      NUMBER
 ) RETURN VARCHAR2 AS
     v_grade VARCHAR2(10);
 BEGIN
-    SELECT
-        a.pseudo_name
-    INTO v_grade
-    FROM
-        school_grade a
-    WHERE
-        a.status_name = &apos;ACTIVE&apos;
-        AND a.school_code = p_school_code
-        AND a.class_code = p_class_code
-        AND round(p_mark_obtained / p_max_mark * 100) BETWEEN a.range_from AND a.range_upto;
+    CASE
+        WHEN p_max_mark IS NULL THEN
+            v_grade := &apos;-NA-&apos;;
+        WHEN p_mark_obtained IS NULL THEN
+            v_grade := &apos;-ab-&apos;;
+        WHEN p_mark_obtained IS NOT NULL THEN
+            CASE
+                WHEN p_score_type = &apos;VALUE&apos; THEN
+                    v_grade := round(p_mark_obtained);
+                WHEN p_score_type = &apos;GRADE&apos; THEN
+                    SELECT
+                        a.pseudo_name
+                    INTO v_grade
+                    FROM
+                        school_grade a
+                    WHERE
+                            a.status_name = &apos;ACTIVE&apos;
+                        AND a.school_code = p_school_code
+                        AND a.class_code = p_class_code
+                        AND a.stream_code = p_stream_code
+                        AND round(p_mark_obtained / p_max_mark * 100) BETWEEN a.range_from AND a.range_upto;
+            END CASE;
+    END CASE;
+    
+    ---return value
     RETURN v_grade;
 END;</source>
 </FunctionOracle>
