@@ -5,6 +5,7 @@
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <source>CREATE OR REPLACE FUNCTION func_std_grade (
     p_school_code   VARCHAR2,
+    p_batch_no      DATE,
     p_class_code    VARCHAR2,
     p_stream_code   VARCHAR2,
     p_score_type    VARCHAR2,
@@ -31,12 +32,13 @@ BEGIN
                     WHERE
                             a.status_name = &apos;ACTIVE&apos;
                         AND a.school_code = p_school_code
+                        AND a.batch_no# = p_batch_no
                         AND a.class_code = p_class_code
                         AND a.stream_code = p_stream_code
                         AND round(p_mark_obtained / p_max_mark * 100) BETWEEN a.range_from AND a.range_upto;
             END CASE;
     END CASE;
-    
+
     ---return value
     RETURN v_grade;
 END;</source>

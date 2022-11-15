@@ -5,40 +5,40 @@
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <source>CREATE OR REPLACE PROCEDURE proc_markcard_footnote (
     p_school_code IN VARCHAR2,
-    p_class_code IN VARCHAR2,
-    p_footnote IN OUT VARCHAR2
+    p_batch_no    IN DATE,
+    p_class_code  IN VARCHAR2,
+    p_stream_code IN VARCHAR2,
+    p_term_code   IN VARCHAR2,
+    p_report_type IN VARCHAR2,
+    p_footnote    IN OUT VARCHAR2
 ) AS
     CURSOR cur_footnote (
-        pp_school_code VARCHAR2,
-        pp_class_code VARCHAR2
+        pschool_code IN VARCHAR2,
+        pbatch_no    IN DATE,
+        pclass_code  IN VARCHAR2,
+        pstream_code IN VARCHAR2,
+        pterm_code   IN VARCHAR2,
+        preport_type IN VARCHAR2
     ) IS
     SELECT
-        &apos;***&apos; ||
-        LISTAGG(footnote, &apos;, * &apos;) WITHIN GROUP(
-            ORDER BY
-                ROWNUM
-            )
-        AS footnote
+        footnote
     FROM
         ( SELECT
-              a.school_code,
-              a.class_code,
-              b.pseudo || a.footnote AS footnote
-          FROM
-              school_division a
-              INNER JOIN score_division b
-              ON ( b.name = a.division_name )
+                descriptions AS footnote
+            FROM
+                school_rep_temp
           WHERE
-              a.school_code = pp_school_code
-              AND a.class_code = pp_class_code
-          ORDER BY
-              a.range_from
+                  school_code = pschool_code
+              AND batch_no# = pbatch_no
+              AND class_code = pclass_code
+              AND stream_code = pstream_code
+              AND term_code = pterm_code
+              AND report_type = preport_type
+              AND parameter_name = &apos;FOOTER_GRADE&apos;
         );
 BEGIN
-    OPEN cur_footnote(
-                     pp_school_code =&gt; p_school_code,
-                     pp_class_code =&gt; p_class_code
-         );
+    OPEN cur_footnote(pschool_code =&gt; p_school_code, pbatch_no =&gt; p_batch_no, pclass_code =&gt; p_class_code, pstream_code =&gt; p_stream_code, pterm_code =&gt; p_term_code,
+                     preport_type =&gt; p_report_type);
     FETCH cur_footnote INTO p_footnote;
     CLOSE cur_footnote;
 END;</source>

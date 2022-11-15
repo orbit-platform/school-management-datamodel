@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="v_division_note" directorySegmentName="seg_0" id="4E42DC66-D533-46F1-C7D1-83023C4C07AA">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-12 06:55:37 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<refreshType>FORCE</refreshType>
+<subquery><![CDATA[SELECT
+        arc.school_code,
+        arc.batch_no#,
+        arc.class_code,
+        arc.stream_code,
+        arc.term_code,
+        arc.student_id,
+        'Minimum Marks for ' || ( sdiv.division_name ) || ': ' || round(arc.maximum * sdiv.range_from / 100) AS mark_range
+    FROM
+             ( SELECT
+                school_code,
+                batch_no#,
+                class_code,
+                stream_code,
+                term_code,
+                student_id,
+                SUM(maximum) AS maximum
+            FROM
+                ( SELECT
+                          school_code,
+                          batch_no#,
+                          class_code,
+                          stream_code,
+                          term_code,
+                          student_id,
+                          super_code,
+                          SUM(nvl(max_main, 0) + nvl(max_internal, 0)) AS maximum
+                      FROM
+                          arc_std_score
+                    WHERE
+                        ranking_type = 'YES'
+                  GROUP BY
+                      school_code,
+                      batch_no#,
+                      class_code,
+                      stream_code,
+                      super_code,
+                      term_code,
+                      student_id,
+                      super_code
+                ) arc
+          GROUP BY
+              school_code,
+              batch_no#,
+              class_code,
+              stream_code,
+              term_code,
+              student_id
+        ) arc
+        INNER JOIN school_division sdiv
+        ON ( sdiv.school_code = arc.school_code
+             AND sdiv.class_code = arc.class_code
+             AND sdiv.stream_code = arc.stream_code )
+    WHERE
+        sdiv.range_from > 0
+    ORDER BY
+        school_code,
+        batch_no#,
+        class_code,
+        stream_code,
+        term_code,
+        student_id,
+        sdiv.range_from DESC]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with></with>
+</SnapshotOraclev11g>

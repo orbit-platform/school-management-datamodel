@@ -3,15 +3,16 @@
 <createdBy>leads</createdBy>
 <createdTime>2021-12-10 13:35:43 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<source>CREATE OR REPLACE PROCEDURE proc_markcard_std_ranking (
-    pschool_code  IN VARCHAR2,
-    pbatch_no     IN DATE,
-    pclass_code   IN VARCHAR2,
-    pstream_code  IN VARCHAR2,
-    pterm_code    IN VARCHAR2,
-    pstudent_id   IN VARCHAR2,
-    pmaximum_rank IN VARCHAR2 DEFAULT &apos;20&apos;,
-    pstd_rank     IN OUT VARCHAR2
+<source>create or replace PROCEDURE proc_markcard_std_ranking (
+    pschool_code    IN VARCHAR2,
+    pbatch_no       IN DATE,
+    pclass_code     IN VARCHAR2,
+    pstream_code    IN VARCHAR2,
+    pterm_code      IN VARCHAR2,
+    pstudent_id     IN VARCHAR2,
+    pmaximum_rank   IN VARCHAR2 DEFAULT &apos;20&apos;,
+    pscore_in_words IN OUT VARCHAR2,
+    pstd_rank       IN OUT VARCHAR2
 ) AS
     ---cursor student ranking
     CURSOR cur_std_ranking (
@@ -24,6 +25,7 @@
         p_maximum_rank VARCHAR2
     ) IS
     SELECT
+        func_num_in_words(total_score) AS score_in_words,
         (
             CASE
                 WHEN overall_status = &apos;PASSED&apos; THEN
@@ -33,10 +35,9 @@
             END
         ) AS ranking
     FROM
-        mv_std_ranking
+        v_std_ranking
     WHERE
-            ranking &lt;= TO_NUMBER(p_maximum_rank)
-        AND school_code = p_school_code
+            school_code = p_school_code
         AND batch_no = p_batch_no
         AND class_code = p_class_code
         AND stream_code = p_stream_code
@@ -45,7 +46,9 @@
 BEGIN
     OPEN cur_std_ranking(p_school_code =&gt; pschool_code, p_batch_no =&gt; pbatch_no, p_class_code =&gt; pclass_code, p_stream_code =&gt; pstream_code, p_term_code =&gt; pterm_code,
                         p_student_id =&gt; pstudent_id, p_maximum_rank =&gt; pmaximum_rank);
-    FETCH cur_std_ranking INTO pstd_rank;
+    FETCH cur_std_ranking INTO
+        pscore_in_words,
+        pstd_rank;
     CLOSE cur_std_ranking;
 END;</source>
 </StoredProcedureOraclev10g>

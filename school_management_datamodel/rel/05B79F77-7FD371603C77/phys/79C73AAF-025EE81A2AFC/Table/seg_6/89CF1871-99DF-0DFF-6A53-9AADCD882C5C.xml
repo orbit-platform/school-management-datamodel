@@ -65,6 +65,11 @@
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="board_code" id="63579A22-965F-F9B7-CB30-7088A4467D0A">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-14 08:53:53 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="part_name" id="646062F6-02B8-147E-DFB0-EDC462DB2EEB">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
@@ -151,6 +156,11 @@
 <createdTime>2020-12-18 09:41:05 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="school_super_brdc_idx" id="4F451CAE-5681-9402-EE4D-236A9CD6E71B">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-14 08:55:47 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="school_super_stts_idx" id="664B7262-760A-3FC7-31F0-77ABD21CF278">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:41:05 UTC</createdTime>
@@ -208,72 +218,77 @@
 </IndexProxy>
 </indexProxies>
 <foreignKeys>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchSpr_SubOptional_FK" id="1993B023-FB62-A9DE-2A69-65A4216A9DA6">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schspr_suboptional_fk" id="1993B023-FB62-A9DE-2A69-65A4216A9DA6">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchSpr_Status_FK" id="32C10144-6876-D416-6E88-3B63B0043D8B">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schspr_status_fk" id="32C10144-6876-D416-6E88-3B63B0043D8B">
 <createdBy>leads</createdBy>
 <createdTime>2021-07-23 05:43:40 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchSpr_Batch_FK" id="4DBB8188-6AAF-6AFE-3986-77582F9324F2">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schspr_board_fk" id="3D093B13-430D-B5FE-D6AC-3DC3AD8C704E">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-14 08:53:53 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schspr_batch_fk" id="4DBB8188-6AAF-6AFE-3986-77582F9324F2">
 <createdBy>leads</createdBy>
 <createdTime>2021-07-28 10:43:13 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchSpr_Ranking_FK" id="58B057DE-9896-755F-3D2C-641B479F29CE">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schspr_ranking_fk" id="58B057DE-9896-755F-3D2C-641B479F29CE">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchSpr_Score_FK" id="850BA273-6B80-A5E6-99F4-B6ABD4CAC1B0">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schspr_score_fk" id="850BA273-6B80-A5E6-99F4-B6ABD4CAC1B0">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchSpr_Serial_FK" id="8D91B303-BDF2-A006-E958-460E557202AA">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schspr_serial_fk" id="8D91B303-BDF2-A006-E958-460E557202AA">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchSpr_StatusYN_FK" id="8DD5ACF1-C535-C8BF-0FCC-E7F5DCCCACF7">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schspr_statusyn_fk" id="8DD5ACF1-C535-C8BF-0FCC-E7F5DCCCACF7">
 <createdBy>leads</createdBy>
 <createdTime>2022-05-26 08:04:51 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchSpr_SuperSubject_FK" id="96195513-EA47-8734-7B3D-09EF6903EFAE">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schspr_supersubject_fk" id="96195513-EA47-8734-7B3D-09EF6903EFAE">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchSpr_Part_FK" id="C1BDED62-CFEC-069C-07D1-11FE6F2975F2">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schspr_part_fk" id="C1BDED62-CFEC-069C-07D1-11FE6F2975F2">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchSpr_Class_FK" id="C93BC4C7-B051-2BC0-BF50-401153C73073">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schspr_class_fk" id="C93BC4C7-B051-2BC0-BF50-401153C73073">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchSpr_School_FK" id="CD719673-F531-9B2B-0509-2B15A7DEA640">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schspr_school_fk" id="CD719673-F531-9B2B-0509-2B15A7DEA640">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchSpr_Compulsory_FK" id="D0B08E9B-846E-4A6D-EED4-7F7DC48C5132">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schspr_compulsory_fk" id="D0B08E9B-846E-4A6D-EED4-7F7DC48C5132">
 <createdBy>leads</createdBy>
 <createdTime>2021-03-17 07:10:24 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchSpr_SubjectCategory_FK" id="D6647214-9A15-D4A7-8F1C-03430EBA5BD8">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schspr_subjectcategory_fk" id="D6647214-9A15-D4A7-8F1C-03430EBA5BD8">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchSpr_Stream_FK" id="D9E00684-B802-BBF8-B36F-8C68F7984551">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schspr_stream_fk" id="D9E00684-B802-BBF8-B36F-8C68F7984551">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-17 03:59:15 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -288,7 +303,7 @@
 </PrimaryKey>
 </primaryKeys>
 <uniqueKeys>
-<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="school_super_UN" id="7DD27813-C9E4-7AC5-3B0E-DB014B45D7F2">
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="school_super_un" id="7DD27813-C9E4-7AC5-3B0E-DB014B45D7F2">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>

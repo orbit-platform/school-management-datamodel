@@ -41,7 +41,7 @@
                   round(SUM(nvl(arc.score_main, 0)) + SUM(nvl(arc.score_internal, 0))) AS total_score,
                   sop.overall_status,
                   round((SUM(nvl(arc.score_main, 0)) + SUM(nvl(arc.score_internal, 0))) /(SUM(nvl(arc.max_main, 0)) + SUM(nvl(arc.max_internal, 0))) * 100,
-                        1) AS percentage
+                        0) AS percentage
               FROM
                        arc_std_score arc
                   INNER JOIN mv_std_overall_passed sop

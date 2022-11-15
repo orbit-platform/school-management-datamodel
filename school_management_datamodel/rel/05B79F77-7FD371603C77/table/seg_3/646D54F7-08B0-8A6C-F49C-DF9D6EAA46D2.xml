@@ -40,6 +40,24 @@
 <colAssociation fkAssociation="8FD91A90-90E5-5C09-BE11-C430452ED0D3" referredColumn="89499592-86B9-DF9F-6D55-09652996EFC6"/>
 </associations>
 </Column>
+<Column name="batch_no#" id="12CA437E-ECBC-A76E-E3F5-5A86E776635C">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-11 08:00:25 UTC</createdTime>
+<comment><![CDATA[Batch Number expressed in date]]></comment>
+<commentInRDBMS><![CDATA[Batch Number expressed in date]]></commentInRDBMS>
+<generatorID>9A02DB11-7D13-71C2-A6CA-EB9735084787</generatorID>
+<notes><![CDATA[Batch Number expressed in date]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<domain>57E4E726-0278-DC93-9196-ABB2B37DFF18</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="29611A21-74ED-A4FE-381D-40B61E2399F5" referredColumn="FDA7FD9A-44BF-B5AC-3AAD-07D9B16DE925"/>
+</associations>
+</Column>
 <Column name="class_code" id="528DAFBE-E085-1BFD-7A78-42AFEB173AB1">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-23 07:11:59 UTC</createdTime>
@@ -253,7 +271,7 @@
 <colUsage columnID="02305E14-CCBF-AB02-192E-E65DF64525C2"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="0B782101-F9CB-F078-4E3D-8488BDF06E76" name="school_grade_UN">
+<ind_PK_UK id="0B782101-F9CB-F078-4E3D-8488BDF06E76" name="school_grade_un">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-21 13:29:17 UTC</createdTime>
 <generatorID>59138C48-B099-C3DB-28B8-7FA710669D35</generatorID>
@@ -262,6 +280,7 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="D6D1BBC7-27A0-E51D-C8E3-B72B46047F00"/>
+<colUsage columnID="12CA437E-ECBC-A76E-E3F5-5A86E776635C"/>
 <colUsage columnID="528DAFBE-E085-1BFD-7A78-42AFEB173AB1"/>
 <colUsage columnID="F830881C-9589-D83E-320B-279166E1A765"/>
 <colUsage columnID="98610B13-78CC-4ABE-C888-50F5FEE5E8DD"/>
@@ -285,6 +304,7 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="D6D1BBC7-27A0-E51D-C8E3-B72B46047F00"/>
+<colUsage columnID="12CA437E-ECBC-A76E-E3F5-5A86E776635C"/>
 <colUsage columnID="528DAFBE-E085-1BFD-7A78-42AFEB173AB1"/>
 <colUsage columnID="F830881C-9589-D83E-320B-279166E1A765"/>
 <colUsage columnID="98610B13-78CC-4ABE-C888-50F5FEE5E8DD"/>
@@ -306,6 +326,15 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="D6D1BBC7-27A0-E51D-C8E3-B72B46047F00"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EB78A330-E00F-23A9-5ADF-FFCBE94844CA" name="school_grade_btch_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-11 08:01:36 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="12CA437E-ECBC-A76E-E3F5-5A86E776635C"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="94B44F1A-ABB3-7FB3-7191-6BD4A5E970C6" name="school_grade_cls_idx">
@@ -346,7 +375,7 @@
 <colUsage columnID="98610B13-78CC-4ABE-C888-50F5FEE5E8DD"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="73638046-4EA8-1570-84F4-0329419DDF11" name="SchlGrd_School_FK">
+<ind_PK_UK id="73638046-4EA8-1570-84F4-0329419DDF11" name="schlgrd_school_fk">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-21 13:29:17 UTC</createdTime>
 <generatorID>2EA15909-23A2-27C6-712B-152F83DBFDA0</generatorID>
@@ -357,7 +386,7 @@
 <colUsage columnID="D6D1BBC7-27A0-E51D-C8E3-B72B46047F00"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="DE4E7E17-4626-0F79-6860-F70A8863247A" name="SchlGrd_Class_FK">
+<ind_PK_UK id="DE4E7E17-4626-0F79-6860-F70A8863247A" name="schlgrd_class_fk">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-23 07:11:59 UTC</createdTime>
 <generatorID>1D813880-D0E4-0CC7-91B2-BDFA1532D2AB</generatorID>
@@ -368,7 +397,7 @@
 <colUsage columnID="528DAFBE-E085-1BFD-7A78-42AFEB173AB1"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="9BB4DDE0-9636-0722-B7FA-040B1A18A8AA" name="SchlGrd_Status_FK">
+<ind_PK_UK id="9BB4DDE0-9636-0722-B7FA-040B1A18A8AA" name="schlgrd_status_fk">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-07 03:51:35 UTC</createdTime>
 <generatorID>E1EDE94A-7A31-1B3A-D70F-69585A36050A</generatorID>
@@ -379,7 +408,7 @@
 <colUsage columnID="3225990D-573C-CE0D-1C96-8B1966A8BB20"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="B43D24B0-165D-9890-2D06-7F738222E360" name="SchlGrd_Stream_FK">
+<ind_PK_UK id="B43D24B0-165D-9890-2D06-7F738222E360" name="schlgrd_stream_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-17 03:59:15 UTC</createdTime>
 <generatorID>ED1F9B3F-0BB9-9700-359A-61A7B456C40D</generatorID>
@@ -388,6 +417,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="F830881C-9589-D83E-320B-279166E1A765"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3711E504-B3CA-FF0D-067C-EEF512322009" name="schgrd_batch_fk">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-11 08:00:25 UTC</createdTime>
+<generatorID>775A7C10-8A38-2699-8DDB-C4F0D3E004FF</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="12CA437E-ECBC-A76E-E3F5-5A86E776635C"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

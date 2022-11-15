@@ -6,10 +6,10 @@
 <actions>INSERT</actions>
 <body><![CDATA[BEGIN
     SELECT
-        lpad(nvl(MAX(to_number(code)), 0) + 1, 3, '0')
+        lpad(nvl(MAX(to_number(code)), 0) + 1, 4, '0')
     INTO :new.code
     FROM
-        education_board;
+        board;
 
 END;]]></body>
 <triggerTime>BEFORE</triggerTime>

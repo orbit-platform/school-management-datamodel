@@ -147,6 +147,20 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="abbrv" id="F61EAE48-BEA0-C583-6CFC-CBEB76179AD9">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-14 09:48:40 UTC</createdTime>
+<comment><![CDATA[Abbreviation of the Super Subject]]></comment>
+<commentInRDBMS><![CDATA[Abbreviation of the Super Subject]]></commentInRDBMS>
+<generatorID>3D3269FE-0E66-9E14-77F8-6E986856CD71</generatorID>
+<notes><![CDATA[Abbreviation of the Super Subject]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>9E81D49F-7F07-4FA1-2B22-C13A79C8D44E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="serial_no" id="3095F4BD-C794-EABD-97CC-5FE39090A9F8">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
@@ -300,6 +314,24 @@
 <colAssociation fkAssociation="3FDBEF5C-7F4C-671F-1C7A-B03567E0A507" referredColumn="FA16500D-7649-9289-7695-0BB006B44762"/>
 </associations>
 </Column>
+<Column name="board_code" id="63579A22-965F-F9B7-CB30-7088A4467D0A">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-14 08:53:53 UTC</createdTime>
+<comment><![CDATA[Education Board Code]]></comment>
+<commentInRDBMS><![CDATA[Education Board Code]]></commentInRDBMS>
+<generatorID>6F51FFF5-6742-ECAD-0C02-32A1687D3B1E</generatorID>
+<notes><![CDATA[Education Board Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>411A7036-AE28-9018-332B-691EBC096EF9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D9F45192-89F6-8CA1-7561-914D8465BC87" referredColumn="3E3CE1C9-F02A-4A14-C4A1-F53228C988AD"/>
+</associations>
+</Column>
 <Column name="status_name" id="05FEDDB8-0351-3205-EEE9-E939AE5EE974">
 <createdBy>leads</createdBy>
 <createdTime>2021-07-23 05:43:40 UTC</createdTime>
@@ -409,7 +441,7 @@
 <colUsage columnID="99AFBBE7-10EE-29B2-3C52-CC7E849E34E8"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="7DD27813-C9E4-7AC5-3B0E-DB014B45D7F2" name="school_super_UN">
+<ind_PK_UK id="7DD27813-C9E4-7AC5-3B0E-DB014B45D7F2" name="school_super_un">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <generatorID>C0F593FD-506B-C62A-7E52-846A8EF6527F</generatorID>
@@ -574,6 +606,15 @@
 <colUsage columnID="FEDF3856-3E59-40D0-B52F-35195B952747"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="4F451CAE-5681-9402-EE4D-236A9CD6E71B" name="school_super_brdc_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-14 08:55:47 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="63579A22-965F-F9B7-CB30-7088A4467D0A"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="C93BC4C7-B051-2BC0-BF50-401153C73073" name="SchSpr_Class_FK">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
@@ -585,7 +626,7 @@
 <colUsage columnID="011C75BF-EB13-CD28-8AD5-6D0977CE59AA"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="C1BDED62-CFEC-069C-07D1-11FE6F2975F2" name="SchSpr_Part_FK">
+<ind_PK_UK id="C1BDED62-CFEC-069C-07D1-11FE6F2975F2" name="schspr_part_fk">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <generatorID>FAAE01FA-D360-1F9E-35BF-F54CDABA6BA0</generatorID>
@@ -596,7 +637,7 @@
 <colUsage columnID="646062F6-02B8-147E-DFB0-EDC462DB2EEB"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="58B057DE-9896-755F-3D2C-641B479F29CE" name="SchSpr_Ranking_FK">
+<ind_PK_UK id="58B057DE-9896-755F-3D2C-641B479F29CE" name="schspr_ranking_fk">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <generatorID>666FC6B5-6234-269E-F221-67222EC61AE9</generatorID>
@@ -618,7 +659,7 @@
 <colUsage columnID="5EF632BB-DDEB-3256-2703-36E52011C8FA"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="850BA273-6B80-A5E6-99F4-B6ABD4CAC1B0" name="SchSpr_Score_FK">
+<ind_PK_UK id="850BA273-6B80-A5E6-99F4-B6ABD4CAC1B0" name="schspr_score_fk">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <generatorID>8CC17C52-93FA-B070-636B-8F9AD1D9A499</generatorID>
@@ -629,7 +670,7 @@
 <colUsage columnID="3FE8851E-361F-CBEE-B58D-D9139F18BF92"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="8D91B303-BDF2-A006-E958-460E557202AA" name="SchSpr_Serial_FK">
+<ind_PK_UK id="8D91B303-BDF2-A006-E958-460E557202AA" name="schspr_serial_fk">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <generatorID>2DE57C7B-30D4-24FC-3771-DF6C1B88DFB8</generatorID>
@@ -662,7 +703,7 @@
 <colUsage columnID="812FA679-206A-E58E-A192-B2C892F948AC"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="96195513-EA47-8734-7B3D-09EF6903EFAE" name="SchSpr_SuperSubject_FK">
+<ind_PK_UK id="96195513-EA47-8734-7B3D-09EF6903EFAE" name="schspr_supersubject_fk">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-18 09:40:31 UTC</createdTime>
 <generatorID>95E320AE-83CA-8B3B-4816-8C71AAC58242</generatorID>
@@ -673,7 +714,7 @@
 <colUsage columnID="2CD56B01-05AA-F92F-B172-845E1EFB0B47"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="D0B08E9B-846E-4A6D-EED4-7F7DC48C5132" name="SchSpr_Compulsory_FK">
+<ind_PK_UK id="D0B08E9B-846E-4A6D-EED4-7F7DC48C5132" name="schspr_compulsory_fk">
 <createdBy>leads</createdBy>
 <createdTime>2021-03-17 07:10:24 UTC</createdTime>
 <generatorID>E3B394DD-06E1-6A78-9804-99578AD121E4</generatorID>
@@ -706,7 +747,7 @@
 <colUsage columnID="C0F67355-C7AF-17DE-BCC0-ADBCF2030F53"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="8DD5ACF1-C535-C8BF-0FCC-E7F5DCCCACF7" name="SchSpr_StatusYN_FK">
+<ind_PK_UK id="8DD5ACF1-C535-C8BF-0FCC-E7F5DCCCACF7" name="schspr_statusyn_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-05-26 08:04:51 UTC</createdTime>
 <generatorID>D764DED1-E10F-2074-0CBB-2E7E1CD0EE77</generatorID>
@@ -726,6 +767,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="FFBC07B9-0A31-D7BA-6A76-A0CB692336B7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3D093B13-430D-B5FE-D6AC-3DC3AD8C704E" name="SchSpr_Board_FK">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-14 08:53:53 UTC</createdTime>
+<generatorID>ACDDDE09-5145-9F7F-1E8D-7186B0971F27</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="63579A22-965F-F9B7-CB30-7088A4467D0A"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

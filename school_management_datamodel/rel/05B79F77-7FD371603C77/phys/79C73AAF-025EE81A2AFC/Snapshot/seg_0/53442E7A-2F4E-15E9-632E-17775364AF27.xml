@@ -33,11 +33,12 @@
         nvl(to_char(wd.min_internal),
             '-NA-') AS inter_pass_mark,
         ( wd.min_main + nvl(wd.min_internal, 0) ) AS total_pass_mark,
-        func_std_grade(p_school_code => wd.school_code, p_class_code => wd.class_code, p_stream_code => wd.stream_code, p_score_type => wd.score_type, p_mark_obtained => wd.score_main,
-                      p_max_mark => wd.max_main) AS main_mark_obtained,
-        func_std_grade(p_school_code => wd.school_code, p_class_code => wd.class_code, p_stream_code => wd.stream_code, p_score_type => wd.score_type, p_mark_obtained => wd.score_internal,
-                      p_max_mark => wd.max_internal) AS inter_mark_obtained,
-        func_std_grade(p_school_code => wd.school_code, p_class_code => wd.class_code, p_stream_code => wd.stream_code, p_score_type => wd.score_type, p_mark_obtained =>(nvl(wd.score_main, 0) + nvl(wd.score_internal, 0)), p_max_mark =>(wd.max_main + nvl(wd.max_internal, 0))) AS total_mark_obtained,
+        func_std_grade(p_school_code => wd.school_code, p_batch_no => wd.batch_no#, p_class_code => wd.class_code, p_stream_code => wd.stream_code, p_score_type => wd.score_type,
+                      p_mark_obtained => wd.score_main, p_max_mark => wd.max_main) AS main_mark_obtained,
+        func_std_grade(p_school_code => wd.school_code, p_batch_no => wd.batch_no#, p_class_code => wd.class_code, p_stream_code => wd.stream_code, p_score_type => wd.score_type,
+                      p_mark_obtained => wd.score_internal, p_max_mark => wd.max_internal) AS inter_mark_obtained,
+        func_std_grade(p_school_code => wd.school_code, p_batch_no => wd.batch_no#, p_class_code => wd.class_code, p_stream_code => wd.stream_code, p_score_type => wd.score_type,
+                      p_mark_obtained =>(nvl(wd.score_main, 0) + nvl(wd.score_internal, 0)), p_max_mark =>(wd.max_main + nvl(wd.max_internal, 0))) AS total_mark_obtained,
         (
             CASE
                 WHEN wd.ranking_type = 'YES'
@@ -70,7 +71,7 @@
                 WHEN wd.ranking_type = 'YES' THEN
                     nvl(to_char(round((nvl(wd.score_main, 0) + nvl(wd.score_internal, 0)) /(nvl(wd.max_main, 0) + nvl(wd.max_internal, 0)) * 100,
                                       2),
-                                'fm999d00'),
+                                'fm999'),
                         '-')
             END
         ) AS percentage
