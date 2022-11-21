@@ -1,0 +1,154 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="v_score_allocation" directorySegmentName="seg_0" id="17C04515-FEE8-0F50-5D28-7CCB4D323FA6">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-21 05:46:34 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<refreshType>FORCE</refreshType>
+<subquery><![CDATA[SELECT
+        school_code,
+        batch_no,
+        class_code,
+        stream_code,
+        term_code,
+        subject_code,
+        super_code,
+        domain_code,
+        academic_code,
+        category_code,
+        part_name,
+        ranking_type,
+        score_type,
+        optional_type,
+        main_max_mark AS max_main,
+        inter_max_mark AS max_internal,
+        main_min_mark min_main,
+        inter_min_mark AS min_internal
+    FROM
+        ( SELECT
+                  sterm.school_code AS school_code,
+                  sterm.batch_no# AS batch_no,
+                  sterm.class_code AS class_code,
+                  sterm.stream_code AS stream_code,
+                  sterm.term_code AS term_code,
+                  csub.subject_code AS subject_code,
+                  ssubj.super_code AS super_code,
+                  sdom.domain_code AS domain_code,
+                  scat.academic_code AS academic_code,
+                  ssup.category_code AS category_code,
+                  ssup.part_name AS part_name,
+                  ssup.ranking_type AS ranking_type,
+                  ssup.score_type AS score_type,
+                  ssup.optional_type AS optional_type,
+                  examination_type AS examination_type,
+                  SUM(salloc.max_mark *(csub.ratio_ant / csub.ratio_con)) AS max_mark,
+                  SUM(salloc.min_mark *(csub.ratio_ant / csub.ratio_con)) AS min_mark
+              FROM
+                       school_term sterm
+                  INNER JOIN school_super ssup
+                  ON ( ssup.school_code = sterm.school_code
+                       AND ssup.batch_no# = sterm.batch_no#
+                       AND ssup.class_code = sterm.class_code
+                       AND ssup.stream_code = sterm.stream_code )
+                  INNER JOIN super_subject supsub
+                  ON ( supsub.code = ssup.super_code )
+                  INNER JOIN subject_category scat
+                  ON ( scat.code = ssup.category_code )
+                  INNER JOIN academic_category acat
+                  ON ( acat.code = scat.academic_code )
+                  INNER JOIN school_subject ssubj
+                  ON ( ssubj.school_code = sterm.school_code
+                       AND ssubj.batch_no# = sterm.batch_no#
+                       AND ssubj.class_code = sterm.class_code
+                       AND ssubj.stream_code = sterm.stream_code
+                       AND ssup.super_code = ssubj.super_code )
+                  INNER JOIN subject_domain sdom
+                  ON ( sdom.school_code = sterm.school_code
+                       AND sdom.class_code = sterm.class_code
+                       AND sdom.stream_code = sterm.stream_code
+                       AND sdom.subject_code = ssubj.subject_code )
+                  INNER JOIN class_subject csub
+                  ON ( csub.school_code = sterm.school_code
+                       AND csub.batch_no# = sterm.batch_no#
+                       AND csub.class_code = sterm.class_code
+                       AND csub.stream_code = sterm.stream_code
+                       AND csub.term_code = sterm.term_code
+                       AND csub.subject_code = ssubj.subject_code )
+                  INNER JOIN score_allocation salloc
+                  ON ( salloc.school_code = csub.school_code
+                       AND salloc.batch_no# = csub.batch_no#
+                       AND salloc.class_code = csub.class_code
+                       AND salloc.stream_code = csub.stream_code
+                       AND salloc.term_code = csub.term_code
+                       AND salloc.super_code = ssubj.super_code )
+            WHERE
+                    sterm.status_name = 'ACTIVE'
+                AND ssubj.status_name = 'ACTIVE'
+                AND csub.status_name = 'ACTIVE'
+                AND salloc.status_name = 'ACTIVE'
+          GROUP BY
+              sterm.school_code,
+              sterm.batch_no#,
+              sterm.class_code,
+              sterm.stream_code,
+              sterm.term_code,
+              ssup.part_name,
+              ssup.ranking_type,
+              scat.academic_code,
+              ssup.category_code,
+              sdom.domain_code,
+              scat.pseudo_name,
+              ssubj.super_code,
+              csub.subject_code,
+              ssup.score_type,
+              ssup.optional_type,
+              salloc.examination_type
+        ) PIVOT (
+            SUM(min_mark)
+        AS min_mark,
+        SUM(max_mark) AS max_mark
+            FOR examination_type
+            IN ( 'EXTERNAL' AS main, 'INTERNAL' AS inter )
+        )
+        wd
+    ORDER BY
+        school_code,
+        batch_no,
+        class_code,
+        stream_code,
+        term_code,
+        part_name,
+        (
+            CASE
+                WHEN ranking_type = 'YES' THEN
+                    1
+                WHEN ranking_type = 'NO'  THEN
+                    2
+            END
+        ) ASC,
+        ( SELECT
+                serial_no
+            FROM
+                school_super
+          WHERE
+                  school_code = wd.school_code
+              AND batch_no# = wd.batch_no
+              AND class_code = wd.class_code
+              AND stream_code = wd.stream_code
+              AND super_code = wd.super_code
+        ) ASC,
+        ( SELECT
+                serial_no
+            FROM
+                class_subject
+          WHERE
+                  school_code = wd.school_code
+              AND batch_no# = wd.batch_no
+              AND class_code = wd.class_code
+              AND stream_code = wd.stream_code
+              AND term_code = wd.term_code
+              AND subject_code = wd.subject_code
+        ) ASC]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with></with>
+</SnapshotOraclev11g>

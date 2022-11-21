@@ -21,115 +21,174 @@
     optional_type,
     compulsory_type,
     part_name,
-    fourth_type
+    fourth_type,
+    main_score,
+    inter_score,
+    total_score
 FROM
     ( SELECT
-              csub.school_code,
-              csub.batch_no#,
-              csub.class_code,
-              csub.stream_code,
-              csub.term_code,
-              ssub.student_id,
-              ssubj.super_code,
-              'NO' AS ranking_type,
-              '0008' AS category_code,
-              ssup.optional_type,
-              ssup.compulsory_type,
-              ssup.fourth_type,
-              decode(ssup.part_name,
-                     'I',
-                     decode(2, 2, 'II'),
-                     'II',
-                     decode(3, 3, 'III')) AS part_name,
-              ROW_NUMBER()
-              OVER(PARTITION BY csub.school_code,
-                                csub.batch_no#,
-                                csub.class_code,
-                                csub.stream_code,
-                                ssub.student_id,
-                                csub.term_code
-                   ORDER BY
-                           CASE
-                               WHEN ssup.fourth_type = 'Y' THEN
-                                   round(SUM(csub.ratio_ant / csub.ratio_con * nvl(sa.score, 0) * salloc.max_mark / nvl(sa.maxmark, 1)))
-                               ELSE
-                                   9999
-                           END
-                       ASC,
-                           ssub.fourth_subject DESC
-              ) AS score_row
-          FROM
-                   class_subject csub
-              INNER JOIN school_subject ssubj
-              ON ( ssubj.school_code = csub.school_code
-                   AND ssubj.batch_no# = csub.batch_no#
-                   AND ssubj.class_code = csub.class_code
-                   AND ssubj.stream_code = csub.stream_code
-                   AND ssubj.subject_code = csub.subject_code )
-              INNER JOIN school_super ssup
-              ON ( ssup.school_code = csub.school_code
-                   AND ssup.batch_no# = csub.batch_no#
-                   AND ssup.class_code = csub.class_code
-                   AND ssup.stream_code = csub.stream_code
-                   AND ssup.super_code = ssubj.super_code )
-              INNER JOIN std_score_alloc salloc
-              ON ( salloc.school_code = csub.school_code
-                   AND salloc.batch_no# = csub.batch_no#
-                   AND salloc.class_code = csub.class_code
-                   AND salloc.stream_code = csub.stream_code
-                   AND salloc.term_code = csub.term_code
-                   AND salloc.super_code = ssubj.super_code )
-              INNER JOIN std_subject ssub
-              ON ( ssub.school_code = csub.school_code
-                   AND ssub.batch_no# = csub.batch_no#
-                   AND ssub.class_code = csub.class_code
-                   AND ssub.stream_code = csub.stream_code
-                   AND ssub.term_code = csub.term_code
-                   AND ssub.student_id = salloc.student_id
-                   AND ssub.subject_code = csub.subject_code )
-              LEFT OUTER JOIN mv_std_assessment sa
-              ON ( sa.school_code = csub.school_code
-                   AND sa.batch_no# = csub.batch_no#
-                   AND sa.class_code = csub.class_code
-                   AND sa.stream_code = csub.stream_code
-                   AND sa.term_code = csub.term_code
-                   AND sa.subject_code = csub.subject_code
-                   AND sa.evaluation_code = salloc.evaluation_code
-                   AND sa.student_id = salloc.student_id )
-        WHERE
-                csub.status_name = 'ACTIVE'
-            AND ssubj.status_name = 'ACTIVE'
-            AND ssup.status_name = 'ACTIVE'
-            AND ssub.status_name = 'ACTIVE'
-            AND salloc.status_name = 'ACTIVE'
-            AND ssup.ranking_type = 'YES'
-            AND ssup.fourth_type = 'Y'
-      GROUP BY
-          csub.school_code,
-          csub.batch_no#,
-          csub.class_code,
-          csub.stream_code,
-          csub.term_code,
-          ssub.student_id,
-          ssubj.super_code,
-          'NO',
-          '0008',
-          ssup.optional_type,
-          ssup.compulsory_type,
-          ssup.part_name,
-          ssub.fourth_subject,
-          ssup.fourth_type
-      ORDER BY
           school_code,
           batch_no#,
           class_code,
           stream_code,
           term_code,
           student_id,
-          score_row DESC
+          super_code,
+          ranking_type,
+          category_code,
+          optional_type,
+          compulsory_type,
+          part_name,
+          fourth_type,
+          main_score,
+          inter_score,
+          total_score,
+          ROW_NUMBER()
+          OVER(PARTITION BY school_code, batch_no#, class_code, stream_code, term_code,
+                            student_id
+               ORDER BY
+                   total_rank, main_rank
+          ) AS row_score
+      FROM
+          ( SELECT
+                  school_code,
+                  batch_no#,
+                  class_code,
+                  stream_code,
+                  term_code,
+                  student_id,
+                  super_code,
+                  ranking_type,
+                  category_code,
+                  optional_type,
+                  compulsory_type,
+                  part_name,
+                  fourth_type,
+                  main_score,
+                  inter_score,
+                  nvl(main_score, 0) + nvl(inter_score, 0) AS total_score,
+                  DENSE_RANK()
+                  OVER(PARTITION BY school_code,
+                                    batch_no#,
+                                    class_code,
+                                    stream_code,
+                                    term_code,
+                                    student_id
+                       ORDER BY
+                           nvl(main_score, 0) DESC
+                  ) AS main_rank,
+                  DENSE_RANK()
+                  OVER(PARTITION BY school_code,
+                                    batch_no#,
+                                    class_code,
+                                    stream_code,
+                                    term_code,
+                                    student_id
+                       ORDER BY
+                           nvl(main_score, 0) + nvl(inter_score, 0) DESC
+                  ) AS total_rank
+              FROM
+                  ( SELECT
+                            csub.school_code,
+                            csub.batch_no#,
+                            csub.class_code,
+                            csub.stream_code,
+                            csub.term_code,
+                            ssub.student_id,
+                            ssubj.super_code,
+                            'NO' AS ranking_type,
+                            '0008' AS category_code,
+                            ssup.optional_type,
+                            ssup.compulsory_type,
+                            ssup.fourth_type,
+                            decode(ssup.part_name,
+                                   'I',
+                                   decode(2, 2, 'II'),
+                                   'II',
+                                   decode(3, 3, 'III')) AS part_name,
+                            salloc.examination_type,
+                            round(SUM(csub.ratio_ant / csub.ratio_con * nvl(sa.score, 0) * salloc.max_mark / nvl(sa.maxmark, 1))) AS score
+                        FROM
+                                 class_subject csub
+                            INNER JOIN school_subject ssubj
+                            ON ( ssubj.school_code = csub.school_code
+                                 AND ssubj.batch_no# = csub.batch_no#
+                                 AND ssubj.class_code = csub.class_code
+                                 AND ssubj.stream_code = csub.stream_code
+                                 AND ssubj.subject_code = csub.subject_code )
+                            INNER JOIN school_super ssup
+                            ON ( ssup.school_code = csub.school_code
+                                 AND ssup.batch_no# = csub.batch_no#
+                                 AND ssup.class_code = csub.class_code
+                                 AND ssup.stream_code = csub.stream_code
+                                 AND ssup.super_code = ssubj.super_code )
+                            INNER JOIN std_score_alloc salloc
+                            ON ( salloc.school_code = csub.school_code
+                                 AND salloc.batch_no# = csub.batch_no#
+                                 AND salloc.class_code = csub.class_code
+                                 AND salloc.stream_code = csub.stream_code
+                                 AND salloc.term_code = csub.term_code
+                                 AND salloc.super_code = ssubj.super_code )
+                            INNER JOIN std_subject ssub
+                            ON ( ssub.school_code = csub.school_code
+                                 AND ssub.batch_no# = csub.batch_no#
+                                 AND ssub.class_code = csub.class_code
+                                 AND ssub.stream_code = csub.stream_code
+                                 AND ssub.term_code = csub.term_code
+                                 AND ssub.student_id = salloc.student_id
+                                 AND ssub.subject_code = csub.subject_code )
+                            LEFT OUTER JOIN mv_std_assessment sa
+                            ON ( sa.school_code = csub.school_code
+                                 AND sa.batch_no# = csub.batch_no#
+                                 AND sa.class_code = csub.class_code
+                                 AND sa.stream_code = csub.stream_code
+                                 AND sa.term_code = csub.term_code
+                                 AND sa.subject_code = csub.subject_code
+                                 AND sa.evaluation_code = salloc.evaluation_code
+                                 AND sa.student_id = salloc.student_id )
+                      WHERE
+                              csub.status_name = 'ACTIVE'
+                          AND ssubj.status_name = 'ACTIVE'
+                          AND ssup.status_name = 'ACTIVE'
+                          AND ssub.status_name = 'ACTIVE'
+                          AND salloc.status_name = 'ACTIVE'
+                          AND ssup.ranking_type = 'YES'
+                          AND ssup.fourth_type = 'Y'
+                    GROUP BY
+                        csub.school_code,
+                        csub.batch_no#,
+                        csub.class_code,
+                        csub.stream_code,
+                        csub.term_code,
+                        ssub.student_id,
+                        ssubj.super_code,
+                        'NO',
+                        '0008',
+                        ssup.optional_type,
+                        ssup.compulsory_type,
+                        ssup.part_name,
+                        ssub.fourth_subject,
+                        ssup.fourth_type,
+                        salloc.examination_type
+                  ) PIVOT (
+                      SUM(score)
+                  AS score
+                      FOR examination_type
+                      IN ( 'EXTERNAL' AS main, 'INTERNAL' AS inter )
+                  )
+            ORDER BY
+                school_code,
+                batch_no#,
+                class_code,
+                stream_code,
+                term_code,
+                student_id,
+                total_rank,
+                main_rank
+          )
     )
 WHERE
-        score_row > 3]]></subquery>
+    row_score > 3]]></subquery>
 <subqueryNeedsMigration>false</subqueryNeedsMigration>
 <with>ROWID</with>
 </SnapshotOraclev11g>

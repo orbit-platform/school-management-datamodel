@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="v_emp_working_day" directorySegmentName="seg_0" id="A79112F9-E32B-0F33-FAD4-48BE0417C522">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-17 10:36:39 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<refreshType>FORCE</refreshType>
+<subquery><![CDATA[SELECT
+        emp.first_name || nvl2(emp.middle_name, ' ' || emp.middle_name || ' ', ' ') || emp.last_name AS employee_name,
+        cbat.company_code,
+        cdpt.department_code,
+        cbat.batch_no#,
+        trunc(yd.day, 'mm') AS accounting_period,
+        edpt.employee_id,
+        trunc(yd.day, 'mm') AS accounting_month,
+        yd.day AS year_date,
+        to_char(yd.day, 'Dy, DD-MON-YYYY') AS year_day,
+        nvl2(att.person#, 'P', 'A') AS state,
+        to_char(MIN(att.punch),
+                'HH12:MI PM') AS login,
+        to_char(MAX(att.punch),
+                'HH12:MI PM') AS logout
+    FROM
+             company_batch cbat
+        INNER JOIN company_dept cdpt
+        ON ( cdpt.company_code = cbat.company_code )
+        INNER JOIN emp_department edpt
+        ON ( edpt.company_code = cbat.company_code
+             AND edpt.department_code = cdpt.department_code )
+        CROSS JOIN year_date yd
+        INNER JOIN emp_working_day ewd
+        ON ( ewd.company_code = cdpt.company_code
+             AND ewd.department_code = cdpt.department_code
+             AND ewd.batch_no# = cbat.batch_no#
+             AND ewd.employee_id = edpt.employee_id
+             AND ewd.year_date = yd.day )
+        INNER JOIN employee emp
+        ON ( emp.id = ewd.employee_id )
+        LEFT OUTER JOIN attendance att
+        ON ( edpt.employee_id = att.person#
+             AND trunc(att.punch, 'dd') = yd.day )
+    WHERE
+            cbat.status_name = 'ACTIVE'
+        AND ewd.day_type = 'WORKING DAY'
+        AND yd.day <= sysdate
+        AND yd.day BETWEEN cbat.effective_from AND cbat.effective_upto
+        AND yd.day BETWEEN edpt.effective_from AND edpt.effective_upto
+        AND edpt.employee_id NOT IN ( SELECT
+                                                                        ex.employee_id
+                                                                    FROM
+                                                                        emp_attendance_ex ex
+                                      WHERE
+                                              ex.status_name = 'ACTIVE'
+                                          AND ex.company_code = edpt.company_code
+                                          AND ex.department_code = edpt.department_code
+                                    )
+    GROUP BY
+        emp.first_name || nvl2(emp.middle_name, ' ' || emp.middle_name || ' ', ' ') || emp.last_name,
+        cbat.company_code,
+        cdpt.department_code,
+        cbat.batch_no#,
+        trunc(yd.day, 'mm'),
+        edpt.employee_id,
+        yd.day,
+        to_char(yd.day, 'Dy, DD-MON-YYYY'),
+        nvl2(att.person#, 'P', 'A')
+    ORDER BY
+        company_code,
+        department_code,
+        batch_no#,
+        employee_name,
+        accounting_month,
+        yd.day ASC]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with></with>
+</SnapshotOraclev11g>

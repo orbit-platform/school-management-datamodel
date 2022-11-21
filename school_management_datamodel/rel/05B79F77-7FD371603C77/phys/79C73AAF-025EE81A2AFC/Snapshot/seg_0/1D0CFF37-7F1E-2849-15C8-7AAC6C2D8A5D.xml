@@ -1,0 +1,121 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="v_form_no_4" directorySegmentName="seg_0" id="1D0CFF37-7F1E-2849-15C8-7AAC6C2D8A5D">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-16 10:43:28 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<refreshType>FORCE</refreshType>
+<subquery><![CDATA[SELECT
+        ROWNUM AS slno,
+        school_code,
+        batch_no#,
+        class_code,
+        stream_code,
+        student_id,
+        term_code,
+        registration_id,
+        sex,
+        subjects,
+        father_name,
+        mother_name,
+        contact_no,
+        total_fee,
+        "WE",
+        "CE",
+        "PE",
+        "EE"
+    FROM
+        ( SELECT
+                school_code,
+                batch_no#,
+                class_code,
+                stream_code,
+                student_id,
+                term_code,
+                registration_id,
+                student_name,
+                sex,
+                func_std_subject(board_code, school_code, batch_no#, class_code, stream_code,
+                                 student_id, term_code) AS subjects,
+                father_name,
+                mother_name,
+                contact_no,
+                total_fee,
+                func_std_grade(school_code, batch_no#, class_code, stream_code, score_type,
+                               "WE", 100) AS "WE",
+                func_std_grade(school_code, batch_no#, class_code, stream_code, score_type,
+                               "CE", 100) AS "CE",
+                func_std_grade(school_code, batch_no#, class_code, stream_code, score_type,
+                               "PE", 100) AS "PE",
+                func_std_grade(school_code, batch_no#, class_code, stream_code, score_type,
+                               "EE", 100) AS "EE"
+            FROM
+                ( SELECT
+                        ssup.board_code,
+                        scs.school_code,
+                        scs.batch_no#,
+                        scs.class_code,
+                        scs.stream_code,
+                        std.id AS student_id,
+                        ssubj.term_code,
+                        std.registration_id,
+                        upper(std.first_name || nvl2(std.middle_name, ' ' || std.middle_name || ' ', ' ') || std.last_name) AS student_name,
+                        std.sex_name AS sex,
+                        sp.father_first_name || nvl2(sp.father_middle_name, ' ' || sp.father_middle_name || ' ', ' ') || sp.father_last_name AS father_name,
+                        sp.mother_first_name || nvl2(sp.mother_middle_name, ' ' || sp.mother_middle_name || ' ', ' ') || sp.mother_last_name AS mother_name,
+                        '''+' || substr(sg.primary_tel, 1, 2) || '-' || substr(sg.primary_tel, 3, 10) AS contact_no,
+                        '900.00' AS total_fee,
+                        ssup.abbrv AS subject_name,
+                        ssup.ranking_type,
+                        ssup.score_type,
+                        ( nvl(arc.score_main, 0) + nvl(arc.score_internal, 0) ) / ( nvl(arc.max_main, 0) + nvl(arc.max_internal, 0) ) * 100 AS percentage
+                    FROM
+                             student std
+                        INNER JOIN std_class_sec scs
+                        ON ( scs.student_id = std.id )
+                        INNER JOIN std_parent sp
+                        ON ( sp.admission_id = std.admission_id )
+                        INNER JOIN std_guardian sg
+                        ON ( sg.admission_id = std.admission_id )
+                        INNER JOIN std_subject ssubj
+                        ON ( ssubj.school_code = scs.school_code
+                             AND ssubj.batch_no# = scs.batch_no#
+                             AND ssubj.class_code = scs.class_code
+                             AND ssubj.stream_code = scs.stream_code
+                             AND ssubj.student_id = scs.student_id )
+                        INNER JOIN school_subject scsubj
+                        ON ( scsubj.school_code = scs.school_code
+                             AND scsubj.batch_no# = scs.batch_no#
+                             AND scsubj.class_code = scs.class_code
+                             AND scsubj.stream_code = scs.stream_code
+                             AND scsubj.subject_code = ssubj.subject_code )
+                        INNER JOIN school_super ssup
+                        ON ( ssup.school_code = scs.school_code
+                             AND ssup.batch_no# = scs.batch_no#
+                             AND ssup.class_code = scs.class_code
+                             AND ssup.stream_code = scs.stream_code
+                             AND ssup.super_code = scsubj.super_code )
+                        LEFT OUTER JOIN arc_std_score arc
+                        ON ( arc.school_code = scs.school_code
+                             AND arc.batch_no# = scs.batch_no#
+                             AND arc.class_code = scs.class_code
+                             AND arc.stream_code = scs.stream_code
+                             AND arc.term_code = ssubj.term_code
+                             AND arc.student_id = scs.student_id
+                             AND arc.subject_code = ssubj.subject_code )
+                  WHERE
+                          scs.status_name = 'ACTIVE'
+                      AND arc.ranking_type = 'NO'
+                ) PIVOT (
+                    SUM(percentage)
+                    FOR subject_name
+                    IN ( 'WE' AS "WE", 'CE' AS "CE", 'PE' AS "PE", 'EE' AS "EE" )
+                )
+          ORDER BY
+              student_name
+        )
+    ORDER BY
+        slno]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with></with>
+</SnapshotOraclev11g>

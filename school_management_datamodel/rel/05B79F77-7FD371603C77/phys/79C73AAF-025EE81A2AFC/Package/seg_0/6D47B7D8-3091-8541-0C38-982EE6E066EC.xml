@@ -119,15 +119,13 @@ END fee_due_pckg;</source>
                               ON ( smf.school_code = std.school_code
                                    AND smf.batch_no# = scs.batch_no#
                                    AND smf.class_code = scs.class_code
-                                   AND nvl(smf.stream_code, &apos;NA&apos;) = nvl(scs.stream_code,
-                                                                        nvl(smf.stream_code, &apos;NA&apos;))
+                                   AND smf.stream_code = scs.stream_code
                                    AND smf.student_id = scs.student_id )
                               INNER JOIN school_term sterm
                               ON ( sterm.school_code = csch.school_code
                                    AND sterm.batch_no# = scs.batch_no#
                                    AND sterm.class_code = scs.class_code
-                                   AND nvl(sterm.stream_code, &apos;NA&apos;) = nvl(scs.stream_code,
-                                                                          nvl(sterm.stream_code, &apos;NA&apos;)) )
+                                   AND sterm.stream_code = scs.stream_code )
                               LEFT OUTER JOIN ( SELECT
                                                                       school_code,
                                                                       batch_no#,
@@ -170,8 +168,7 @@ END fee_due_pckg;</source>
                               ON ( cteach.school_code = csch.school_code
                                    AND cteach.batch_no# = smf.batch_no#
                                    AND cteach.class_code = scs.class_code
-                                   AND nvl(cteach.stream_code, &apos;NA&apos;) = nvl(scs.stream_code,
-                                                                           nvl(cteach.stream_code, &apos;NA&apos;))
+                                   AND cteach.stream_code = scs.stream_code
                                    AND cteach.section_code = scs.section_code
                                    AND cteach.term_code = sterm.term_code
                                    AND cteach.status_name = &apos;ACTIVE&apos; )
@@ -191,8 +188,7 @@ END fee_due_pckg;</source>
                             AND std.school_code = p_school_code
                             AND scs.batch_no# = p_batch_no
                             AND scs.class_code = p_class_code
-                            AND nvl(scs.stream_code, &apos;NA&apos;) = nvl(p_stream_code,
-                                                                 nvl(scs.stream_code, &apos;NA&apos;))
+                            AND scs.stream_code = nvl(p_stream_code, scs.stream_code)
                             AND NOT instr(&apos;:&apos; || sfn.std_exception || &apos;:&apos;, &apos;:&apos; || scs.student_id || &apos;:&apos;) &gt; 0
                             AND smf.accounting_period &lt;= p_accounting_period
                       GROUP BY

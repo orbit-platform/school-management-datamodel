@@ -163,7 +163,7 @@
         FROM
             dual;
 
-    ---cursor sibling
+        ---cursor sibling
         CURSOR cur_sibling (
             p_admission_id NUMBER
         ) IS
@@ -202,7 +202,7 @@
         WHERE
             ROWNUM = 1;
 
-    ---cursor std_sibling
+        ---cursor std_sibling
         CURSOR cur_std_sibling (
             p_sibling_id NUMBER,
             p_student_id NUMBER
@@ -256,7 +256,7 @@
                 std_permaddress
             WHERE
                 admission_id = g_row_level_info(indx).v_admission_id;
-                
+
             ---getting v_effective_from and v_effective_upto
             SELECT
                 effective_from,
@@ -269,7 +269,8 @@
             WHERE
                     school_code = g_row_level_info(indx).v_school_code
                 AND batch_no# = g_row_level_info(indx).v_batch_no
-                AND class_code = g_row_level_info(indx).v_class_code;
+                AND class_code = g_row_level_info(indx).v_class_code
+                AND stream_code = g_row_level_info(indx).v_stream_code;
 
           ---getting v_any_subject information from the table adm_subject
             SELECT
@@ -332,8 +333,7 @@
                 g_row_level_info(indx).v_gender,
                 g_row_level_info(indx).v_dob,
                 g_row_level_info(indx).v_school_code,
-                nvl(g_row_level_info(indx).v_doj,
-                    sysdate),
+                nvl(g_row_level_info(indx).v_doj, sysdate),
                 g_row_level_info(indx).v_primary_email,
                 g_row_level_info(indx).v_secondary_email,
                 g_row_level_info(indx).v_primary_tel,

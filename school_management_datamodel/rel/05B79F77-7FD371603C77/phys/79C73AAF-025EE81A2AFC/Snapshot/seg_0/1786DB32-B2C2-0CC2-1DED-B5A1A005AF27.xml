@@ -1,0 +1,37 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="v_location_address" directorySegmentName="seg_0" id="1786DB32-B2C2-0CC2-1DED-B5A1A005AF27">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-18 09:15:40 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<refreshType>FORCE</refreshType>
+<subquery><![CDATA[SELECT
+        loc.id AS location_id,
+        loc.name AS location_name,
+        loc.address_line1,
+        loc.address_line2,
+        loc.postal_office,
+        loc.postal_code,
+        city.name AS city_name,
+        city.id AS city_id,
+        dis.name AS district_name,
+        dis.id AS district_id,
+        state.name AS state_name,
+        state.id AS state_id,
+        cnt.name AS country_name,
+        cnt.id AS country_id
+    FROM
+             location_address loc
+        INNER JOIN school_location sloc
+        ON ( sloc.location_id = loc.id )
+        INNER JOIN state
+        ON ( state.id = loc.state_id )
+        INNER JOIN country cnt
+        ON ( cnt.id = loc.country_id )
+        INNER JOIN city
+        ON ( city.id = loc.city_id )
+        INNER JOIN district dis
+        ON ( dis.id = city.district_id )]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with></with>
+</SnapshotOraclev11g>

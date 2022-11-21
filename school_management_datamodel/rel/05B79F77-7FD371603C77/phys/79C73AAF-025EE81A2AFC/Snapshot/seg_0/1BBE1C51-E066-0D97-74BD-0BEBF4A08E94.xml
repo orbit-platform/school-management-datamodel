@@ -1,0 +1,164 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="rep_score_allocation" directorySegmentName="seg_0" id="1BBE1C51-E066-0D97-74BD-0BEBF4A08E94">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-21 06:32:32 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<refreshType>FORCE</refreshType>
+<subquery><![CDATA[SELECT
+    wd.school_code,
+    wd.batch_no,
+    wd.class_code,
+    wd.stream_code,
+    wd.term_code,
+    wd.academic_code,
+    wd.category_code,
+    wd.domain_code,
+    wd.super_code,
+    wd.subject_code,
+    scat.name AS category_name,
+    wd.optional_type,
+    wd.part_name,
+    ssup.pseudo_name AS super_name,
+    csub.pseudo_name AS subject_name,
+    wd.score_type,
+    wd.ranking_type,
+    wd.max_main,
+    wd.max_internal,
+    ( wd.max_main + wd.max_internal ) AS max_total,
+    wd.min_main,
+    wd.min_internal,
+    ( wd.min_main + wd.min_internal ) AS min_total
+FROM
+         ( SELECT
+            school_code,
+            batch_no,
+            class_code,
+            stream_code,
+            term_code,
+            academic_code,
+            category_code,
+            part_name,
+            ranking_type,
+            domain_code,
+            optional_type,
+            super_code,
+            subject_code,
+            score_type,
+            SUM(max_main) AS max_main,
+            SUM(max_internal) AS max_internal,
+            SUM(min_main) AS min_main,
+            SUM(min_internal) AS min_internal,
+            GROUPING(part_name) AS grp_part_name,
+            GROUPING(academic_code) AS grp_academic_code,
+            GROUPING(score_type) AS grp_score_type,
+            GROUPING(optional_type) AS grp_optional_type,
+            GROUPING(category_code) AS grp_category_code,
+            GROUPING(ranking_type) AS grp_ranking_type,
+            GROUPING(super_code) AS grp_super_code,
+            GROUPING(subject_code) AS grp_subject_code
+        FROM
+            v_score_allocation
+      GROUP BY
+          school_code,
+          batch_no,
+          class_code,
+          stream_code,
+          term_code,
+          score_type,
+          ranking_type,
+          domain_code,
+          optional_type,
+          ROLLUP(part_name,
+                 academic_code,
+                 optional_type,
+                 category_code,
+                 super_code,
+                 subject_code)
+    ) wd
+    INNER JOIN subject_category scat
+    ON ( scat.code = wd.category_code )
+    INNER JOIN school_super ssup
+    ON ( ssup.school_code = wd.school_code
+         AND ssup.batch_no# = wd.batch_no
+         AND ssup.class_code = wd.class_code
+         AND ssup.stream_code = wd.stream_code
+         AND ssup.super_code = wd.super_code )
+    INNER JOIN class_subject csub
+    ON ( csub.school_code = wd.school_code
+         AND csub.batch_no# = wd.batch_no
+         AND csub.class_code = wd.class_code
+         AND csub.stream_code = wd.stream_code
+         AND csub.term_code = wd.term_code
+         AND csub.subject_code = wd.subject_code )
+WHERE
+    (
+        CASE
+            WHEN grp_part_name = 0
+                 AND grp_academic_code = 0
+                 AND grp_score_type = 0
+                 AND grp_optional_type = 0
+                 AND grp_category_code = 0
+                 AND grp_ranking_type = 0
+                 AND grp_super_code = 0
+                 AND grp_subject_code = 0 THEN
+                1
+            WHEN func_subject_cnt(wd.school_code, wd.batch_no, wd.class_code, wd.stream_code, wd.term_code,
+                                      wd.super_code) > 1
+                 AND grp_part_name = 0
+                 AND grp_academic_code = 0
+                 AND grp_score_type = 0
+                 AND grp_optional_type = 0
+                 AND grp_category_code = 0
+                 AND grp_ranking_type = 0
+                 AND grp_super_code = 0
+                 AND grp_subject_code = 1 THEN
+                1
+        END
+    ) = 1
+ORDER BY
+    wd.school_code,
+    wd.batch_no,
+    wd.class_code,
+    wd.term_code,
+    (
+        CASE
+            WHEN ranking_type = 'YES' THEN
+                1
+            ELSE
+                2
+        END
+    ),
+    part_name,
+    ( SELECT
+            a.serial_no
+        FROM
+            subject_category a
+      WHERE
+          a.code = wd.category_code
+    ) ASC NULLS LAST,
+    ( SELECT
+            a.serial_no
+        FROM
+            school_super a
+      WHERE
+              a.school_code = wd.school_code
+          AND a.batch_no# = wd.batch_no
+          AND a.class_code = wd.class_code
+          AND a.stream_code = wd.stream_code
+          AND a.super_code = wd.super_code
+    ) ASC NULLS LAST,
+    ( SELECT
+            serial_no
+        FROM
+            school_subject
+      WHERE
+              school_code = wd.school_code
+          AND batch_no# = wd.batch_no
+          AND class_code = wd.class_code
+          AND stream_code = wd.stream_code
+          AND subject_code = wd.subject_code
+    ) ASC NULLS LAST]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with></with>
+</SnapshotOraclev11g>

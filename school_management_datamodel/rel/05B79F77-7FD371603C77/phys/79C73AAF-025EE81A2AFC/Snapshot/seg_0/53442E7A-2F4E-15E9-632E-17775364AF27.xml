@@ -39,13 +39,21 @@
                       p_mark_obtained => wd.score_internal, p_max_mark => wd.max_internal) AS inter_mark_obtained,
         func_std_grade(p_school_code => wd.school_code, p_batch_no => wd.batch_no#, p_class_code => wd.class_code, p_stream_code => wd.stream_code, p_score_type => wd.score_type,
                       p_mark_obtained =>(nvl(wd.score_main, 0) + nvl(wd.score_internal, 0)), p_max_mark =>(wd.max_main + nvl(wd.max_internal, 0))) AS total_mark_obtained,
+        grp_part_name,
+        grp_academic_code,
+        grp_score_type,
+        grp_optional_type,
+        grp_category_code,
+        grp_ranking_type,
+        grp_super_code,
+        grp_subject_code,
         (
             CASE
                 WHEN wd.ranking_type = 'YES'
                      AND grp_part_name = 0
                      AND grp_academic_code = 0
                      AND grp_score_type = 0
-                     AND grp_optional_type = 0
+                     AND grp_optional_type = 1
                      AND grp_category_code = 1
                      AND grp_ranking_type = 0
                      AND grp_super_code = 1
@@ -180,7 +188,7 @@
                      AND grp_part_name = 0
                      AND grp_academic_code = 0
                      AND grp_score_type = 0
-                     AND grp_optional_type = 0
+                     AND grp_optional_type = 1
                      AND grp_category_code = 1
                      AND grp_ranking_type = 0
                      AND grp_super_code = 1
