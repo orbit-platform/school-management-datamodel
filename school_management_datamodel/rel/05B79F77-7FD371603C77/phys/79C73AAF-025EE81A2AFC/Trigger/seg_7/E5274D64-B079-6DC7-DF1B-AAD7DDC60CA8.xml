@@ -14,8 +14,6 @@
         v_section_code school_holiday.section_code%TYPE,
         v_holiday_date school_holiday.holiday_date%TYPE,
         v_holiday_type school_holiday.holiday_type%TYPE,
-        v_event_code   school_holiday.event_code%TYPE,
-        v_event_name   school_holiday.event_name%TYPE,
         v_status_name  school_holiday.status_name%TYPE,
         v_descriptions school_holiday.descriptions%TYPE
     );
@@ -44,12 +42,9 @@
         v_batch_no     std_working_day.batch_no#%TYPE;
         v_class_code   std_working_day.class_code%TYPE;
         v_stream_code  std_working_day.stream_code%TYPE;
-        v_section_code std_working_day.section_code%TYPE;
         v_student_id   std_working_day.student_id%TYPE;
         v_year_date    std_working_day.year_date%TYPE;
         v_day_type     std_working_day.day_type%TYPE;
-        v_event_code   std_working_day.event_code%TYPE;
-        v_event_name   std_working_day.event_name%TYPE;
         v_special_type std_working_day.special_type%TYPE;
         v_status_name  std_working_day.status_name%TYPE;
         v_descriptions std_working_day.descriptions%TYPE;
@@ -71,12 +66,9 @@
             scs.batch_no# AS batch_no,
             scs.class_code AS class_code,
             scs.stream_code AS stream_code,
-            scs.section_code AS section_code,
             scs.student_id AS student_id,
             ydt.day AS year_date,
             nvl(schol.holiday_type, 'WORKING DAY') AS day_type,
-            nvl(schol.event_code, '012') AS event_code,
-            nvl(schol.event_name, 'Working Day') AS event_name,
             'NO' AS special_type,
             'ACTIVE' AS status_name,
             schol.descriptions
@@ -104,34 +96,30 @@
             AND scs.stream_code = p_stream_code
             AND scs.section_code = p_section_code
         ORDER BY
-            school_code,
-            batch_no,
-            class_code,
-            stream_code,
-            section_code,
-            student_id,
-            year_date;
+            scs.school_code,
+            scs.batch_no#,
+            scs.class_code,
+            scs.stream_code,
+            scs.section_code,
+            scs.student_id,
+            ydt.day;
 
         ---cursor std_holiday
         CURSOR cur_std_working_day (
-            p_school_code  VARCHAR2,
-            p_class_code   VARCHAR2,
-            p_stream_code  VARCHAR2,
-            p_section_code VARCHAR2,
-            p_student_id   VARCHAR2,
-            p_year_date    DATE
+            p_school_code VARCHAR2,
+            p_class_code  VARCHAR2,
+            p_stream_code VARCHAR2,
+            p_student_id  VARCHAR2,
+            p_year_date   DATE
         ) IS
         SELECT
             school_code,
             batch_no#,
             class_code,
             stream_code,
-            section_code,
             student_id,
             year_date,
             day_type,
-            event_code,
-            event_name,
             special_type,
             status_name,
             descriptions
@@ -141,17 +129,16 @@
                 school_code = p_school_code
             AND class_code = p_class_code
             AND stream_code = p_stream_code
-            AND section_code = p_section_code
             AND student_id = p_student_id
             AND year_date = p_year_date;
     BEGIN
         FOR v_count IN 1..v_updates LOOP
-            FOR indx IN cur_school_holiday(p_school_code => g_school_holiday(v_count).v_school_code, p_batch_no => g_school_holiday(v_count).v_batch_no, p_class_code => g_school_holiday(v_count).v_class_code, p_stream_code => g_school_holiday(v_count).v_stream_code, p_section_code => g_school_holiday(v_count).v_section_code,
+            FOR indx IN cur_school_holiday(p_school_code => g_school_holiday(v_count).v_school_code, p_batch_no => g_school_holiday(v_count).v_batch_no, p_class_code => g_school_holiday(v_count).v_class_code, p_stream_code => g_school_holiday(v_count).v_stream_code, p_section_code => g_school_holiday(v_count
+            ).v_section_code,
                                           p_holiday_date => g_school_holiday(v_count).v_holiday_date) LOOP
 
                 ---open cursor
-                OPEN cur_std_working_day(p_school_code => indx.school_code, p_class_code => indx.class_code, p_stream_code => indx.stream_code, p_section_code => indx.section_code, p_student_id => indx.student_id,
-                                        p_year_date => indx.year_date);
+                OPEN cur_std_working_day(p_school_code => indx.school_code, p_class_code => indx.class_code, p_stream_code => indx.stream_code, p_student_id => indx.student_id, p_year_date => indx.year_date);
 
                 ---fetch
                 FETCH cur_std_working_day INTO
@@ -159,12 +146,9 @@
                     v_batch_no,
                     v_class_code,
                     v_stream_code,
-                    v_section_code,
                     v_student_id,
                     v_year_date,
                     v_day_type,
-                    v_event_code,
-                    v_event_name,
                     v_special_type,
                     v_status_name,
                     v_descriptions;
@@ -177,12 +161,9 @@
                             batch_no#,
                             class_code,
                             stream_code,
-                            section_code,
                             student_id,
                             year_date,
                             day_type,
-                            event_code,
-                            event_name,
                             special_type,
                             status_name,
                             descriptions
@@ -191,12 +172,9 @@
                             indx.batch_no,
                             indx.class_code,
                             indx.stream_code,
-                            indx.section_code,
                             indx.student_id,
                             indx.year_date,
                             indx.day_type,
-                            indx.event_code,
-                            indx.event_name,
                             indx.special_type,
                             indx.status_name,
                             indx.descriptions
@@ -208,19 +186,16 @@
                 IF updating THEN
                     IF cur_std_working_day%found THEN
                         IF v_special_type = 'NO' THEN
-                            IF ( v_day_type <> indx.day_type OR v_event_code <> indx.event_code OR v_event_name <> indx.event_name OR v_special_type <> indx.special_type OR v_status_name <> indx.status_name OR nvl(v_descriptions, 'na') <> nvl(indx.descriptions, 'na') ) THEN
+                            IF ( v_day_type <> indx.day_type OR v_special_type <> indx.special_type OR v_status_name <> indx.status_name OR nvl(v_descriptions, 'na') <> nvl(indx.descriptions, 'na') ) THEN
                                 UPDATE std_working_day
                                 SET
                                     day_type = indx.day_type,
-                                    event_code = indx.event_code,
-                                    event_name = indx.event_name,
                                     status_name = indx.status_name,
                                     descriptions = indx.descriptions
                                 WHERE
                                         school_code = v_school_code
                                     AND class_code = v_class_code
                                     AND stream_code = v_stream_code
-                                    AND section_code = v_section_code
                                     AND student_id = v_student_id
                                     AND year_date = v_year_date;
                             END IF;
@@ -234,12 +209,9 @@
                             batch_no#,
                             class_code,
                             stream_code,
-                            section_code,
                             student_id,
                             year_date,
                             day_type,
-                            event_code,
-                            event_name,
                             special_type,
                             status_name,
                             descriptions
@@ -248,12 +220,9 @@
                             indx.batch_no,
                             indx.class_code,
                             indx.stream_code,
-                            indx.section_code,
                             indx.student_id,
                             indx.year_date,
                             indx.day_type,
-                            indx.event_code,
-                            indx.event_name,
                             indx.special_type,
                             indx.status_name,
                             indx.descriptions
@@ -270,7 +239,6 @@
                                     school_code = indx.school_code
                                 AND class_code = indx.class_code
                                 AND stream_code = indx.stream_code
-                                AND section_code = indx.section_code
                                 AND student_id = indx.student_id
                                 AND year_date = indx.year_date;
                         END IF;
@@ -293,11 +261,8 @@
             g_school_holiday(v_index).v_batch_no := :new.batch_no#;
             g_school_holiday(v_index).v_class_code := :new.class_code;
             g_school_holiday(v_index).v_stream_code := :new.stream_code;
-            g_school_holiday(v_index).v_section_code := :new.section_code;
             g_school_holiday(v_index).v_holiday_date := :new.holiday_date;
             g_school_holiday(v_index).v_holiday_type := :new.holiday_type;
-            g_school_holiday(v_index).v_event_code := :new.event_code;
-            g_school_holiday(v_index).v_event_name := :new.event_name;
             g_school_holiday(v_index).v_status_name := :new.status_name;
             g_school_holiday(v_index).v_descriptions := :new.descriptions;
         END IF;
@@ -307,11 +272,8 @@
             g_school_holiday(v_index).v_batch_no := :old.batch_no#;
             g_school_holiday(v_index).v_class_code := :old.class_code;
             g_school_holiday(v_index).v_stream_code := :old.stream_code;
-            g_school_holiday(v_index).v_section_code := :old.section_code;
             g_school_holiday(v_index).v_holiday_date := :old.holiday_date;
             g_school_holiday(v_index).v_holiday_type := :new.holiday_type;
-            g_school_holiday(v_index).v_event_code := :new.event_code;
-            g_school_holiday(v_index).v_event_name := :new.event_name;
             g_school_holiday(v_index).v_status_name := :new.status_name;
             g_school_holiday(v_index).v_descriptions := :new.descriptions;
         END IF;
@@ -321,11 +283,8 @@
             g_school_holiday(v_index).v_batch_no := :old.batch_no#;
             g_school_holiday(v_index).v_class_code := :old.class_code;
             g_school_holiday(v_index).v_stream_code := :old.stream_code;
-            g_school_holiday(v_index).v_section_code := :old.section_code;
             g_school_holiday(v_index).v_holiday_date := :old.holiday_date;
             g_school_holiday(v_index).v_holiday_type := :old.holiday_type;
-            g_school_holiday(v_index).v_event_code := :old.event_code;
-            g_school_holiday(v_index).v_event_name := :old.event_name;
             g_school_holiday(v_index).v_status_name := :old.status_name;
             g_school_holiday(v_index).v_descriptions := :old.descriptions;
         END IF;
@@ -340,6 +299,6 @@
     END AFTER STATEMENT;
 END school_holiday_stdhol_trg;]]></body>
 <triggerTime>COMPOUND</triggerTime>
-<columns>5D82D1AD-CD31-68D5-7D9E-687ED8C6D39E, 6760D243-144A-7336-82C9-A3D62EBCC4F9, 7BB9020B-C988-4ADC-ACEB-5E6FDD85F46E, 58B3F9DD-4B01-E022-B4A6-DB18AED907AE, 031C785A-F865-B7AA-19E8-17BC0CB8BFA4, 6A2A07C1-6FD7-CE43-8F8F-5F1DB648224B, 6A837F3E-AFA1-0C33-AB5B-D39EBA021F38, 5EA5E025-45E2-349F-A8E2-0A2CFEF7B28F, DD2ED114-8C23-4C5A-AB43-C2EDA5122038, B03D09C1-0934-37EF-F330-4734FF7ACB58</columns>
+<columns>5D82D1AD-CD31-68D5-7D9E-687ED8C6D39E, 6760D243-144A-7336-82C9-A3D62EBCC4F9, 7BB9020B-C988-4ADC-ACEB-5E6FDD85F46E, 58B3F9DD-4B01-E022-B4A6-DB18AED907AE, 031C785A-F865-B7AA-19E8-17BC0CB8BFA4, 6A2A07C1-6FD7-CE43-8F8F-5F1DB648224B, 6A837F3E-AFA1-0C33-AB5B-D39EBA021F38, 5EA5E025-45E2-349F-A8E2-0A2CFEF7B28F, DD2ED114-8C23-4C5A-AB43-C2EDA5122038, B03D09C1-0934-37EF-F330-4734FF7ACB58, E8B2EEDF-0A2F-205A-DB69-F6FBEE66C371, 4363ED8E-524A-810C-C0ED-25E23082F34B</columns>
 <table>FFA87680-7335-88A2-0704-37D61F481C5B</table>
 </TriggerOraclev10g>

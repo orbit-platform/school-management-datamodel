@@ -1,0 +1,208 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="v_class_performance" directorySegmentName="seg_0" id="43D88FB7-D912-54D2-19B8-8229BF3A300F">
+<createdBy>leads</createdBy>
+<createdTime>2022-12-16 09:01:37 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<refreshType>FORCE</refreshType>
+<subquery><![CDATA[SELECT
+        sdom.serial_no,
+        wd.school_code,
+        wd.batch_no#,
+        wd.class_code,
+        wd.stream_code,
+        wd.section_code,
+        wd.term_code,
+        wd.domain_code,
+        sdom.pseudo_name AS domain_name,
+        wd.boys_passed,
+        wd.boys_failed,
+        girls_passed,
+        girls_failed,
+        grp_school_code,
+        grp_batch_no,
+        grp_class_code,
+        grp_stream_code,
+        grp_section_code,
+        grp_term_code,
+        grp_domain_code
+    FROM
+        ( SELECT
+                school_code,
+                batch_no#,
+                class_code,
+                stream_code,
+                section_code,
+                term_code,
+                domain_code,
+                SUM(boys_passed) AS boys_passed,
+                SUM(boys_failed) AS boys_failed,
+                SUM(girls_passed) AS girls_passed,
+                SUM(girls_failed) AS girls_failed,
+                GROUPING(school_code) AS grp_school_code,
+                GROUPING(batch_no#) AS grp_batch_no,
+                GROUPING(class_code) AS grp_class_code,
+                GROUPING(stream_code) AS grp_stream_code,
+                GROUPING(section_code) AS grp_section_code,
+                GROUPING(term_code) AS grp_term_code,
+                GROUPING(domain_code) AS grp_domain_code
+            FROM
+                ( SELECT
+                      wd.school_code,
+                      wd.batch_no#,
+                      wd.class_code,
+                      wd.stream_code,
+                      wd.section_code,
+                      wd.term_code,
+                      wd.domain_code,
+                      wd.passed_boys AS boys_passed,
+                      wd.failed_boys AS boys_failed,
+                      wd.passed_girls AS girls_passed,
+                      wd.failed_girls AS girls_failed
+                  FROM
+                      ( SELECT
+                            school_code,
+                            batch_no#,
+                            class_code,
+                            stream_code,
+                            section_code,
+                            term_code,
+                            domain_code,
+                            status,
+                            boys_count,
+                            girls_count
+                        FROM
+                            ( SELECT
+                                    school_code,
+                                    batch_no#,
+                                    class_code,
+                                    stream_code,
+                                    section_code,
+                                    term_code,
+                                    domain_code,
+                                    gender,
+                                    status,
+                                    COUNT(1) AS my_count
+                                FROM
+                                    ( SELECT
+                                            arc.school_code,
+                                            arc.batch_no#,
+                                            arc.class_code,
+                                            arc.stream_code,
+                                            arc.section_code,
+                                            arc.term_code,
+                                            arc.student_id,
+                                            (
+                                                CASE
+                                                    WHEN std.sex_name = 'M' THEN
+                                                        'BOYS'
+                                                    WHEN std.sex_name = 'F' THEN
+                                                        'GIRLS'
+                                                END
+                                            ) AS gender,
+                                            arc.domain_code,
+                                            round(SUM(nvl(arc.max_main, 0)) + SUM(nvl(arc.max_internal, 0))) AS maximum,
+                                            round(SUM(nvl(arc.min_main, 0)) + SUM(nvl(arc.min_internal, 0))) AS minimum,
+                                            round(SUM(nvl(arc.score_main, 0)) + SUM(nvl(arc.score_internal, 0))) AS score,
+                                            (
+                                                CASE
+                                                    WHEN round(SUM(nvl(arc.min_main, 0))) > round(SUM(nvl(arc.score_main, 0)))                                                                   THEN
+                                                        'FAILED'
+                                                    WHEN round(SUM(nvl(arc.min_main, 0)) + SUM(nvl(arc.min_internal, 0))) > round(SUM(nvl(arc.score_main, 0)) + SUM(nvl(arc.score_internal, 0))) THEN
+                                                        'FAILED'
+                                                    ELSE
+                                                        'PASSED'
+                                                END
+                                            ) AS status
+                                        FROM
+                                                 arc_std_score arc
+                                            INNER JOIN student std
+                                            ON ( std.id = arc.student_id )
+                                            INNER JOIN std_class_sec scs
+                                            ON ( scs.school_code = arc.school_code
+                                                 AND scs.batch_no# = arc.batch_no#
+                                                 AND scs.class_code = arc.class_code
+                                                 AND scs.stream_code = arc.stream_code
+                                                 AND scs.student_id = arc.student_id )
+                                      GROUP BY
+                                          arc.school_code,
+                                          arc.batch_no#,
+                                          arc.class_code,
+                                          arc.stream_code,
+                                          arc.section_code,
+                                          arc.term_code,
+                                          arc.student_id,
+                                          std.sex_name,
+                                          arc.domain_code
+                                    )
+                              GROUP BY
+                                  school_code,
+                                  batch_no#,
+                                  class_code,
+                                  stream_code,
+                                  section_code,
+                                  term_code,
+                                  domain_code,
+                                  gender,
+                                  status
+                            ) PIVOT (
+                                SUM(my_count)
+                            AS count
+                                FOR gender
+                                IN ( 'BOYS' AS boys, 'GIRLS' AS girls )
+                            )
+                      ) PIVOT (
+                          SUM(boys_count)
+                      AS boys,
+                      SUM(girls_count) AS girls
+                          FOR status
+                          IN ( 'PASSED' AS passed, 'FAILED' AS failed )
+                      )
+                      wd
+                )
+          GROUP BY
+              ROLLUP(school_code,
+                     batch_no#,
+                     class_code,
+                     stream_code,
+                     section_code,
+                     term_code,
+                     domain_code)
+        ) wd
+        LEFT OUTER JOIN school_domain sdom
+        ON ( sdom.school_code = wd.school_code
+             AND sdom.class_code = wd.class_code
+             AND sdom.stream_code = wd.stream_code
+             AND sdom.domain_code = wd.domain_code )
+    WHERE
+        (
+            CASE
+                WHEN grp_school_code = 0
+                     AND grp_batch_no = 0
+                     AND grp_class_code = 0
+                     AND grp_stream_code = 0
+                     AND grp_section_code = 0
+                     AND grp_term_code = 0
+                     AND grp_domain_code = 0 THEN
+                    1
+                WHEN grp_school_code = 0
+                     AND grp_batch_no = 0
+                     AND grp_class_code = 0
+                     AND grp_stream_code = 0
+                     AND grp_section_code = 0
+                     AND grp_term_code = 0
+                     AND grp_domain_code = 1 THEN
+                    1
+            END
+        ) = 1
+    ORDER BY
+        wd.school_code,
+        wd.batch_no#,
+        wd.class_code,
+        wd.stream_code,
+        wd.section_code,
+        wd.term_code,
+        sdom.serial_no NULLS LAST]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with></with>
+</SnapshotOraclev11g>

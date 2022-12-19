@@ -1,0 +1,131 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_markcard_padding_flg" directorySegmentName="seg_0" id="6F4CCCF5-14FF-5DE4-C8A4-EF3100691344">
+<createdBy>leads</createdBy>
+<createdTime>2022-12-13 12:53:37 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>create or replace PROCEDURE proc_markcard_padding_flg (
+    p_school_code IN VARCHAR,
+    p_batch_no    IN DATE,
+    p_class_code  IN VARCHAR2,
+    p_stream_code IN VARCHAR2,
+    p_term_code   IN VARCHAR2,
+    p_report_type IN VARCHAR,
+    p_student_id  IN NUMBER,
+    p_row_padding IN OUT VARCHAR2,
+    p_col_padding IN OUT VARCHAR2
+) AS
+    ---variables
+    v_subject_cnt NUMBER := 0;
+    v_column_cnt  NUMBER := 0;
+
+    ---cursor row-padding
+    CURSOR cur_row_padding (
+        p_school_code VARCHAR2,
+        p_batch_no    DATE,
+        p_class_code  VARCHAR2,
+        p_stream_code VARCHAR2,
+        p_term_code   VARCHAR2,
+        p_student_id  NUMBER
+    ) IS
+    SELECT
+        COUNT(1)
+    FROM
+        std_subject
+    WHERE
+            status_name = &apos;ACTIVE&apos;
+        AND school_code = p_school_code
+        AND batch_no# = p_batch_no
+        AND class_code = p_class_code
+        AND stream_code = p_stream_code
+        AND term_code = p_term_code
+        AND student_id = p_student_id;
+
+    ---column-padding
+    CURSOR cur_col_padding (
+        p_school_code VARCHAR2,
+        p_batch_no    DATE,
+        p_class_code  VARCHAR2,
+        p_stream_code VARCHAR2,
+        p_term_code   VARCHAR2,
+        p_report_type VARCHAR2
+    ) IS
+    SELECT
+        COUNT(1)
+    FROM
+        school_rep_temp
+    WHERE
+            status_type = &apos;Y&apos;
+        AND parameter_name IN ( &apos;SUBJECT_DOMAIN&apos;, &apos;SUBJECT_NAME&apos;, &apos;MAXIMUM_MAIN&apos;, &apos;MAXIMUM_INTERNAL&apos;, &apos;MAXIMUM_TOTAL&apos;,
+                                &apos;MINIMUM_MAIN&apos;, &apos;MINIMUM_INTERNAL&apos;, &apos;MINIMUM_TOTAL&apos;, &apos;MAIN_SCORE&apos;, &apos;INTERNAL_SCORE&apos;,
+                                &apos;TOTAL_SCORE&apos;, &apos;SCORE_STATUS&apos;, &apos;SCORE_PERCENTAGE&apos; )
+        AND school_code = p_school_code
+        AND batch_no# = p_batch_no
+        AND class_code = p_class_code
+        AND stream_code = p_stream_code
+        AND term_code = p_term_code
+        AND report_type = p_report_type;
+
+BEGIN
+ ---row-padding
+    OPEN cur_row_padding(p_school_code, p_batch_no, p_class_code, p_stream_code, p_term_code,
+                        p_student_id);
+    FETCH cur_row_padding INTO v_subject_cnt;
+
+    ---condition
+    IF cur_row_padding%found THEN
+        CASE
+            WHEN v_subject_cnt BETWEEN 0 AND 6 THEN
+                p_row_padding := &apos;big-row-padding&apos;;
+            WHEN v_subject_cnt BETWEEN 7 AND 8 THEN
+                p_row_padding := &apos;medium-row-padding-1&apos;;
+            WHEN v_subject_cnt BETWEEN 9 AND 10 THEN
+                p_row_padding := &apos;medium-row-padding-2&apos;;
+            WHEN v_subject_cnt BETWEEN 11 AND 12 THEN
+                p_row_padding := &apos;medium-row-padding-3&apos;;
+            WHEN v_subject_cnt BETWEEN 13 AND 14 THEN
+                p_row_padding := &apos;medium-row-padding-4&apos;;
+            WHEN v_subject_cnt BETWEEN 15 AND 16 THEN
+                p_row_padding := &apos;medium-row-padding-5&apos;;
+            WHEN v_subject_cnt BETWEEN 17 AND 18 THEN
+                p_row_padding := &apos;medium-row-padding-6&apos;;
+            WHEN v_subject_cnt BETWEEN 19 AND 20 THEN
+                p_row_padding := &apos;medium-row-padding-7&apos;;
+            WHEN v_subject_cnt BETWEEN 21 AND 22 THEN
+                p_row_padding := &apos;medium-row-padding-8&apos;;
+            WHEN v_subject_cnt BETWEEN 23 AND 40 THEN
+                p_row_padding := &apos;small-row-padding&apos;;
+        END CASE;
+    ELSE
+        p_row_padding := &apos;small-row-padding&apos;;
+    END IF;
+
+    CLOSE cur_row_padding; ---row-padding
+
+    ---column-padding
+    OPEN cur_col_padding(p_school_code, p_batch_no, p_class_code, p_stream_code, p_term_code,
+                        p_report_type);
+    FETCH cur_col_padding INTO v_column_cnt;
+
+    ---condition
+    IF cur_col_padding%found THEN
+        CASE
+            WHEN v_column_cnt BETWEEN 1 AND 6 THEN
+                p_col_padding := &apos;big-col-padding&apos;;
+            WHEN v_column_cnt BETWEEN 7 AND 8 THEN
+                p_col_padding := &apos;medium-col-padding-1&apos;;
+            WHEN v_column_cnt BETWEEN 9 AND 10 THEN
+                p_col_padding := &apos;medium-col-padding-2&apos;;
+            WHEN v_column_cnt BETWEEN 11 AND 12 THEN
+                p_col_padding := &apos;medium-col-padding-3&apos;;
+            WHEN v_column_cnt BETWEEN 13 AND 14 THEN
+                p_col_padding := &apos;medium-col-padding-4&apos;;
+            ELSE
+                p_col_padding := &apos;small-col-padding&apos;;
+        END CASE;
+    ELSE
+        p_col_padding := &apos;small-col-padding&apos;;
+    END IF;
+
+    CLOSE cur_col_padding; ---column-padding
+END;</source>
+</StoredProcedureOraclev10g>

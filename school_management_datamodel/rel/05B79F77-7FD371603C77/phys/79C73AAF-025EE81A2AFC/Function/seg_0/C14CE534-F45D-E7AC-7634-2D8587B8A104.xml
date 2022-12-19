@@ -3,7 +3,7 @@
 <createdBy>leads</createdBy>
 <createdTime>2021-11-29 14:11:08 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<source>CREATE OR REPLACE FUNCTION func_std_grade (
+<source>create or replace FUNCTION func_std_grade (
     p_school_code   VARCHAR2,
     p_batch_no      DATE,
     p_class_code    VARCHAR2,
@@ -16,7 +16,7 @@
 BEGIN
     CASE
         WHEN p_max_mark IS NULL THEN
-            v_grade := &apos;-NA-&apos;;
+            v_grade := &apos;-na-&apos;;
         WHEN p_mark_obtained IS NULL THEN
             v_grade := &apos;-ab-&apos;;
         WHEN p_mark_obtained IS NOT NULL THEN

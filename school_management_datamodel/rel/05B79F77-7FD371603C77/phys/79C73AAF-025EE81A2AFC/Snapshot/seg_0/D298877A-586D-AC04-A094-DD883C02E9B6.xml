@@ -1,0 +1,51 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="v_school_grade" directorySegmentName="seg_0" id="D298877A-586D-AC04-A094-DD883C02E9B6">
+<createdBy>leads</createdBy>
+<createdTime>2022-12-08 04:57:49 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<refreshType>FORCE</refreshType>
+<subquery><![CDATA[SELECT
+        school_code,
+        batch_no#,
+        class_code,
+        stream_code,
+        grade,
+        grade_range,
+        descriptions,
+        ROW_NUMBER()
+        OVER(PARTITION BY school_code, batch_no#, class_code, stream_code
+             ORDER BY
+                 range_from DESC
+        ) AS slno
+    FROM
+        ( SELECT
+                sg.school_code,
+                sg.batch_no#,
+                sg.class_code,
+                sg.stream_code,
+                sg.grade_name,
+                sg.pseudo_name,
+                sg.range_from,
+                sg.range_upto,
+                rpad(sg.pseudo_name, 2, ' ') AS grade,
+                '[' || lpad(sg.range_from, 2, ' ') || '% - ' || sg.range_upto || '%]' AS grade_range,
+                gs.pseudo AS descriptions
+            FROM
+                     school_grade sg
+                INNER JOIN grade_score gs
+                ON ( gs.name = sg.grade_name )
+          WHERE
+              sg.status_name = 'ACTIVE'
+          ORDER BY
+              sg.range_from DESC
+        )
+    ORDER BY
+        school_code,
+        batch_no#,
+        class_code,
+        stream_code,
+        slno;]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with></with>
+</SnapshotOraclev11g>

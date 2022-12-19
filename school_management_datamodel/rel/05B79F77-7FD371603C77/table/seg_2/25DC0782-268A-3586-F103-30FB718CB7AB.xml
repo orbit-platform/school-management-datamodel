@@ -143,6 +143,25 @@
 <colAssociation fkAssociation="332C5390-7EA3-96B5-1B16-388BEB10A0C3" referredColumn="FDA7FD9A-44BF-B5AC-3AAD-07D9B16DE925"/>
 </associations>
 </Column>
+<Column name="special_type" id="31F08791-7FC3-8DD4-871E-6C43B6C0399A">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-28 09:13:01 UTC</createdTime>
+<comment><![CDATA[YES/NO]]></comment>
+<commentInRDBMS><![CDATA[YES/NO]]></commentInRDBMS>
+<generatorID>7534445B-6468-36A4-793B-A99C2F63110D</generatorID>
+<notes><![CDATA[YES/NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<defaultValue>NO</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BC8D88FA-D428-F2AA-CAA3-65DA287337F5" referredColumn="B00BA677-1BF3-B684-8A46-376E42863B60"/>
+</associations>
+</Column>
 <Column name="status_name" id="7F0DE5A1-2A10-3E71-5748-13BA5F560FA6">
 <createdBy>leads</createdBy>
 <createdTime>2021-10-26 06:30:18 UTC</createdTime>
@@ -341,6 +360,15 @@
 <colUsage columnID="DA128A8C-9797-469D-D4BA-CE9E45C12C6E"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="A24F9012-9A9E-C3B5-34EE-693C2BE743E5" name="company_holiday_spl_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-28 09:14:15 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="31F08791-7FC3-8DD4-871E-6C43B6C0399A"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="B9B126FD-9BCC-A697-E5DD-C1661DC7E2F5" name="cmphol_batch_fk">
 <createdBy>leads</createdBy>
 <createdTime>2021-10-26 06:30:18 UTC</createdTime>
@@ -405,6 +433,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="DA128A8C-9797-469D-D4BA-CE9E45C12C6E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EEBC74FB-6A94-194E-6708-E926A6D436D4" name="cmphol_special_fk">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-28 09:13:01 UTC</createdTime>
+<generatorID>5DC83CD6-246A-80BE-2B26-87BE8E554B5A</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="31F08791-7FC3-8DD4-871E-6C43B6C0399A"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

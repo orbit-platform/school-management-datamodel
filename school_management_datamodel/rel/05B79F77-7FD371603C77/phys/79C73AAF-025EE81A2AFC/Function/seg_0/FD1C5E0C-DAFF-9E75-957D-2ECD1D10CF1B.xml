@@ -3,7 +3,7 @@
 <createdBy>leads</createdBy>
 <createdTime>2021-11-29 14:32:00 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<source>CREATE OR REPLACE FUNCTION func_std_division (
+<source>create or replace FUNCTION func_std_division (
     p_school_code   VARCHAR2,
     p_batch_no      DATE,
     p_term_code     VARCHAR2,
@@ -14,7 +14,7 @@
     p_max_mark      NUMBER
 ) RETURN VARCHAR2 AS
     v_division       VARCHAR2(50);
-    
+
     ---variables
     v_school_code    mv_std_overall_passed.school_code%TYPE;
     v_batch_no       mv_std_overall_passed.batch_no%TYPE;
@@ -23,7 +23,8 @@
     v_term_code      mv_std_overall_passed.term_code%TYPE;
     v_student_id     mv_std_overall_passed.student_id%TYPE;
     v_overall_status mv_std_overall_passed.overall_status%TYPE;
-    
+    v_result_type    std_term_result.result_type%TYPE;
+
     ---cursor
     CURSOR cur_overall_passed (
         p2_school_code VARCHAR2,
@@ -34,22 +35,33 @@
         p2_student_id  VARCHAR2
     ) IS
     SELECT
-        school_code,
-        batch_no,
-        class_code,
-        stream_code,
-        term_code,
-        student_id,
-        overall_status
+        mv.school_code,
+        mv.batch_no,
+        mv.class_code,
+        mv.stream_code,
+        mv.term_code,
+        mv.student_id,
+        mv.overall_status,
+        nvl(str.result_type, &apos;DETAINED&apos;) AS result_type
     FROM
-        mv_std_overall_passed
+        v_std_overall_passed mv
+        LEFT OUTER JOIN std_term_result str
+        ON ( str.school_code = mv.school_code
+             AND str.batch_no# = mv.batch_no
+             AND str.class_code = mv.class_code
+             AND str.stream_code = mv.stream_code
+             AND str.term_code = mv.term_code
+             AND str.student_id = mv.student_id )
     WHERE
-            school_code = p2_school_code
-        AND batch_no = p2_batch_no
-        AND class_code = p2_class_code
-        AND stream_code = p2_stream_code
-        AND term_code = p2_term_code
-        AND student_id = p2_student_id;
+            mv.school_code = p2_school_code
+        AND mv.batch_no = p2_batch_no
+        AND mv.class_code = p2_class_code
+        AND mv.stream_code = p2_stream_code
+        AND mv.term_code = p2_term_code
+        AND mv.student_id = p2_student_id;
+
+    ---cursor
+
 BEGIN
     ---open cursor
     OPEN cur_overall_passed(p2_school_code =&gt; p_school_code, p2_batch_no =&gt; p_batch_no, p2_class_code =&gt; p_class_code, p2_stream_code =&gt; p_stream_code, p2_term_code =&gt; p_term_code,
@@ -61,8 +73,9 @@ BEGIN
         v_stream_code,
         v_term_code,
         v_student_id,
-        v_overall_status;
-        
+        v_overall_status,
+        v_result_type;
+
     ---
     IF v_overall_status = &apos;PASSED&apos; THEN
         SELECT
@@ -88,13 +101,21 @@ BEGIN
             AND scs.stream_code = p_stream_code
             AND scs.student_id = p_student_id
             AND round(p_mark_obtained / p_max_mark * 100) BETWEEN sdiv.range_from AND sdiv.range_upto;
-    ELSIF v_overall_status = &apos;FAILED&apos; THEN
+    ELSIF
+        v_overall_status = &apos;FAILED&apos;
+        AND v_result_type = &apos;DETAINED&apos;
+    THEN
         v_division := &apos;FAILED&apos;;
+    ELSIF
+        v_overall_status = &apos;FAILED&apos;
+        AND v_result_type = &apos;PROMOTED&apos;
+    THEN
+        v_division := &apos;-&apos;;
     END IF;
-    
+
     ---CLOSE
     CLOSE cur_overall_passed;
-    
+
     ---RETURN
     RETURN v_division;
 END;</source>

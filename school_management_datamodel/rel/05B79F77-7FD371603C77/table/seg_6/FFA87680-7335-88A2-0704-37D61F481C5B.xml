@@ -43,6 +43,24 @@
 <colAssociation fkAssociation="39F61B08-7C25-20BA-E707-2D55FE9D1735" referredColumn="89499592-86B9-DF9F-6D55-09652996EFC6"/>
 </associations>
 </Column>
+<Column name="batch_no#" id="6760D243-144A-7336-82C9-A3D62EBCC4F9">
+<createdBy>leads</createdBy>
+<createdTime>2021-10-12 04:25:41 UTC</createdTime>
+<comment><![CDATA[Batch Number expressed in date]]></comment>
+<commentInRDBMS><![CDATA[Batch Number expressed in date]]></commentInRDBMS>
+<generatorID>06C71BD7-4E52-F9FE-0559-D8C5F2FCA93E</generatorID>
+<notes><![CDATA[Batch Number expressed in date]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<domain>57E4E726-0278-DC93-9196-ABB2B37DFF18</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="79028FED-A7F1-3B8E-2300-AA3E049ADC95" referredColumn="FDA7FD9A-44BF-B5AC-3AAD-07D9B16DE925"/>
+</associations>
+</Column>
 <Column name="class_code" id="7BB9020B-C988-4ADC-ACEB-5E6FDD85F46E">
 <createdBy>leads</createdBy>
 <createdTime>2021-10-11 12:20:25 UTC</createdTime>
@@ -159,22 +177,23 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="batch_no#" id="6760D243-144A-7336-82C9-A3D62EBCC4F9">
+<Column name="special_type" id="4363ED8E-524A-810C-C0ED-25E23082F34B">
 <createdBy>leads</createdBy>
-<createdTime>2021-10-12 04:25:41 UTC</createdTime>
-<comment><![CDATA[Batch Number expressed in date]]></comment>
-<commentInRDBMS><![CDATA[Batch Number expressed in date]]></commentInRDBMS>
-<generatorID>06C71BD7-4E52-F9FE-0559-D8C5F2FCA93E</generatorID>
-<notes><![CDATA[Batch Number expressed in date]]></notes>
+<createdTime>2022-11-28 09:13:01 UTC</createdTime>
+<comment><![CDATA[YES/NO]]></comment>
+<commentInRDBMS><![CDATA[YES/NO]]></commentInRDBMS>
+<generatorID>36498267-BCBA-0C63-A439-8F98BC2BC1F0</generatorID>
+<notes><![CDATA[YES/NO]]></notes>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <use>0</use>
-<logicalDatatype>LOGDT007</logicalDatatype>
-<domain>57E4E726-0278-DC93-9196-ABB2B37DFF18</domain>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>88C51433-56AB-A471-51C0-7B65C87398C6</domain>
+<defaultValue>NO</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="79028FED-A7F1-3B8E-2300-AA3E049ADC95" referredColumn="FDA7FD9A-44BF-B5AC-3AAD-07D9B16DE925"/>
+<colAssociation fkAssociation="5807C295-EBEF-12E1-0411-E3DFE39964B2" referredColumn="B00BA677-1BF3-B684-8A46-376E42863B60"/>
 </associations>
 </Column>
 <Column name="status_name" id="6A2A07C1-6FD7-CE43-8F8F-5F1DB648224B">
@@ -297,10 +316,11 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="5D82D1AD-CD31-68D5-7D9E-687ED8C6D39E"/>
+<colUsage columnID="6760D243-144A-7336-82C9-A3D62EBCC4F9"/>
 <colUsage columnID="7BB9020B-C988-4ADC-ACEB-5E6FDD85F46E"/>
-<colUsage columnID="031C785A-F865-B7AA-19E8-17BC0CB8BFA4"/>
 <colUsage columnID="E8B2EEDF-0A2F-205A-DB69-F6FBEE66C371"/>
 <colUsage columnID="58B3F9DD-4B01-E022-B4A6-DB18AED907AE"/>
+<colUsage columnID="031C785A-F865-B7AA-19E8-17BC0CB8BFA4"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="D0CAFF05-6CF5-AAF3-9C63-5767FDD6C84B" name="school_holiday_pk_idx">
@@ -400,6 +420,15 @@
 <colUsage columnID="E8B2EEDF-0A2F-205A-DB69-F6FBEE66C371"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="2E010799-339B-D1D6-4D7B-D5BE1808C196" name="school_holiday_spl_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-28 09:14:15 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4363ED8E-524A-810C-C0ED-25E23082F34B"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="B6DDC89C-351B-442C-C590-8E02590EA292" name="schlhldy_class_fk">
 <createdBy>leads</createdBy>
 <createdTime>2021-10-11 12:20:25 UTC</createdTime>
@@ -486,6 +515,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="E8B2EEDF-0A2F-205A-DB69-F6FBEE66C371"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7E592D76-4A2F-87D8-EDF8-D1F01D3727AD" name="schlhldy_special_fk">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-28 09:13:01 UTC</createdTime>
+<generatorID>3072CBA6-0556-BF7D-2E07-78A3DB791B0F</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4363ED8E-524A-810C-C0ED-25E23082F34B"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

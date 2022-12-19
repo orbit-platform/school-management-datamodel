@@ -3,44 +3,44 @@
 <createdBy>leads</createdBy>
 <createdTime>2021-12-10 13:13:41 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<source>create or replace PROCEDURE proc_markcard_std_attendance (
-    p_school_code IN VARCHAR2,
-    p_batch_no IN DATE,
-    p_class_code IN VARCHAR2,
-    p_section_code IN VARCHAR2,
-    p_term_code VARCHAR2,
-    p_student_id IN VARCHAR2,
+<source>CREATE OR REPLACE PROCEDURE proc_markcard_std_attendance (
+    p_school_code    IN VARCHAR2,
+    p_batch_no       IN DATE,
+    p_class_code     IN VARCHAR2,
+    p_section_code   IN VARCHAR2,
+    p_term_code      VARCHAR2,
+    p_student_id     IN VARCHAR2,
     p_std_attendance IN OUT VARCHAR2
 ) AS
     ---cursor std_attendance
     CURSOR cur_std_attendance (
-        pp_school_code VARCHAR2,
-        pp_batch_no DATE,
-        pp_class_code VARCHAR2,
-        pp_section_code VARCHAR2,
-        pp_term_code VARCHAR2 DEFAULT NULL,
-        pp_student_id VARCHAR2
+        pschool_code  VARCHAR2,
+        pbatch_no     DATE,
+        pclass_code   VARCHAR2,
+        psection_code VARCHAR2,
+        pterm_code    VARCHAR2 DEFAULT NULL,
+        pstudent_id   VARCHAR2
     ) IS
     SELECT
-        SUM(prsn) || &apos;/&apos; || SUM(total) AS attendance
+        prsn || &apos;/&apos; || total || &apos; (&apos; || percentage || &apos;%&apos; || &apos;)&apos; AS attendance
     FROM
-        v_std_attendance_cnt
-    WHERE
-        school_code = pp_school_code
-        AND batch_no = pp_batch_no
-        AND class_code = pp_class_code
-        AND section_code = pp_section_code
-        AND term_code = nvl(pp_term_code, term_code)
-        AND student_id = pp_student_id;
+        ( SELECT
+                round(SUM(prsn)) AS prsn,
+                round(SUM(total)) AS total,
+                round(SUM(prsn) / SUM(total) * 100) AS percentage
+            FROM
+                v_std_attendance_cnt
+          WHERE
+                  school_code = pschool_code
+              AND batch_no = pbatch_no
+              AND class_code = pclass_code
+              AND section_code = psection_code
+              AND term_code = nvl(pterm_code, term_code)
+              AND student_id = pstudent_id
+        );
 BEGIN
-    OPEN cur_std_attendance(
-                           pp_school_code =&gt; p_school_code,
-                           pp_batch_no =&gt; p_batch_no,
-                           pp_class_code =&gt; p_class_code,
-                           pp_section_code =&gt; p_section_code,
-                           pp_term_code =&gt; p_term_code,
-                           pp_student_id =&gt; p_student_id
-         );
+    OPEN cur_std_attendance(pschool_code =&gt; p_school_code, pbatch_no =&gt; p_batch_no, pclass_code =&gt; p_class_code, psection_code =&gt; p_section_code, pterm_code =&gt; p_term_code,
+                           pstudent_id =&gt; p_student_id);
     FETCH cur_std_attendance INTO p_std_attendance;
     CLOSE cur_std_attendance;
 END;</source>

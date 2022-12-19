@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_3" id="4E0831F9-734E-0AF5-1DE3-E76821B78F8B" name="scholarship">
+<createdBy>leads</createdBy>
+<createdTime>2022-12-13 12:59:30 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>scholarship</preferredAbbreviation>
+<shortName>scholarship</shortName>
+<synonym>scholarship</synonym>
+<synonymToDisplay>scholarship</synonymToDisplay>
+<createSurrogateKey>true</createSurrogateKey>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="50CC403A-F8A7-EA60-B4E9-CA205086C756">
+<createdBy>leads</createdBy>
+<createdTime>2022-12-13 13:00:17 UTC</createdTime>
+<comment><![CDATA[Scholarship ID]]></comment>
+<commentInRDBMS><![CDATA[Scholarship ID]]></commentInRDBMS>
+<notes><![CDATA[Scholarship ID]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="F79B49DD-BE27-70E5-FF52-FEBEF768BD3C">
+<createdBy>leads</createdBy>
+<createdTime>2022-12-13 13:05:30 UTC</createdTime>
+<comment><![CDATA[Scholarship Name]]></comment>
+<commentInRDBMS><![CDATA[Scholarship Name]]></commentInRDBMS>
+<notes><![CDATA[Scholarship Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>AFB565EB-530B-C812-D408-DD01B4006660</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="3A587EB7-FF88-8687-FCBE-3EDB55F68B53">
+<createdBy>leads</createdBy>
+<createdTime>2022-12-13 13:06:38 UTC</createdTime>
+<comment><![CDATA[Code or Pseudo Name]]></comment>
+<commentInRDBMS><![CDATA[Code or Pseudo Name]]></commentInRDBMS>
+<notes><![CDATA[Code or Pseudo Name]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>90B036C7-C776-9355-8F80-DD6128DA0B91</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="893F17D1-56E8-09C5-A52B-971E28171C93">
+<createdBy>leads</createdBy>
+<createdTime>2022-12-13 13:07:36 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="864B7600-27B2-EC87-62B5-1EF9AAD38248" name="scholarship_PK">
+<createdBy>leads</createdBy>
+<createdTime>2022-12-13 13:00:43 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>50CC403A-F8A7-EA60-B4E9-CA205086C756</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="AFE99B17-5479-67BB-3B6D-659AC54358CD" name="scholarship_UN">
+<createdBy>leads</createdBy>
+<createdTime>2022-12-13 13:06:04 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>F79B49DD-BE27-70E5-FF52-FEBEF768BD3C</newElementsIDs>
+<usedAttributes>
+<attributeRef>F79B49DD-BE27-70E5-FF52-FEBEF768BD3C</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

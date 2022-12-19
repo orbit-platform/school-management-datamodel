@@ -1,0 +1,102 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="v_std_attendance_cnt" directorySegmentName="seg_0" id="5CE99CBA-3370-D906-17E6-0BD4AA93D8AD">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-29 08:34:50 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<refreshType>FORCE</refreshType>
+<subquery><![CDATA[SELECT
+        school_code,
+        batch_no,
+        class_code,
+        section_code,
+        term_code,
+        student_id,
+        SUM(decode(status, 'P', 1, 0)) AS prsn,
+        COUNT(year_date) AS total
+    FROM
+        ( SELECT
+                  wd.school_code,
+                  wd.batch_no,
+                  wd.class_code,
+                  wd.section_code,
+                  wd.term_code,
+                  wd.student_id,
+                  wd.year_date,
+                  nvl2(att.punch_date, 'P', 'A') AS status
+              FROM
+                  ( SELECT
+                          sbat.school_code AS school_code,
+                          sbat.batch_no# AS batch_no,
+                          csec.class_code AS class_code,
+                          csec.section_code AS section_code,
+                          sterm.term_code AS term_code,
+                          scs.student_id AS student_id,
+                          stdwrkdy.year_date AS year_date,
+                          stdwrkdy.day_type AS day_type
+                      FROM
+                               school_batch sbat
+                          INNER JOIN class_section csec
+                          ON ( csec.school_code = sbat.school_code
+                               AND csec.batch_no# = sbat.batch_no# )
+                          INNER JOIN school_term sterm
+                          ON ( sterm.school_code = csec.school_code
+                               AND sterm.batch_no# = csec.batch_no#
+                               AND sterm.class_code = csec.class_code )
+                          INNER JOIN std_class_sec scs
+                          ON ( scs.school_code = sterm.school_code
+                               AND scs.batch_no# = sterm.batch_no#
+                               AND scs.class_code = csec.class_code
+                               AND scs.section_code = csec.section_code )
+                          INNER JOIN school_term sterm
+                          ON ( sterm.school_code = scs.school_code
+                               AND sterm.batch_no# = scs.batch_no#
+                               AND sterm.class_code = scs.class_code )
+                          INNER JOIN std_working_day stdwrkdy
+                          ON ( stdwrkdy.school_code = scs.school_code
+                               AND stdwrkdy.batch_no# = scs.batch_no#
+                               AND stdwrkdy.class_code = scs.class_code
+                               AND stdwrkdy.stream_code = scs.stream_code
+                               AND stdwrkdy.student_id = scs.student_id )
+                    WHERE
+                            csec.status_name = 'ACTIVE'
+                        AND scs.status_name = 'ACTIVE'
+                        AND stdwrkdy.year_date BETWEEN sterm.effective_from AND sterm.effective_upto
+                  ) wd
+                  LEFT OUTER JOIN mv_std_attendance att
+                  ON ( att.school_code = wd.school_code
+                       AND att.batch_no = wd.batch_no
+                       AND att.class_code = wd.class_code
+                       AND att.section_code = wd.section_code
+                       AND att.student_id = wd.student_id
+                       AND att.punch_date = wd.year_date )
+            WHERE
+                wd.day_type = 'WORKING DAY'
+          GROUP BY
+              wd.school_code,
+              wd.batch_no,
+              wd.class_code,
+              wd.section_code,
+              wd.term_code,
+              wd.student_id,
+              wd.year_date,
+              nvl2(att.punch_date, 'P', 'A')
+          ORDER BY
+              wd.school_code,
+              wd.batch_no,
+              wd.class_code,
+              wd.section_code,
+              wd.term_code,
+              wd.student_id,
+              wd.year_date
+        ) x
+    GROUP BY
+        school_code,
+        batch_no,
+        class_code,
+        section_code,
+        term_code,
+        student_id;]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with></with>
+</SnapshotOraclev11g>

@@ -9,72 +9,72 @@
 <refreshType>FORCE</refreshType>
 <startDate>sysdate</startDate>
 <subquery><![CDATA[SELECT
-    school_code,
-    batch_no,
-    class_code,
-    stream_code,
-    section_code,
-    student_id,
-    punch_date
-FROM
-    ( SELECT
+        school_code,
+        batch_no,
+        class_code,
+        stream_code,
+        section_code,
+        student_id,
+        punch_date
+    FROM
+        ( SELECT
+                        scs.school_code,
+                        scs.batch_no# AS batch_no,
+                        scs.class_code,
+                        scs.stream_code,
+                        scs.section_code,
+                        scs.student_id,
+                        trunc(punch, 'dd') AS punch_date
+                    FROM
+                             std_attendance a
+                        INNER JOIN std_class_sec scs
+                        ON ( scs.student_id = a.student_id )
+                        INNER JOIN school_term sterm
+                        ON ( sterm.school_code = scs.school_code
+                             AND sterm.batch_no# = scs.batch_no#
+                             AND sterm.class_code = scs.class_code
+                             AND sterm.stream_code = scs.stream_code )
+                  WHERE
+                      trunc(a.punch, 'DD') BETWEEN sterm.effective_from AND sterm.effective_upto
+                      AND a.status_name = 'APPROVED'
+                GROUP BY
                     scs.school_code,
-                    scs.batch_no# AS batch_no,
+                    scs.batch_no#,
                     scs.class_code,
                     scs.stream_code,
                     scs.section_code,
                     scs.student_id,
-                    trunc(punch, 'dd') AS punch_date
-                FROM
-                         std_attendance a
-                    INNER JOIN std_class_sec scs
-                    ON ( scs.student_id = a.student_id )
-                    INNER JOIN school_term sterm
-                    ON ( sterm.school_code = scs.school_code
-                         AND sterm.batch_no# = scs.batch_no#
-                         AND sterm.class_code = scs.class_code
-                         AND sterm.stream_code = scs.stream_code )
-              WHERE
-                  trunc(a.punch, 'DD') BETWEEN sterm.effective_from AND sterm.effective_upto
-                  AND a.status_name = 'APPROVED'
-            GROUP BY
-                scs.school_code,
-                scs.batch_no#,
-                scs.class_code,
-                scs.stream_code,
-                scs.section_code,
-                scs.student_id,
-                trunc(punch, 'dd')
-          UNION
-          SELECT
+                    trunc(punch, 'dd')
+              UNION
+              SELECT
+                  scs.school_code,
+                  scs.batch_no# AS batch_no,
+                  scs.class_code,
+                  scs.stream_code,
+                  scs.section_code,
+                  scs.student_id,
+                  trunc(punch, 'dd') AS punch_date
+              FROM
+                       attendance a
+                  INNER JOIN std_class_sec scs
+                  ON ( scs.student_id = a.person# )
+                  INNER JOIN school_term sterm
+                  ON ( sterm.school_code = scs.school_code
+                       AND sterm.batch_no# = scs.batch_no#
+                       AND sterm.class_code = scs.class_code
+                       AND sterm.stream_code = scs.stream_code )
+            WHERE
+                trunc(a.punch, 'DD') BETWEEN sterm.effective_from AND sterm.effective_upto
+                AND a.status_name = 'APPROVED'
+          GROUP BY
               scs.school_code,
-              scs.batch_no# AS batch_no,
+              scs.batch_no#,
               scs.class_code,
               scs.stream_code,
               scs.section_code,
               scs.student_id,
-              trunc(punch, 'dd') AS punch_date
-          FROM
-                   attendance a
-              INNER JOIN std_class_sec scs
-              ON ( scs.student_id = a.person# )
-              INNER JOIN school_term sterm
-              ON ( sterm.school_code = scs.school_code
-                   AND sterm.batch_no# = scs.batch_no#
-                   AND sterm.class_code = scs.class_code
-                   AND sterm.stream_code = scs.stream_code )
-        WHERE
-            trunc(a.punch, 'DD') BETWEEN sterm.effective_from AND sterm.effective_upto
-            AND a.status_name = 'APPROVED'
-      GROUP BY
-          scs.school_code,
-          scs.batch_no#,
-          scs.class_code,
-          scs.stream_code,
-          scs.section_code,
-          scs.student_id,
-          trunc(punch, 'dd')
-    ) a]]></subquery>
+              trunc(punch, 'dd')
+        ) a]]></subquery>
 <subqueryNeedsMigration>false</subqueryNeedsMigration>
 <with>ROWID</with>
 </SnapshotOraclev11g>

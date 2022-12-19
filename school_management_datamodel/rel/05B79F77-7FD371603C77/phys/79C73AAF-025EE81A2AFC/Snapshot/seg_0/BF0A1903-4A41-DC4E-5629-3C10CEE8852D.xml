@@ -21,47 +21,71 @@
         total_score,
         overall_status,
         percentage,
-        RANK()
-        OVER(PARTITION BY school_code, batch_no, class_code, stream_code, term_code
-             ORDER BY
-                 overall_status DESC,
-                 percentage DESC NULLS LAST
-        ) AS ranking
+        ranking
     FROM
         ( SELECT
-                  arc.school_code,
-                  arc.batch_no# AS batch_no,
-                  arc.class_code,
-                  arc.stream_code,
-                  arc.section_code,
-                  arc.term_code,
-                  arc.student_id,
-                  SUM(nvl(arc.max_main, 0)) + SUM(nvl(arc.max_internal, 0)) AS max_mark,
-                  SUM(nvl(arc.min_main, 0)) + SUM(nvl(arc.min_internal, 0)) AS min_mark,
-                  round(SUM(nvl(arc.score_main, 0)) + SUM(nvl(arc.score_internal, 0))) AS total_score,
-                  sop.overall_status,
-                  round((SUM(nvl(arc.score_main, 0)) + SUM(nvl(arc.score_internal, 0))) /(SUM(nvl(arc.max_main, 0)) + SUM(nvl(arc.max_internal, 0))) * 100,
-                        0) AS percentage
-              FROM
-                       arc_std_score arc
-                  INNER JOIN mv_std_overall_passed sop
-                  ON ( sop.school_code = arc.school_code
-                       AND sop.batch_no = arc.batch_no#
-                       AND sop.class_code = arc.class_code
-                       AND sop.stream_code = arc.stream_code
-                       AND sop.term_code = arc.term_code
-                       AND sop.student_id = arc.student_id )
-            WHERE
-                arc.ranking_type = 'YES'
-          GROUP BY
-              arc.school_code,
-              arc.batch_no#,
-              arc.class_code,
-              arc.stream_code,
-              arc.section_code,
-              arc.term_code,
-              arc.student_id,
-              sop.overall_status
+              school_code,
+              batch_no,
+              class_code,
+              stream_code,
+              section_code,
+              term_code,
+              student_id,
+              min_mark,
+              max_mark,
+              total_score,
+              overall_status,
+              percentage,
+              RANK()
+              OVER(PARTITION BY school_code, batch_no, class_code, stream_code, section_code,
+                                term_code
+                   ORDER BY
+                       CASE
+                           WHEN overall_status = 'PASSED' THEN
+                               1
+                           WHEN overall_status = 'FAILED' THEN
+                               2
+                           ELSE
+                               3
+                       END, percentage DESC NULLS LAST
+              ) AS ranking
+          FROM
+              ( SELECT
+                        arc.school_code,
+                        arc.batch_no# AS batch_no,
+                        arc.class_code,
+                        arc.stream_code,
+                        arc.section_code,
+                        arc.term_code,
+                        arc.student_id,
+                        SUM(nvl(arc.max_main, 0)) + SUM(nvl(arc.max_internal, 0)) AS max_mark,
+                        SUM(nvl(arc.min_main, 0)) + SUM(nvl(arc.min_internal, 0)) AS min_mark,
+                        round(SUM(nvl(arc.score_main, 0)) + SUM(nvl(arc.score_internal, 0)),
+                              0) AS total_score,
+                        sop.overall_status,
+                        round((SUM(nvl(arc.score_main, 0)) + SUM(nvl(arc.score_internal, 0))) /(SUM(nvl(arc.max_main, 0)) + SUM(nvl(arc.max_internal, 0))) * 100,
+                              2) AS percentage
+                    FROM
+                             arc_std_score arc
+                        INNER JOIN mv_std_overall_passed sop
+                        ON ( sop.school_code = arc.school_code
+                             AND sop.batch_no = arc.batch_no#
+                             AND sop.class_code = arc.class_code
+                             AND sop.stream_code = arc.stream_code
+                             AND sop.term_code = arc.term_code
+                             AND sop.student_id = arc.student_id )
+                  WHERE
+                      arc.ranking_type = 'YES'
+                GROUP BY
+                    arc.school_code,
+                    arc.batch_no#,
+                    arc.class_code,
+                    arc.stream_code,
+                    arc.section_code,
+                    arc.term_code,
+                    arc.student_id,
+                    sop.overall_status
+              )
         )
     ORDER BY
         school_code,
@@ -70,13 +94,7 @@
         stream_code,
         section_code,
         term_code,
-        ranking,
-        student_id,
-        min_mark,
-        max_mark,
-        total_score,
-        overall_status,
-        percentage]]></subquery>
+        ranking;]]></subquery>
 <subqueryNeedsMigration>false</subqueryNeedsMigration>
 <with>ROWID</with>
 </SnapshotOraclev11g>

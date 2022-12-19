@@ -10,7 +10,7 @@
     p_stream_code        IN VARCHAR2,
     p_section_code       IN VARCHAR2,
     p_term_code          IN VARCHAR2,
-    p_cteacher_digital   IN OUT VARCHAR2,
+    p_class_teacher_id   IN OUT NUMBER,
     p_class_teacher_name IN OUT VARCHAR2
 ) AS
     CURSOR cur_class_teacher (
@@ -37,7 +37,7 @@ BEGIN
     OPEN cur_class_teacher(pp_school_code =&gt; p_school_code, pp_batch_no =&gt; p_batch_no, pp_class_code =&gt; p_class_code, pp_stream_code =&gt; p_stream_code, pp_section_code =&gt; p_section_code,
                           pp_term_code =&gt; p_term_code);
     FETCH cur_class_teacher INTO
-        p_cteacher_digital,
+        p_class_teacher_id,
         p_class_teacher_name;
     CLOSE cur_class_teacher;
 END;</source>

@@ -3,7 +3,7 @@
 <createdBy>leads</createdBy>
 <createdTime>2021-12-10 13:35:43 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<source>create or replace PROCEDURE proc_markcard_std_ranking (
+<source>CREATE OR REPLACE PROCEDURE proc_markcard_std_ranking (
     pschool_code    IN VARCHAR2,
     pbatch_no       IN DATE,
     pclass_code     IN VARCHAR2,
@@ -25,13 +25,14 @@
         p_maximum_rank VARCHAR2
     ) IS
     SELECT
-        func_num_in_words(total_score) AS score_in_words,
+        func_num_in_words(replace(total_score, 0, 1)) AS score_in_words,
         (
             CASE
-                WHEN overall_status = &apos;PASSED&apos; THEN
+                WHEN overall_status = &apos;PASSED&apos;
+                     AND ranking &lt;= p_maximum_rank THEN
                     func_num_ordinal(ranking)
                 ELSE
-                    NULL
+                    &apos;NOT APPLICABLE&apos;
             END
         ) AS ranking
     FROM

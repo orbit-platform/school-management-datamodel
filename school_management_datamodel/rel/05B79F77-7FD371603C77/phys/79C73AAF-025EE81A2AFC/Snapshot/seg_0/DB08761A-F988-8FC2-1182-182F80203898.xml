@@ -13,37 +13,77 @@
 <refreshType>FORCE</refreshType>
 <startDate>sysdate</startDate>
 <subquery><![CDATA[SELECT
-    school_code,
-    batch_no,
-    class_code,
-    stream_code,
-    term_code,
-    student_id,
-    overall_status
-FROM
-    ( SELECT
-          school_code,
-          batch_no# AS batch_no,
-          class_code,
-          stream_code,
-          term_code,
-          student_id,
-          status AS overall_status,
-          ROW_NUMBER()
-          OVER(PARTITION BY school_code, batch_no#, class_code, stream_code, term_code,
-                            student_id
-               ORDER BY
-                   (
-                       CASE
-                           WHEN status = 'FAILED' THEN
-                               1
-                           WHEN status = 'PASSED' THEN
-                               2
-                       END
-                   )
-          ) AS my_count
-      FROM
-          ( SELECT
+        school_code,
+        batch_no,
+        class_code,
+        stream_code,
+        term_code,
+        student_id,
+        overall_status
+    FROM
+        ( SELECT
+              school_code,
+              batch_no# AS batch_no,
+              class_code,
+              stream_code,
+              term_code,
+              student_id,
+              status AS overall_status,
+              ROW_NUMBER()
+              OVER(PARTITION BY school_code, batch_no#, class_code, stream_code, term_code,
+                                student_id
+                   ORDER BY
+                       (
+                           CASE
+                               WHEN status = 'FAILED' THEN
+                                   1
+                               WHEN status = 'PASSED' THEN
+                                   2
+                           END
+                       )
+              ) AS my_count
+          FROM
+              ( SELECT
+                        arc.school_code,
+                        arc.batch_no#,
+                        arc.class_code,
+                        arc.stream_code,
+                        arc.term_code,
+                        arc.student_id,
+                        arc.super_code,
+                        ( SUM(arc.score_main) + SUM(arc.score_internal) ) AS score,
+                        ( SUM(arc.max_main) + SUM(arc.max_internal) ) AS maximum,
+                        (
+                            CASE
+                                WHEN SUM(round(nvl(arc.min_main, 0))) > SUM(round(nvl(arc.score_main, 0)))                                                                                         THEN
+                                    'FAILED'
+                                WHEN ( SUM(round(nvl(arc.min_main, 0))) + SUM(round(nvl(arc.min_internal, 0))) ) > ( SUM(round(nvl(arc.score_main, 0))) + SUM(round(nvl(arc.score_internal, 0))) ) THEN
+                                    'FAILED'
+                                ELSE
+                                    'PASSED'
+                            END
+                        ) AS status,
+                        (
+                            CASE
+                                WHEN sp.super_code IS NOT NULL THEN
+                                    'SIMPLE_PASSED'
+                                ELSE
+                                    'REGULAR'
+                            END
+                        ) AS special_status
+                    FROM
+                        arc_std_score arc
+                        LEFT OUTER JOIN simple_passed sp
+                        ON ( sp.school_code = arc.school_code
+                             AND sp.batch_no# = arc.batch_no#
+                             AND sp.term_code = arc.term_code
+                             AND sp.stream_code = arc.stream_code
+                             AND sp.class_code = arc.class_code
+                             AND sp.super_code = arc.super_code
+                             AND sp.status_name = 'ACTIVE' )
+                  WHERE
+                      arc.ranking_type = 'YES'
+                GROUP BY
                     arc.school_code,
                     arc.batch_no#,
                     arc.class_code,
@@ -51,51 +91,11 @@ FROM
                     arc.term_code,
                     arc.student_id,
                     arc.super_code,
-                    ( SUM(arc.score_main) + SUM(arc.score_internal) ) AS score,
-                    ( SUM(arc.max_main) + SUM(arc.max_internal) ) AS maximum,
-                    (
-                        CASE
-                            WHEN SUM(arc.min_main) > SUM(arc.score_main)                                                           THEN
-                                'FAILED'
-                            WHEN ( SUM(arc.min_main) + SUM(arc.min_internal) ) > ( SUM(arc.score_main) + SUM(arc.score_internal) ) THEN
-                                'FAILED'
-                            ELSE
-                                'PASSED'
-                        END
-                    ) AS status,
-                    (
-                        CASE
-                            WHEN sp.super_code IS NOT NULL THEN
-                                'SIMPLE_PASSED'
-                            ELSE
-                                'REGULAR'
-                        END
-                    ) AS special_status
-                FROM
-                    arc_std_score arc
-                    LEFT OUTER JOIN simple_passed sp
-                    ON ( sp.school_code = arc.school_code
-                         AND sp.batch_no# = arc.batch_no#
-                         AND sp.term_code = arc.term_code
-                         AND sp.stream_code = arc.stream_code
-                         AND sp.class_code = arc.class_code
-                         AND sp.super_code = arc.super_code
-                         AND sp.status_name = 'ACTIVE' )
-              WHERE
-                  arc.ranking_type = 'YES'
-            GROUP BY
-                arc.school_code,
-                arc.batch_no#,
-                arc.class_code,
-                arc.stream_code,
-                arc.term_code,
-                arc.student_id,
-                arc.super_code,
-                sp.super_code
-          )
-    )
-WHERE
-    my_count = 1]]></subquery>
+                    sp.super_code
+              )
+        )
+    WHERE
+        my_count = 1]]></subquery>
 <subqueryNeedsMigration>false</subqueryNeedsMigration>
 <with>ROWID</with>
 </SnapshotOraclev11g>

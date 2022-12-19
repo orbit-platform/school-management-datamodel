@@ -3,106 +3,170 @@
 <createdBy>leads</createdBy>
 <createdTime>2022-04-03 12:29:46 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<source>CREATE OR REPLACE PACKAGE pckg_send_select_sms AS 
-    ---send select sms
-    PROCEDURE send_select_sms_proc (
-        pcompany_code  IN VARCHAR2,
-        presource_name IN VARCHAR2,
-        psms_code      IN VARCHAR2,
-        pmessage       IN VARCHAR2,
-        preason        IN VARCHAR2
+<source>create or replace PACKAGE pckg_send_select_sms AS
+    
+    --sms procedure to send communication sms to targetted resources
+    PROCEDURE send_sms_proc (
+        pschool_code   IN VARCHAR2,
+        pbatch_no      IN DATE,
+        psector_code   IN VARCHAR2,
+        pclass_code    IN VARCHAR2,
+        psection_code  IN VARCHAR2,
+        pstudent_type  IN VARCHAR2,
+        pstudent_id    IN NUMBER,
+        ptemplate_code IN VARCHAR2,
+        pmessage       IN VARCHAR2
     );
-END;</source>
+
+        --sms procedure to send communication sms to targetted resources
+    PROCEDURE transport_sms_proc (
+        pschool_code   IN VARCHAR2,
+        pbatch_no      IN DATE,
+        psector_code   IN VARCHAR2,
+        pclass_code    IN VARCHAR2,
+        psection_code  IN VARCHAR2,
+        pservice_type  IN VARCHAR2,
+        proute_code    IN VARCHAR2,
+        pstudent_id    IN NUMBER,
+        ptemplate_code IN VARCHAR2,
+        pmessage       IN VARCHAR2
+    );
+END pckg_send_select_sms;</source>
 <body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="pckg_send_select_sms" id="8168129F-6351-EED3-68CC-07C0F4318807">
 <createdBy>leads</createdBy>
 <createdTime>2022-04-03 12:31:43 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <source>CREATE OR REPLACE PACKAGE BODY pckg_send_select_sms AS
-    PROCEDURE send_select_sms_proc (
-        pcompany_code  IN VARCHAR2,
-        presource_name IN VARCHAR2,
-        psms_code      IN VARCHAR2,
-        pmessage       IN VARCHAR2,
-        preason        IN VARCHAR2
+    PROCEDURE send_sms_proc (
+        pschool_code   IN VARCHAR2,
+        pbatch_no      IN DATE,
+        psector_code   IN VARCHAR2,
+        pclass_code    IN VARCHAR2,
+        pstream_code   IN VARCHAR2,
+        psection_code  IN VARCHAR2,
+        pstudent_type  IN VARCHAR2,
+        pstudent_id    IN NUMBER,
+        ptemplate_code IN VARCHAR2,
+        pmessage       IN VARCHAR2
     ) AS
-        v_counter PLS_INTEGER;
+        v_school_code   student.school_code%TYPE;
+        v_batch_no      std_class_sec.batch_no#%TYPE;
+        v_sector_code   school_sector.sector_code%TYPE;
+        v_class_code    std_class_sec.class_code%TYPE;
+        v_stream_code   std_class_sec.stream_code%TYPE;
+        v_section_code  std_class_sec.section_code%TYPE;
+        v_student_type  VARCHAR2(100);
+        v_student_id    student.id%TYPE;
+        v_template_code sms_template.code%TYPE;
+        v_message       VARCHAR2(4000);
+        v_counter       PLS_INTEGER;
 
         ---cursor
         CURSOR cur_sms (
-            p_company_code  VARCHAR2,
-            p_resource_name VARCHAR2,
-            p_sms_code      VARCHAR2,
-            p_message       VARCHAR2,
-            p_reason        VARCHAR2
+            p_school_code  IN VARCHAR2,
+            p_batch_no     IN DATE,
+            p_sector_code  IN VARCHAR2,
+            p_class_code   IN VARCHAR2,
+            p_stream_code  IN VARCHAR2,
+            p_section_code IN VARCHAR2,
+            p_student_type IN VARCHAR2,
+            p_student_id   IN NUMBER
         ) IS
         SELECT
-            person#,
-            person_name,
-            telephone,
-            replace(replace(nvl(p_message, &apos;Select message template&apos;), &apos;$PERSON_NAME$&apos;, person_name), &apos;$FEE_DUE$&apos;, NULL) AS message,
-            p_sms_code AS sms_code,
-            p_reason AS reason
+            ssec.school_code AS school_code,
+            ssec.sector_code AS sector_code,
+            ssec.class_code AS class_code,
+            ssec.stream_code AS stream_code,
+            scs.section_code AS section_code,
+            scs.student_id student_id,
+            stdguard.first_name || &apos; &apos; || stdguard.last_name AS guardian_name,
+            stdguard.primary_tel AS primary_tel
         FROM
-            ( SELECT
-                  ed.company_code,
-                  emp.id AS person#,
-                  emp.first_name || &apos; &apos; || emp.last_name AS person_name,
-                  emp.primary_tel AS telephone
-              FROM
-                       leadsuser.employee emp
-                  INNER JOIN ( SELECT
-                                   employee_id,
-                                   company_code
-                               FROM
-                                   ( SELECT
-                                         employee_id,
-                                         company_code,
-                                         ROW_NUMBER()
-                                         OVER(PARTITION BY employee_id, company_code
-                                              ORDER BY
-                                                  effective_from DESC
-                                         ) AS my_rank
-                                     FROM
-                                         emp_department ed
-                                   )
-                               WHERE
-                                   my_rank = 1
-                             ) ed
-                  ON ( ed.employee_id = emp.id )
-              UNION
-              SELECT
-                  cs.company_code,
-                  std.id AS person#,
-                  std.first_name || &apos; &apos; || std.last_name AS person_name,
-                  g.primary_tel AS telephone
-              FROM
-                       student std
-                  INNER JOIN leadsuser.std_guardian g
-                  ON ( std.guardian_id = g.id )
-                  INNER JOIN company_school cs
-                  ON ( cs.school_code = std.school_code )
-            )
+                 student std
+            INNER JOIN std_guardian stdguard
+            ON ( stdguard.id = std.guardian_id )
+            INNER JOIN std_class_sec scs
+            ON ( scs.student_id = std.id )
+            INNER JOIN school_sector ssec
+            ON ( ssec.school_code = std.school_code
+                 AND ssec.batch_no# = scs.batch_no#
+                 AND ssec.class_code = scs.class_code
+                 AND ssec.stream_code = scs.stream_code )
+            INNER JOIN admission adm
+            ON ( adm.id = std.admission_id )
+               AND (
+                CASE
+                    WHEN p_student_type = &apos;NEW_STUDENT&apos;
+                         AND adm.batch_no# = p_batch_no THEN
+                        1
+                    WHEN p_student_type = &apos;OLD_STUDENT&apos;
+                         AND adm.batch_no# &lt; p_batch_no THEN
+                        1
+                    WHEN p_student_type IS NULL THEN
+                        1
+                    ELSE
+                        0
+                END
+            ) = 1
         WHERE
-                company_code = p_company_code
-            AND instr(&apos;:&apos; || p_resource_name || &apos;:&apos;, &apos;:&apos; || person# || &apos;:&apos;) &gt; 0;
+            scs.status_name IN ( &apos;ACTIVE&apos; )
+            AND std.school_code = p_school_code
+            AND scs.batch_no# = p_batch_no
+            AND ssec.sector_code = nvl(p_sector_code, ssec.sector_code)
+            AND scs.class_code = nvl(p_class_code, scs.class_code)
+            AND scs.stream_code = nvl(p_stream_code, scs.stream_code)
+            AND scs.section_code = nvl(p_section_code, scs.section_code)
+            AND instr(&apos;:&apos; || nvl(p_student_id, scs.student_id) || &apos;:&apos;,
+                      &apos;:&apos; || scs.student_id || &apos;:&apos;) &gt; 0
+        ORDER BY
+            school_code,
+            sector_code,
+            class_code,
+            stream_code,
+            section_code;
     BEGIN
+        ---encapsulation
+        v_school_code := pschool_code;
+        v_batch_no := pbatch_no;
+        v_sector_code := psector_code;
+        v_class_code := pclass_code;
+        v_stream_code := pstream_code;
+        v_section_code := psection_code;
+        v_student_type := pstudent_type;
+        v_student_id := pstudent_id;
+        v_template_code := ptemplate_code;
+        v_message := pmessage;
         v_counter := 1;
-        FOR indx IN cur_sms(p_company_code =&gt; pcompany_code, p_resource_name =&gt; presource_name, p_sms_code =&gt; psms_code, p_message =&gt; pmessage, p_reason =&gt; preason) LOOP
-            leadsuser.pristine_pckg.sendsms(indx.telephone, indx.message);
+        
+        ---loop
+        FOR indx IN cur_sms(
+                p_school_code =&gt; v_school_code, 
+                p_batch_no =&gt; v_batch_no, 
+                p_sector_code =&gt; v_sector_code, 
+                p_class_code =&gt; v_class_code, 
+                p_stream_code =&gt; v_stream_code,
+                p_section_code =&gt; v_section_code, 
+                p_student_type =&gt; v_student_type, 
+                p_student_id =&gt; v_student_id) LOOP
+            
+            ---send message
+            leadsuser.pristine_pckg.sendsms(indx.primary_tel, v_message);
+            
+            ---enter logs
             INSERT INTO leadsuser.sms_log (
                 person#,
                 person_name,
-                sms_code,
                 telephone,
+                sms_code,
                 message,
                 reason
             ) VALUES (
-                indx.person#,
-                indx.person_name,
-                indx.sms_code,
-                indx.telephone,
-                indx.message,
-                indx.reason
+                indx.student_id,
+                indx.guardian_name,
+                indx.primary_tel,
+                v_template_code,
+                v_message,
+                &apos;ANNOUNCEMENT TO GUARDIAN&apos;
             );
             IF v_counter &gt;= 50 THEN
                 v_counter := 1;
@@ -111,7 +175,125 @@ END;</source>
                 v_counter := v_counter + 1;
             END IF;
         END LOOP;
-    END send_select_sms_proc;
+    END send_sms_proc;
+
+    ---transport
+    PROCEDURE transport_sms_proc (
+        pschool_code   IN VARCHAR2,
+        pbatch_no      IN DATE,
+        psector_code   IN VARCHAR2,
+        pclass_code    IN VARCHAR2,
+        psection_code  IN VARCHAR2,
+        pservice_type  IN VARCHAR2,
+        proute_code    IN VARCHAR2,
+        pstudent_id    IN NUMBER,
+        ptemplate_code IN VARCHAR2,
+        pmessage       IN VARCHAR2
+    ) AS
+        v_school_code   student.school_code%TYPE;
+        v_batch_no      std_transport.batch_no#%TYPE;
+        v_sector_code   school_sector.sector_code%TYPE;
+        v_class_code    std_class_sec.class_code%TYPE;
+        v_section_code  std_class_sec.section_code%TYPE;
+        v_service_type  std_transport.service_type%TYPE;
+        v_route_code    std_transport.route_code%TYPE;
+        v_student_id    std_transport.student_id%TYPE;
+        v_template_code sms_template.code%TYPE;
+        v_message       VARCHAR2(4000);
+        v_counter       PLS_INTEGER;
+        CURSOR cur_sms (
+            p_school_code  IN VARCHAR2,
+            p_batch_no     IN DATE,
+            p_sector_code  IN VARCHAR2,
+            p_class_code   IN VARCHAR2,
+            p_section_code IN VARCHAR2,
+            p_service_type IN VARCHAR2,
+            p_route_code   IN VARCHAR2,
+            p_student_id   IN NUMBER
+        ) IS
+        SELECT
+            ssec.school_code AS school_code,
+            ssec.sector_code AS sector_code,
+            ssec.class_code AS class_code,
+            scs.section_code AS section_code,
+            scs.student_id AS student_id,
+            stdguard.first_name || &apos; &apos; || stdguard.last_name AS guardian_name,
+            stdguard.primary_tel AS primary_tel
+        FROM
+                 student std
+            INNER JOIN std_guardian stdguard
+            ON ( stdguard.id = std.guardian_id )
+            INNER JOIN std_class_sec scs
+            ON ( scs.student_id = std.id )
+            INNER JOIN school_sector ssec
+            ON ( ssec.school_code = std.school_code
+                 AND ssec.batch_no# = scs.batch_no#
+                 AND ssec.class_code = scs.class_code )
+            INNER JOIN std_transport st
+            ON ( st.batch_no# = scs.batch_no#
+                 AND st.student_id = scs.student_id )
+        WHERE
+            scs.status_name IN ( &apos;ACTIVE&apos; )
+            AND std.school_code = p_school_code
+            AND scs.batch_no# = p_batch_no
+            AND ssec.sector_code = nvl(p_sector_code, ssec.sector_code)
+            AND scs.class_code = nvl(p_class_code, scs.class_code)
+            AND scs.section_code = nvl(p_section_code, scs.section_code)
+            AND st.service_type = nvl(p_service_type, st.service_type)
+            AND st.route_code = nvl(p_route_code, st.route_code)
+            AND instr(&apos;:&apos; || nvl(p_student_id, scs.student_id) || &apos;:&apos;,
+                      &apos;:&apos; || scs.student_id || &apos;:&apos;) &gt; 0
+        GROUP BY
+            ssec.school_code,
+            ssec.sector_code,
+            ssec.class_code,
+            scs.section_code,
+            scs.student_id,
+            stdguard.first_name || &apos; &apos; || stdguard.last_name,
+            stdguard.primary_tel
+        ORDER BY
+            school_code,
+            sector_code,
+            class_code,
+            section_code;
+    BEGIN
+        v_school_code := pschool_code;
+        v_batch_no := pbatch_no;
+        v_sector_code := psector_code;
+        v_class_code := pclass_code;
+        v_section_code := psection_code;
+        v_service_type := pservice_type;
+        v_route_code := proute_code;
+        v_student_id := pstudent_id;
+        v_template_code := ptemplate_code;
+        v_message := pmessage;
+        v_counter := 1;
+        FOR indx IN cur_sms(p_school_code =&gt; v_school_code, p_batch_no =&gt; v_batch_no, p_sector_code =&gt; v_sector_code, p_class_code =&gt; v_class_code, p_section_code =&gt; v_section_code,
+                           p_service_type =&gt; v_service_type, p_route_code =&gt; v_route_code, p_student_id =&gt; v_student_id) LOOP
+            leadsuser.pristine_pckg.sendsms(indx.primary_tel, v_message);
+            INSERT INTO leadsuser.sms_log (
+                person#,
+                person_name,
+                telephone,
+                sms_code,
+                message,
+                reason
+            ) VALUES (
+                indx.student_id,
+                indx.guardian_name,
+                indx.primary_tel,
+                v_template_code,
+                v_message,
+                &apos;TRANSPORT MESSAGE&apos;
+            );
+            IF v_counter &gt;= 50 THEN
+                v_counter := 1;
+                COMMIT;
+            ELSE
+                v_counter := v_counter + 1;
+            END IF;
+        END LOOP;
+    END transport_sms_proc;
 END pckg_send_select_sms;</source>
 </body>
 </PackageOracle>

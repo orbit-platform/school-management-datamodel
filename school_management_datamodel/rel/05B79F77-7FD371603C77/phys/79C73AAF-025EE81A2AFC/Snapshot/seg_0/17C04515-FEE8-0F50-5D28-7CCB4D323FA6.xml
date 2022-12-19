@@ -11,19 +11,24 @@
         class_code,
         stream_code,
         term_code,
-        subject_code,
-        super_code,
         domain_code,
-        academic_code,
-        category_code,
         part_name,
         ranking_type,
         score_type,
         optional_type,
-        main_max_mark AS max_main,
-        inter_max_mark AS max_internal,
-        main_min_mark min_main,
-        inter_min_mark AS min_internal
+        academic_code,
+        category_code,
+        super_code,
+        subject_code,
+        main,
+        unit,
+        asgn,
+        proj,
+        oral,
+        prac,
+        prsn,
+        cwrk,
+        onln
     FROM
         ( SELECT
                   sterm.school_code AS school_code,
@@ -40,9 +45,8 @@
                   ssup.ranking_type AS ranking_type,
                   ssup.score_type AS score_type,
                   ssup.optional_type AS optional_type,
-                  examination_type AS examination_type,
-                  SUM(salloc.max_mark *(csub.ratio_ant / csub.ratio_con)) AS max_mark,
-                  SUM(salloc.min_mark *(csub.ratio_ant / csub.ratio_con)) AS min_mark
+                  salloc.evaluation_code AS evaluation_code,
+                  SUM(salloc.max_mark *(csub.ratio_ant / csub.ratio_con)) AS max_mark
               FROM
                        school_term sterm
                   INNER JOIN school_super ssup
@@ -81,6 +85,11 @@
                        AND salloc.stream_code = csub.stream_code
                        AND salloc.term_code = csub.term_code
                        AND salloc.super_code = ssubj.super_code )
+                  INNER JOIN school_evaluation seval
+                  ON ( seval.school_code = csub.school_code
+                       AND seval.class_code = csub.class_code
+                       AND seval.stream_code = csub.stream_code
+                       AND seval.evaluation_code = salloc.evaluation_code )
             WHERE
                     sterm.status_name = 'ACTIVE'
                 AND ssubj.status_name = 'ACTIVE'
@@ -102,13 +111,11 @@
               csub.subject_code,
               ssup.score_type,
               ssup.optional_type,
-              salloc.examination_type
+              salloc.evaluation_code
         ) PIVOT (
-            SUM(min_mark)
-        AS min_mark,
-        SUM(max_mark) AS max_mark
-            FOR examination_type
-            IN ( 'EXTERNAL' AS main, 'INTERNAL' AS inter )
+            SUM(max_mark)
+            FOR evaluation_code
+            IN ( '08' AS main, '16' AS unit, '01' AS asgn, '13' AS proj, '11' AS oral, '09' AS prac, '12' AS prsn, '05' AS cwrk, '18' AS onln )
         )
         wd
     ORDER BY

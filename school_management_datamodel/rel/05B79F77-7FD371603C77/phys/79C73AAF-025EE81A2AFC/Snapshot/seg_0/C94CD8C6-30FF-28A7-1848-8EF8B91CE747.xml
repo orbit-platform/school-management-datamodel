@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="v_school_working_day" directorySegmentName="seg_0" id="C94CD8C6-30FF-28A7-1848-8EF8B91CE747">
+<createdBy>leads</createdBy>
+<createdTime>2022-11-27 10:42:01 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<refreshType>FORCE</refreshType>
+<subquery><![CDATA[SELECT
+        school_code,
+        batch_no#,
+        class_code,
+        stream_code,
+        section_code,
+        term_code,
+        year_date,
+        day_type,
+        descriptions
+    FROM
+        ( SELECT
+              wd.school_code,
+              wd.batch_no#,
+              wd.class_code,
+              wd.stream_code,
+              wd.section_code,
+              sterm.term_code,
+              sterm.effective_from,
+              sterm.effective_upto,
+              wd.year_date,
+              CASE
+                  WHEN sterm.term_code IS NULL THEN
+                      'NON-WORKING DAY'
+                  ELSE
+                      nvl(schol.holiday_type, wd.day_type)
+              END AS day_type,
+              nvl(schol.descriptions, wd.descriptions) AS descriptions
+          FROM
+              ( SELECT
+                      sbat.school_code,
+                      sbat.batch_no#,
+                      csec.class_code,
+                      csec.stream_code,
+                      csec.section_code,
+                      ydate.day AS year_date,
+                      'WORKING DAY' AS day_type,
+                      'Normal Working Day' AS descriptions
+                  FROM
+                           school_batch sbat
+                      INNER JOIN class_section csec
+                      ON ( csec.school_code = sbat.school_code
+                           AND csec.batch_no# = sbat.batch_no# )
+                      CROSS JOIN year_date ydate
+                WHERE
+                        csec.status_name = 'ACTIVE'
+                    AND ydate.day BETWEEN sbat.effective_from AND sbat.effective_upto
+              ) wd
+              LEFT OUTER JOIN school_term sterm
+              ON ( sterm.school_code = wd.school_code
+                   AND sterm.batch_no# = wd.batch_no#
+                   AND sterm.class_code = wd.class_code
+                   AND sterm.stream_code = wd.stream_code
+                   AND wd.year_date BETWEEN sterm.effective_from AND sterm.effective_upto )
+              LEFT OUTER JOIN school_holiday schol
+              ON ( schol.school_code = wd.school_code
+                   AND schol.batch_no# = wd.batch_no#
+                   AND schol.class_code = wd.class_code
+                   AND schol.stream_code = wd.stream_code
+                   AND schol.section_code = wd.section_code
+                   AND schol.holiday_date = wd.year_date )
+        )
+    ORDER BY
+        school_code,
+        batch_no#,
+        class_code,
+        stream_code,
+        section_code,
+        year_date;]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with></with>
+</SnapshotOraclev11g>
