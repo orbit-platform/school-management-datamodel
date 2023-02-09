@@ -1,11 +1,11 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="inventory_id_trg" directorySegmentName="seg_1" id="BC2A314B-F700-C5D3-5C77-98A493174643">
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="school_inventory_id_trg" directorySegmentName="seg_1" id="BC2A314B-F700-C5D3-5C77-98A493174643">
 <createdBy>leads</createdBy>
 <createdTime>2020-01-31 09:24:53 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <actions>INSERT</actions>
 <body><![CDATA[BEGIN
-	:new.id := inventory_id_seq.nextval;
+	:new.id := school_inventory_id_seq.nextval;
 END;]]></body>
 <triggerTime>BEFORE</triggerTime>
 <condition><![CDATA[new.id IS NULL]]></condition>

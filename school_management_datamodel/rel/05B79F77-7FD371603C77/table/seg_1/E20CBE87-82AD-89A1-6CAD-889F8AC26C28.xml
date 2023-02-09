@@ -92,7 +92,6 @@
 <generatorID>1B387971-5CB9-CF6F-889D-62C630849757</generatorID>
 <notes><![CDATA[Stream Code]]></notes>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <domain>411A7036-AE28-9018-332B-691EBC096EF9</domain>
@@ -129,6 +128,24 @@
 <colAssociation fkAssociation="8B88488E-47F1-B5B0-3E0F-B8F6F77C5F8C" referredColumn="209C8A13-EFB1-474C-4A59-0355C7C93DF5"/>
 </associations>
 </Column>
+<Column name="ordinal_no" id="4CDF6C20-21F2-0F76-D4C0-B4DF5952C6FC">
+<createdBy>leads</createdBy>
+<createdTime>2020-12-07 06:57:16 UTC</createdTime>
+<comment><![CDATA[Heriarchy of Order]]></comment>
+<commentInRDBMS><![CDATA[Heriarchy of Order]]></commentInRDBMS>
+<generatorID>BF19CCC8-FCE7-9C19-2FBC-672226970FF4</generatorID>
+<notes><![CDATA[Heriarchy of Order]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5F654AA3-5531-7352-38F3-220C19237A8B" referredColumn="E7354450-2C6F-C81D-707C-C4E1D438CEF0"/>
+</associations>
+</Column>
 <Column name="book_code" id="16C08D3E-446C-A43D-C4CC-EA93356E6A2E">
 <createdBy>leads</createdBy>
 <createdTime>2019-09-13 01:19:00 UTC</createdTime>
@@ -146,24 +163,6 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="65B15012-4BD2-2E7B-ABA0-23C9BE973A7B" referredColumn="DAB0B11B-7066-FD1E-2267-EBA99DF37D3A"/>
-</associations>
-</Column>
-<Column name="ordinal_no" id="4CDF6C20-21F2-0F76-D4C0-B4DF5952C6FC">
-<createdBy>leads</createdBy>
-<createdTime>2020-12-07 06:57:16 UTC</createdTime>
-<comment><![CDATA[Heriarchy of Order]]></comment>
-<commentInRDBMS><![CDATA[Heriarchy of Order]]></commentInRDBMS>
-<generatorID>BF19CCC8-FCE7-9C19-2FBC-672226970FF4</generatorID>
-<notes><![CDATA[Heriarchy of Order]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="5F654AA3-5531-7352-38F3-220C19237A8B" referredColumn="E7354450-2C6F-C81D-707C-C4E1D438CEF0"/>
 </associations>
 </Column>
 <Column name="portion_type" id="44535341-CB5D-05D5-7598-DE882EF1A09F">
@@ -312,7 +311,7 @@
 <colUsage columnID="125A5DEA-F44E-E663-2610-31EE92017A32"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="FEE572E4-5516-49A5-2597-92ECBFD5AB36" name="school_book_un">
+<ind_PK_UK id="FEE572E4-5516-49A5-2597-92ECBFD5AB36" name="school_book_UN">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-07 06:57:16 UTC</createdTime>
 <generatorID>3B94CAF7-0F11-E9CA-3BDB-08F49BE95950</generatorID>
@@ -325,7 +324,7 @@
 <colUsage columnID="C5E87140-DC89-5D2C-5D64-A0AE4A440EFD"/>
 <colUsage columnID="FA17055D-FF88-8A57-0518-21D0D72ED26D"/>
 <colUsage columnID="5EF6ABAF-C335-D1B7-DDE3-6A00291A0CD6"/>
-<colUsage columnID="16C08D3E-446C-A43D-C4CC-EA93356E6A2E"/>
+<colUsage columnID="4CDF6C20-21F2-0F76-D4C0-B4DF5952C6FC"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="FB57B7E8-E98B-72DB-2535-4A03C9FFCD6F" name="school_book_pk_idx">
@@ -350,7 +349,7 @@
 <colUsage columnID="C5E87140-DC89-5D2C-5D64-A0AE4A440EFD"/>
 <colUsage columnID="FA17055D-FF88-8A57-0518-21D0D72ED26D"/>
 <colUsage columnID="5EF6ABAF-C335-D1B7-DDE3-6A00291A0CD6"/>
-<colUsage columnID="16C08D3E-446C-A43D-C4CC-EA93356E6A2E"/>
+<colUsage columnID="4CDF6C20-21F2-0F76-D4C0-B4DF5952C6FC"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="3BE12E89-0A24-D81E-5B5F-2C77E2F69C39" name="school_book_schl_idx">
@@ -443,7 +442,7 @@
 <colUsage columnID="FA17055D-FF88-8A57-0518-21D0D72ED26D"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="6E1783A9-DAE3-2543-1DC4-CA2D01D45D01" name="schbk_book_fk">
+<ind_PK_UK id="6E1783A9-DAE3-2543-1DC4-CA2D01D45D01" name="SchBk_Book_FK">
 <createdBy>leads</createdBy>
 <createdTime>2019-09-13 01:19:00 UTC</createdTime>
 <generatorID>7D4036B5-7396-21EF-96B4-0B4BDC238268</generatorID>
@@ -454,7 +453,7 @@
 <colUsage columnID="16C08D3E-446C-A43D-C4CC-EA93356E6A2E"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="4A9A9830-8048-B827-F5BC-C600257B4BCA" name="schbk_class_fk">
+<ind_PK_UK id="4A9A9830-8048-B827-F5BC-C600257B4BCA" name="SchBk_Class_FK">
 <createdBy>leads</createdBy>
 <createdTime>2019-09-13 01:19:00 UTC</createdTime>
 <generatorID>8D879EAB-F84B-ABC6-C079-8CB82217479E</generatorID>
@@ -465,7 +464,7 @@
 <colUsage columnID="C5E87140-DC89-5D2C-5D64-A0AE4A440EFD"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="3C6578F8-F07C-494D-F757-80553CF5C15E" name="schbk_school_fk">
+<ind_PK_UK id="3C6578F8-F07C-494D-F757-80553CF5C15E" name="SchBk_School_FK">
 <createdBy>leads</createdBy>
 <createdTime>2019-09-13 01:19:00 UTC</createdTime>
 <generatorID>D01876C2-3D1D-3287-4C0C-4D9A3130BC28</generatorID>
@@ -476,7 +475,7 @@
 <colUsage columnID="2227B3E3-2D90-AD8A-902C-9550A700591D"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="9E806F47-CEB7-E7AC-63D3-69F1935B6AF7" name="schbk_batch">
+<ind_PK_UK id="9E806F47-CEB7-E7AC-63D3-69F1935B6AF7" name="SchBk_Batch">
 <createdBy>leads</createdBy>
 <createdTime>2020-06-03 05:16:04 UTC</createdTime>
 <generatorID>21015C5B-6BD2-DE9C-2DFF-BA31D7B0FEA4</generatorID>
@@ -487,7 +486,7 @@
 <colUsage columnID="8F12FC49-1364-5F2F-6FD0-21D44FEEA8B9"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="9ADA4643-3AA6-840E-1B8D-3DE13BD6EC21" name="schbk_subject_fk">
+<ind_PK_UK id="9ADA4643-3AA6-840E-1B8D-3DE13BD6EC21" name="SchBk_Subject_FK">
 <createdBy>leads</createdBy>
 <createdTime>2020-06-03 05:16:04 UTC</createdTime>
 <generatorID>33D59868-93F2-5050-16B5-1CCFE5B3947B</generatorID>
@@ -498,7 +497,7 @@
 <colUsage columnID="5EF6ABAF-C335-D1B7-DDE3-6A00291A0CD6"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="CDB9ECC2-AD90-A2B0-AEED-AF4736A4D263" name="schbk_bookusage_fk">
+<ind_PK_UK id="CDB9ECC2-AD90-A2B0-AEED-AF4736A4D263" name="SchBk_BookUsage_FK">
 <createdBy>leads</createdBy>
 <createdTime>2020-11-30 09:47:08 UTC</createdTime>
 <generatorID>48F0A50D-FAFB-01E1-65E4-439436B39ABF</generatorID>
@@ -509,7 +508,7 @@
 <colUsage columnID="6945B6DF-74D6-3B0C-6912-8B1924E954B9"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="D623F8EA-2BF6-7DA6-37FE-21258000D283" name="schbk_bookordinal_fk">
+<ind_PK_UK id="D623F8EA-2BF6-7DA6-37FE-21258000D283" name="SchBk_BookOrdinal_FK">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-07 06:57:16 UTC</createdTime>
 <generatorID>BA62C431-A38F-C8F7-71D2-6E95E5065F1D</generatorID>
@@ -520,7 +519,7 @@
 <colUsage columnID="4CDF6C20-21F2-0F76-D4C0-B4DF5952C6FC"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="A5920117-B445-D0DC-F837-FC4DD6A70A43" name="schbk_status_fk">
+<ind_PK_UK id="A5920117-B445-D0DC-F837-FC4DD6A70A43" name="SchBk_Status_FK">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-07 03:51:35 UTC</createdTime>
 <generatorID>8C167FDF-D23D-B1E0-D190-A9E294BA4C49</generatorID>
@@ -531,7 +530,7 @@
 <colUsage columnID="EEEAA713-C8DB-AAA6-076B-CF2F4350D302"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="5EE100B7-6D3C-9BC3-61F8-D3C9511B128E" name="schbk_stream_fk">
+<ind_PK_UK id="5EE100B7-6D3C-9BC3-61F8-D3C9511B128E" name="SchBk_Stream_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-18 04:11:35 UTC</createdTime>
 <generatorID>373EC840-BB26-FE4A-7D39-44E2AE29B02E</generatorID>

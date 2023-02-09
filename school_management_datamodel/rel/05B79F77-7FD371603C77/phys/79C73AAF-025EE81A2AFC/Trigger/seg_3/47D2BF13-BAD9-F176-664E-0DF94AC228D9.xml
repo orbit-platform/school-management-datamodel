@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="stationery_spec_code_trg" directorySegmentName="seg_3" id="47D2BF13-BAD9-F176-664E-0DF94AC228D9">
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="accessory_spec_code_trg" directorySegmentName="seg_3" id="47D2BF13-BAD9-F176-664E-0DF94AC228D9">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-11 09:06:07 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -9,7 +9,7 @@
         lpad(nvl(MAX(to_number(code)), 0) + 1, 10, '0')
     INTO :new.code
     FROM
-        stationery_spec;
+        accessory_spec;
 END;]]></body>
 <triggerTime>BEFORE</triggerTime>
 <condition><![CDATA[new.code IS NULL]]></condition>

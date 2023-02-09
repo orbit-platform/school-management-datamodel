@@ -16,6 +16,11 @@
 <createdTime>2019-09-12 11:17:07 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="state_ID" id="29D25694-C983-C6BC-F2ED-596A2C945323">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-24 05:16:51 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="created_on" id="2DD1E810-E4FC-8397-B9D8-8F506F57AE1C">
 <createdBy>leads</createdBy>
 <createdTime>2021-09-07 05:49:29 UTC</createdTime>
@@ -38,11 +43,10 @@
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <defaultValue>CURRENT_TIMESTAMP</defaultValue>
 </ColumnProxy>
-<ColumnProxy name="region_code" id="43185FE6-A763-0DD4-299A-E89FE5F39F14">
+<ColumnProxy name="country_ID" id="4B1EBA95-5E98-0F4E-07F8-2CE00095035D">
 <createdBy>leads</createdBy>
-<createdTime>2019-09-12 11:17:07 UTC</createdTime>
+<createdTime>2023-01-24 05:16:51 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<defaultValue>0000</defaultValue>
 </ColumnProxy>
 <ColumnProxy name="primary_tel" id="5327FF9C-119D-E603-6198-3C52627C540E">
 <createdBy>leads</createdBy>
@@ -78,6 +82,11 @@
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <defaultValue>yourmailID@domain.com</defaultValue>
 </ColumnProxy>
+<ColumnProxy name="region_ID" id="6BA03478-EBD6-662E-C476-4C21B04C58B0">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-24 05:16:51 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="created_by" id="7D285E7A-ACC5-DC04-D311-188AE7E51813">
 <createdBy>leads</createdBy>
 <createdTime>2021-09-07 05:49:29 UTC</createdTime>
@@ -104,6 +113,11 @@
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <defaultValue>0000</defaultValue>
 </ColumnProxy>
+<ColumnProxy name="city_ID" id="D87B18E7-003A-A380-DA43-C3B76FB76984">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-24 05:16:51 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="status_name" id="D92AADA1-BA3D-DA5B-1993-65C4F7DF3ECF">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-17 18:31:05 UTC</createdTime>
@@ -122,9 +136,19 @@
 <createdTime>2019-09-12 11:22:13 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </IndexProxy>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="publisher_region_idx" id="A9CCC713-663B-9090-8323-12B5CD54262C">
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="publisher_cty_idx" id="4F4698B5-AD59-342E-0589-F9FD90573AC0">
 <createdBy>leads</createdBy>
-<createdTime>2019-09-12 11:17:36 UTC</createdTime>
+<createdTime>2023-01-24 05:18:52 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="publisher_state_idx" id="77C88390-25B5-CBA1-BEA9-32A698BD35DC">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-24 05:18:52 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="publisher_regn_idx" id="7D634999-42BD-4994-522C-F7EA81E5AEEA">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-24 05:18:52 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="publisher_un_idx" id="D2207227-093F-91B4-843C-9E33A51584E8">
@@ -132,16 +156,41 @@
 <createdTime>2019-09-12 11:22:13 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </IndexProxy>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="publisher_stat_idx" id="D6D7C073-B121-6E76-E01C-9F821EC880EC">
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="publisher_stts_idx" id="D6D7C073-B121-6E76-E01C-9F821EC880EC">
 <createdBy>leads</createdBy>
 <createdTime>2019-09-12 11:17:36 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="publisher_cnty_idx" id="DB664908-895F-4314-C47F-AF3B8B4D50A3">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-24 05:18:52 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</IndexProxy>
 </indexProxies>
 <foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Pub_State_FK" id="108A5E50-6387-CA6B-CA35-47FF4F11DA6E">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-24 05:16:51 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Pub_Region_FK" id="23FB781B-EFD4-0EA8-FB8E-B613FA87011B">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-24 05:16:51 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Pub_City_FK" id="3328E8D2-817B-584B-F7FA-B872A82792CA">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-24 05:16:51 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ForeignKey>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Pub_Status_FK" id="55F58B16-C574-3485-3610-95F749DE1F92">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-17 18:31:05 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Pub_Country_FK" id="C75CBB8B-A1CF-A5C4-54EA-9397912C3FD4">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-24 05:16:51 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
 </foreignKeys>
@@ -154,9 +203,9 @@
 </PrimaryKey>
 </primaryKeys>
 <uniqueKeys>
-<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="publisher_UN" id="C68C176C-E08E-9438-34ED-43759C03442B">
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="publisher_UN" id="37D8FEC8-C865-F6C2-3AC0-23867FAEBAC0">
 <createdBy>leads</createdBy>
-<createdTime>2019-09-12 11:17:07 UTC</createdTime>
+<createdTime>2023-01-24 05:16:51 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <indexSort>SORTED</indexSort>
 </UniqueKey>

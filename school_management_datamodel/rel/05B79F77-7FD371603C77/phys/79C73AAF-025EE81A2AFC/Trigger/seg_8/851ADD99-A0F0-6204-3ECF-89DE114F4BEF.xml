@@ -1,0 +1,49 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="book_inventory_Item_trg" directorySegmentName="seg_8" id="851ADD99-A0F0-6204-3ECF-89DE114F4BEF">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-26 08:47:42 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[BEGIN
+    ---inserting
+    IF inserting THEN
+        INSERT INTO inventory_item (
+            name,
+            item_type,
+            book_code,
+            status_name,
+            descriptions
+        ) VALUES (
+            :new.title,
+            'TEXTBOOK',
+            :new.code,
+            :new.status_name,
+            :new.descriptions
+        );
+    END IF;
+    
+    ---updating
+    IF updating THEN
+        UPDATE inventory_item
+        SET
+            book_code = :new.code,
+            name = :new.title,
+            status_name = :new.status_name
+        WHERE
+            book_code = :old.code;
+    END IF;
+    
+    ---deleting
+    IF deleting THEN
+        UPDATE inventory_item
+        SET
+            status_name = 'INACTIVE'
+        WHERE
+            book_code = :old.code;
+    END IF;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<columns>DAB0B11B-7066-FD1E-2267-EBA99DF37D3A, DEA1CC27-693B-8F70-7488-9EA9A49BC48D, EF2B257F-71DB-E19F-6E92-8EA07297D760, 1182666A-FA50-4713-19A9-0CAEA45C272E, B14F9417-2E6C-D4BA-6F30-A7BBE8939D2B, DFECF04B-526E-2600-341E-3030A1727394, 967B10D3-1FDF-C766-20F9-319BF273B4BE, 22A6B698-2E65-2DCF-D9A8-B552D6CF2A86, 423A9BC3-BCB0-80DF-AB8A-BCEAED3F639C</columns>
+<state>ENABLE</state>
+<table>9A5C8513-EB66-3816-9E8B-EC3BD8ABF4E1</table>
+</TriggerOraclev10g>

@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<PackageOracle class="oracle.dbtools.crest.model.design.storage.oracle.PackageOracle" name="pckg_emp_communication" directorySegmentName="seg_0" id="925898EB-2306-221F-4363-BEFC86F517B0">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-19 08:30:21 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>create or replace PACKAGE pckg_emp_communication AS
+    
+    --sms procedure to send communication sms to targetted resources
+    PROCEDURE send_sms_proc (
+        pcompany_code    IN VARCHAR2,
+        pcategory_code   IN VARCHAR2,
+        pdepartment_code IN VARCHAR2,
+        pemployee_id     IN NUMBER,
+        pmessage         IN VARCHAR2
+    );
+END pckg_emp_communication;</source>
+<body class="oracle.dbtools.crest.model.design.storage.oracle.PackageBodyOracle" name="pckg_emp_communication" id="925898EB-2306-221F-4363-BEFC86F517B0">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-19 08:30:42 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PACKAGE BODY pckg_emp_communication AS
+    
+    --sms procedure to send communication sms to targetted resources
+    PROCEDURE send_sms_proc (
+        pcompany_code    IN VARCHAR2,
+        pcategory_code   IN VARCHAR2,
+        pdepartment_code IN VARCHAR2,
+        pemployee_id     IN NUMBER,
+        pmessage         IN VARCHAR2
+    ) AS
+    ---encapsulation variables
+
+        v_company_code    company.code%TYPE;
+        v_category_code   category.code%TYPE;
+        v_department_code department.code%TYPE;
+        v_employee_id     employee.id%TYPE;
+        v_message         VARCHAR2(2000);
+        v_counter         NUMBER;
+
+    ---cursor declaration
+        CURSOR cur (
+            p_company_code    IN VARCHAR2,
+            p_category_code   IN VARCHAR2,
+            p_department_code IN VARCHAR2,
+            p_employee_id     IN NUMBER
+        ) IS
+        SELECT
+            emp.id AS employee_id,
+            emp.first_name || &apos; &apos; || emp.last_name AS employee_name,
+            emp.primary_tel
+        FROM
+                 employee emp
+            INNER JOIN emp_department edept
+            ON ( emp.id = edept.employee_id )
+            INNER JOIN emp_school esch
+            ON ( emp.id = esch.employee_id )
+        WHERE
+            emp.status_name IN ( &apos;ACTIVE&apos;, &apos;LEAVE&apos;, &apos;SUSPENDED&apos; )
+            AND edept.status_name = &apos;ACTIVE&apos;
+            AND edept.company_code = pcompany_code
+            AND esch.category_code = nvl(pcategory_code, esch.category_code)
+            AND edept.department_code = nvl(pdepartment_code, edept.department_code)
+            AND emp.id = nvl(pemployee_id, emp.id)
+        GROUP BY
+            emp.id,
+            emp.first_name,
+            emp.last_name,
+            emp.primary_tel
+        ORDER BY
+            employee_id ASC;
+    BEGIN
+        ---parameter to variable assignment
+        v_company_code := pcompany_code;
+        v_category_code := pcategory_code;
+        v_department_code := pdepartment_code;
+        v_employee_id := pemployee_id;
+        v_message := pmessage;
+
+        --commit counter
+        v_counter := 1;
+
+        --cursor loop
+        FOR indx IN cur(p_company_code =&gt; v_company_code, p_category_code =&gt; v_category_code, p_department_code =&gt; v_department_code, p_employee_id =&gt; v_employee_id) LOOP
+
+        -- sendsms procedure 
+            leadsuser.pristine_pckg.sendsms(indx.primary_tel, v_message);
+
+        --insert the sms log 
+            INSERT INTO leadsuser.sms_log (
+                person#,
+                telephone,
+                person_name,
+                message,
+                reason
+            ) VALUES (
+                indx.employee_id,
+                indx.primary_tel,
+                indx.employee_name,
+                v_message,
+                &apos;ANNOUNCEMENT TO EMPLOYEES&apos;
+            );
+            IF v_counter &gt;= 50 THEN
+                v_counter := 1;
+                COMMIT;
+            ELSE
+                v_counter := v_counter + 1;
+            END IF;
+        END LOOP;
+    END send_sms_proc;
+END pckg_emp_communication;</source>
+</body>
+</PackageOracle>

@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_5" id="FBC2ADA5-9B39-292E-B12A-59627778C0DB" name="stationery_accessory">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_5" id="FBC2ADA5-9B39-292E-B12A-59627778C0DB" name="school_accessory">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-04 09:51:12 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -14,10 +14,10 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<preferredAbbreviation>stationery_accessory</preferredAbbreviation>
-<shortName>stationery_accessory</shortName>
-<synonym>stationery_accessory</synonym>
-<synonymToDisplay>stationery_accessory</synonymToDisplay>
+<preferredAbbreviation>school_accessory</preferredAbbreviation>
+<shortName>school_accessory</shortName>
+<synonym>school_accessory</synonym>
+<synonymToDisplay>school_accessory</synonymToDisplay>
 <createSurrogateKey>true</createSurrogateKey>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="school_code" id="5A253312-8D25-84D1-1FB3-588D5B5932C6">
@@ -96,24 +96,6 @@
 <domain>411A7036-AE28-9018-332B-691EBC096EF9</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="stationery_code" id="07083BE3-F00B-F927-9488-868BF4773C9C">
-<createdBy>leads</createdBy>
-<createdTime>2021-02-12 08:59:47 UTC</createdTime>
-<comment><![CDATA[Stationery Code]]></comment>
-<commentInRDBMS><![CDATA[Stationery Code]]></commentInRDBMS>
-<generatorID>26454F6D-02E4-C68D-F68D-E3FC6E22B5B2</generatorID>
-<notes><![CDATA[Stationery Code]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<engineerTo>
-<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
-</engineerTo>
-<referedAttribute>238ED4FA-ABA0-CD02-0B0F-717E7C13C3D4</referedAttribute>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>31D6F78C-2447-CD35-A745-1F1180891AB8</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="ordinal_no" id="3902EFA7-24BD-8A18-BDA5-29D30790C565">
 <createdBy>leads</createdBy>
 <createdTime>2021-02-12 09:02:50 UTC</createdTime>
@@ -129,6 +111,24 @@
 <use>0</use>
 <logicalDatatype>LOGDT011</logicalDatatype>
 <domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="accessory_code" id="07083BE3-F00B-F927-9488-868BF4773C9C">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-12 08:59:47 UTC</createdTime>
+<comment><![CDATA[Accessory Code]]></comment>
+<commentInRDBMS><![CDATA[Accessory Code]]></commentInRDBMS>
+<generatorID>26454F6D-02E4-C68D-F68D-E3FC6E22B5B2</generatorID>
+<notes><![CDATA[Accessory Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>238ED4FA-ABA0-CD02-0B0F-717E7C13C3D4</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>31D6F78C-2447-CD35-A745-1F1180891AB8</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="unit" id="647C84B1-CB21-26AA-7E68-6FD03540834C">
@@ -261,20 +261,20 @@
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="6DD6D444-0B6D-EE2C-AE56-8A1847C77EBF" name="stationery_accessory_UN">
+<identifier id="6DD6D444-0B6D-EE2C-AE56-8A1847C77EBF" name="School_Accessory_UN">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-04 10:08:10 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <engineerTo>
 <item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
 </engineerTo>
-<newElementsIDs>B7E74345-C5D2-FBFC-9492-11237B5C7943,82B00FE9-07E5-BD53-658E-D241F836718C,F3371E52-FFCB-D1A5-77D2-23791BAA70D9,3D800CBC-ECAF-3699-2837-8D1AE0F9264D,26454F6D-02E4-C68D-F68D-E3FC6E22B5B2</newElementsIDs>
+<newElementsIDs>B7E74345-C5D2-FBFC-9492-11237B5C7943,82B00FE9-07E5-BD53-658E-D241F836718C,F3371E52-FFCB-D1A5-77D2-23791BAA70D9,3D800CBC-ECAF-3699-2837-8D1AE0F9264D,1EBA64F4-45D2-6659-34C7-AC5C009B920F</newElementsIDs>
 <usedAttributes>
 <attributeRef>5A253312-8D25-84D1-1FB3-588D5B5932C6</attributeRef>
 <attributeRef>127740EC-8504-10DC-3461-BEA5A2E00171</attributeRef>
 <attributeRef>5D535D31-BDC5-18FE-1EF4-8E17078A3095</attributeRef>
 <attributeRef>6DAB8EE6-280A-5718-07BB-896D037C0A99</attributeRef>
-<attributeRef>07083BE3-F00B-F927-9488-868BF4773C9C</attributeRef>
+<attributeRef>3902EFA7-24BD-8A18-BDA5-29D30790C565</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

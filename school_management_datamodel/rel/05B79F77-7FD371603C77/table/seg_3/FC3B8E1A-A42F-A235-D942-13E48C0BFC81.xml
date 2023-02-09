@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_3" id="FC3B8E1A-A42F-A235-D942-13E48C0BFC81" name="inventory">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_3" id="FC3B8E1A-A42F-A235-D942-13E48C0BFC81" name="school_inventory">
 <createdBy>leads</createdBy>
 <createdTime>2020-01-30 10:22:58 UTC</createdTime>
 <comment><![CDATA[Inventory Item - Cost Price/Sale Price/MRP]]></comment>
@@ -7,12 +7,12 @@
 <generatorID>42E4EECC-0615-A460-AD92-219D87C88AAB</generatorID>
 <notes><![CDATA[Inventory Item - Cost Price/Sale Price/MRP]]></notes>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<abbreviation>inventory</abbreviation>
+<abbreviation>school_inventory</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id" id="46B198E7-C86F-1D22-9038-94624DD0C644">
+<Column name="ID" id="46B198E7-C86F-1D22-9038-94624DD0C644">
 <createdBy>leads</createdBy>
 <createdTime>2020-01-30 10:22:58 UTC</createdTime>
 <comment><![CDATA[Inventory ID]]></comment>
@@ -62,6 +62,24 @@
 <colAssociation fkAssociation="A669D6B4-3A72-4857-2A2C-62725BFD82BD" referredColumn="FDA7FD9A-44BF-B5AC-3AAD-07D9B16DE925"/>
 </associations>
 </Column>
+<Column name="item_id" id="BDA0C074-DE86-BA65-B721-EF3794026A03">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-26 07:28:00 UTC</createdTime>
+<comment><![CDATA[Inventory Item ID]]></comment>
+<commentInRDBMS><![CDATA[Inventory Item ID]]></commentInRDBMS>
+<generatorID>D24D2A33-EF57-7F87-902A-455BAF57E424</generatorID>
+<notes><![CDATA[Inventory Item ID]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="40BF622A-93AA-5680-E279-D52B681B3BD2" referredColumn="06D7D498-0537-A17E-DC2F-EDE5A0443583"/>
+</associations>
+</Column>
 <Column name="item_type" id="DD9C51A8-ACCA-A6F6-76B4-24C35E56C33C">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-07 15:04:17 UTC</createdTime>
@@ -80,50 +98,6 @@
 <associations>
 <colAssociation fkAssociation="0A516869-7ADD-F3FC-13C7-897F7B6B0D03" referredColumn="EC7E91EF-6341-9C3D-4950-678909AE9D6B"/>
 </associations>
-</Column>
-<Column name="item_code" id="CF4204BA-35D6-89C1-242D-969A95185202">
-<createdBy>leads</createdBy>
-<createdTime>2022-01-07 15:04:17 UTC</createdTime>
-<comment><![CDATA[Item Code - BOOK_CODE/NOTEBOOK_CODE/STATIONERY_CODE]]></comment>
-<commentInRDBMS><![CDATA[Item Code - BOOK_CODE/NOTEBOOK_CODE/STATIONERY_CODE]]></commentInRDBMS>
-<generatorID>A760DCDF-504F-2158-1E72-EF8E29BC4D58</generatorID>
-<notes><![CDATA[Item Code - BOOK_CODE/NOTEBOOK_CODE/STATIONERY_CODE]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>81D599E3-6713-5DE6-CAA3-CD344D2D082D</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="stock_received" id="EEB46FC7-9878-D6C3-955F-0A285D06F987">
-<createdBy>leads</createdBy>
-<createdTime>2021-02-23 04:38:32 UTC</createdTime>
-<comment><![CDATA[Number of Stock Received in the Warehouse from the Suppliers/Distributors/Publishers]]></comment>
-<commentInRDBMS><![CDATA[Number of Stock Received in the Warehouse from the Suppliers/Distributors/Publishers]]></commentInRDBMS>
-<generatorID>B7D594A2-EE5E-43C3-D2BB-B677C53B775F</generatorID>
-<notes><![CDATA[Number of Stock Received in the Warehouse from the Suppliers/Distributors/Publishers]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="stock_returned" id="53D30714-8F6B-0E5F-4FF7-08384D6B2040">
-<createdBy>leads</createdBy>
-<createdTime>2022-04-21 05:18:52 UTC</createdTime>
-<comment><![CDATA[Number of Stock Returned to Supplier/Distributors/Publishers from the Warehouse]]></comment>
-<commentInRDBMS><![CDATA[Number of Stock Returned to Supplier/Distributors/Publishers from the Warehouse]]></commentInRDBMS>
-<generatorID>FBAD490F-16A0-202A-941B-F3520974738B</generatorID>
-<notes><![CDATA[Number of Stock Returned to Supplier/Distributors/Publishers from the Warehouse]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<constraintName>stock_returned_def</constraintName>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
-<defaultValue>0</defaultValue>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="unit_type" id="9FB82E45-9FFA-9EB0-401C-D91DDB1E2C5D">
 <createdBy>leads</createdBy>
@@ -168,6 +142,36 @@
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="stock_received" id="EEB46FC7-9878-D6C3-955F-0A285D06F987">
+<createdBy>leads</createdBy>
+<createdTime>2021-02-23 04:38:32 UTC</createdTime>
+<comment><![CDATA[Number of Stock Received in the Warehouse from the Suppliers/Distributors/Publishers]]></comment>
+<commentInRDBMS><![CDATA[Number of Stock Received in the Warehouse from the Suppliers/Distributors/Publishers]]></commentInRDBMS>
+<generatorID>B7D594A2-EE5E-43C3-D2BB-B677C53B775F</generatorID>
+<notes><![CDATA[Number of Stock Received in the Warehouse from the Suppliers/Distributors/Publishers]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="stock_returned" id="53D30714-8F6B-0E5F-4FF7-08384D6B2040">
+<createdBy>leads</createdBy>
+<createdTime>2022-04-21 05:18:52 UTC</createdTime>
+<comment><![CDATA[Number of Stock Returned to Supplier/Distributors/Publishers from the Warehouse]]></comment>
+<commentInRDBMS><![CDATA[Number of Stock Returned to Supplier/Distributors/Publishers from the Warehouse]]></commentInRDBMS>
+<generatorID>FBAD490F-16A0-202A-941B-F3520974738B</generatorID>
+<notes><![CDATA[Number of Stock Returned to Supplier/Distributors/Publishers from the Warehouse]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<constraintName>stock_returned_def</constraintName>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
+<defaultValue>0</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -269,7 +273,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="FD3017E9-D20C-0281-4831-D86EB382031E" name="inventory_pk">
+<ind_PK_UK id="FD3017E9-D20C-0281-4831-D86EB382031E" name="school_inventory_PK">
 <createdBy>leads</createdBy>
 <createdTime>2020-01-30 10:22:58 UTC</createdTime>
 <generatorID>163E12ED-4EDF-725C-5CF1-1E0D1CD190E6</generatorID>
@@ -281,7 +285,7 @@
 <colUsage columnID="46B198E7-C86F-1D22-9038-94624DD0C644"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="8B24BC5B-1182-A270-3934-AA18CA92E4A6" name="inventory_un">
+<ind_PK_UK id="8B24BC5B-1182-A270-3934-AA18CA92E4A6" name="school_inventory_UN">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-07 15:04:17 UTC</createdTime>
 <generatorID>64F74EBD-987B-2BED-845E-01DE6827DC49</generatorID>
@@ -291,11 +295,10 @@
 <indexColumnUsage>
 <colUsage columnID="AD401A95-0836-7381-3A86-DDA46CB61EFE"/>
 <colUsage columnID="6D7FD6CA-B168-FAB7-B486-7151539E46C0"/>
-<colUsage columnID="DD9C51A8-ACCA-A6F6-76B4-24C35E56C33C"/>
-<colUsage columnID="CF4204BA-35D6-89C1-242D-969A95185202"/>
+<colUsage columnID="BDA0C074-DE86-BA65-B721-EF3794026A03"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="B7A20878-4A2A-C9E5-05D9-39F5D9CA41C4" name="inventory_pk_idx">
+<ind_PK_UK id="B7A20878-4A2A-C9E5-05D9-39F5D9CA41C4" name="school_inventory_pk_idx">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-07 15:22:17 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -305,7 +308,7 @@
 <colUsage columnID="46B198E7-C86F-1D22-9038-94624DD0C644"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="62906693-E537-D1A8-9A13-94E2342CAAB0" name="inventory_un_idx">
+<ind_PK_UK id="62906693-E537-D1A8-9A13-94E2342CAAB0" name="school_inventory_un_idx">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-07 15:22:44 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -314,11 +317,10 @@
 <indexColumnUsage>
 <colUsage columnID="AD401A95-0836-7381-3A86-DDA46CB61EFE"/>
 <colUsage columnID="6D7FD6CA-B168-FAB7-B486-7151539E46C0"/>
-<colUsage columnID="DD9C51A8-ACCA-A6F6-76B4-24C35E56C33C"/>
-<colUsage columnID="CF4204BA-35D6-89C1-242D-969A95185202"/>
+<colUsage columnID="BDA0C074-DE86-BA65-B721-EF3794026A03"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="1BDC69F4-1007-C3DA-49B9-9D4B91325785" name="inventory_sch_idx">
+<ind_PK_UK id="1BDC69F4-1007-C3DA-49B9-9D4B91325785" name="school_inventory_sch_idx">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-07 15:12:15 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -327,7 +329,7 @@
 <colUsage columnID="AD401A95-0836-7381-3A86-DDA46CB61EFE"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="6F0C6D6E-93AE-5363-7390-F5B1D4413419" name="inventory_bat_idx">
+<ind_PK_UK id="6F0C6D6E-93AE-5363-7390-F5B1D4413419" name="school_inventory_bat_idx">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-07 15:12:15 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -336,7 +338,7 @@
 <colUsage columnID="6D7FD6CA-B168-FAB7-B486-7151539E46C0"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="69E0AC06-FD66-F7C8-804F-B0CDBF645093" name="inventory_stat_idx">
+<ind_PK_UK id="69E0AC06-FD66-F7C8-804F-B0CDBF645093" name="school_inventory_stat_idx">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-07 15:12:15 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -345,7 +347,7 @@
 <colUsage columnID="BCE27252-2A25-BD74-C7AD-770E7469AE3B"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="6C292F7E-0690-BE42-F538-1F5BDEDD787B" name="inventory_item_idx">
+<ind_PK_UK id="6C292F7E-0690-BE42-F538-1F5BDEDD787B" name="school_inventory_item_idx">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-07 15:12:15 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -354,7 +356,7 @@
 <colUsage columnID="DD9C51A8-ACCA-A6F6-76B4-24C35E56C33C"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="98A5AD7C-C10B-F41D-08E3-154668738734" name="inventory_unit_idx">
+<ind_PK_UK id="98A5AD7C-C10B-F41D-08E3-154668738734" name="school_inventory_unit_idx">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-07 15:12:15 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -363,7 +365,16 @@
 <colUsage columnID="9FB82E45-9FFA-9EB0-401C-D91DDB1E2C5D"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="D49EBFD0-6701-B7E8-C58B-C8042E41D0F0" name="invent_batch_fk">
+<ind_PK_UK id="854FDE64-1FB5-E88B-41B3-62B9FBFF23A8" name="school_inventory_itmid_idx">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-26 07:28:40 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BDA0C074-DE86-BA65-B721-EF3794026A03"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D49EBFD0-6701-B7E8-C58B-C8042E41D0F0" name="SchInvnt_Batch_FK">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-05 10:50:36 UTC</createdTime>
 <generatorID>7AD0952E-464C-BC11-C60A-C49400AAACED</generatorID>
@@ -374,7 +385,7 @@
 <colUsage columnID="6D7FD6CA-B168-FAB7-B486-7151539E46C0"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="DF90A7A8-E444-807A-171C-1B41B928E1C4" name="invent_school_fk">
+<ind_PK_UK id="DF90A7A8-E444-807A-171C-1B41B928E1C4" name="SchInvnt_School_FK">
 <createdBy>leads</createdBy>
 <createdTime>2020-12-05 10:50:36 UTC</createdTime>
 <generatorID>59D02A43-A855-40D3-BEA9-D2E97520A86D</generatorID>
@@ -385,7 +396,7 @@
 <colUsage columnID="AD401A95-0836-7381-3A86-DDA46CB61EFE"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="F2F7CADC-D0E7-FD60-25A8-9C63F1BCACEF" name="invent_status_fk">
+<ind_PK_UK id="F2F7CADC-D0E7-FD60-25A8-9C63F1BCACEF" name="SchInvnt_Status_FK">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-07 03:51:35 UTC</createdTime>
 <generatorID>CA84EA55-6F0E-3415-1C80-8F92E375E9AA</generatorID>
@@ -396,7 +407,7 @@
 <colUsage columnID="BCE27252-2A25-BD74-C7AD-770E7469AE3B"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="6E0C9B08-9E4D-82D8-C9C8-B805E6C52274" name="invent_item_fk">
+<ind_PK_UK id="6E0C9B08-9E4D-82D8-C9C8-B805E6C52274" name="SchInvnt_Item_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-07 15:08:35 UTC</createdTime>
 <generatorID>CA80C3F2-6D58-D2F8-070D-F7BEE21643A5</generatorID>
@@ -407,7 +418,7 @@
 <colUsage columnID="DD9C51A8-ACCA-A6F6-76B4-24C35E56C33C"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="FA47DA16-DCC7-4CFD-4BCF-9F60F2E60C9D" name="invent_unit_fk">
+<ind_PK_UK id="FA47DA16-DCC7-4CFD-4BCF-9F60F2E60C9D" name="SchInvnt_Unit_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-07 15:08:35 UTC</createdTime>
 <generatorID>C4B8F6FC-ADF5-C65D-B4F7-4987A87B4574</generatorID>
@@ -416,6 +427,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="9FB82E45-9FFA-9EB0-401C-D91DDB1E2C5D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="60B73410-732A-8233-AABA-75550D26A214" name="SchInvnt_InventoryItem_FK">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-26 07:28:00 UTC</createdTime>
+<generatorID>6F6DA0F6-8A43-A70B-1375-29F8BB72678C</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BDA0C074-DE86-BA65-B721-EF3794026A03"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

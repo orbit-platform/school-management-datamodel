@@ -1,10 +1,10 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_4" id="601E08D4-C40E-B261-464D-21B954D4B038" name="stationery_accessory">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_4" id="601E08D4-C40E-B261-464D-21B954D4B038" name="school_accessory">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-11 08:58:01 UTC</createdTime>
 <generatorID>FBC2ADA5-9B39-292E-B12A-59627778C0DB</generatorID>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<abbreviation>stationery_accessory</abbreviation>
+<abbreviation>school_accessory</abbreviation>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
@@ -102,25 +102,6 @@
 <colAssociation fkAssociation="1C0466F4-CBBF-2487-4611-A7C406332E91" referredColumn="024EDCBE-503F-4F9C-B528-F7C24E9A190D"/>
 </associations>
 </Column>
-<Column name="stationery_code" id="A4A53ED6-2474-5EFA-9812-8CCFB8097BE2">
-<createdBy>leads</createdBy>
-<createdTime>2022-01-11 08:58:01 UTC</createdTime>
-<comment><![CDATA[Stationery Code]]></comment>
-<commentInRDBMS><![CDATA[Stationery Code]]></commentInRDBMS>
-<generatorID>07083BE3-F00B-F927-9488-868BF4773C9C</generatorID>
-<notes><![CDATA[Stationery Code]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>31D6F78C-2447-CD35-A745-1F1180891AB8</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="E23F7D08-A968-146C-A062-58FC96D6D4FD" referredColumn="788CF123-DEB1-893E-14EA-249AC523D40C"/>
-</associations>
-</Column>
 <Column name="ordinal_no" id="93FB5B80-001C-3B1C-E7BF-FB8192742A05">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-11 08:58:01 UTC</createdTime>
@@ -137,6 +118,25 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="70B09508-739A-89E5-3A44-62E0B2241A77" referredColumn="465F82AA-DC86-CCD0-61CA-0EB70691009C"/>
+</associations>
+</Column>
+<Column name="accessory_code" id="A4A53ED6-2474-5EFA-9812-8CCFB8097BE2">
+<createdBy>leads</createdBy>
+<createdTime>2022-01-11 08:58:01 UTC</createdTime>
+<comment><![CDATA[Accessory Code]]></comment>
+<commentInRDBMS><![CDATA[Accessory Code]]></commentInRDBMS>
+<generatorID>07083BE3-F00B-F927-9488-868BF4773C9C</generatorID>
+<notes><![CDATA[Accessory Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>31D6F78C-2447-CD35-A745-1F1180891AB8</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="E23F7D08-A968-146C-A062-58FC96D6D4FD" referredColumn="788CF123-DEB1-893E-14EA-249AC523D40C"/>
 </associations>
 </Column>
 <Column name="unit" id="67125362-A17A-77CB-0235-FDE69CB80EE7">
@@ -249,7 +249,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="88422D92-BC30-A04F-45B3-395A10F731CB" name="stationery_accessory_pk">
+<ind_PK_UK id="88422D92-BC30-A04F-45B3-395A10F731CB" name="school_accessory_pk">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-11 08:58:01 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -259,7 +259,7 @@
 <colUsage columnID="27272E40-2837-9B50-474C-9DC7C2FEB073"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="E3F9B59E-EA34-FDD5-F7A4-264F590EB4CD" name="stationery_accessory_un">
+<ind_PK_UK id="E3F9B59E-EA34-FDD5-F7A4-264F590EB4CD" name="School_Accessory_UN">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-11 08:58:01 UTC</createdTime>
 <generatorID>6DD6D444-0B6D-EE2C-AE56-8A1847C77EBF</generatorID>
@@ -271,10 +271,10 @@
 <colUsage columnID="742380DA-7AF6-F2BB-4216-78E64A38F3CC"/>
 <colUsage columnID="9D72B9D5-A065-C72B-C57D-748152A3E254"/>
 <colUsage columnID="3D9F19FA-7467-B57F-50C7-48D3C1235F15"/>
-<colUsage columnID="A4A53ED6-2474-5EFA-9812-8CCFB8097BE2"/>
+<colUsage columnID="93FB5B80-001C-3B1C-E7BF-FB8192742A05"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="596389B7-FCD7-F7FD-016B-E4B644ACAB02" name="stationery_accessory_pk_idx">
+<ind_PK_UK id="596389B7-FCD7-F7FD-016B-E4B644ACAB02" name="school_accessory_pk_idx">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-11 09:04:24 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -284,7 +284,7 @@
 <colUsage columnID="27272E40-2837-9B50-474C-9DC7C2FEB073"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="7FD92BE5-EE04-E81A-BB2B-C6E43E2B754E" name="stationery_accessory_un_idx">
+<ind_PK_UK id="7FD92BE5-EE04-E81A-BB2B-C6E43E2B754E" name="school_accessory_un_idx">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-11 09:04:24 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -295,46 +295,10 @@
 <colUsage columnID="742380DA-7AF6-F2BB-4216-78E64A38F3CC"/>
 <colUsage columnID="9D72B9D5-A065-C72B-C57D-748152A3E254"/>
 <colUsage columnID="3D9F19FA-7467-B57F-50C7-48D3C1235F15"/>
-<colUsage columnID="A4A53ED6-2474-5EFA-9812-8CCFB8097BE2"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="E2D36453-D870-320A-2D00-94D4BD906AF8" name="stationery_accessory_stt_idx">
-<createdBy>leads</createdBy>
-<createdTime>2022-01-11 08:58:27 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="E35E83BA-5009-93AB-9168-A9DBBB856488"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="EBE23189-0BA5-AFA8-7B4F-D7B7FA0C720E" name="stationery_accessory_btch_idx">
-<createdBy>leads</createdBy>
-<createdTime>2022-01-11 08:58:27 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="742380DA-7AF6-F2BB-4216-78E64A38F3CC"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="8003F8B5-7EE2-CE26-2E82-4685B85AAE33" name="stationery_accessory_clss_idx">
-<createdBy>leads</createdBy>
-<createdTime>2022-01-11 08:58:27 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="9D72B9D5-A065-C72B-C57D-748152A3E254"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="27728ADF-9B3C-B682-782E-4EE4F2BEE236" name="stationery_accessory_ord_idx">
-<createdBy>leads</createdBy>
-<createdTime>2022-01-11 08:58:27 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
 <colUsage columnID="93FB5B80-001C-3B1C-E7BF-FB8192742A05"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="BF3DBF5B-9877-D96C-194A-09971D81BD6F" name="stationery_accessory_schl_idx">
+<ind_PK_UK id="BF3DBF5B-9877-D96C-194A-09971D81BD6F" name="school_accessory_schl_idx">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-11 08:58:27 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -343,16 +307,25 @@
 <colUsage columnID="DE4EE881-74F1-E351-A418-3FBAC5D22C09"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="8FDA4C9C-AA51-5EDC-E3E6-9EE12718A197" name="stationery_accessory_sttnry_idx">
+<ind_PK_UK id="EBE23189-0BA5-AFA8-7B4F-D7B7FA0C720E" name="school_accessory_btch_idx">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-11 08:58:27 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="A4A53ED6-2474-5EFA-9812-8CCFB8097BE2"/>
+<colUsage columnID="742380DA-7AF6-F2BB-4216-78E64A38F3CC"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="F084D533-67BE-DFAF-2129-278A326C3DCF" name="stationery_accessory_strm_idx">
+<ind_PK_UK id="8003F8B5-7EE2-CE26-2E82-4685B85AAE33" name="school_accessory_clss_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-01-11 08:58:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9D72B9D5-A065-C72B-C57D-748152A3E254"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F084D533-67BE-DFAF-2129-278A326C3DCF" name="school_accessory_strm_idx">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-21 04:19:21 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -361,7 +334,34 @@
 <colUsage columnID="3D9F19FA-7467-B57F-50C7-48D3C1235F15"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="A4C1DB46-2EA8-6BDC-6214-8B225FEEEA7D" name="sttnryaccssry_status_fk">
+<ind_PK_UK id="8FDA4C9C-AA51-5EDC-E3E6-9EE12718A197" name="school_accessory_acc_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-01-11 08:58:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A4A53ED6-2474-5EFA-9812-8CCFB8097BE2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="27728ADF-9B3C-B682-782E-4EE4F2BEE236" name="school_accessory_ord_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-01-11 08:58:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="93FB5B80-001C-3B1C-E7BF-FB8192742A05"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E2D36453-D870-320A-2D00-94D4BD906AF8" name="school_accessory_stt_idx">
+<createdBy>leads</createdBy>
+<createdTime>2022-01-11 08:58:27 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E35E83BA-5009-93AB-9168-A9DBBB856488"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A4C1DB46-2EA8-6BDC-6214-8B225FEEEA7D" name="SchAccssry_Status_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-11 08:58:01 UTC</createdTime>
 <generatorID>630276AD-3CA1-0DF4-9E89-BFAC6DAD2396</generatorID>
@@ -372,7 +372,7 @@
 <colUsage columnID="E35E83BA-5009-93AB-9168-A9DBBB856488"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="F9F50BA8-558E-2681-27D2-E256097898CE" name="sttnryaccssry_batch_fk">
+<ind_PK_UK id="F9F50BA8-558E-2681-27D2-E256097898CE" name="SchAccssry_Batch_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-11 08:58:01 UTC</createdTime>
 <generatorID>82B00FE9-07E5-BD53-658E-D241F836718C</generatorID>
@@ -383,7 +383,7 @@
 <colUsage columnID="742380DA-7AF6-F2BB-4216-78E64A38F3CC"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="6AC06B2F-1331-0EDB-F598-AA509200A2C5" name="sttnryaccssry_class_fk">
+<ind_PK_UK id="6AC06B2F-1331-0EDB-F598-AA509200A2C5" name="SchAccssry_Class_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-11 08:58:01 UTC</createdTime>
 <generatorID>F3371E52-FFCB-D1A5-77D2-23791BAA70D9</generatorID>
@@ -394,7 +394,7 @@
 <colUsage columnID="9D72B9D5-A065-C72B-C57D-748152A3E254"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="8CC1F1C1-CEA4-853F-B249-934C242A7A7C" name="sttnryaccssry_ordinal_fk">
+<ind_PK_UK id="8CC1F1C1-CEA4-853F-B249-934C242A7A7C" name="SchAccssry_Ordinal_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-11 08:58:01 UTC</createdTime>
 <generatorID>1EBA64F4-45D2-6659-34C7-AC5C009B920F</generatorID>
@@ -405,7 +405,7 @@
 <colUsage columnID="93FB5B80-001C-3B1C-E7BF-FB8192742A05"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="2E5888A4-50CA-6948-83FB-44D0A5F7CC75" name="sttnryaccssry_school_fk">
+<ind_PK_UK id="2E5888A4-50CA-6948-83FB-44D0A5F7CC75" name="SchAccssry_School_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-11 08:58:01 UTC</createdTime>
 <generatorID>B7E74345-C5D2-FBFC-9492-11237B5C7943</generatorID>
@@ -416,7 +416,7 @@
 <colUsage columnID="DE4EE881-74F1-E351-A418-3FBAC5D22C09"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="401B4835-FEC5-E933-3696-5A8CB89F55EA" name="sttnryaccssry_statspec_fk">
+<ind_PK_UK id="401B4835-FEC5-E933-3696-5A8CB89F55EA" name="SchAccssry_AccessSpec_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-01-11 08:58:01 UTC</createdTime>
 <generatorID>26454F6D-02E4-C68D-F68D-E3FC6E22B5B2</generatorID>
@@ -427,7 +427,7 @@
 <colUsage columnID="A4A53ED6-2474-5EFA-9812-8CCFB8097BE2"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="4D05899E-0AAF-EE68-B150-D4C8C0C097B1" name="sttnryaccssry_stream_fk">
+<ind_PK_UK id="4D05899E-0AAF-EE68-B150-D4C8C0C097B1" name="SchAccssry_Stream_FK">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-21 04:18:56 UTC</createdTime>
 <generatorID>3D800CBC-ECAF-3699-2837-8D1AE0F9264D</generatorID>

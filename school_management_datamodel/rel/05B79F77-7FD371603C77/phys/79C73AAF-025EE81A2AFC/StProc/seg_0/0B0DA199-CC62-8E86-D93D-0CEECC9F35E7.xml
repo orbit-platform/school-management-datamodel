@@ -1,0 +1,134 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_std_class_sec_sync" directorySegmentName="seg_0" id="0B0DA199-CC62-8E86-D93D-0CEECC9F35E7">
+<createdBy>leads</createdBy>
+<createdTime>2023-01-25 10:20:10 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_std_class_sec_sync (
+    pschool_code  VARCHAR2,
+    pbatch_no     DATE,
+    pclass_code   VARCHAR2,
+    pstream_code  VARCHAR2,
+    psection_code VARCHAR2
+) AS
+
+    ---variables
+    v_school_code  std_class_sec.school_code%TYPE;
+    v_batch_no     std_class_sec.batch_no#%TYPE;
+    v_class_code   std_class_sec.class_code%TYPE;
+    v_stream_code  std_class_sec.stream_code%TYPE;
+    v_section_code std_class_sec.section_code%TYPE;
+    v_student_id   std_class_sec.student_id%TYPE;
+    v_roll_no      std_class_sec.roll_no%TYPE;
+    
+    ---cursor
+    CURSOR cur_new_std_class_sec (
+        p_school_code  VARCHAR2,
+        p_batch_no     DATE,
+        p_class_code   VARCHAR2,
+        p_stream_code  VARCHAR2,
+        p_section_code VARCHAR2
+    ) IS
+    SELECT
+        scs.school_code,
+        scs.batch_no#,
+        scs.class_code,
+        scs.stream_code,
+        scs.section_code,
+        scs.student_id,
+        std.first_name || nvl2(std.middle_name, &apos; &apos; || std.middle_name || &apos; &apos;, &apos; &apos;) || std.last_name AS student_name,
+        std.sex_name,
+        ROW_NUMBER()
+        OVER(PARTITION BY scs.school_code,
+                          scs.batch_no#,
+                          scs.class_code,
+                          scs.stream_code,
+                          scs.section_code
+             ORDER BY
+                 std.sex_name DESC,
+                 std.first_name || nvl2(std.middle_name, &apos; &apos; || std.middle_name || &apos; &apos;, &apos; &apos;) || std.last_name ASC
+        ) AS roll_no,
+        scs.effective_from,
+        scs.effective_upto
+    FROM
+             student std
+        INNER JOIN std_class_sec scs
+        ON ( scs.student_id = std.id )
+    WHERE
+            scs.status_name = &apos;ACTIVE&apos;
+        AND scs.school_code = p_school_code
+        AND scs.batch_no# = p_batch_no
+        AND scs.class_code = nvl(p_class_code, scs.class_code)
+        AND scs.stream_code = nvl(p_stream_code, scs.stream_code)
+        AND scs.section_code = nvl(p_section_code, scs.section_code)
+    ORDER BY
+        school_code,
+        batch_no#,
+        class_code,
+        stream_code,
+        section_code;
+        
+    ---cursor cur_old_std_class_sec
+    CURSOR cur_old_std_class_sec (
+        p_school_code  VARCHAR2,
+        p_batch_no     DATE,
+        p_class_code   VARCHAR2,
+        p_stream_code  VARCHAR2,
+        p_section_code VARCHAR2,
+        p_student_id   NUMBER
+    ) IS
+    SELECT
+        school_code,
+        batch_no#,
+        class_code,
+        stream_code,
+        section_code,
+        student_id,
+        roll_no
+    FROM
+        std_class_sec
+    WHERE
+            school_code = p_school_code
+        AND batch_no# = p_batch_no
+        AND class_code = p_class_code
+        AND stream_code = p_stream_code
+        AND student_id = p_student_id;
+BEGIN
+    ---variables
+    v_school_code := pschool_code;
+    v_batch_no := pbatch_no;
+    v_class_code := pclass_code;
+    v_stream_code := pstream_code;
+    v_section_code := psection_code;
+    
+    ---loop
+    FOR indx IN cur_new_std_class_sec(p_school_code =&gt; v_school_code, p_batch_no =&gt; v_batch_no, p_class_code =&gt; v_class_code, p_stream_code =&gt; v_stream_code, p_section_code =&gt; v_section_code) LOOP
+        OPEN cur_old_std_class_sec(p_school_code =&gt; indx.school_code, p_batch_no =&gt; indx.batch_no#, p_class_code =&gt; indx.class_code, p_stream_code =&gt; indx.stream_code, p_section_code =&gt; indx.section_code,
+                                  p_student_id =&gt; indx.student_id);
+        FETCH cur_old_std_class_sec INTO
+            v_school_code,
+            v_batch_no,
+            v_class_code,
+            v_stream_code,
+            v_section_code,
+            v_student_id,
+            v_roll_no;
+            
+        ---
+        IF cur_old_std_class_sec%found THEN
+            IF nvl(v_roll_no, 9999) &lt;&gt; nvl(indx.roll_no, 9999) THEN
+                UPDATE std_class_sec
+                SET
+                    roll_no = indx.roll_no
+                WHERE
+                        school_code = indx.school_code
+                    AND batch_no# = indx.batch_no#
+                    AND class_code = indx.class_code
+                    AND stream_code = indx.stream_code
+                    AND section_code = indx.section_code
+                    AND student_id = indx.student_id;
+            END IF;
+        END IF;
+        CLOSE cur_old_std_class_sec;
+    END LOOP;
+END;</source>
+</StoredProcedureOraclev10g>
