@@ -1,0 +1,100 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_7" id="5FE83874-7CAB-4795-E2D9-FFCCB425E254" name="special_facility">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-12 09:15:47 UTC</createdTime>
+<generatorID>FB393B62-847C-D8D0-DECE-9E7071D546C2</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>special_facility</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="FC370C81-670A-5B93-F7FB-01F4475D844B">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-12 09:15:47 UTC</createdTime>
+<comment><![CDATA[Special Facility ID]]></comment>
+<commentInRDBMS><![CDATA[Special Facility ID]]></commentInRDBMS>
+<generatorID>B9C1157E-26EE-3406-4164-A4B929AF2942</generatorID>
+<notes><![CDATA[Special Facility ID]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="name" id="887458CB-0B8D-6D9A-F6A3-717E2AADF7CF">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-12 09:15:47 UTC</createdTime>
+<comment><![CDATA[Item of Special Facility]]></comment>
+<commentInRDBMS><![CDATA[Item of Special Facility]]></commentInRDBMS>
+<generatorID>060C3F88-B15A-FE39-49A6-064B3FE4F7BD</generatorID>
+<notes><![CDATA[Item of Special Facility]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>AFB565EB-530B-C812-D408-DD01B4006660</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="A499489F-C430-31FB-838D-CCF83C782243">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-12 09:15:47 UTC</createdTime>
+<generatorID>5284C526-0E95-93A9-B151-6644D2AC940D</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id1" id="ECBE6FE3-C7C8-7C33-7940-07193016FC86">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-12 09:15:47 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4241869A-8240-7DB2-725F-1D2A01227E11" name="special_facility_pkv1">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-12 09:15:47 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="ECBE6FE3-C7C8-7C33-7940-07193016FC86"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="36CD59CB-8E59-8685-F173-9342402D6308" name="special_facility_pk">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-12 09:15:47 UTC</createdTime>
+<generatorID>18D7D3F8-D9A8-E0FA-E883-5A73E40548B7</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FC370C81-670A-5B93-F7FB-01F4475D844B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="413A0E45-2D51-5B4F-6EC9-92B4B7B9A958" name="special_facility_un">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-12 09:15:47 UTC</createdTime>
+<generatorID>2261FCB0-3A99-E9D9-C336-081C0E31B903</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="887458CB-0B8D-6D9A-F6A3-717E2AADF7CF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

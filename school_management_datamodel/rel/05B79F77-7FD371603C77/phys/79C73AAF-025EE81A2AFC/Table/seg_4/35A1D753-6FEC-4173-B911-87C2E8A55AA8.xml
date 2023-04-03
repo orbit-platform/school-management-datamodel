@@ -16,11 +16,6 @@
 <createdTime>2022-06-23 03:47:44 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="sector_code" id="163C12F0-F85B-A503-20B3-C83B9B2D94E7">
-<createdBy>leads</createdBy>
-<createdTime>2022-08-16 09:14:13 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</ColumnProxy>
 <ColumnProxy name="curriculum_code" id="19553ED4-2197-A795-B013-4110EA4263D9">
 <createdBy>leads</createdBy>
 <createdTime>2020-11-10 10:10:52 UTC</createdTime>
@@ -74,6 +69,11 @@
 <createdTime>2022-06-23 03:47:44 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="class_code" id="E996B5DE-9788-4126-9453-D970C03D1402">
+<createdBy>leads</createdBy>
+<createdTime>2023-02-24 04:26:19 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="changed_on" id="EAE246C3-545F-F769-B3BA-16858F734278">
 <createdBy>leads</createdBy>
 <createdTime>2022-06-23 03:47:44 UTC</createdTime>
@@ -107,7 +107,7 @@
 <createdTime>2021-01-08 07:36:50 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </IndexProxy>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="syllabus_sctr_idx" id="2F986757-747F-8C28-DF51-40EC04F49D44">
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="syllabus_cls_idx" id="2F986757-747F-8C28-DF51-40EC04F49D44">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-16 09:19:02 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -144,14 +144,14 @@
 <createdTime>2021-01-08 07:29:09 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Syllb_Sector_FK" id="23BD6F3F-D568-A48B-6500-20B6AAC1B0B1">
-<createdBy>leads</createdBy>
-<createdTime>2022-08-16 09:14:13 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</ForeignKey>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Syllb_Domain_FK" id="51AC0CDA-D0E5-9A1A-8CC1-C57789E4A363">
 <createdBy>leads</createdBy>
 <createdTime>2021-01-08 07:29:09 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Syllb_Class_FK" id="8F5AD4F9-EA2C-C6B9-B892-3C1D9BA2B5A0">
+<createdBy>leads</createdBy>
+<createdTime>2023-02-24 04:26:19 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
 <ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Syllb_Stream_FK" id="90639AEF-B083-F258-DAAA-0051A75AD05C">
@@ -179,9 +179,9 @@
 </PrimaryKey>
 </primaryKeys>
 <uniqueKeys>
-<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="syllabus_UN" id="FB80DC15-88E0-5745-E900-505FFEF5F2EA">
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="syllabus_UN" id="74667710-E3F2-3BFB-2981-05E3A9AB8469">
 <createdBy>leads</createdBy>
-<createdTime>2022-08-16 10:45:40 UTC</createdTime>
+<createdTime>2023-02-25 06:13:14 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <indexSort>SORTED</indexSort>
 </UniqueKey>

@@ -1,16 +1,11 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="survey_quest_id_trg" directorySegmentName="seg_1" id="3BDF70ED-51A2-BA10-9156-5FF1DEE45C31">
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="survey_question_id_trg" directorySegmentName="seg_1" id="3BDF70ED-51A2-BA10-9156-5FF1DEE45C31">
 <createdBy>leads</createdBy>
 <createdTime>2019-09-17 05:41:40 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <actions>INSERT</actions>
 <body><![CDATA[BEGIN
-    SELECT
-        nvl(max(id), 0) + 1
-    INTO :new.id
-    FROM
-        survey_quest;
-
+	:new.id := survey_question_id_seq.nextval;
 END;]]></body>
 <triggerTime>BEFORE</triggerTime>
 <condition><![CDATA[new.id IS NULL]]></condition>

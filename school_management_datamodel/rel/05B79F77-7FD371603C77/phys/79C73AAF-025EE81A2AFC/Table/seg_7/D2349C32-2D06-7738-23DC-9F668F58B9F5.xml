@@ -1,0 +1,92 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="respondent_answer" directorySegmentName="seg_7" id="D2349C32-2D06-7738-23DC-9F668F58B9F5">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="changed_on" id="1E0290FB-4C7D-B8E2-6DD2-A0D4B4A21527">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="answer_text" id="27133396-3DA8-9C90-61FB-505359CDF2B7">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="created_by" id="27C243C5-4428-6535-4CE6-3E4E786C7662">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="id" id="3C5A5AAC-ED3B-F893-2FFC-33D559B6A295">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="survey_response_id" id="531D58AE-97C3-4D72-05BC-025ECE120D93">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="updated_by" id="70ADFDB0-5B3C-2B59-9946-8AA5BF3A315B">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="created_on" id="88ED0A2A-F6A7-B274-AF8F-0BABE8C87A97">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultValue>CURRENT_TIMESTAMP</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="survey_question_id" id="EB755172-BA10-3CE9-5993-8769AE6D71CB">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="respondent_answer_pk_idx" id="5267C808-9542-4D9E-29CF-02BD35899F20">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-17 07:34:50 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="respondent_answer_srvyqst_idx" id="864BE34E-EA5F-A320-855A-424F3BAB3526">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 10:02:59 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="respondent_answer_srvyrpt_idx" id="C0D0DE37-5E27-7EA8-2FAC-06025A83C0CE">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 10:02:59 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="rspdans_surveyresponse_fk" id="A7A7B057-5CE3-FA58-9B8C-A8D886FC7DB9">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="rspdans_surveyqustion_fk" id="F17E89A9-8AB1-99D2-8E87-2EB972CD38F1">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="respondent_answer_pk" id="4CC272EB-CD07-8561-2AA5-411F37C64CD5">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev12c>

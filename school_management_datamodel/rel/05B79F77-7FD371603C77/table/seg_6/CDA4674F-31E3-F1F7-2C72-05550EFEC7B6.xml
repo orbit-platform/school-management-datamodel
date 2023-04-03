@@ -12,20 +12,6 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="id" id="D038BF42-E1E0-DC04-B251-3B2783870B19">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-07 03:51:35 UTC</createdTime>
-<comment><![CDATA[User ID]]></comment>
-<commentInRDBMS><![CDATA[User ID]]></commentInRDBMS>
-<generatorID>4D814337-6A95-B090-0D73-BEC48DB87DCF</generatorID>
-<notes><![CDATA[User ID]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT011</logicalDatatype>
-<domain>82080F77-7D1E-6146-EC92-01DF9699FA5E</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="user_name" id="6BDD76FE-98D5-4AF6-3064-5FBF4D0ABF58">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-07 03:51:35 UTC</createdTime>
@@ -283,48 +269,6 @@
 <associations>
 <colAssociation fkAssociation="9C3FD752-5A10-E635-3185-F6D40049A7D4" referredColumn="5787477D-5B74-4373-9F6E-387FDF4C4B7A"/>
 </associations>
-</Column>
-<Column name="status_name" id="892CB5DA-0D3A-A11D-2CF1-C3D3C8A65835">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-07 03:51:35 UTC</createdTime>
-<comment><![CDATA[Status Name]]></comment>
-<commentInRDBMS><![CDATA[Status Name]]></commentInRDBMS>
-<generatorID>15C3EE81-464A-AE51-2FA4-C9C58FB9FA8C</generatorID>
-<notes><![CDATA[Status Name]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="status_name1" id="AE2F3EDD-03D3-638B-2BB5-0CEC2413B575">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-07 03:51:35 UTC</createdTime>
-<comment><![CDATA[Status Name]]></comment>
-<commentInRDBMS><![CDATA[Status Name]]></commentInRDBMS>
-<generatorID>108C7CFB-D05C-AC91-701A-0E1910C2D58C</generatorID>
-<notes><![CDATA[Status Name]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="status_name2" id="60B99BD0-D235-BDF2-CE21-3EB09F6D6B93">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-07 03:51:35 UTC</createdTime>
-<comment><![CDATA[Status Name]]></comment>
-<commentInRDBMS><![CDATA[Status Name]]></commentInRDBMS>
-<generatorID>3C687EB4-529F-6288-2A6C-0372C80097DF</generatorID>
-<notes><![CDATA[Status Name]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="known_as" id="2B1624D0-C9C4-010E-FFE2-FF3CC2D620D8">
 <createdBy>leads</createdBy>
@@ -758,27 +702,41 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
+<Column name="id" id="8D1D7FA9-2E58-A65D-C47F-92C6A142CC0B">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 11:06:02 UTC</createdTime>
+<comment><![CDATA[User ID]]></comment>
+<commentInRDBMS><![CDATA[User ID]]></commentInRDBMS>
+<generatorID>4D814337-6A95-B090-0D73-BEC48DB87DCF</generatorID>
+<notes><![CDATA[User ID]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>82080F77-7D1E-6146-EC92-01DF9699FA5E</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="080BCE20-2A9F-DC52-053E-BD5B9504816A" name="users_pkv1">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-07 03:51:35 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<pk>true</pk>
-<indexState>Primary Constraint</indexState>
-<indexColumnUsage>
-<colUsage columnID="572A1F5A-C44C-7C8E-0E4F-50B49F5448F2"/>
-</indexColumnUsage>
-</ind_PK_UK>
 <ind_PK_UK id="32AC9F3B-F49A-6AC2-746E-DD1CC38A78B6" name="user_pk">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-07 03:51:35 UTC</createdTime>
 <generatorID>2AE8D242-72E2-EFE2-83A1-1CA8ABC2012C</generatorID>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<indexState>Unique Constraint</indexState>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="D038BF42-E1E0-DC04-B251-3B2783870B19"/>
+<colUsage columnID="8D1D7FA9-2E58-A65D-C47F-92C6A142CC0B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="080BCE20-2A9F-DC52-053E-BD5B9504816A" name="users_pkv1">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-07 03:51:35 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="572A1F5A-C44C-7C8E-0E4F-50B49F5448F2"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="30059027-23AA-CBEA-976A-81198E9301CD" name="user_un">
@@ -855,7 +813,7 @@
 <colUsage columnID="AD5B7AB1-EE57-1143-9BC2-927A147E961B"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="F8FCEFD7-7F4C-5C0D-CA68-E832B02BCEAC" name="users__idx">
+<ind_PK_UK id="F8FCEFD7-7F4C-5C0D-CA68-E832B02BCEAC" name="users__idxv9">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-30 07:05:04 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>

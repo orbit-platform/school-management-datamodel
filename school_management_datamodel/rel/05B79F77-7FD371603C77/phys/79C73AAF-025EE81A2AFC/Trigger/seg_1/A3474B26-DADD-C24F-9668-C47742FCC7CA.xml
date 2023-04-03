@@ -5,12 +5,7 @@
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <actions>INSERT</actions>
 <body><![CDATA[BEGIN
-    SELECT
-        nvl(MAX(id), 0) + 1
-    INTO :new.id
-    FROM
-        survey_choice;
-
+    :new.id := survey_choice_id_seq.nextval;
 END;]]></body>
 <triggerTime>BEFORE</triggerTime>
 <condition><![CDATA[new.id IS NULL]]></condition>

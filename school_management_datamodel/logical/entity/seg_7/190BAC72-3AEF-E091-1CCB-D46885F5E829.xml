@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_7" id="190BAC72-3AEF-E091-1CCB-D46885F5E829" name="grading">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-13 10:15:16 UTC</createdTime>
+<comment><![CDATA[Grading: YES/NO]]></comment>
+<commentInRDBMS><![CDATA[Grading: YES/NO]]></commentInRDBMS>
+<notes><![CDATA[Grading: YES/NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>grading</preferredAbbreviation>
+<shortName>grading</shortName>
+<synonym>grading</synonym>
+<synonymToDisplay>grading</synonymToDisplay>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="type" id="CAF3F314-668D-2CB4-3AE4-E8C9C7D267EF">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-24 06:09:22 UTC</createdTime>
+<comment><![CDATA[Grading Type - 1 YES/0 NO]]></comment>
+<commentInRDBMS><![CDATA[Grading Type - 1 YES/0 NO]]></commentInRDBMS>
+<notes><![CDATA[Grading Type - 1 YES/0 NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<domain>F8B65674-EF8F-41D4-CF5A-531303905CFF</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="555981B7-CEA3-F489-2267-C11133375162">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-13 10:15:40 UTC</createdTime>
+<comment><![CDATA[YES/NO]]></comment>
+<commentInRDBMS><![CDATA[YES/NO]]></commentInRDBMS>
+<notes><![CDATA[YES/NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>CC6758B1-C791-00D1-8E53-CD1085D0AD3B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="6EA70C91-8B98-B727-6F61-839651D5E580">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-13 10:15:56 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="7DE5E6F0-6585-5F19-70CB-D06F18A7FF6D" name="grading_UN">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-13 10:16:06 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>555981B7-CEA3-F489-2267-C11133375162</newElementsIDs>
+<usedAttributes>
+<attributeRef>555981B7-CEA3-F489-2267-C11133375162</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="97637150-F1FC-E140-BB8A-2EDFA1402756" name="grading_PK">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-24 06:09:30 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>CAF3F314-668D-2CB4-3AE4-E8C9C7D267EF</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

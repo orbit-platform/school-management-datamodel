@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="survey_quest_chg_trg" directorySegmentName="seg_2" id="3B3DBD8B-1D0E-8E8B-D6AE-BED6802F6851">
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="survey_question_chg_trg" directorySegmentName="seg_2" id="3B3DBD8B-1D0E-8E8B-D6AE-BED6802F6851">
 <createdBy>leads</createdBy>
 <createdTime>2019-09-17 05:18:18 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -8,16 +8,16 @@
     IF inserting THEN
         :new.created_by := nvl(v('APP_USER'), user);
         :new.created_on := current_timestamp;
-        :new.changedate := current_timestamp;
+        :new.changed_on := current_timestamp;
     END IF;
 
     IF updating THEN
         :new.updated_by := nvl(v('APP_USER'), user);
-        :new.changedate := current_timestamp;
+        :new.changed_on := current_timestamp;
     END IF;
 
 END;]]></body>
 <triggerTime>BEFORE</triggerTime>
-<columns>4BB20620-C8F1-ED20-8FAB-9863D704A961, 60A5BEEF-E1F6-2E77-028F-C3DBBB927E3B, 2D46DC63-69E3-2171-C6F1-C2599AEA18BA, 481D1EBA-8C07-F953-74B9-A8E35AB7AB6F, 97D85647-BAE7-900E-E9A2-502C2D1ABC2C</columns>
+<columns>4BB20620-C8F1-ED20-8FAB-9863D704A961, 481D1EBA-8C07-F953-74B9-A8E35AB7AB6F, 178FA52A-FF60-6142-BC46-5360DA8DDEBB, BD987F85-5923-44A6-709F-AFA8BB402E8B, E9C37AAD-34F8-B070-E419-B117EA81006A, 228BAF6E-DD03-67B4-B40C-AA538D53933D, 9573E56D-3847-97BF-4DFF-E1D7E76FB88C, 43BBA3AC-0924-BE58-6A70-35D3B15B09E6, 4AF1EEDB-0D82-AE79-4680-726C9FF3F59C</columns>
 <table>948C51A5-E311-6041-FB8F-DF3996CA1878</table>
 </TriggerOraclev10g>

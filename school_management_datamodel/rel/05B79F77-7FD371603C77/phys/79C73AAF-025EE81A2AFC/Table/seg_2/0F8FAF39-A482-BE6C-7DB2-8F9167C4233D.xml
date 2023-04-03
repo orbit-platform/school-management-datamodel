@@ -14,7 +14,7 @@
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="ID" id="0F4A9A11-DC08-16C6-87E8-57E713CB890F">
+<ColumnProxy name="id" id="0F4A9A11-DC08-16C6-87E8-57E713CB890F">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -36,7 +36,7 @@
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <defaultValue>CURRENT_TIMESTAMP</defaultValue>
 </ColumnProxy>
-<ColumnProxy name="lesson_no" id="265CF8FE-F3DC-7539-570B-AB37055F96AE">
+<ColumnProxy name="no" id="265CF8FE-F3DC-7539-570B-AB37055F96AE">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -44,11 +44,6 @@
 <ColumnProxy name="domain_code" id="32464E56-3E17-D8D7-26D6-23E73ED1001A">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 05:14:18 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy name="subject_code" id="5105F12C-518C-DF35-04EF-E5EAC13C71D4">
-<createdBy>leads</createdBy>
-<createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
 <ColumnProxy name="status_name" id="581972BD-EA2E-00D1-CEE5-4E90BE66287B">
@@ -61,7 +56,7 @@
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="lesson_name" id="A6F6E004-4A6C-840D-FCAA-44B6773ACA28">
+<ColumnProxy name="name" id="A6F6E004-4A6C-840D-FCAA-44B6773ACA28">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -84,11 +79,6 @@
 <ColumnProxy name="syllabus_unit" id="C3EB7715-427C-5C30-6EAF-0C2DAFE1CD88">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy name="sector_code" id="C5A3344D-4D00-FF49-86DF-5FAE02D78470">
-<createdBy>leads</createdBy>
-<createdTime>2022-08-18 10:08:27 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
 <ColumnProxy name="batch_no#" id="D89EEC1F-D2BD-79D8-D2D6-EACFEB30B725">
@@ -144,11 +134,6 @@
 <createdTime>2022-07-28 04:08:23 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </IndexProxy>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="lesson_sctr_idx" id="AE8ED7D9-F9A0-D111-C7FD-B5F38C407C5D">
-<createdBy>leads</createdBy>
-<createdTime>2022-08-18 10:09:35 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="lesson_syunt_idx" id="B3B0C574-009A-78BE-E959-EEA056240A30">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:52:28 UTC</createdTime>
@@ -171,64 +156,54 @@
 </IndexProxy>
 </indexProxies>
 <foreignKeys>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Lssn_Batch_FK" id="28408E68-F304-A144-D1BC-9D16C4958D37">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="lssn_batch_fk" id="28408E68-F304-A144-D1BC-9D16C4958D37">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Lssn_Board_FK" id="5261F287-B8E9-A156-6234-71A123913D6B">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="lssn_board_fk" id="5261F287-B8E9-A156-6234-71A123913D6B">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 04:07:55 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Lssn_Class_FK" id="71708370-B7C1-24D1-82D4-0CC58E4BD9AE">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="lssn_class_fk" id="71708370-B7C1-24D1-82D4-0CC58E4BD9AE">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Lssn_Sector_FK" id="718B4DA0-CF62-0127-4551-9D8AE47B72AA">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="lssn_stream_fk" id="7731F9CA-2BC6-4663-6A57-B8C2902FBA54">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-18 10:08:27 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Lssn_Stream_FK" id="7731F9CA-2BC6-4663-6A57-B8C2902FBA54">
-<createdBy>leads</createdBy>
-<createdTime>2022-08-18 10:08:27 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Lssn_Domain_FK" id="917B2485-9C3A-37EE-0589-29A7E315174C">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="lssn_domain_fk" id="917B2485-9C3A-37EE-0589-29A7E315174C">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 05:14:18 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Lssn_Subject_FK" id="A455F80C-772A-F780-8740-F372C2E7E0FA">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="lssn_syllabusunit_fk" id="DE173F27-2C8D-1FAA-F26C-560F8F2F4216">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Lssn_SyllabusUnit_FK" id="DE173F27-2C8D-1FAA-F26C-560F8F2F4216">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="lssn_school_fk" id="E20304DC-F372-4D9D-51E5-625E78A8E99F">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Lssn_School_FK" id="E20304DC-F372-4D9D-51E5-625E78A8E99F">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="lssn_status_fk" id="E90AFBF4-2702-4568-504F-4800E3ADF013">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Lssn_Status_FK" id="E90AFBF4-2702-4568-504F-4800E3ADF013">
-<createdBy>leads</createdBy>
-<createdTime>2022-07-28 03:50:04 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="Lssn_Ordinal_FK" id="F6666EA4-6F73-6152-1FD1-AA0E74448A58">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="lssn_ordinal_fk" id="F6666EA4-6F73-6152-1FD1-AA0E74448A58">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
 </foreignKeys>
 <primaryKeys>
-<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="lesson_PK" id="8DAEAFD5-24FF-0D3B-59EC-8402F681357C">
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="lesson_pk" id="8DAEAFD5-24FF-0D3B-59EC-8402F681357C">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:04 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -236,7 +211,7 @@
 </PrimaryKey>
 </primaryKeys>
 <uniqueKeys>
-<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="lesson_UN" id="13DD70D1-805D-84AA-9532-B366AA1961A0">
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="lesson_un" id="13DD70D1-805D-84AA-9532-B366AA1961A0">
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:51:52 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>

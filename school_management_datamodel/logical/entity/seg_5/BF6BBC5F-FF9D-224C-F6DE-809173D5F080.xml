@@ -86,23 +86,6 @@
 <domain>57E4E726-0278-DC93-9196-ABB2B37DFF18</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="sector_code" id="DE8895B7-7F8D-A079-FD93-D0A7F49B566F">
-<createdBy>leads</createdBy>
-<createdTime>2022-08-18 10:01:34 UTC</createdTime>
-<comment><![CDATA[Sector Code]]></comment>
-<commentInRDBMS><![CDATA[Sector Code]]></commentInRDBMS>
-<generatorID>A831E469-72A7-CC5F-5497-39E6975A030E</generatorID>
-<notes><![CDATA[Sector Code]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<engineerTo>
-<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
-</engineerTo>
-<referedAttribute>DFD68CCB-625C-F667-7C01-609688FD1C2E</referedAttribute>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>C0CEF7CD-1CFD-D9B1-B478-2784A9D849D2</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="class_code" id="8B86861F-BF28-96BB-9F99-F7F5C26DD532">
 <createdBy>leads</createdBy>
 <createdTime>2022-06-28 07:55:59 UTC</createdTime>
@@ -118,6 +101,24 @@
 <use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <domain>411A7036-AE28-9018-332B-691EBC096EF9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="stream_code" id="2B000C5E-F267-81F9-F6D2-4B694CD7ADD6">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-18 10:02:33 UTC</createdTime>
+<comment><![CDATA[Stream Code]]></comment>
+<commentInRDBMS><![CDATA[Stream Code]]></commentInRDBMS>
+<generatorID>6EBF330A-3534-60A8-2404-8C0051C63F5B</generatorID>
+<notes><![CDATA[Stream Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>F0332F80-9C12-832E-F763-D90675B98C5A</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>411A7036-AE28-9018-332B-691EBC096EF9</domain>
+<defaultValue>&apos;0001&apos;</defaultValue>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="domain_code" id="FD67D43E-E7C3-DD57-6DE1-63712E8F858A">
@@ -167,42 +168,6 @@
 <use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
 <domain>74A12643-A7EF-57E2-53C8-970C7FA5723B</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="stream_code" id="2B000C5E-F267-81F9-F6D2-4B694CD7ADD6">
-<createdBy>leads</createdBy>
-<createdTime>2022-08-18 10:02:33 UTC</createdTime>
-<comment><![CDATA[Stream Code]]></comment>
-<commentInRDBMS><![CDATA[Stream Code]]></commentInRDBMS>
-<generatorID>6EBF330A-3534-60A8-2404-8C0051C63F5B</generatorID>
-<notes><![CDATA[Stream Code]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<engineerTo>
-<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<referedAttribute>F0332F80-9C12-832E-F763-D90675B98C5A</referedAttribute>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>411A7036-AE28-9018-332B-691EBC096EF9</domain>
-<defaultValue>&apos;0001&apos;</defaultValue>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="subject_code" id="40AEC4C7-16C5-43B4-0772-76EF24B80EFC">
-<createdBy>leads</createdBy>
-<createdTime>2022-06-28 08:01:06 UTC</createdTime>
-<comment><![CDATA[Subject Code]]></comment>
-<commentInRDBMS><![CDATA[Subject Code]]></commentInRDBMS>
-<generatorID>DF528C04-7665-D2DB-076E-B8B949436EBE</generatorID>
-<notes><![CDATA[Subject Code]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<engineerTo>
-<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
-</engineerTo>
-<referedAttribute>EDE3760B-5AD2-5FBD-D895-C1D7095D2D13</referedAttribute>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>58D08DC4-3100-D2AA-CC58-02C63DC27DE8</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="syllabus_unit" id="E041E915-0663-A9F6-5218-194FA54881FE">
@@ -348,8 +313,9 @@
 <createdBy>leads</createdBy>
 <createdTime>2020-11-13 10:17:51 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <newElementsIDs>61706ECE-B474-EB65-D30D-B26027F92095</newElementsIDs>
@@ -361,16 +327,17 @@
 <createdBy>leads</createdBy>
 <createdTime>2022-07-28 03:50:27 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
 </engineerTo>
-<newElementsIDs>F9A8A3B2-1738-F6B8-6597-623AB4DAD8C0,E760781E-D0AF-8CD8-D068-07F528F5349B,A68F468B-03FC-E99C-4B15-A1A47F158409,A831E469-72A7-CC5F-5497-39E6975A030E,919C7EE1-27CF-10D8-4922-E39610D2007E,2E00DC4E-0615-6BAB-15AF-46AF63E078D8,1DB09002-38AD-A953-C658-CDC677859D17</newElementsIDs>
+<newElementsIDs>F9A8A3B2-1738-F6B8-6597-623AB4DAD8C0,E760781E-D0AF-8CD8-D068-07F528F5349B,A68F468B-03FC-E99C-4B15-A1A47F158409,A831E469-72A7-CC5F-5497-39E6975A030E,919C7EE1-27CF-10D8-4922-E39610D2007E,6EBF330A-3534-60A8-2404-8C0051C63F5B,2E00DC4E-0615-6BAB-15AF-46AF63E078D8,1DB09002-38AD-A953-C658-CDC677859D17</newElementsIDs>
 <usedAttributes>
 <attributeRef>AB4FE5B9-EC5B-97FD-AA22-EECDA673A5A6</attributeRef>
 <attributeRef>D666AD78-BA4C-8ABC-072C-12240EADCDC3</attributeRef>
 <attributeRef>D0AD78D8-84DA-ED7C-C6DA-667791997880</attributeRef>
-<attributeRef>DE8895B7-7F8D-A079-FD93-D0A7F49B566F</attributeRef>
 <attributeRef>8B86861F-BF28-96BB-9F99-F7F5C26DD532</attributeRef>
+<attributeRef>2B000C5E-F267-81F9-F6D2-4B694CD7ADD6</attributeRef>
 <attributeRef>FD67D43E-E7C3-DD57-6DE1-63712E8F858A</attributeRef>
 <attributeRef>35A57161-04A4-3818-E673-7BAF952D53D7</attributeRef>
 </usedAttributes>

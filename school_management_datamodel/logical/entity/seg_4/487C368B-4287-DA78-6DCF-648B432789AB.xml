@@ -194,6 +194,23 @@
 </rangeDef>
 </listOfRanges>
 </Attribute>
+<Attribute name="employment_type" id="1D7E4CCF-4C7E-8CEB-85E4-E148DD0401F1">
+<createdBy>leads</createdBy>
+<createdTime>2022-08-25 08:34:14 UTC</createdTime>
+<comment><![CDATA[Employment Type]]></comment>
+<commentInRDBMS><![CDATA[Employment Type]]></commentInRDBMS>
+<generatorID>03ECE197-FD83-9130-A2EF-DB8543EDA390</generatorID>
+<notes><![CDATA[Employment Type]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>B3220BE7-B664-0241-A505-8A528DC144A6</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>F74029D6-A3A6-D608-9446-2AE2C4A067D2</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="grade_code" id="CF48810C-AE6F-33A2-8C72-1241E977C860">
 <createdBy>leads</createdBy>
 <createdTime>2020-03-25 06:55:13 UTC</createdTime>
@@ -273,11 +290,25 @@
 <engineerTo>
 <item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <referedAttribute>C431F04A-9B96-82C0-25D3-8356C925D1F2</referedAttribute>
 <use>0</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="location_ID" id="248F2A25-6821-0F29-9F5C-1110F2F898C6">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-29 09:41:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[Location ID]]></commentInRDBMS>
+<generatorID>AA6E7970-3504-050B-D937-EF40A1BEC8F1</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>C00DAC8E-AEA3-8F77-26B4-8135E7C60565</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="min_experience" id="80C6FDCA-68D8-2852-3874-69E0ABB056E0">
@@ -443,31 +474,15 @@
 <property name="engineerTo" value=""/>
 </propertyMap>
 </Attribute>
-<Attribute name="employment_type" id="1D7E4CCF-4C7E-8CEB-85E4-E148DD0401F1">
-<createdBy>leads</createdBy>
-<createdTime>2022-08-25 08:34:14 UTC</createdTime>
-<comment><![CDATA[Employment Type]]></comment>
-<commentInRDBMS><![CDATA[Employment Type]]></commentInRDBMS>
-<generatorID>03ECE197-FD83-9130-A2EF-DB8543EDA390</generatorID>
-<notes><![CDATA[Employment Type]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<engineerTo>
-<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
-</engineerTo>
-<referedAttribute>B3220BE7-B664-0241-A505-8A528DC144A6</referedAttribute>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>F74029D6-A3A6-D608-9446-2AE2C4A067D2</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
 <identifier id="E6773160-C227-9B90-DE7A-68087411749B" name="job_opening_PK">
 <createdBy>leads</createdBy>
 <createdTime>2019-09-04 05:00:57 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <newElementsIDs>D1F90B66-EE7D-C39F-9088-EF34C424ADCA</newElementsIDs>

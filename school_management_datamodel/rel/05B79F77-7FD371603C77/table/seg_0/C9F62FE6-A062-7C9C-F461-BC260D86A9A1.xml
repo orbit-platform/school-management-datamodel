@@ -12,6 +12,19 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="02D17E6F-87D9-607E-E662-5C943232E2EF">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-29 04:38:38 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
 <Column name="type" id="6FA89E9B-0178-B253-B8EF-FCFFFFE37C32">
 <createdBy>leads</createdBy>
 <createdTime>2020-03-25 06:15:30 UTC</createdTime>
@@ -47,6 +60,16 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B88913D3-F3C3-3571-ED52-02914FA5B33A" name="employment_pk">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-29 04:38:38 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="02D17E6F-87D9-607E-E662-5C943232E2EF"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="B3846791-7A83-54BF-997B-D6D194B7FB2A" name="employment_un">
 <createdBy>leads</createdBy>
 <createdTime>2020-03-25 06:15:30 UTC</createdTime>
@@ -64,6 +87,9 @@
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="02D17E6F-87D9-607E-E662-5C943232E2EF"/>
+</indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="B86F27B9-3855-983F-BA43-471B31487619" name="employment_un_idx">
 <createdBy>leads</createdBy>

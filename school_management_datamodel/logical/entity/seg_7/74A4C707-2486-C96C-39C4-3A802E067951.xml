@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_7" id="74A4C707-2486-C96C-39C4-3A802E067951" name="random_order">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-22 11:49:02 UTC</createdTime>
+<comment><![CDATA[Random Order of Items]]></comment>
+<commentInRDBMS><![CDATA[Random Order of Items]]></commentInRDBMS>
+<notes><![CDATA[Random Order of Items]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>random_order</preferredAbbreviation>
+<shortName>random_order</shortName>
+<synonym>random_order</synonym>
+<synonymToDisplay>random_order</synonymToDisplay>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="type" id="B6423808-E9F9-9528-5527-795254C8047B">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-22 11:49:24 UTC</createdTime>
+<comment><![CDATA[1 YES/0 NO]]></comment>
+<commentInRDBMS><![CDATA[1 YES/0 NO]]></commentInRDBMS>
+<notes><![CDATA[1 YES/0 NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<domain>F8B65674-EF8F-41D4-CF5A-531303905CFF</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="9F210107-026A-702C-49F9-9A2D3BCF3FEB">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-24 06:17:47 UTC</createdTime>
+<comment><![CDATA[1 YES/0 NO]]></comment>
+<commentInRDBMS><![CDATA[1 YES/0 NO]]></commentInRDBMS>
+<notes><![CDATA[1 YES/0 NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>CC6758B1-C791-00D1-8E53-CD1085D0AD3B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="66F0C209-7F96-B424-31BC-F357478420C4">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-22 11:49:42 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="900C2C8B-EE7E-6681-8E93-E806150CB4DE" name="random_order_UN">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-22 11:50:11 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>9F210107-026A-702C-49F9-9A2D3BCF3FEB</newElementsIDs>
+<usedAttributes>
+<attributeRef>9F210107-026A-702C-49F9-9A2D3BCF3FEB</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="065D182C-6906-C406-D127-067EFCF17BCF" name="random_order_PK">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-24 06:17:39 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>B6423808-E9F9-9528-5527-795254C8047B</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

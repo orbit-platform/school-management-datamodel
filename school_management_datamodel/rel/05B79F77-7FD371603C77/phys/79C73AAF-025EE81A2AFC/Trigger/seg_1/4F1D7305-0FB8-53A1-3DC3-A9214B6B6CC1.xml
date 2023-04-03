@@ -5,10 +5,9 @@
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <actions>INSERT</actions>
 <body><![CDATA[BEGIN
-	SELECT nvl(max(id), 0) + 1
-	INTO :new.id
-	FROM survey_spec;
+	:new.id := survey_spec_id_seq.nextval;
 END;]]></body>
 <triggerTime>BEFORE</triggerTime>
+<condition><![CDATA[new.id IS NULL]]></condition>
 <table>09027A90-DCE0-3DF9-3981-E71BC6CADD45</table>
 </TriggerOraclev10g>

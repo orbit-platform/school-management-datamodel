@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_7" id="EB26CD22-A6DD-1775-CE95-820EEEC0CE98" name="quest_section">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_7" id="EB26CD22-A6DD-1775-CE95-820EEEC0CE98" name="question_section">
 <createdBy>leads</createdBy>
 <createdTime>2022-09-25 13:40:11 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -14,10 +14,10 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<preferredAbbreviation>quest_section</preferredAbbreviation>
-<shortName>quest_section</shortName>
-<synonym>quest_section</synonym>
-<synonymToDisplay>quest_section</synonymToDisplay>
+<preferredAbbreviation>question_section</preferredAbbreviation>
+<shortName>question_section</shortName>
+<synonym>question_section</synonym>
+<synonymToDisplay>question_section</synonymToDisplay>
 <createSurrogateKey>true</createSurrogateKey>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
 <Attribute name="name" id="083B8241-79F6-0333-92A7-7623896D83DF">
@@ -26,6 +26,18 @@
 <comment><![CDATA[Section Name: Section I/Section II/Section III/Section IV]]></comment>
 <commentInRDBMS><![CDATA[Section Name: Section I/Section II/Section III/Section IV]]></commentInRDBMS>
 <notes><![CDATA[Section Name: Section I/Section II/Section III/Section IV]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="152CFBD0-2A88-6826-A9A9-9057C457CE5C">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-24 04:53:25 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <engineerTo>
 <item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
@@ -50,14 +62,26 @@
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="7195202D-BF58-24EE-0617-4D6C31340859" name="quest_section_UN">
+<identifier id="7195202D-BF58-24EE-0617-4D6C31340859" name="question_section_UN">
 <createdBy>leads</createdBy>
 <createdTime>2022-09-25 13:41:28 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <engineerTo>
 <item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
 </engineerTo>
-<newElementsIDs>083B8241-79F6-0333-92A7-7623896D83DF</newElementsIDs>
+<newElementsIDs>152CFBD0-2A88-6826-A9A9-9057C457CE5C</newElementsIDs>
+<usedAttributes>
+<attributeRef>152CFBD0-2A88-6826-A9A9-9057C457CE5C</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="5133C700-3B35-7262-C8FC-80690852E0FA" name="question_section_PK">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-24 06:10:11 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
 <usedAttributes>
 <attributeRef>083B8241-79F6-0333-92A7-7623896D83DF</attributeRef>
 </usedAttributes>

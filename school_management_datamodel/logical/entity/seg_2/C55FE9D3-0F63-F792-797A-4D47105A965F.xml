@@ -73,6 +73,26 @@
 <property name="engineerTo" value=""/>
 </propertyMap>
 </Attribute>
+<Attribute name="landmark" id="995EF479-F906-8C81-E575-FF01083D9BFE">
+<createdBy>leads</createdBy>
+<createdTime>2019-09-04 05:46:50 UTC</createdTime>
+<comment><![CDATA[Any Landmark]]></comment>
+<commentInRDBMS><![CDATA[Any Landmark]]></commentInRDBMS>
+<notes><![CDATA[Any Landmark]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>C53373E2-F314-0647-905E-3D61C9965182</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<propertyMap>
+<property name="engineerTo" value=""/>
+</propertyMap>
+</Attribute>
 <Attribute name="pin" id="4F2A6C22-2D7B-34CC-8609-4E34B5BD29E5">
 <createdBy>leads</createdBy>
 <createdTime>2019-09-04 05:46:50 UTC</createdTime>
@@ -93,25 +113,56 @@
 <property name="engineerTo" value=""/>
 </propertyMap>
 </Attribute>
-<Attribute name="landmark" id="995EF479-F906-8C81-E575-FF01083D9BFE">
+<Attribute name="city_ID" id="F6B9A80F-4EF1-9AB7-AF00-0C4528EC6CBF">
 <createdBy>leads</createdBy>
-<createdTime>2019-09-04 05:46:50 UTC</createdTime>
-<comment><![CDATA[Any Landmark]]></comment>
-<commentInRDBMS><![CDATA[Any Landmark]]></commentInRDBMS>
-<notes><![CDATA[Any Landmark]]></notes>
+<createdTime>2023-03-29 06:06:30 UTC</createdTime>
+<comment><![CDATA[City ID]]></comment>
+<commentInRDBMS><![CDATA[City ID]]></commentInRDBMS>
+<generatorID>717F93FF-5CA1-EEA7-8F96-FC92BD22F590</generatorID>
+<notes><![CDATA[City ID]]></notes>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <engineerTo>
 <item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
+<referedAttribute>9D3154E1-AB0A-E851-F60F-908C11EF124C</referedAttribute>
 <use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>C53373E2-F314-0647-905E-3D61C9965182</domain>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="engineerTo" value=""/>
-</propertyMap>
+</Attribute>
+<Attribute name="state_ID" id="8DFEAF8F-7360-C5FF-517D-3BA1AA157944">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-29 06:06:50 UTC</createdTime>
+<comment><![CDATA[State ID]]></comment>
+<commentInRDBMS><![CDATA[State ID]]></commentInRDBMS>
+<generatorID>BB657DA6-4456-5BC9-30B1-E8FC5014ED3B</generatorID>
+<notes><![CDATA[State ID]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>C10E983D-2BB6-A6E7-04B7-37D02D5812FA</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="country_ID" id="5F89F2DC-C642-EE56-52D3-DA20021715D9">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-29 06:06:59 UTC</createdTime>
+<comment><![CDATA[Country ID]]></comment>
+<commentInRDBMS><![CDATA[Country ID]]></commentInRDBMS>
+<generatorID>96D291FF-C486-5B34-E0D9-74523351F00F</generatorID>
+<notes><![CDATA[Country ID]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>FFE0C4F3-C712-F84A-01AB-3832D6654244</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="ownership_type" id="783AA153-751E-5437-0F31-C46282BDB75F">
 <createdBy>leads</createdBy>
@@ -142,23 +193,6 @@
 <use>0</use>
 <logicalDatatype>LOGDT007</logicalDatatype>
 <domain>57E4E726-0278-DC93-9196-ABB2B37DFF18</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
-<Attribute name="status_name" id="0F44165F-DC07-331F-7B79-0534258A98EC">
-<createdBy>leads</createdBy>
-<createdTime>2021-07-19 05:35:08 UTC</createdTime>
-<comment><![CDATA[Status Name]]></comment>
-<commentInRDBMS><![CDATA[Status Name]]></commentInRDBMS>
-<generatorID>42F54145-6E35-2943-315E-FFC69D4D72F3</generatorID>
-<notes><![CDATA[Status Name]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<engineerTo>
-<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
-</engineerTo>
-<referedAttribute>8D5DF3E8-8F74-1632-7641-0F9128C78A86</referedAttribute>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="created_by" id="27775B42-34A8-A32D-B699-156248E5D5CA">

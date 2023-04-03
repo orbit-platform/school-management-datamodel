@@ -1,0 +1,98 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_7" id="7C85FE31-8A4B-1503-6F87-6321BE39FD49" name="grading">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-13 10:19:39 UTC</createdTime>
+<comment><![CDATA[Grading: YES/NO]]></comment>
+<commentInRDBMS><![CDATA[Grading: YES/NO]]></commentInRDBMS>
+<generatorID>190BAC72-3AEF-E091-1CCB-D46885F5E829</generatorID>
+<notes><![CDATA[Grading: YES/NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>grading</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="6771B9BC-1EA8-9E8A-2E2B-6FB5D4865C0A">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-13 10:19:39 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="type" id="9020D497-8053-8D23-A181-351B01A97D3F">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-13 10:19:39 UTC</createdTime>
+<comment><![CDATA[YES/NO]]></comment>
+<commentInRDBMS><![CDATA[YES/NO]]></commentInRDBMS>
+<generatorID>555981B7-CEA3-F489-2267-C11133375162</generatorID>
+<notes><![CDATA[YES/NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>CC6758B1-C791-00D1-8E53-CD1085D0AD3B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="0BEC1E2C-04BF-2C9C-65B8-13898CE76203">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-13 10:19:39 UTC</createdTime>
+<generatorID>6EA70C91-8B98-B727-6F61-839651D5E580</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="75A8418A-4393-03E6-1D95-ECB80C41F97E" name="grading_pk">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-13 10:19:39 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="6771B9BC-1EA8-9E8A-2E2B-6FB5D4865C0A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1EAE16E8-1D56-C9B1-9289-8873D90599FC" name="grading_un">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-13 10:19:39 UTC</createdTime>
+<generatorID>7DE5E6F0-6585-5F19-70CB-D06F18A7FF6D</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9020D497-8053-8D23-A181-351B01A97D3F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A0848B97-226B-DB90-A82B-660A9EB6B9F0" name="grading_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-13 10:26:16 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6771B9BC-1EA8-9E8A-2E2B-6FB5D4865C0A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CC978E68-F280-256A-8116-9817A5062B0A" name="grading_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-13 10:26:16 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9020D497-8053-8D23-A181-351B01A97D3F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

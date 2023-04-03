@@ -8,16 +8,16 @@
     IF inserting THEN
         :new.created_by := nvl(v('APP_USER'), user);
         :new.created_on := current_timestamp;
-        :new.changedate := current_timestamp;
+        :new.changed_on := current_timestamp;
     END IF;
 
     IF updating THEN
         :new.updated_by := nvl(v('APP_USER'), user);
-        :new.changedate := current_timestamp;
+        :new.changed_on := current_timestamp;
     END IF;
 
 END;]]></body>
 <triggerTime>BEFORE</triggerTime>
-<columns>9CEF571A-A874-5002-A549-9BBAE7126CEB, 43E6654D-1BF4-AC09-2E84-DF4C3EE2165D, D7EB1476-7891-3670-F09C-8F300059B61F, 44D2C542-693B-5166-4668-1601B9B6F996, DFD4112A-F198-C5DA-32D6-4E27FC3C1640</columns>
+<columns>9CEF571A-A874-5002-A549-9BBAE7126CEB, 43E6654D-1BF4-AC09-2E84-DF4C3EE2165D, 7BA1ED07-3840-0855-3E83-822CE1D1324B, AEE9A3E2-D532-6B9C-5C0C-32FBC52169D4, D024E022-4799-3D87-F465-C190FB2B4F79, 3B1FDC38-9760-829B-F505-BAF80D9DFD43</columns>
 <table>E52A0AB0-40A6-6A55-FD64-BB530009E7AE</table>
 </TriggerOraclev10g>

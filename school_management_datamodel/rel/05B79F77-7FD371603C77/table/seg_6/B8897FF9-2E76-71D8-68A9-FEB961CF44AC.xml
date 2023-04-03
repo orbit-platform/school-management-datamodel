@@ -9,7 +9,7 @@
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="ID" id="32CB3877-ACF1-D229-AE91-E07875B19BDB">
+<Column name="id" id="32CB3877-ACF1-D229-AE91-E07875B19BDB">
 <createdBy>leads</createdBy>
 <createdTime>2022-02-07 15:00:45 UTC</createdTime>
 <comment><![CDATA[Invoice ID]]></comment>
@@ -131,35 +131,6 @@
 <colAssociation fkAssociation="8D9E3DF9-E3AF-F74E-737A-7977DBAD77F2" referredColumn="AB25FA79-1EA6-2FA8-0D9B-12BC0B8F38E9"/>
 </associations>
 </Column>
-<Column name="amount" id="F1F84BFE-B946-6FD8-C859-F8659868FF59">
-<createdBy>leads</createdBy>
-<createdTime>2022-02-07 15:00:45 UTC</createdTime>
-<comment><![CDATA[Paid Amount]]></comment>
-<commentInRDBMS><![CDATA[Paid Amount]]></commentInRDBMS>
-<generatorID>47E6C860-C467-84DD-989E-8996BEA3D587</generatorID>
-<notes><![CDATA[Paid Amount]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="discount" id="CA45412D-D8C2-1E38-D0B7-D2E457CC26D7">
-<createdBy>leads</createdBy>
-<createdTime>2022-02-07 15:00:45 UTC</createdTime>
-<comment><![CDATA[Discount is always (-) negative amount]]></comment>
-<commentInRDBMS><![CDATA[Discount is always (-) negative amount]]></commentInRDBMS>
-<generatorID>1FD08592-02DF-27D4-5E3F-2F2945202653</generatorID>
-<notes><![CDATA[Discount is always (-) negative amount]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
-<defaultValue>0</defaultValue>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="paid_on" id="67907B6E-5A6C-3186-E562-DBB540F2294C">
 <createdBy>leads</createdBy>
 <createdTime>2022-02-07 15:00:45 UTC</createdTime>
@@ -168,7 +139,6 @@
 <generatorID>167243E6-2154-1287-58B7-E7A7E0FCBFD7</generatorID>
 <notes><![CDATA[Paid On - Date and Time]]></notes>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <use>0</use>
 <logicalDatatype>LOGDT008</logicalDatatype>
 <domain>A567A80B-BA88-8378-F718-BEA2C5CA5545</domain>
@@ -275,7 +245,7 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="8ED48F91-F059-887D-6131-DDBFF9999B8C" name="std_invoice_PK">
+<ind_PK_UK id="8ED48F91-F059-887D-6131-DDBFF9999B8C" name="std_invoice_pk">
 <createdBy>leads</createdBy>
 <createdTime>2022-02-07 15:00:45 UTC</createdTime>
 <generatorID>40D8D11A-C0C4-67B5-B7AE-E3759076EB10</generatorID>
@@ -360,7 +330,7 @@
 <colUsage columnID="212557DE-74BE-810D-5D65-CE41D75E9FDF"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="98935973-3514-63C9-20D7-30B22BBBEAB5" name="StdInvc_Payment_FK">
+<ind_PK_UK id="98935973-3514-63C9-20D7-30B22BBBEAB5" name="stdinvc_payment_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-02-07 15:00:45 UTC</createdTime>
 <generatorID>2C9F1395-EAAC-6CF5-0ABC-7D847C6EDE41</generatorID>
@@ -371,7 +341,7 @@
 <colUsage columnID="39AB99C0-0E67-413A-1D91-DC9053DEA21E"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="4653283E-752C-F9B9-BFDA-8A69F7AFECFD" name="StdInvc_Batch_FK">
+<ind_PK_UK id="4653283E-752C-F9B9-BFDA-8A69F7AFECFD" name="stdinvc_batch_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-02-07 15:00:45 UTC</createdTime>
 <generatorID>69EE83C0-D64D-EB75-092B-1038C7DAEB89</generatorID>
@@ -382,7 +352,7 @@
 <colUsage columnID="E5F64AC1-71BD-FD78-8067-1235C395FE41"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="A7399B2D-6AF6-785B-B42B-8653EFBC920C" name="StdInvc_Class_FK">
+<ind_PK_UK id="A7399B2D-6AF6-785B-B42B-8653EFBC920C" name="stdinvc_class_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-02-07 15:00:45 UTC</createdTime>
 <generatorID>B51DD2A5-CFF3-66F7-8E4B-28B328122374</generatorID>
@@ -393,7 +363,7 @@
 <colUsage columnID="ECE673F4-3BBD-B8A8-DF8D-15233B7A9597"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="827945F3-7986-4E34-92FC-36818164FE02" name="StdInvc_School_FK">
+<ind_PK_UK id="827945F3-7986-4E34-92FC-36818164FE02" name="stdinvc_school_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-02-07 15:00:45 UTC</createdTime>
 <generatorID>281078B1-53BF-F916-A77C-09017AE8559B</generatorID>
@@ -404,7 +374,7 @@
 <colUsage columnID="676E6947-4228-64E2-169B-3F6734D414B5"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="30BCB254-4C5F-FC4B-82BB-E3D310ADF86F" name="StdInvc_Status_FK">
+<ind_PK_UK id="30BCB254-4C5F-FC4B-82BB-E3D310ADF86F" name="stdinvc_status_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-02-07 15:00:45 UTC</createdTime>
 <generatorID>A66B7C9A-D5EA-0D70-1410-362B4BFFCCE5</generatorID>
@@ -415,7 +385,7 @@
 <colUsage columnID="212557DE-74BE-810D-5D65-CE41D75E9FDF"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="06FC21B5-56BD-D878-9B10-D9D43EEA4257" name="StdInvc_Student_FK">
+<ind_PK_UK id="06FC21B5-56BD-D878-9B10-D9D43EEA4257" name="stdinvc_student_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-02-07 15:00:45 UTC</createdTime>
 <generatorID>2274A56B-A7B1-8DF2-763B-51F85C0112BD</generatorID>
@@ -426,7 +396,7 @@
 <colUsage columnID="DA7888B3-71E3-7D5F-FCBC-E83F6D803C08"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="D5837205-C7F4-CD3A-D5D9-0F88DCF757A8" name="StdInvc_Stream_FK">
+<ind_PK_UK id="D5837205-C7F4-CD3A-D5D9-0F88DCF757A8" name="stdinvc_stream_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-21 04:41:37 UTC</createdTime>
 <generatorID>69E63313-D63B-4C78-51B1-7C73F515461B</generatorID>

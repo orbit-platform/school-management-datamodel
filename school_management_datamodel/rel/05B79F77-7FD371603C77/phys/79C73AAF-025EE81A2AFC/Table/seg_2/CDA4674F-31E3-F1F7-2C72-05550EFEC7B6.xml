@@ -98,22 +98,12 @@
 <createdTime>2021-08-07 03:51:35 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="status_name2" id="60B99BD0-D235-BDF2-CE21-3EB09F6D6B93">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-07 03:51:35 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</ColumnProxy>
 <ColumnProxy name="default_date_format" id="63128EE1-BAA2-6C66-F4CB-E9F05BE8941F">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-07 03:51:35 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
 <ColumnProxy name="user_name" id="6BDD76FE-98D5-4AF6-3064-5FBF4D0ABF58">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-07 03:51:35 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy name="status_name" id="892CB5DA-0D3A-A11D-2CF1-C3D3C8A65835">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-07 03:51:35 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -126,6 +116,11 @@
 <ColumnProxy name="updated_by" id="8C2F56A3-0FD9-FEF9-11A8-4B31837B7336">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-07 03:51:35 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="id" id="8D1D7FA9-2E58-A65D-C47F-92C6A142CC0B">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 11:06:02 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
 <ColumnProxy name="web_password_version" id="9004D0A2-512F-DADE-C240-01AFE1E06099">
@@ -180,11 +175,6 @@
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <defaultValue>N</defaultValue>
 </ColumnProxy>
-<ColumnProxy name="status_name1" id="AE2F3EDD-03D3-638B-2BB5-0CEC2413B575">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-07 03:51:35 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</ColumnProxy>
 <ColumnProxy name="web_password_raw" id="B79DA25D-6004-C379-4D37-45CF8891C5B9">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-07 03:51:35 UTC</createdTime>
@@ -207,11 +197,6 @@
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
 <ColumnProxy name="password_date" id="CD6DD15D-5B69-0C7E-2C4B-50919FB12365">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-07 03:51:35 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy name="id" id="D038BF42-E1E0-DC04-B251-3B2783870B19">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-07 03:51:35 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -265,6 +250,12 @@
 </ColumnProxy>
 </columnProxies>
 <indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="user_pk" id="32AC9F3B-F49A-6AC2-746E-DD1CC38A78B6">
+<createdBy>leads</createdBy>
+<createdTime>2021-08-07 03:51:35 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="users__idxv7" id="378BAE41-1652-47C7-8E27-ED162F362A3E">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-28 04:58:26 UTC</createdTime>
@@ -305,24 +296,24 @@
 <createdTime>2021-08-12 09:27:55 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </IndexProxy>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="users__idx" id="F8FCEFD7-7F4C-5C0D-CA68-E832B02BCEAC">
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="users__idxv9" id="F8FCEFD7-7F4C-5C0D-CA68-E832B02BCEAC">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-28 04:58:26 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </IndexProxy>
 </indexProxies>
 <foreignKeys>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="User_AllowSQLWrk_StatusYN_FK" id="09ECED0D-A63B-E350-2968-E7788B005E11">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="user_allowsqlwrk_statusyn_fk" id="09ECED0D-A63B-E350-2968-E7788B005E11">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-28 04:58:26 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="User_FrstPwdOcc_StatusYN_FK" id="458B6197-8F78-7296-D2D4-FE9F36FA4228">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="user_frstpwdocc_statusyn_fk" id="458B6197-8F78-7296-D2D4-FE9F36FA4228">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-28 04:58:26 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="User_AccLock_StatusYN_FK" id="47462ED8-B03F-61CA-A96C-005CFFEB49A1">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="user_acclock_statusyn_fk" id="47462ED8-B03F-61CA-A96C-005CFFEB49A1">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-28 04:58:26 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -332,22 +323,22 @@
 <createdTime>2022-08-28 04:58:26 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="User_AllowAppBuild_StatusYN_FK" id="610F11EB-223D-9BC0-A824-77987F2493B4">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="user_allowappbuild_statusyn_fk" id="610F11EB-223D-9BC0-A824-77987F2493B4">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-28 04:58:26 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="User_AllowWebDev_StatusYN_FK" id="821D0D7A-6DF5-1484-2F8A-021E473CFC4C">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="user_allowwebdev_statusyn_fk" id="821D0D7A-6DF5-1484-2F8A-021E473CFC4C">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-28 04:58:26 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="User_ChgPwd_StatusYN_FK" id="993FA78D-20CD-C2CE-1FD7-4716C720E7AB">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="user_chgpwd_statusyn_fk" id="993FA78D-20CD-C2CE-1FD7-4716C720E7AB">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-28 04:58:26 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="User_Charset_FK" id="A67986DC-A433-FC0F-C812-6C791FE132DC">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="user_charset_fk" id="A67986DC-A433-FC0F-C812-6C791FE132DC">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-07 03:51:35 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -359,9 +350,9 @@
 </ForeignKey>
 </foreignKeys>
 <primaryKeys>
-<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="users_pkv1" id="080BCE20-2A9F-DC52-053E-BD5B9504816A">
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="users_pkv1" id="080BCE20-2A9F-DC52-053E-BD5B9504816A">
 <createdBy>leads</createdBy>
-<createdTime>2021-08-07 03:51:35 UTC</createdTime>
+<createdTime>2023-03-14 11:06:02 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <indexSort>SORTED</indexSort>
 </PrimaryKey>

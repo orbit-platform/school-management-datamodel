@@ -1,0 +1,107 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_7" id="0208D920-67E7-F373-2F28-69E12BDDA8C9" name="multiple">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<generatorID>AFDF53F1-374F-36EF-43EB-24133DFDABF8</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<abbreviation>multiple</abbreviation>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="3B157ACA-EC17-65C5-1BE0-FD98B535CF5E">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementColumn>true</autoIncrementColumn>
+<identityColumn>true</identityColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<isSurrogateColumn>true</isSurrogateColumn>
+</Column>
+<Column name="time" id="751C6D3C-055C-29D1-6646-A1FB0D9A9CF6">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<commentInRDBMS><![CDATA[Multiple Type: 1, 2, 3, 4, 5, 6, 7, 8, 9]]></commentInRDBMS>
+<generatorID>E018792F-81CE-3413-C5DF-B372729284F2</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="pseudo" id="81E2FABF-E334-83E6-5BB4-B79FB925CC1C">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 10:50:47 UTC</createdTime>
+<comment><![CDATA[Pseudo Name of the Multiplicity]]></comment>
+<commentInRDBMS><![CDATA[Pseudo Name of the Multiplicity]]></commentInRDBMS>
+<generatorID>316FF6DA-E71C-AEE0-C990-4D5529430668</generatorID>
+<notes><![CDATA[Pseudo Name of the Multiplicity]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="descriptions" id="416B6736-450F-5D6F-D99E-0B8596F72C7B">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<generatorID>3A0DAB15-8660-4EF0-580A-6FEEC8E9F753</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7567FCF0-4FFF-D936-C41F-17A0F04CD071" name="multiple_pk">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<indexColumnUsage>
+<colUsage columnID="3B157ACA-EC17-65C5-1BE0-FD98B535CF5E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3B0B2F9F-620D-94AD-F9D2-F08B527EAB72" name="multiple_un">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 09:59:46 UTC</createdTime>
+<generatorID>95DEEEEC-E0CF-86CD-99E0-2483B3369E8C</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="751C6D3C-055C-29D1-6646-A1FB0D9A9CF6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="75927318-3E2B-8AA4-E2CE-1EE96E433827" name="multiple_pk_idx">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 10:05:39 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3B157ACA-EC17-65C5-1BE0-FD98B535CF5E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C9E9D02A-CFB0-1D65-4367-F46AEFE5FEF8" name="multiple_un_idx">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-14 10:05:39 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="751C6D3C-055C-29D1-6646-A1FB0D9A9CF6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_7" id="06630360-D65F-1CDC-F0E5-56AA6615269D" name="auto_complete">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-17 10:08:49 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<preferredAbbreviation>auto_complete</preferredAbbreviation>
+<shortName>auto_complete</shortName>
+<synonym>auto_complete</synonym>
+<synonymToDisplay>auto_complete</synonymToDisplay>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="type" id="6F17AFD2-D59A-0428-2660-832555B8EE67">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-24 06:05:36 UTC</createdTime>
+<comment><![CDATA[Auto Complete Type]]></comment>
+<commentInRDBMS><![CDATA[Auto Complete Type]]></commentInRDBMS>
+<notes><![CDATA[Auto Complete Type]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<domain>F8B65674-EF8F-41D4-CF5A-531303905CFF</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="pseudo" id="77179698-E619-9117-431C-D3F531E2F408">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-17 10:09:02 UTC</createdTime>
+<comment><![CDATA[Auto Complete at the End of the Limited Time - YES/NO]]></comment>
+<commentInRDBMS><![CDATA[Auto Complete at the End of the Limited Time - YES/NO]]></commentInRDBMS>
+<notes><![CDATA[Auto Complete at the End of the Limited Time - YES/NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>CC6758B1-C791-00D1-8E53-CD1085D0AD3B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="descriptions" id="B56F6470-461B-6A9B-EC62-2C166E6AB930">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-17 10:09:34 UTC</createdTime>
+<comment><![CDATA[Complete the Survey when Target Time is Reached Automatically]]></comment>
+<commentInRDBMS><![CDATA[Complete the Survey when Target Time is Reached Automatically]]></commentInRDBMS>
+<notes><![CDATA[Complete the Survey when Target Time is Reached Automatically]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>D8145389-4D0D-CC31-9923-FD4288ACF409</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="7A44A712-D045-FB1E-C974-8F976209EA5F" name="auto_complete_UN">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-17 10:10:01 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<newElementsIDs>77179698-E619-9117-431C-D3F531E2F408</newElementsIDs>
+<usedAttributes>
+<attributeRef>77179698-E619-9117-431C-D3F531E2F408</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="E4D49265-0F17-50A2-BC42-CEBB733A7DED" name="auto_complete_PK">
+<createdBy>leads</createdBy>
+<createdTime>2023-03-24 06:05:58 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>6F17AFD2-D59A-0428-2660-832555B8EE67</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
