@@ -220,9 +220,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="0361386E-F590-66E8-E53B-5208E052BBF0" referredColumn="E0C7D834-23B7-13EB-173C-EF9E9F30CD7C"/>
-</associations>
 </Column>
 <Column name="ordinal_no" id="5D2674A0-4238-FF9E-6426-3C1E323C3736">
 <createdBy>leads</createdBy>
@@ -370,6 +367,24 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="question_set_pseudo" id="E8EC28D3-42C2-3F8A-4458-B8D9043F569A">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<comment><![CDATA[Question Set I/II/III/IV/V/VI/VII]]></comment>
+<commentInRDBMS><![CDATA[Question Set I/II/III/IV/V/VI/VII]]></commentInRDBMS>
+<generatorID>266519E3-E3DF-BC94-33E5-0DBEA69FDE6E</generatorID>
+<notes><![CDATA[Question Set I/II/III/IV/V/VI/VII]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0361386E-F590-66E8-E53B-5208E052BBF0" referredColumn="FD9B9691-0663-1EDB-6CBA-E4907575D589"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="289F836E-8D6E-D2B7-1AF6-28B783C8EE91" name="question_paper_pk">
@@ -400,7 +415,7 @@
 <colUsage columnID="0AA46541-A943-1D5B-8624-EB7AFFD27037"/>
 <colUsage columnID="7993F8C4-3EC8-5209-E21A-B2CDCFF15269"/>
 <colUsage columnID="1BC4A711-9283-32E0-88D3-1FA57F4E2250"/>
-<colUsage columnID="2822A662-BA25-6D03-5D8B-103F1A1009C7"/>
+<colUsage columnID="E8EC28D3-42C2-3F8A-4458-B8D9043F569A"/>
 <colUsage columnID="5D2674A0-4238-FF9E-6426-3C1E323C3736"/>
 </indexColumnUsage>
 </ind_PK_UK>
@@ -561,6 +576,15 @@
 <colUsage columnID="28062C9A-2890-7C29-CBFA-9FD1FB9DECE1"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="0DB52482-F457-4301-2A13-BD9E6D052FF0" name="question_paper__idx">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:17:30 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E8EC28D3-42C2-3F8A-4458-B8D9043F569A"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="E6108016-0FBC-E75E-68AB-FA56F1F372CA" name="qstnppr_school_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-08 10:59:34 UTC</createdTime>
@@ -646,7 +670,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="2822A662-BA25-6D03-5D8B-103F1A1009C7"/>
+<colUsage columnID="E8EC28D3-42C2-3F8A-4458-B8D9043F569A"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="2196FB2D-549B-7CF4-7BB3-E81950A14C82" name="qstnppr_status_fk">

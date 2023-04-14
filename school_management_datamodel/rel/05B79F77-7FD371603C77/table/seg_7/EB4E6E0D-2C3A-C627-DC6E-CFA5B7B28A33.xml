@@ -51,9 +51,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="B1AE7576-6968-9D32-E735-09D190F4D812" referredColumn="E0C7D834-23B7-13EB-173C-EF9E9F30CD7C"/>
-</associations>
 </Column>
 <Column name="question_section_name" id="9A061552-A85E-E823-9153-4A7EE4924D1C">
 <createdBy>leads</createdBy>
@@ -69,9 +66,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="FAC6F8F7-454F-79BA-CC3E-8EAB82F45286" referredColumn="9428BC4E-B70D-377C-E077-D8969FB89E62"/>
-</associations>
 </Column>
 <Column name="question_type" id="51C60455-5782-3FEB-0B45-15392EA90E23">
 <createdBy>leads</createdBy>
@@ -87,9 +81,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="3EB4F428-584E-DA62-EE60-C39A4A229354" referredColumn="7BFE994C-8099-4668-5257-3A2D7A810C69"/>
-</associations>
 </Column>
 <Column name="survey_question_id" id="0A5C06B6-6364-C84C-20B9-D5FCE721AFD4">
 <createdBy>leads</createdBy>
@@ -216,6 +207,54 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="question_section_pseudo" id="54B772F5-E7B2-F5A7-36BE-B4A76FCDF1C1">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<generatorID>C9CF7DCA-BD1F-1319-B616-0EFA3775345D</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FAC6F8F7-454F-79BA-CC3E-8EAB82F45286" referredColumn="9AFFD54C-5D0B-B218-FD24-FD9C5AFBB014"/>
+</associations>
+</Column>
+<Column name="question_set_pseudo" id="F10909AD-D7F0-5D56-046C-772C0CE2CAEA">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<comment><![CDATA[Question Set I/II/III/IV/V/VI/VII]]></comment>
+<commentInRDBMS><![CDATA[Question Set I/II/III/IV/V/VI/VII]]></commentInRDBMS>
+<generatorID>87B066B8-826A-C168-A944-DB78DE4352DA</generatorID>
+<notes><![CDATA[Question Set I/II/III/IV/V/VI/VII]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B1AE7576-6968-9D32-E735-09D190F4D812" referredColumn="FD9B9691-0663-1EDB-6CBA-E4907575D589"/>
+</associations>
+</Column>
+<Column name="question_pseudo" id="2A6DF7BF-0633-F892-ACC6-73C58941A408">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<generatorID>C2B8AD02-DEEE-C075-A705-1FEF26BED4FB</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>F60E1FFE-5DA6-531C-BDFF-CB0CBCB7F7CD</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3EB4F428-584E-DA62-EE60-C39A4A229354" referredColumn="1E8C8968-56D0-D8A2-295A-DFF693013131"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="9C805A93-8EAE-CBA2-3924-5C5B75020E74" name="survey_arrangement_pk">
@@ -237,9 +276,9 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="0E247300-89F6-090A-A082-90AEF22E8988"/>
-<colUsage columnID="91F018DD-D52A-11D5-985B-4EBF60B5339D"/>
-<colUsage columnID="9A061552-A85E-E823-9153-4A7EE4924D1C"/>
-<colUsage columnID="51C60455-5782-3FEB-0B45-15392EA90E23"/>
+<colUsage columnID="F10909AD-D7F0-5D56-046C-772C0CE2CAEA"/>
+<colUsage columnID="54B772F5-E7B2-F5A7-36BE-B4A76FCDF1C1"/>
+<colUsage columnID="2A6DF7BF-0633-F892-ACC6-73C58941A408"/>
 <colUsage columnID="0A5C06B6-6364-C84C-20B9-D5FCE721AFD4"/>
 </indexColumnUsage>
 </ind_PK_UK>
@@ -321,6 +360,33 @@
 <colUsage columnID="0E247300-89F6-090A-A082-90AEF22E8988"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="D0AD5AC1-9B27-7C69-E876-71F0D723393F" name="survey_arrangement__idx">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:17:30 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2A6DF7BF-0633-F892-ACC6-73C58941A408"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B465BF7E-4389-D43E-F37C-7C3D64042CBB" name="survey_arrangement__idxv1">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:17:30 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="54B772F5-E7B2-F5A7-36BE-B4A76FCDF1C1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BE14BF4D-6267-A8EF-E14A-F7304DCBB83E" name="survey_arrangement__idxv2">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:17:30 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F10909AD-D7F0-5D56-046C-772C0CE2CAEA"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="82BADCD3-46B6-D422-FB41-562BEECF3072" name="srvyarrg_question_fk">
 <createdBy>leads</createdBy>
 <createdTime>2023-03-24 05:05:09 UTC</createdTime>
@@ -329,7 +395,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="51C60455-5782-3FEB-0B45-15392EA90E23"/>
+<colUsage columnID="2A6DF7BF-0633-F892-ACC6-73C58941A408"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="15FEBD54-09CC-F764-5387-B3CCED500F08" name="srvyarrg_questionsection_fk">
@@ -340,7 +406,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="9A061552-A85E-E823-9153-4A7EE4924D1C"/>
+<colUsage columnID="54B772F5-E7B2-F5A7-36BE-B4A76FCDF1C1"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="24866A7A-8126-2A3E-BDB0-C1A6D340280F" name="srvyarrg_questionset_fk">
@@ -351,7 +417,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="91F018DD-D52A-11D5-985B-4EBF60B5339D"/>
+<colUsage columnID="F10909AD-D7F0-5D56-046C-772C0CE2CAEA"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="38CF26AB-DC6E-3E8B-2D10-E36357628F21" name="srvyarrg_status_fk">

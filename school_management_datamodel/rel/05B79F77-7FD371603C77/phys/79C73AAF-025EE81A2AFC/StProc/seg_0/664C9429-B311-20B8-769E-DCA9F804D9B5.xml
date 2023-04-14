@@ -1,9 +1,9 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_sync_attendance_employees" directorySegmentName="seg_0" id="664C9429-B311-20B8-769E-DCA9F804D9B5">
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_sync_attendance_employee" directorySegmentName="seg_0" id="664C9429-B311-20B8-769E-DCA9F804D9B5">
 <createdBy>leads</createdBy>
 <createdTime>2022-03-31 07:59:25 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<source>CREATE OR REPLACE PROCEDURE proc_sync_attendance_employees (
+<source>CREATE OR REPLACE PROCEDURE proc_sync_attendance_employee (
     pcompany_code  VARCHAR2,
     presource_type VARCHAR2,
     presource_id   NUMBER
@@ -43,30 +43,51 @@
         myview.status
     FROM
         ( SELECT
-              CASE
-                  WHEN emp.status_name = &apos;ACTIVE&apos; THEN
-                      &apos;ACTIVE&apos;
-                  ELSE
-                      &apos;INACTIVE&apos;
-              END AS current_status,
-              emp.id AS employeecode,
-              emp.id AS stringcode,
-              emp.id AS numericcode,
-              emp.first_name || &apos; &apos; || emp.last_name AS employeename,
-              CASE
-                  WHEN emp.sex_name = &apos;F&apos; THEN
-                      &apos;Female&apos;
-                  WHEN emp.sex_name = &apos;M&apos; THEN
-                      &apos;Male&apos;
-              END AS gender,
-              emp.company_code AS companyid,
-              &apos;EMPLOYEE&apos; AS designation,
-              1 AS categoryid,
-              emp.id AS employeecodeindevice,
-              &apos;FULL TIME&apos; AS employementtype,
-              &apos;Working&apos; AS status
-          FROM
-              leadsuser.employee emp
+                CASE
+                    WHEN emp.status_name = &apos;ACTIVE&apos; THEN
+                        &apos;ACTIVE&apos;
+                    ELSE
+                        &apos;INACTIVE&apos;
+                END AS current_status,
+                to_char(emp.id) AS employeecode,
+                to_char(emp.id) AS stringcode,
+                emp.id AS numericcode,
+                emp.first_name || &apos; &apos; || emp.last_name AS employeename,
+                CASE
+                    WHEN emp.sex_name = &apos;F&apos; THEN
+                        &apos;Female&apos;
+                    WHEN emp.sex_name = &apos;M&apos; THEN
+                        &apos;Male&apos;
+                END AS gender,
+                v.company_code AS companyid,
+                &apos;EMPLOYEE&apos; AS designation,
+                1 AS categoryid,
+                emp.id AS employeecodeindevice,
+                &apos;FULL TIME&apos; AS employementtype,
+                &apos;Working&apos; AS status
+            FROM
+                     employee emp
+                INNER JOIN ( SELECT
+                                              company_code,
+                                              department_code,
+                                              employee_id
+                                          FROM
+                                              ( SELECT
+                                                    company_code,
+                                                    department_code,
+                                                    employee_id,
+                                                    ROW_NUMBER()
+                                                    OVER(PARTITION BY company_code, department_code, employee_id
+                                                         ORDER BY
+                                                             priority_level ASC, effective_upto DESC
+                                                    ) AS my_rank
+                                                FROM
+                                                    emp_department
+                                              )
+                             WHERE
+                                 my_rank = 1
+                           ) v
+                ON ( v.employee_id = emp.id )
           UNION
           SELECT
               CASE
@@ -75,8 +96,8 @@
                   ELSE
                       &apos;INACTIVE&apos;
               END AS current_status,
-              std.id AS employeecode,
-              std.id AS stringcode,
+              to_char(std.id) AS employeecode,
+              to_char(std.id) AS stringcode,
               std.id AS numericcode,
               std.first_name || &apos; &apos; || std.last_name AS employeename,
               CASE
@@ -93,16 +114,33 @@
               &apos;Working&apos; AS status
           FROM
                    leadsuser.student std
-              INNER JOIN leadsuser.std_class_sec scs
-              ON ( scs.school_code = scs.school_code
-                   AND scs.student_id = std.id )
+              INNER JOIN ( SELECT
+                                            school_code,
+                                            student_id,
+                                            status_name
+                                        FROM
+                                            ( SELECT
+                                                  school_code,
+                                                  batch_no#,
+                                                  student_id,
+                                                  status_name,
+                                                  ROW_NUMBER()
+                                                  OVER(PARTITION BY school_code, student_id
+                                                       ORDER BY
+                                                           student_id, batch_no# DESC
+                                                  ) AS my_rank
+                                              FROM
+                                                  std_class_sec
+                                            )
+                           WHERE
+                               my_rank = 1
+                         ) scs
+              ON ( scs.student_id = std.id )
               INNER JOIN leadsuser.company_school cs
               ON ( cs.school_code = std.school_code )
-          WHERE
-              scs.batch_no# = trunc(sysdate, &apos;year&apos;)
         ) myview
     WHERE
-            myview.companyid = to_number(p_companyid)
+            myview.companyid = TO_NUMBER(p_companyid)
         AND myview.designation = nvl(p_resource_type, myview.designation)
         AND myview.employeecode = nvl(p_resource_id, myview.employeecode)
     ORDER BY
@@ -127,7 +165,7 @@
     FROM
         attendancedb.employees
     WHERE
-        employeecode = p_employeecode;
+        employeecode = to_char(p_employeecode);
 BEGIN
     FOR indx IN cur_leadsuser(p_companyid =&gt; pcompany_code, p_resource_type =&gt; presource_type, p_resource_id =&gt; presource_id) LOOP
         OPEN cur_attendancedb(p_employeecode =&gt; indx.employeecode);
@@ -180,21 +218,20 @@ BEGIN
         ---update/delete
         IF cur_attendancedb%found THEN
             ---update statement
-            IF indx.current_status = &apos;ACTIVE&apos; THEN
-                IF ( nvl(v_stringcode, &apos;na&apos;) &lt;&gt; indx.stringcode OR nvl(v_numericcode, 11111) &lt;&gt; indx.numericcode OR nvl(v_employeename, &apos;na&apos;) &lt;&gt; indx.employeename OR v_gender &lt;&gt; indx.gender OR nvl(v_designation, &apos;na&apos;) &lt;&gt; indx.designation OR v_employeecodeindevice &lt;&gt; indx.employeecodeindevice OR nvl(v_employementtype,
-                &apos;na&apos;) &lt;&gt; indx.employementtype OR nvl(v_status, &apos;na&apos;) &lt;&gt; indx.status ) THEN
+
+            IF ( nvl(v_stringcode, &apos;na&apos;) &lt;&gt; indx.stringcode OR nvl(v_numericcode, 11111) &lt;&gt; indx.numericcode OR nvl(v_employeename, &apos;na&apos;) &lt;&gt; indx.employeename OR v_gender &lt;&gt; indx.gender OR nvl(v_designation, &apos;na&apos;) &lt;&gt; indx.designation OR v_employeecodeindevice &lt;&gt; indx.employeecodeindevice OR nvl(v_employementtype
+            , &apos;na&apos;) &lt;&gt; indx.employementtype OR nvl(v_status, &apos;na&apos;) &lt;&gt; indx.status ) THEN
                 ---dbms_output.put_line(indx.employeename || &apos; &apos; || indx.employeecode);
-                    UPDATE attendancedb.employees
-                    SET
-                        stringcode = indx.stringcode,
-                        numericcode = indx.numericcode,
-                        employeename = indx.employeename,
-                        gender = indx.gender,
-                        employeecodeindevice = indx.employeecodeindevice,
-                        employementtype = indx.employementtype
-                    WHERE
-                        employeecode = v_employeecode;
-                END IF;
+                UPDATE attendancedb.employees
+                SET
+                    stringcode = indx.stringcode,
+                    numericcode = indx.numericcode,
+                    employeename = indx.employeename,
+                    gender = indx.gender,
+                    employeecodeindevice = indx.employeecodeindevice,
+                    employementtype = indx.employementtype
+                WHERE
+                    employeecode = v_employeecode;
             END IF;
 
             ---delete statement

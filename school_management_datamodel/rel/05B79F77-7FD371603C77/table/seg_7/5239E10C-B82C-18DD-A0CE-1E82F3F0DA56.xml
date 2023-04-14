@@ -25,10 +25,10 @@
 <Column name="type" id="3C483AB2-A97A-133B-F053-3B5C52A3A79C">
 <createdBy>leads</createdBy>
 <createdTime>2023-03-14 07:34:24 UTC</createdTime>
-<comment><![CDATA[Right Answer: YES/NO]]></comment>
-<commentInRDBMS><![CDATA[Right Answer: YES/NO]]></commentInRDBMS>
+<comment><![CDATA[Right Answer: 1 YES/0 NO]]></comment>
+<commentInRDBMS><![CDATA[Right Answer: 1 YES/0 NO]]></commentInRDBMS>
 <generatorID>A6B09E94-C3AF-4A57-2C64-4AB53A95ABA7</generatorID>
-<notes><![CDATA[Right Answer: YES/NO]]></notes>
+<notes><![CDATA[Right Answer: 1 YES/0 NO]]></notes>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <use>0</use>
 <logicalDatatype>LOGDT006</logicalDatatype>
@@ -64,12 +64,23 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5C55F2FC-7226-8DE7-7C49-8E28AB5D710C" name="answer_pkv2">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<generatorID>37584502-D321-D5C3-DA7D-EC5953A3A184</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3C483AB2-A97A-133B-F053-3B5C52A3A79C"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="4B170F7C-0666-7B7A-CEBF-E99EAEE9CE27" name="answer_pk">
 <createdBy>leads</createdBy>
 <createdTime>2023-03-14 07:34:24 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<pk>true</pk>
-<indexState>Primary Constraint</indexState>
+<indexState>Unique Constraint</indexState>
 <indexColumnUsage>
 <colUsage columnID="4EC4A64B-E3C1-3C4A-F9F5-4EEF1115741C"/>
 </indexColumnUsage>
@@ -82,7 +93,7 @@
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="3C483AB2-A97A-133B-F053-3B5C52A3A79C"/>
+<colUsage columnID="2B8F5489-DAA0-918B-1B79-3C4B9B2F1595"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="4205550D-E8E1-66FA-9206-5AD3B365A71C" name="answer_pk_idx">

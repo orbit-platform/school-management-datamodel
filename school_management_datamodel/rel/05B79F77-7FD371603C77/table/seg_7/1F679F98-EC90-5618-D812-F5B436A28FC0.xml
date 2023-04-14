@@ -29,8 +29,8 @@
 <generatorID>5262A192-4FDE-F6FA-1D37-1096D4B244C6</generatorID>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>CC6758B1-C791-00D1-8E53-CD1085D0AD3B</domain>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<domain>F8B65674-EF8F-41D4-CF5A-531303905CFF</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -46,14 +46,37 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="pseudo" id="11193E77-3D77-0B2C-6BBA-A6278A35AEBA">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<commentInRDBMS><![CDATA[YES/NO]]></commentInRDBMS>
+<generatorID>B9F8617D-17F7-1B1A-4C98-FD034CC0EF3B</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>CC6758B1-C791-00D1-8E53-CD1085D0AD3B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6DAE4929-4D39-AD41-0BAB-894497D8C99A" name="collect_email_pkv2">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<generatorID>FA1FB0E1-82E0-7782-AA8D-B8154D12A889</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D400B727-9C9B-802A-C108-C4F0717C7376"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="DA8C966E-D773-61AB-AEFD-5F43473290A2" name="collect_email_pk">
 <createdBy>leads</createdBy>
 <createdTime>2023-03-14 11:17:28 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<pk>true</pk>
-<indexState>Primary Constraint</indexState>
+<indexState>Unique Constraint</indexState>
 <indexColumnUsage>
 <colUsage columnID="FFC8BCBC-01FB-03E4-6EC9-E6DA67A5A63E"/>
 </indexColumnUsage>
@@ -66,7 +89,7 @@
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="D400B727-9C9B-802A-C108-C4F0717C7376"/>
+<colUsage columnID="11193E77-3D77-0B2C-6BBA-A6278A35AEBA"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="5D984A03-3EA9-771F-C3CC-74B101F8380B" name="collect_email_pk_idx">

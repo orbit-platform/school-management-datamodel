@@ -25,7 +25,7 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="type" id="9020D497-8053-8D23-A181-351B01A97D3F">
+<Column name="pseudo" id="9020D497-8053-8D23-A181-351B01A97D3F">
 <createdBy>leads</createdBy>
 <createdTime>2023-03-13 10:19:39 UTC</createdTime>
 <comment><![CDATA[YES/NO]]></comment>
@@ -51,14 +51,39 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="type" id="A9E8CC0B-6B5E-12BE-B8E3-380FBDD29EE1">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<comment><![CDATA[Grading Type - 1 YES/0 NO]]></comment>
+<commentInRDBMS><![CDATA[Grading Type - 1 YES/0 NO]]></commentInRDBMS>
+<generatorID>CAF3F314-668D-2CB4-3AE4-E8C9C7D267EF</generatorID>
+<notes><![CDATA[Grading Type - 1 YES/0 NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<domain>F8B65674-EF8F-41D4-CF5A-531303905CFF</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3DBA3A01-956D-F913-1CAF-C9C23AD50DCD" name="grading_pkv2">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<generatorID>97637150-F1FC-E140-BB8A-2EDFA1402756</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A9E8CC0B-6B5E-12BE-B8E3-380FBDD29EE1"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="75A8418A-4393-03E6-1D95-ECB80C41F97E" name="grading_pk">
 <createdBy>leads</createdBy>
 <createdTime>2023-03-13 10:19:39 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<pk>true</pk>
-<indexState>Primary Constraint</indexState>
+<indexState>Unique Constraint</indexState>
 <indexColumnUsage>
 <colUsage columnID="6771B9BC-1EA8-9E8A-2E2B-6FB5D4865C0A"/>
 </indexColumnUsage>

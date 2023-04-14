@@ -40,21 +40,55 @@
 <domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="company_name" id="039CFA1D-D659-94F4-8A4F-0DC5C3604675">
+<Attribute name="company_code" id="C279EA99-9F34-A759-7599-3EFF72E5A33A">
 <createdBy>leads</createdBy>
-<createdTime>2019-07-12 11:05:09 UTC</createdTime>
-<comment><![CDATA[Company Name]]></comment>
-<commentInRDBMS><![CDATA[Company Name]]></commentInRDBMS>
+<createdTime>2023-04-11 06:11:45 UTC</createdTime>
+<comment><![CDATA[Company Code - 10 digits]]></comment>
+<commentInRDBMS><![CDATA[Company Code - 10 digits]]></commentInRDBMS>
 <generatorID>063FB958-7308-606D-FBD3-837E3E2015A0</generatorID>
-<notes><![CDATA[Company Name]]></notes>
+<notes><![CDATA[Company Code - 10 digits]]></notes>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <engineerTo>
 <item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
 </engineerTo>
-<referedAttribute>2169A8C8-8D1C-B864-B0B9-BF4E425AF4BB</referedAttribute>
+<referedAttribute>95B99F61-D3E4-28BD-961F-A8F40C4D2CD8</referedAttribute>
 <use>0</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<domain>3BB31CEA-DF84-001B-D31D-BF955F6ADDBF</domain>
+<domain>53AB0579-872F-D944-2762-9BC69C2EFEBD</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="batch_no#" id="22A0AADA-ABA2-4F0E-6AAC-B3A640473562">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 09:34:27 UTC</createdTime>
+<comment><![CDATA[Batch Number expressed in date]]></comment>
+<commentInRDBMS><![CDATA[Batch Number expressed in date]]></commentInRDBMS>
+<generatorID>EA282E4D-4D04-75DA-E51C-4F5197324BC6</generatorID>
+<notes><![CDATA[Batch Number expressed in date]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>941B8596-FF99-A7A7-83C7-3538B79D0948</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<domain>57E4E726-0278-DC93-9196-ABB2B37DFF18</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="vendor_id" id="4DA94D3B-F27B-4275-AE6D-4B3A6539398D">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 05:40:36 UTC</createdTime>
+<comment><![CDATA[Vendor ID]]></comment>
+<commentInRDBMS><![CDATA[Vendor ID]]></commentInRDBMS>
+<generatorID>89700850-04D5-6F98-8E81-EF5649E4D899</generatorID>
+<notes><![CDATA[Vendor ID]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>BB6FE057-3AD8-C93C-310F-890179845BE8</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<domain>F01E2F38-7AC8-86BD-B098-0A79206A3B16</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="product_code" id="17B63E43-C8ED-7FE1-FFA6-9D146D217CAE">
@@ -94,42 +128,6 @@
 <property name="engineerTo" value=""/>
 </propertyMap>
 </Attribute>
-<Attribute name="image" id="6C15B468-8D03-B49F-2A27-B49A12F041F9">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-06 06:51:31 UTC</createdTime>
-<comment><![CDATA[Photo of the Employee - Passport size]]></comment>
-<commentInRDBMS><![CDATA[Photo of the Employee - Passport size]]></commentInRDBMS>
-<notes><![CDATA[Photo of the Employee - Passport size]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<engineerTo>
-<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
-</engineerTo>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT029</logicalDatatype>
-<domain>AA2BB5A1-AD10-27B7-B0A5-D632AFC3A2BA</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="engineerTo" value=""/>
-</propertyMap>
-</Attribute>
-<Attribute name="mime_type" id="D792FDE2-991B-E025-367F-D8BF9BBEA7AC">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-06 06:51:49 UTC</createdTime>
-<comment><![CDATA[pdf/xls/xlsx/jpeg/bmp/doc/docx/png/mp4]]></comment>
-<commentInRDBMS><![CDATA[pdf/xls/xlsx/jpeg/bmp/doc/docx/png/mp4]]></commentInRDBMS>
-<generatorID>DD5E3E11-43B1-DF29-6D18-DF97C35DB54F</generatorID>
-<notes><![CDATA[pdf/xls/xlsx/jpeg/bmp/doc/docx/png/mp4]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<engineerTo>
-<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
-</engineerTo>
-<referedAttribute>DD78865C-9278-8EED-0C1D-F37BAF241CA0</referedAttribute>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>C67BAB21-6082-5D9D-27F4-099912620F76</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-</Attribute>
 <Attribute name="bill_date" id="AD98EAAB-C77E-5C4D-8B8D-CBBDC8F90465">
 <createdBy>leads</createdBy>
 <createdTime>2019-01-05 10:44:31 UTC</createdTime>
@@ -160,7 +158,6 @@
 <engineerTo>
 <item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
 </engineerTo>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>0</use>
 <logicalDatatype>LOGDT007</logicalDatatype>
@@ -189,6 +186,53 @@
 <propertyMap>
 <property name="engineerTo" value=""/>
 </propertyMap>
+</Attribute>
+<Attribute name="payment_status" id="2DD5DBF1-3A3F-F6F9-DC03-CA21FFEFE9CE">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-13 08:16:21 UTC</createdTime>
+<comment><![CDATA[PAID/UNPAID/PARTIALLY PAID]]></comment>
+<commentInRDBMS><![CDATA[PAID/UNPAID/PARTIALLY PAID]]></commentInRDBMS>
+<generatorID>8A0C5633-4EC1-A543-95F3-A0CA114CA23B</generatorID>
+<notes><![CDATA[PAID/UNPAID/PARTIALLY PAID]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>E0C9D732-02AA-D291-5D9B-BBD3502918EE</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>CC6758B1-C791-00D1-8E53-CD1085D0AD3B</domain>
+<defaultValue>UNPAID</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="accounting_period" id="52FDA52C-FD81-3B08-2A10-6628C0C53AA7">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 07:47:35 UTC</createdTime>
+<generatorID>A5099D39-8F01-14C8-9232-E56B77C69DC7</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>A2ED0ED7-A636-7420-F899-3D7C2D92A62C</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<domain>57E4E726-0278-DC93-9196-ABB2B37DFF18</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="recurring_type" id="1BBF63E3-D98B-7379-821F-13252E102004">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 07:15:26 UTC</createdTime>
+<generatorID>5B21C9F3-9F61-FE20-26ED-ADC326700E88</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>8B761AAB-57EC-EEE7-2909-93CE449D2421</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>CC6758B1-C791-00D1-8E53-CD1085D0AD3B</domain>
+<defaultValue>REGULAR-MONTHLY</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="status_name" id="E18A599F-6151-0122-FB4C-363CF4D4451C">
 <createdBy>leads</createdBy>
@@ -316,24 +360,28 @@
 <createdBy>leads</createdBy>
 <createdTime>2021-08-06 06:53:51 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
 <attributeRef>86AB691B-C6C2-EA49-646B-BEE1797A91B9</attributeRef>
 </usedAttributes>
 </identifier>
-<identifier id="75F53182-21A9-C994-81C6-4BF4B87C71F3" name="company_bill_UN">
+<identifier id="CAE45F1E-F305-6A1B-09C0-23F3331715D2" name="company_bill_UN">
 <createdBy>leads</createdBy>
-<createdTime>2021-08-06 07:02:00 UTC</createdTime>
+<createdTime>2023-04-11 06:32:27 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
+<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
 </engineerTo>
-<newElementsIDs>039CFA1D-D659-94F4-8A4F-0DC5C3604675,17B63E43-C8ED-7FE1-FFA6-9D146D217CAE,02A9B381-555C-EBE5-ACD1-A9F90229AE71</newElementsIDs>
+<newElementsIDs>063FB958-7308-606D-FBD3-837E3E2015A0,EA282E4D-4D04-75DA-E51C-4F5197324BC6,89700850-04D5-6F98-8E81-EF5649E4D899,5DA9ED2F-A65B-89DE-5948-30BB315CCD1B,02A9B381-555C-EBE5-ACD1-A9F90229AE71</newElementsIDs>
 <usedAttributes>
-<attributeRef>039CFA1D-D659-94F4-8A4F-0DC5C3604675</attributeRef>
+<attributeRef>C279EA99-9F34-A759-7599-3EFF72E5A33A</attributeRef>
+<attributeRef>22A0AADA-ABA2-4F0E-6AAC-B3A640473562</attributeRef>
+<attributeRef>4DA94D3B-F27B-4275-AE6D-4B3A6539398D</attributeRef>
 <attributeRef>17B63E43-C8ED-7FE1-FFA6-9D146D217CAE</attributeRef>
 <attributeRef>02A9B381-555C-EBE5-ACD1-A9F90229AE71</attributeRef>
 </usedAttributes>

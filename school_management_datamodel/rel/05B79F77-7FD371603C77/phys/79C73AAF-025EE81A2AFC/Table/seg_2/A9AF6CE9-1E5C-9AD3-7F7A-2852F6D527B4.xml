@@ -28,16 +28,6 @@
 <createdTime>2021-08-06 07:19:59 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="image" id="561C0B66-A2ED-39CD-210D-40D3AC7BC82B">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-06 07:19:59 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</ColumnProxy>
-<ColumnProxy name="mime_type" id="794D542A-CDAF-CC97-EF1E-E59A8A5BA898">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-06 07:19:59 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</ColumnProxy>
 <ColumnProxy name="amount" id="7C17DAC1-9353-ED25-5731-91489F55A20D">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-06 07:19:59 UTC</createdTime>
@@ -83,12 +73,7 @@
 </ColumnProxy>
 </columnProxies>
 <indexProxies>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="bill_payment_mime_idx" id="049C2BBF-F83E-7325-6C71-3A3E6860A36E">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-06 07:40:48 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</IndexProxy>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="bill_payment_pay_idx" id="737395B1-3E9C-F7F3-6A26-2C7265130C85">
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="bill_payment_pymd_idx" id="737395B1-3E9C-F7F3-6A26-2C7265130C85">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-06 07:40:48 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -98,7 +83,7 @@
 <createdTime>2021-08-06 07:49:08 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </IndexProxy>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="bill_payment_com_idx" id="D07F2FF1-7CFA-7580-F961-64CA22A88C76">
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="bill_payment_cbill_idx" id="D07F2FF1-7CFA-7580-F961-64CA22A88C76">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-06 07:40:48 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -110,24 +95,19 @@
 </IndexProxy>
 </indexProxies>
 <foreignKeys>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="BillPay_CompanyBill_FK" id="38B3EC5F-91D1-C63A-29A9-10824426AA42">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="billpay_companybill_fk" id="705BE3F6-E3FF-E815-E39F-F83C8FEAEE05">
 <createdBy>leads</createdBy>
-<createdTime>2021-08-06 07:40:28 UTC</createdTime>
+<createdTime>2023-04-11 06:23:02 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="BillPayment_Payment_FK" id="D2C13C58-A183-E042-E3FE-31BBEAAF99DE">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="billpayment_payment_fk" id="D2C13C58-A183-E042-E3FE-31BBEAAF99DE">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-06 07:40:28 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="BillPayment_Mime_FK" id="DBFDFFA8-8AF4-BFEC-EE5C-7BBB36E1ECD1">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-06 07:19:59 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
 </foreignKeys>
 <primaryKeys>
-<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="bill_payment_PK" id="6147CC59-64C0-966D-BD1E-F0C961581B54">
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="bill_payment_pk" id="6147CC59-64C0-966D-BD1E-F0C961581B54">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-06 07:19:59 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -135,7 +115,7 @@
 </PrimaryKey>
 </primaryKeys>
 <uniqueKeys>
-<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="bill_payment_UN" id="4F4F4484-343D-8E05-943D-4BBE75331BF3">
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="bill_payment_un" id="4F4F4484-343D-8E05-943D-4BBE75331BF3">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-06 07:19:59 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>

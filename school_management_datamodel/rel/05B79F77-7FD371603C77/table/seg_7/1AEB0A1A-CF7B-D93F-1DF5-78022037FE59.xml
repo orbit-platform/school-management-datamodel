@@ -25,12 +25,14 @@
 <Column name="type" id="764C9D95-89F4-D7C6-44E3-82DCA660CEF2">
 <createdBy>leads</createdBy>
 <createdTime>2023-03-13 09:00:23 UTC</createdTime>
-<commentInRDBMS><![CDATA[YES/NO]]></commentInRDBMS>
+<comment><![CDATA[Mandatory Type - 1 YES, 0 NO]]></comment>
+<commentInRDBMS><![CDATA[Mandatory Type - 1 YES, 0 NO]]></commentInRDBMS>
 <generatorID>22BEFF6A-D681-66A5-9A96-B41CEBB4E337</generatorID>
+<notes><![CDATA[Mandatory Type - 1 YES, 0 NO]]></notes>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>CC6758B1-C791-00D1-8E53-CD1085D0AD3B</domain>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<domain>F8B65674-EF8F-41D4-CF5A-531303905CFF</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
@@ -46,14 +48,39 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="pseudo" id="7D20A25B-3EBF-7495-6D95-1584A1710B5A">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<comment><![CDATA[YES/NO]]></comment>
+<commentInRDBMS><![CDATA[YES/NO]]></commentInRDBMS>
+<generatorID>94240DAD-20F3-CF82-2107-FF8AA0DF1D36</generatorID>
+<notes><![CDATA[YES/NO]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>CC6758B1-C791-00D1-8E53-CD1085D0AD3B</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="4673A96B-0791-FAD0-9EC9-01458DAED948" name="mandatory_pkv2">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<generatorID>B5638BE1-5352-138E-6EB0-5A265AA9CAE9</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="764C9D95-89F4-D7C6-44E3-82DCA660CEF2"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="EED268A9-53A1-9A64-26E2-313EB43B8904" name="mandatory_pk">
 <createdBy>leads</createdBy>
 <createdTime>2023-03-13 09:00:23 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<pk>true</pk>
-<indexState>Primary Constraint</indexState>
+<indexState>Unique Constraint</indexState>
 <indexColumnUsage>
 <colUsage columnID="BA1321F4-EEE3-E214-84C2-D5C4D4EC5316"/>
 </indexColumnUsage>
@@ -66,7 +93,7 @@
 <indexState>Unique Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="764C9D95-89F4-D7C6-44E3-82DCA660CEF2"/>
+<colUsage columnID="7D20A25B-3EBF-7495-6D95-1584A1710B5A"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="BA701892-99C2-7E49-0E5D-24640A48F29C" name="mandatory_pk_idx">

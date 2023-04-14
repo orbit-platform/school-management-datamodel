@@ -19,13 +19,24 @@
 <createdTime>2023-03-13 10:19:39 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="type" id="9020D497-8053-8D23-A181-351B01A97D3F">
+<ColumnProxy name="pseudo" id="9020D497-8053-8D23-A181-351B01A97D3F">
 <createdBy>leads</createdBy>
 <createdTime>2023-03-13 10:19:39 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="type" id="A9E8CC0B-6B5E-12BE-B8E3-380FBDD29EE1">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-13 03:59:25 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
 </columnProxies>
 <indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="grading_pkv2" id="3DBA3A01-956D-F913-1CAF-C9C23AD50DCD">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-13 03:59:25 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="grading_pk_idx" id="A0848B97-226B-DB90-A82B-660A9EB6B9F0">
 <createdBy>leads</createdBy>
 <createdTime>2023-03-13 10:26:16 UTC</createdTime>
@@ -38,9 +49,9 @@
 </IndexProxy>
 </indexProxies>
 <primaryKeys>
-<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="grading_pk" id="75A8418A-4393-03E6-1D95-ECB80C41F97E">
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="grading_pk" id="75A8418A-4393-03E6-1D95-ECB80C41F97E">
 <createdBy>leads</createdBy>
-<createdTime>2023-03-13 10:19:39 UTC</createdTime>
+<createdTime>2023-04-13 07:55:09 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <indexSort>SORTED</indexSort>
 </PrimaryKey>
@@ -49,6 +60,12 @@
 <UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="grading_un" id="1EAE16E8-1D56-C9B1-9289-8873D90599FC">
 <createdBy>leads</createdBy>
 <createdTime>2023-03-13 10:19:39 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="grading_pkv2" id="3DBA3A01-956D-F913-1CAF-C9C23AD50DCD">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-13 03:59:25 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <indexSort>SORTED</indexSort>
 </UniqueKey>

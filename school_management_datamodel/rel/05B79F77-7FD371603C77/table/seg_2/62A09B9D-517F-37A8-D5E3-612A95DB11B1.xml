@@ -164,9 +164,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="5491F035-750C-4F7E-DC16-8D7F7A0DABCD" referredColumn="7BFE994C-8099-4668-5257-3A2D7A810C69"/>
-</associations>
 </Column>
 <Column name="ordinal_no" id="08D1A90A-0CB7-FE22-8BFD-2EBC6E8CE2AD">
 <createdBy>leads</createdBy>
@@ -409,6 +406,21 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="question_pseudo" id="DB11EEC7-DE70-082E-1436-985349D98F7D">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<generatorID>080C9CBD-8B10-2406-47A4-122A6AECF17F</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>F60E1FFE-5DA6-531C-BDFF-CB0CBCB7F7CD</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5491F035-750C-4F7E-DC16-8D7F7A0DABCD" referredColumn="1E8C8968-56D0-D8A2-295A-DFF693013131"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="B17C3489-EFEF-4DE9-9F67-802E7DCB0B82" name="question_bank_pk">
@@ -437,7 +449,7 @@
 <colUsage columnID="D51A7C06-DA72-C47E-F0DF-DD4F008C7A4E"/>
 <colUsage columnID="65B5CF49-CC5C-8B51-F3C2-9A1A66EA3E16"/>
 <colUsage columnID="E2F8DD25-FF04-53DF-A9AA-8CB56BC9AED4"/>
-<colUsage columnID="A4DCD77C-623F-8C9B-9BE7-1C35144E7AB0"/>
+<colUsage columnID="DB11EEC7-DE70-082E-1436-985349D98F7D"/>
 <colUsage columnID="08D1A90A-0CB7-FE22-8BFD-2EBC6E8CE2AD"/>
 </indexColumnUsage>
 </ind_PK_UK>
@@ -613,6 +625,15 @@
 <colUsage columnID="0D2359DA-0592-A793-DBEB-96A9EFAC3926"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="CD545EDB-7F36-A565-B3D4-5B8632DB548A" name="question_bank__idx">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:17:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DB11EEC7-DE70-082E-1436-985349D98F7D"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="AC3B3146-7C4C-5269-3CF6-0A4BCA6FCAA5" name="qstbnk_batch_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-07 11:25:01 UTC</createdTime>
@@ -665,7 +686,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="A4DCD77C-623F-8C9B-9BE7-1C35144E7AB0"/>
+<colUsage columnID="DB11EEC7-DE70-082E-1436-985349D98F7D"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="508D1FEF-843D-F006-A887-CED8B31A60B6" name="qstbnk_school_fk">

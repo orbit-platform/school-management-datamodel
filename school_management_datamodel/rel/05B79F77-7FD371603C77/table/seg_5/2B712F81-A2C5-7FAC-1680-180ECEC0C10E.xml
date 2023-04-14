@@ -202,9 +202,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="9362EA21-5CD8-8FF8-A959-335ABB492E38" referredColumn="9428BC4E-B70D-377C-E077-D8969FB89E62"/>
-</associations>
 </Column>
 <Column name="section_title" id="69FD0E7A-20BB-758A-C743-A70CB748073F">
 <createdBy>leads</createdBy>
@@ -295,9 +292,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="6C319CBA-AF46-0F7E-589D-20868163EE4E" referredColumn="7BFE994C-8099-4668-5257-3A2D7A810C69"/>
-</associations>
 </Column>
 <Column name="status_name" id="B2BDC54F-6257-F8DE-ACC0-6EC6CFE8C104">
 <createdBy>leads</createdBy>
@@ -395,6 +389,36 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="question_section_pseudo" id="B17A3CC0-88F7-C4C5-9EFF-8ACCEC4E222C">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<generatorID>67F86031-47C5-CB8C-E758-E7F94ABDD3B5</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9362EA21-5CD8-8FF8-A959-335ABB492E38" referredColumn="9AFFD54C-5D0B-B218-FD24-FD9C5AFBB014"/>
+</associations>
+</Column>
+<Column name="question_pseudo" id="53C8BE30-9334-3880-89E9-85D144620948">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<generatorID>8F386850-1233-D4E2-A961-0057A340F897</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>F60E1FFE-5DA6-531C-BDFF-CB0CBCB7F7CD</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6C319CBA-AF46-0F7E-589D-20868163EE4E" referredColumn="1E8C8968-56D0-D8A2-295A-DFF693013131"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="B607178B-34A6-D688-1CAE-90F5EDA0D921" name="question_allocation_pk">
@@ -424,7 +448,7 @@
 <colUsage columnID="4398D73E-962F-8FFC-2597-49C0E288F1E7"/>
 <colUsage columnID="4922CE43-D5AC-6F45-5F51-EFD7E76B7798"/>
 <colUsage columnID="9E5B4D31-3648-0B0A-629A-7E8CC309725E"/>
-<colUsage columnID="DAF7A534-7C39-146E-BC9F-2458AA585915"/>
+<colUsage columnID="B17A3CC0-88F7-C4C5-9EFF-8ACCEC4E222C"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="7FF57810-90C3-CE77-DB89-647A32F72E81" name="question_allocation_pk_idx">
@@ -572,6 +596,24 @@
 <colUsage columnID="B2BDC54F-6257-F8DE-ACC0-6EC6CFE8C104"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="AB032EF6-76E8-64ED-F57E-1798024932D4" name="question_allocation__idx">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:17:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="53C8BE30-9334-3880-89E9-85D144620948"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ED8CFAAB-AB8A-9EBB-9EFC-92CD562D7908" name="question_allocation__idxv1">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:17:29 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B17A3CC0-88F7-C4C5-9EFF-8ACCEC4E222C"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="439CC17D-5B2B-277B-8D86-20A3D8763175" name="qstalloc_batch_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-07 13:38:49 UTC</createdTime>
@@ -624,7 +666,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="30C3FE0D-5ADE-9375-2697-DAE2B9AB601A"/>
+<colUsage columnID="53C8BE30-9334-3880-89E9-85D144620948"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="28981D6A-7416-B7D0-72E8-4020A34C7ABC" name="qstalloc_school_fk">
@@ -679,7 +721,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="DAF7A534-7C39-146E-BC9F-2458AA585915"/>
+<colUsage columnID="B17A3CC0-88F7-C4C5-9EFF-8ACCEC4E222C"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="65A2E1E5-81FD-442E-007F-D221151F63E8" name="qstalloc_evaluation_fk">

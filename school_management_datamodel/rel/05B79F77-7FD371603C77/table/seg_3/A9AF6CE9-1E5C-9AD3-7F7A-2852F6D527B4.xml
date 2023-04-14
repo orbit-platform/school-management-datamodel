@@ -41,7 +41,7 @@
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
-<colAssociation fkAssociation="1D9675D0-2F73-D6D4-2E92-173DD32E04BE" referredColumn="60E4EFC5-8DEA-D3F1-4BBB-2F3D1193F943"/>
+<colAssociation fkAssociation="EFE5049E-EB91-DB57-FD79-8724908C2844" referredColumn="839EF912-45BA-F94B-5D30-32A505B7B35B"/>
 </associations>
 </Column>
 <Column name="invoice_number" id="E4C67781-4CF8-2FC3-1369-F6F5E9B69FB2">
@@ -76,39 +76,6 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <associations>
 <colAssociation fkAssociation="CFFD79E7-3C15-3BF3-F160-B8FEDA32B9DB" referredColumn="AB25FA79-1EA6-2FA8-0D9B-12BC0B8F38E9"/>
-</associations>
-</Column>
-<Column name="image" id="561C0B66-A2ED-39CD-210D-40D3AC7BC82B">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-06 07:19:59 UTC</createdTime>
-<comment><![CDATA[Photo of the Employee - Passport size]]></comment>
-<commentInRDBMS><![CDATA[Photo of the Employee - Passport size]]></commentInRDBMS>
-<generatorID>9C76C220-68F6-B682-4C9C-360F896191E2</generatorID>
-<notes><![CDATA[Photo of the Employee - Passport size]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>0</use>
-<logicalDatatype>LOGDT029</logicalDatatype>
-<domain>AA2BB5A1-AD10-27B7-B0A5-D632AFC3A2BA</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="mime_type" id="794D542A-CDAF-CC97-EF1E-E59A8A5BA898">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-06 07:19:59 UTC</createdTime>
-<comment><![CDATA[pdf/xls/xlsx/jpeg/bmp/doc/docx/png/mp4]]></comment>
-<commentInRDBMS><![CDATA[pdf/xls/xlsx/jpeg/bmp/doc/docx/png/mp4]]></commentInRDBMS>
-<generatorID>51E36502-A1AA-71BD-5402-EEDB7645393C</generatorID>
-<notes><![CDATA[pdf/xls/xlsx/jpeg/bmp/doc/docx/png/mp4]]></notes>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<use>0</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<domain>C67BAB21-6082-5D9D-27F4-099912620F76</domain>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<previousColumn>false</previousColumn>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="8D408CEC-3388-7BBC-E90C-0F02F7AA33A7" referredColumn="E2C4DBFD-64CC-D6B4-6BC8-62B5E8A5E48F"/>
 </associations>
 </Column>
 <Column name="amount" id="7C17DAC1-9353-ED25-5731-91489F55A20D">
@@ -272,16 +239,7 @@
 <colUsage columnID="DBB02FD0-C047-6310-5F98-BE37ECD6F144"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="049C2BBF-F83E-7325-6C71-3A3E6860A36E" name="bill_payment_mime_idx">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-06 07:40:48 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="794D542A-CDAF-CC97-EF1E-E59A8A5BA898"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="D07F2FF1-7CFA-7580-F961-64CA22A88C76" name="bill_payment_com_idx">
+<ind_PK_UK id="D07F2FF1-7CFA-7580-F961-64CA22A88C76" name="bill_payment_cbill_idx">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-06 07:40:48 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -290,35 +248,13 @@
 <colUsage columnID="06CC2559-257D-04A2-41B8-0BCC32ADD2B3"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="737395B1-3E9C-F7F3-6A26-2C7265130C85" name="bill_payment_pay_idx">
+<ind_PK_UK id="737395B1-3E9C-F7F3-6A26-2C7265130C85" name="bill_payment_pymd_idx">
 <createdBy>leads</createdBy>
 <createdTime>2021-08-06 07:40:48 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="16BD809A-7CAC-6968-B24F-26646C690FA1"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="DBFDFFA8-8AF4-BFEC-EE5C-7BBB36E1ECD1" name="billpayment_mime_fk">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-06 07:19:59 UTC</createdTime>
-<generatorID>944DE768-534F-F43E-B8FA-F8C1F9BC3D66</generatorID>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="794D542A-CDAF-CC97-EF1E-E59A8A5BA898"/>
-</indexColumnUsage>
-</ind_PK_UK>
-<ind_PK_UK id="38B3EC5F-91D1-C63A-29A9-10824426AA42" name="billpay_companybill_fk">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-06 07:40:28 UTC</createdTime>
-<generatorID>624C6897-17B0-1CCD-2D5B-EE342DDF3061</generatorID>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<indexState>Foreign Key</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="06CC2559-257D-04A2-41B8-0BCC32ADD2B3"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="D2C13C58-A183-E042-E3FE-31BBEAAF99DE" name="billpayment_payment_fk">
@@ -330,6 +266,17 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="16BD809A-7CAC-6968-B24F-26646C690FA1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="705BE3F6-E3FF-E815-E39F-F83C8FEAEE05" name="billpay_companybill_fk">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:17:00 UTC</createdTime>
+<generatorID>624C6897-17B0-1CCD-2D5B-EE342DDF3061</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="06CC2559-257D-04A2-41B8-0BCC32ADD2B3"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

@@ -82,9 +82,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="D22AE622-F5D4-38DF-6A8B-8223833351D1" referredColumn="3C483AB2-A97A-133B-F053-3B5C52A3A79C"/>
-</associations>
 </Column>
 <Column name="choice_order_no" id="3B1FDC38-9760-829B-F505-BAF80D9DFD43">
 <createdBy>leads</createdBy>
@@ -183,6 +180,25 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="answer_pseudo" id="BBAEFBF9-7493-358E-8459-05140286D8D9">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<comment><![CDATA[Pseudo Name of Boolean Type]]></comment>
+<commentInRDBMS><![CDATA[Pseudo Name of Boolean Type]]></commentInRDBMS>
+<generatorID>43E0AFFA-15BD-88F4-F02C-9DF4BEE4135F</generatorID>
+<notes><![CDATA[Pseudo Name of Boolean Type]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D22AE622-F5D4-38DF-6A8B-8223833351D1" referredColumn="2B8F5489-DAA0-918B-1B79-3C4B9B2F1595"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="102E9B0D-C333-9678-007C-CA74D778F131" name="survey_choice_pk">
@@ -266,6 +282,15 @@
 <colUsage columnID="3B1FDC38-9760-829B-F505-BAF80D9DFD43"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="F3D7F105-9C8A-4B55-44A0-A6EDA54AB221" name="survey_choice__idx">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:17:30 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BBAEFBF9-7493-358E-8459-05140286D8D9"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="C9046F6B-30C9-8304-5B14-068DD3A0E2C6" name="survchc_surveyquest_fk">
 <createdBy>leads</createdBy>
 <createdTime>2019-09-17 05:07:53 UTC</createdTime>
@@ -296,7 +321,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="AEE9A3E2-D532-6B9C-5C0C-32FBC52169D4"/>
+<colUsage columnID="BBAEFBF9-7493-358E-8459-05140286D8D9"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="8F2785AA-0FC7-161C-2EE2-E80F1ABC03DA" name="srvychc_choiceorder_fk">

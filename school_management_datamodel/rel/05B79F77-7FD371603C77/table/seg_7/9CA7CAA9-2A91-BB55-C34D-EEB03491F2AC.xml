@@ -112,9 +112,6 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="28CF82BA-9303-0E19-7CBC-AAE19554C37A" referredColumn="7BFE994C-8099-4668-5257-3A2D7A810C69"/>
-</associations>
 </Column>
 <Column name="pseudo_name" id="97C8639B-066A-71F9-8243-F53B2A814C9D">
 <createdBy>leads</createdBy>
@@ -255,6 +252,21 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="question_pseudo" id="9F90A8DA-8811-FBAF-3865-D873B7736D09">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<generatorID>65F4AEF4-9994-B2AA-9ED0-BB69E692BA59</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>F60E1FFE-5DA6-531C-BDFF-CB0CBCB7F7CD</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="28CF82BA-9303-0E19-7CBC-AAE19554C37A" referredColumn="1E8C8968-56D0-D8A2-295A-DFF693013131"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="BA2794CC-4444-9F5A-DBB2-D9EB79CC8E8B" name="question_matrix_pk">
@@ -279,7 +291,7 @@
 <colUsage columnID="DA02B97C-56FA-8BEF-8645-16DC41251D6D"/>
 <colUsage columnID="0332DD4C-A6CC-E975-2642-A9C641ECCB9D"/>
 <colUsage columnID="848C3A6B-C535-A0EA-9F6B-9E214A384367"/>
-<colUsage columnID="CB9E216E-DC1C-AFFA-32C6-0A5055308BAD"/>
+<colUsage columnID="9F90A8DA-8811-FBAF-3865-D873B7736D09"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="40357E93-64C1-ED62-4B9D-FC2E36A51370" name="question_matrix_id_idx">
@@ -369,6 +381,15 @@
 <colUsage columnID="F2856599-CCA0-6F94-343D-D0C98AAF4302"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="F65A5A68-32C3-3594-DDCD-577C58494E1C" name="question_matrix__idx">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:17:30 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9F90A8DA-8811-FBAF-3865-D873B7736D09"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="5691CE8C-CFE8-6D11-F26D-43004BDB68EC" name="qstmtrx_board_fk">
 <createdBy>leads</createdBy>
 <createdTime>2022-09-29 11:27:57 UTC</createdTime>
@@ -410,7 +431,7 @@
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="CB9E216E-DC1C-AFFA-32C6-0A5055308BAD"/>
+<colUsage columnID="9F90A8DA-8811-FBAF-3865-D873B7736D09"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="E8D399E1-74D2-939B-53E0-F1001E1A09E5" name="qstmtrx_school_fk">

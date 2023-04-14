@@ -22,7 +22,7 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <isSurrogateColumn>true</isSurrogateColumn>
 </Column>
-<Column name="type" id="24ABD155-D0BF-BFC5-E291-433A8621431D">
+<Column name="pseudo" id="24ABD155-D0BF-BFC5-E291-433A8621431D">
 <createdBy>leads</createdBy>
 <createdTime>2023-03-17 10:11:18 UTC</createdTime>
 <comment><![CDATA[Auto Complete at the End of the Limited Time - YES/NO]]></comment>
@@ -51,14 +51,39 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="type" id="CB53A8F0-B0C5-D986-5226-53C75BAABCC5">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<comment><![CDATA[Auto Complete Type]]></comment>
+<commentInRDBMS><![CDATA[Auto Complete Type]]></commentInRDBMS>
+<generatorID>6F17AFD2-D59A-0428-2660-832555B8EE67</generatorID>
+<notes><![CDATA[Auto Complete Type]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<use>0</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<domain>F8B65674-EF8F-41D4-CF5A-531303905CFF</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="30195453-0A77-1932-FB6B-5647DA88A3F0" name="auto_complete_pkv2">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-11 06:14:13 UTC</createdTime>
+<generatorID>E4D49265-0F17-50A2-BC42-CEBB733A7DED</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CB53A8F0-B0C5-D986-5226-53C75BAABCC5"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="344EB88C-3D78-4BFE-E426-9F73B3DAF997" name="auto_complete_pk">
 <createdBy>leads</createdBy>
 <createdTime>2023-03-17 10:11:18 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<pk>true</pk>
-<indexState>Primary Constraint</indexState>
+<indexState>Unique Constraint</indexState>
 <indexColumnUsage>
 <colUsage columnID="D5318769-A8BD-784B-3E8E-64A90FCE3530"/>
 </indexColumnUsage>
