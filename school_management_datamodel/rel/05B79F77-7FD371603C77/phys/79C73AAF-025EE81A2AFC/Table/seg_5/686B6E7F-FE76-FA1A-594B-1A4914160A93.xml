@@ -32,6 +32,11 @@
 <createdTime>2021-01-12 06:40:21 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy name="ordinal_no" id="3BDAE369-0DB2-0594-7EC3-CE754F50ABA3">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-17 03:57:13 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</ColumnProxy>
 <ColumnProxy name="id" id="3DD807BD-F02D-B76E-86A2-B24175BCB7E7">
 <createdBy>leads</createdBy>
 <createdTime>2021-01-12 06:40:21 UTC</createdTime>
@@ -52,11 +57,6 @@
 <createdTime>2021-11-27 08:13:41 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ColumnProxy>
-<ColumnProxy name="status_name" id="D1BFF3CD-A86F-E44B-186F-184FD7BBE7FA">
-<createdBy>leads</createdBy>
-<createdTime>2021-08-09 12:50:18 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</ColumnProxy>
 <ColumnProxy name="changed_on" id="D51B63C2-80A3-79A3-2004-E74526723664">
 <createdBy>leads</createdBy>
 <createdTime>2021-11-27 08:13:41 UTC</createdTime>
@@ -71,51 +71,51 @@
 </ColumnProxy>
 </columnProxies>
 <indexProxies>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="school_admin_emp_idx" id="27A20790-4DB7-F7CB-E25F-E4722A2A62CE">
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="school_principal_emp_idx" id="27A20790-4DB7-F7CB-E25F-E4722A2A62CE">
 <createdBy>leads</createdBy>
 <createdTime>2021-01-12 06:40:52 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </IndexProxy>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="school_admin_un_idx" id="5633F0DD-75AE-530A-8074-5424DBA5C564">
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="school_principal_un_idx" id="5633F0DD-75AE-530A-8074-5424DBA5C564">
 <createdBy>leads</createdBy>
 <createdTime>2021-01-12 06:50:50 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </IndexProxy>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="school_admin_stat_idx" id="AAA72010-14F1-6674-678F-34F5EDF9C141">
-<createdBy>leads</createdBy>
-<createdTime>2021-01-12 06:40:52 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-</IndexProxy>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="school_admin_pk_idx" id="BC954ADC-3099-BDB5-A35B-74230D12D976">
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="school_principal_pk_idx" id="BC954ADC-3099-BDB5-A35B-74230D12D976">
 <createdBy>leads</createdBy>
 <createdTime>2021-01-12 06:50:50 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </IndexProxy>
-<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="school_admin_sch_idx" id="FC566D5A-7DF3-41D1-F044-2C12DDB66C74">
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="school_principal_ord_idx" id="E9C9DD31-C921-4BA8-8CE1-1440C525503F">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-17 03:58:00 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="school_principal_sch_idx" id="FC566D5A-7DF3-41D1-F044-2C12DDB66C74">
 <createdBy>leads</createdBy>
 <createdTime>2021-01-12 06:40:52 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </IndexProxy>
 </indexProxies>
 <foreignKeys>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchPrinc_School_FK" id="4DDB9B9D-DCE7-A447-96B1-69E97E66EA62">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schprncpl_school_fk" id="4DDB9B9D-DCE7-A447-96B1-69E97E66EA62">
 <createdBy>leads</createdBy>
 <createdTime>2021-01-12 06:40:21 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchPrinc_Employee_FK" id="53621CD2-B957-9CEE-B6A3-C17D7D49DFBA">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schprncpl_employee_fk" id="53621CD2-B957-9CEE-B6A3-C17D7D49DFBA">
 <createdBy>leads</createdBy>
 <createdTime>2021-01-12 06:40:21 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
-<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="SchPrinc_Status_FK" id="DCC93527-EB92-D100-43B5-2BA313C57E3C">
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="schprncpl_ordinal_fk" id="DB93FBE7-1497-3D49-F726-678B7A3F1F41">
 <createdBy>leads</createdBy>
-<createdTime>2021-08-09 12:50:18 UTC</createdTime>
+<createdTime>2023-04-17 03:57:13 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
 </ForeignKey>
 </foreignKeys>
 <primaryKeys>
-<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="school_admin_pk" id="52F15D3B-295A-D103-71AD-2DC7F7A86AA1">
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="school_principal_pk" id="52F15D3B-295A-D103-71AD-2DC7F7A86AA1">
 <createdBy>leads</createdBy>
 <createdTime>2021-01-12 06:40:21 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
@@ -123,7 +123,7 @@
 </PrimaryKey>
 </primaryKeys>
 <uniqueKeys>
-<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="school_principal_UN" id="716D6912-1B06-E098-E939-581C82DE19A8">
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="school_principal_un" id="716D6912-1B06-E098-E939-581C82DE19A8">
 <createdBy>leads</createdBy>
 <createdTime>2021-01-12 06:40:21 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>

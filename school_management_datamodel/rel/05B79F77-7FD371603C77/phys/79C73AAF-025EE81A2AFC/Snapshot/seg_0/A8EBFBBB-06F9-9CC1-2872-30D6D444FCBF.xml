@@ -1,0 +1,38 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SnapshotOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.SnapshotOraclev11g" name="mv_school_teacher" directorySegmentName="seg_0" id="A8EBFBBB-06F9-9CC1-2872-30D6D444FCBF">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-27 04:59:43 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<defaultSegment>NO</defaultSegment>
+<refreshType>FORCE</refreshType>
+<subquery><![CDATA[SELECT
+        sbat.school_code,
+        sbat.batch_no# AS batch_no,
+        emp.first_name || nvl2(emp.middle_name, ' ' || emp.middle_name || ' ', ' ') || emp.last_name AS employee_name,
+        eschool.employee_id AS employee_id
+    FROM
+             employee emp
+        INNER JOIN emp_school eschool
+        ON ( eschool.employee_id = emp.id )
+        INNER JOIN category cat
+        ON ( cat.code = eschool.category_code )
+        INNER JOIN school_batch sbat
+        ON ( sbat.school_code = eschool.school_code )
+    WHERE
+        ( sbat.effective_from >= trunc(eschool.effective_from, 'yyyy')
+          AND sbat.effective_upto <= eschool.effective_upto )
+        AND REGEXP_LIKE ( cat.name,
+                          '^teach',
+                          'i' )
+    GROUP BY
+        sbat.school_code,
+        sbat.batch_no#,
+        emp.first_name || nvl2(emp.middle_name, ' ' || emp.middle_name || ' ', ' ') || emp.last_name,
+        eschool.employee_id
+    ORDER BY
+        school_code,
+        batch_no,
+        employee_name]]></subquery>
+<subqueryNeedsMigration>false</subqueryNeedsMigration>
+<with></with>
+</SnapshotOraclev11g>

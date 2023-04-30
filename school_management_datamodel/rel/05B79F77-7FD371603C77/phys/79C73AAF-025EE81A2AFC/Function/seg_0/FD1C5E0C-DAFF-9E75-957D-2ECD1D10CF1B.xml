@@ -3,7 +3,7 @@
 <createdBy>leads</createdBy>
 <createdTime>2021-11-29 14:32:00 UTC</createdTime>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<source>create or replace FUNCTION func_std_division (
+<source>CREATE OR REPLACE FUNCTION func_std_division (
     p_school_code   VARCHAR2,
     p_batch_no      DATE,
     p_term_code     VARCHAR2,
@@ -44,7 +44,148 @@
         mv.overall_status,
         nvl(str.result_type, &apos;DETAINED&apos;) AS result_type
     FROM
-        v_std_overall_passed mv
+        ( SELECT
+                school_code,
+                batch_no,
+                class_code,
+                stream_code,
+                term_code,
+                student_id,
+                overall_status
+            FROM
+                ( SELECT
+                      school_code,
+                      batch_no,
+                      class_code,
+                      stream_code,
+                      term_code,
+                      student_id,
+                      overall_status,
+                      ROW_NUMBER()
+                      OVER(PARTITION BY school_code, batch_no, class_code, stream_code, term_code,
+                                        student_id
+                           ORDER BY
+                               CASE
+                                   WHEN overall_status = &apos;FAILED&apos;        THEN
+                                       1
+                                   WHEN overall_status = &apos;SIMPLE_PASSED&apos; THEN
+                                       2
+                                   WHEN overall_status = &apos;PASSED&apos;        THEN
+                                       3
+                               END
+                      ) AS my_rank
+                  FROM
+                      ( SELECT
+                            school_code,
+                            batch_no,
+                            class_code,
+                            stream_code,
+                            term_code,
+                            student_id,
+                            CASE
+                                WHEN status = &apos;PASSED&apos; THEN
+                                    &apos;PASSED&apos;
+                                WHEN status = &apos;FAILED&apos; THEN
+                                    &apos;FAILED&apos;
+                                WHEN status = &apos;SIMPLE_PASSED&apos;
+                                     AND my_count = 1 THEN
+                                    &apos;SIMPLE_PASSED&apos;
+                                WHEN status = &apos;SIMPLE_PASSED&apos;
+                                     AND my_count &gt; 1 THEN
+                                    &apos;FAILED&apos;
+                            END AS overall_status
+                        FROM
+                            ( SELECT
+                                    school_code,
+                                    batch_no# AS batch_no,
+                                    class_code,
+                                    stream_code,
+                                    term_code,
+                                    student_id,
+                                    status AS status,
+                                    COUNT(*) AS my_count
+                                FROM
+                                    ( SELECT
+                                          wd.school_code,
+                                          wd.batch_no#,
+                                          wd.class_code,
+                                          wd.stream_code,
+                                          wd.term_code,
+                                          wd.student_id,
+                                          wd.super_code,
+                                          wd.score,
+                                          wd.maximum,
+                                          (
+                                              CASE
+                                                  WHEN wd.status = &apos;PASSED&apos; THEN
+                                                      &apos;PASSED&apos;
+                                                  WHEN wd.status = &apos;FAILED&apos;
+                                                       AND sp.super_code IS NOT NULL THEN
+                                                      &apos;SIMPLE_PASSED&apos;
+                                                  WHEN wd.status = &apos;FAILED&apos;
+                                                       AND sp.super_code IS NULL THEN
+                                                      &apos;FAILED&apos;
+                                                  ELSE
+                                                      &apos;FAILED&apos;
+                                              END
+                                          ) AS status
+                                      FROM
+                                          ( SELECT
+                                                    arc.school_code,
+                                                    arc.batch_no#,
+                                                    arc.class_code,
+                                                    arc.stream_code,
+                                                    arc.term_code,
+                                                    arc.student_id,
+                                                    arc.super_code,
+                                                    ( SUM(round(arc.score_main)) + SUM(round(arc.score_internal)) ) AS score,
+                                                    ( SUM(round(arc.max_main)) + SUM(round(arc.max_internal)) ) AS maximum,
+                                                    (
+                                                        CASE
+                                                            WHEN SUM(round(nvl(arc.min_main, 0))) &gt; SUM(round(nvl(arc.score_main, 0)))                                                                                         THEN
+                                                                &apos;FAILED&apos;
+                                                            WHEN ( SUM(round(nvl(arc.min_main, 0))) + SUM(round(nvl(arc.min_internal, 0))) ) &gt; ( SUM(round(nvl(arc.score_main, 0))) + SUM(round(nvl(arc.score_internal, 0))) ) THEN
+                                                                &apos;FAILED&apos;
+                                                            ELSE
+                                                                &apos;PASSED&apos;
+                                                        END
+                                                    ) AS status
+                                                FROM
+                                                    arc_std_score arc
+                                              WHERE
+                                                  arc.ranking_type = &apos;YES&apos;
+                                            GROUP BY
+                                                arc.school_code,
+                                                arc.batch_no#,
+                                                arc.class_code,
+                                                arc.stream_code,
+                                                arc.term_code,
+                                                arc.student_id,
+                                                arc.super_code
+                                          ) wd
+                                          LEFT OUTER JOIN simple_passed sp
+                                          ON ( sp.school_code = wd.school_code
+                                               AND sp.batch_no# = wd.batch_no#
+                                               AND sp.term_code = wd.term_code
+                                               AND sp.stream_code = wd.stream_code
+                                               AND sp.class_code = wd.class_code
+                                               AND sp.super_code = wd.super_code
+                                               AND sp.status_name = &apos;ACTIVE&apos; )
+                                    )
+                              GROUP BY
+                                  school_code,
+                                  batch_no#,
+                                  class_code,
+                                  stream_code,
+                                  term_code,
+                                  student_id,
+                                  status
+                            )
+                      )
+                )
+          WHERE
+              my_rank = 1
+        ) mv
         LEFT OUTER JOIN std_term_result str
         ON ( str.school_code = mv.school_code
              AND str.batch_no# = mv.batch_no
@@ -106,6 +247,8 @@ BEGIN
         AND v_result_type = &apos;DETAINED&apos;
     THEN
         v_division := &apos;FAILED&apos;;
+    ELSIF v_overall_status = &apos;SIMPLE_PASSED&apos; THEN
+        v_division := &apos;SIMPLE PASSED&apos;;
     ELSIF
         v_overall_status = &apos;FAILED&apos;
         AND v_result_type = &apos;PROMOTED&apos;
