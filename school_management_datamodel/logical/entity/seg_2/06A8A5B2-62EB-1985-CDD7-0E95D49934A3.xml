@@ -21,11 +21,25 @@
 <shortName>timeslot</shortName>
 <synonym>timeslot</synonym>
 <synonymToDisplay>timeslot</synonymToDisplay>
-<createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="engineerTo" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID" id="19C5362A-CC74-23DD-B586-85E58078922D">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-30 07:13:45 UTC</createdTime>
+<comment><![CDATA[Timeslot ID]]></comment>
+<commentInRDBMS><![CDATA[Timeslot ID]]></commentInRDBMS>
+<notes><![CDATA[Timeslot ID]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="school_code" id="3A8690E3-AE54-978E-E6AF-AF90B782F801">
 <createdBy>leads</createdBy>
 <createdTime>2022-08-20 06:39:31 UTC</createdTime>
@@ -287,6 +301,18 @@
 <attributeRef>16FC1409-E128-DA01-F503-760E833AFB79</attributeRef>
 <attributeRef>911AFD77-D842-74CF-B5E5-BBC85C1FDCC3</attributeRef>
 <attributeRef>A2AF6D6D-B9B3-45F9-62B4-8B0A6E7BBB20</attributeRef>
+</usedAttributes>
+</identifier>
+<identifier id="DE6F2B4A-060A-3256-35A2-1EC1785E32A0" name="timeslot_PK">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-30 07:14:02 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>19C5362A-CC74-23DD-B586-85E58078922D</attributeRef>
 </usedAttributes>
 </identifier>
 </identifiers>

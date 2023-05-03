@@ -226,6 +226,7 @@ BEGIN
                  school_division sdiv
             INNER JOIN std_class_sec scs
             ON ( scs.school_code = sdiv.school_code
+                 AND scs.batch_no# = sdiv.batch_no#
                  AND scs.class_code = sdiv.class_code
                  AND scs.stream_code = sdiv.stream_code )
             INNER JOIN school_term sterm

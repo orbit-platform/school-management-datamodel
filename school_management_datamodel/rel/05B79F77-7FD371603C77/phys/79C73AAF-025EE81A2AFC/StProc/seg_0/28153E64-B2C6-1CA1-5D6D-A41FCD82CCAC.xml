@@ -25,14 +25,14 @@
         p_maximum_rank VARCHAR2
     ) IS
     SELECT
-        func_num_in_words(replace(total_score, 0, 1)) AS score_in_words,
+        func_num_in_words(total_score) AS score_in_words,
         (
             CASE
                 WHEN overall_status = &apos;PASSED&apos;
-                     AND ranking &lt;= p_maximum_rank THEN
-                    func_num_ordinal(ranking)
+                     AND rank_no &lt;= p_maximum_rank THEN
+                    func_num_ordinal(rank_no)
                 ELSE
-                    &apos;NOT APPLICABLE&apos;
+                    &apos;-NA-&apos;
             END
         ) AS ranking
     FROM

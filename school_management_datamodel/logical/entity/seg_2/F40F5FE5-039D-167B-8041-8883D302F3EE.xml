@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="F40F5FE5-039D-167B-8041-8883D302F3EE" name="unsched_timetable">
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_2" id="F40F5FE5-039D-167B-8041-8883D302F3EE" name="daily_school_timetable">
 <createdBy>leads</createdBy>
 <createdTime>2018-10-02 06:29:36 UTC</createdTime>
 <comment><![CDATA[Unscheduled Timetable - can schedule timetable at will]]></comment>
@@ -17,15 +17,115 @@
 <maxVolumes>9999999</maxVolumes>
 <minVolumes>0</minVolumes>
 <normalForm>Third</normalForm>
-<preferredAbbreviation>unsched_timetable</preferredAbbreviation>
-<shortName>unsched_timetable</shortName>
-<synonym>unsched_timetable</synonym>
-<synonymToDisplay>unsched_timetable</synonymToDisplay>
+<preferredAbbreviation>daily_school_timetable</preferredAbbreviation>
+<shortName>daily_school_timetable</shortName>
+<synonym>daily_school_timetable</synonym>
+<synonymToDisplay>daily_school_timetable</synonymToDisplay>
 <createSurrogateKey>true</createSurrogateKey>
 <propertyMap>
 <property name="engineerTo" value=""/>
 </propertyMap>
 <attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="school_code" id="778C398E-28E3-312C-CEA1-9D99122A2929">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-30 07:15:29 UTC</createdTime>
+<comment><![CDATA[School Code]]></comment>
+<commentInRDBMS><![CDATA[School Code]]></commentInRDBMS>
+<generatorID>25984FAC-E232-91EC-0186-8DDD6E1EB48C</generatorID>
+<notes><![CDATA[School Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>F01AB060-8839-F920-4BBB-1D3C004E16ED</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>BCA2C68B-8CA1-F169-8432-04D84703CF46</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="batch_no#" id="36A90827-AC08-793B-FDF0-0B8CAF2C8438">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-30 07:17:12 UTC</createdTime>
+<comment><![CDATA[Batch Number expressed in date]]></comment>
+<commentInRDBMS><![CDATA[Batch Number expressed in date]]></commentInRDBMS>
+<generatorID>7BDA699D-3F84-FC4A-712F-D42BA2FA3F23</generatorID>
+<notes><![CDATA[Batch Number expressed in date]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>941B8596-FF99-A7A7-83C7-3538B79D0948</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<domain>57E4E726-0278-DC93-9196-ABB2B37DFF18</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="class_code" id="FA8D1E9D-0281-5B7D-24CE-DA23F79BEF1D">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-30 07:17:37 UTC</createdTime>
+<comment><![CDATA[Class Code]]></comment>
+<commentInRDBMS><![CDATA[Class Code]]></commentInRDBMS>
+<generatorID>4C2D08C6-E05F-3938-6BFF-549FFAC69B32</generatorID>
+<notes><![CDATA[Class Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>BFF0C8F0-0EB7-6267-1D50-087F47C02E0F</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>411A7036-AE28-9018-332B-691EBC096EF9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="stream_code" id="08B099B2-24E3-22EA-044D-E7EA2FDEEEFD">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-30 07:18:25 UTC</createdTime>
+<comment><![CDATA[Stream Code]]></comment>
+<commentInRDBMS><![CDATA[Stream Code]]></commentInRDBMS>
+<generatorID>3EBBDABF-778B-DA12-5B3C-BFA29F41DDF7</generatorID>
+<notes><![CDATA[Stream Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>F0332F80-9C12-832E-F763-D90675B98C5A</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>411A7036-AE28-9018-332B-691EBC096EF9</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="section_code" id="5FE31ED9-1EC1-FC5C-C52C-2727D1CE4A48">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-30 07:18:53 UTC</createdTime>
+<comment><![CDATA[Section Code]]></comment>
+<commentInRDBMS><![CDATA[Section Code]]></commentInRDBMS>
+<generatorID>BA984D61-F234-D209-4122-405AD1642F69</generatorID>
+<notes><![CDATA[Section Code]]></notes>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>E6177CE7-13E6-59F2-E144-F9478D7D2ECA</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<domain>2A71D054-7E75-6045-FAD2-D9E963D095F6</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="day_no#" id="A22392FE-1BC6-C53B-2621-8CBB9DA439F8">
+<createdBy>leads</createdBy>
+<createdTime>2023-04-30 07:20:41 UTC</createdTime>
+<comment><![CDATA[Day of the Week in Day no. - Day 1 /Day 2/Day 3/Day 4/Day 5/Day 6/Day 7]]></comment>
+<generatorID>03BD1F2B-1ABE-FB8B-A0E8-0BA9A6696842</generatorID>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<engineerTo>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
+</engineerTo>
+<referedAttribute>FAF55B15-8235-381A-D86D-047D24CFD498</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
 <Attribute name="assigned_date" id="5789323D-08C7-C60A-2335-14981313AD6C">
 <createdBy>leads</createdBy>
 <createdTime>2018-10-02 10:23:23 UTC</createdTime>
@@ -66,23 +166,6 @@
 <property name="engineerTo" value=""/>
 </propertyMap>
 </Attribute>
-<Attribute name="comments" id="3CEC8CB9-A8C5-DF2C-906B-4EFCEA19913F">
-<createdBy>leads</createdBy>
-<createdTime>2018-10-02 06:34:45 UTC</createdTime>
-<ownerDesignName>school_management_datamodel</ownerDesignName>
-<engineerTo>
-<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
-</engineerTo>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<defaultValue>793001</defaultValue>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<propertyMap>
-<property name="engineerTo" value=""/>
-</propertyMap>
-</Attribute>
 <Attribute name="employee_id" id="14B51F4F-611B-C95B-B66D-F4A97F5241DF">
 <createdBy>leads</createdBy>
 <createdTime>2020-09-08 05:41:04 UTC</createdTime>
@@ -118,24 +201,22 @@
 <domain>35AF6BA5-100E-363B-D4F8-59F7EA81EED9</domain>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
-</attributes>
-<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
-<identifier id="2761DEF1-444A-30EB-56E2-D9F18D18CA36" name="unsched_timetable_un">
+<Attribute name="timeslot_ID" id="E7100C24-EB60-90AC-5BC5-4F244101DC18">
 <createdBy>leads</createdBy>
-<createdTime>2019-01-02 12:11:10 UTC</createdTime>
+<createdTime>2023-04-30 07:16:19 UTC</createdTime>
+<comment><![CDATA[Timeslot ID]]></comment>
+<commentInRDBMS><![CDATA[Timeslot ID]]></commentInRDBMS>
+<generatorID>CA966D81-67B3-46F4-3111-DA8FCBBDD3A8</generatorID>
+<notes><![CDATA[Timeslot ID]]></notes>
 <ownerDesignName>school_management_datamodel</ownerDesignName>
-<shouldEngineer>false</shouldEngineer>
 <engineerTo>
-<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="false"/>
+<item key="05B79F77-35A9-E05C-14E8-7FD371603C77" value="true"/>
 </engineerTo>
-<pk>true</pk>
-<newElementsIDs>CA966D81-67B3-46F4-3111-DA8FCBBDD3A8,5789323D-08C7-C60A-2335-14981313AD6C</newElementsIDs>
-<propertyMap>
-<property name="engineerTo" value=""/>
-</propertyMap>
-<usedAttributes>
-<attributeRef>5789323D-08C7-C60A-2335-14981313AD6C</attributeRef>
-</usedAttributes>
-</identifier>
-</identifiers>
+<referedAttribute>19C5362A-CC74-23DD-B586-85E58078922D</referedAttribute>
+<use>0</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<domain>B002B7FD-9D40-C06E-8624-3E7A2074410C</domain>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
 </Entity>

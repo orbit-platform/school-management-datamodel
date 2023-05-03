@@ -1,0 +1,70 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<StoredProcedureOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.StoredProcedureOraclev10g" name="proc_school_batch" directorySegmentName="seg_0" id="89C79E7A-4234-D83A-B26E-33DF5211D787">
+<createdBy>leads</createdBy>
+<createdTime>2023-05-03 05:32:47 UTC</createdTime>
+<ownerDesignName>school_management_datamodel</ownerDesignName>
+<source>CREATE OR REPLACE PROCEDURE proc_school_batch AS
+    ---variable
+    v_exist NUMBER := 0;
+    
+    ---cursor new-school-batch
+    CURSOR cur_new_school_batch IS
+    SELECT
+        school_code,
+        batch_no#,
+        effective_from,
+        effective_upto
+    FROM
+        ( SELECT
+              school.code AS school_code,
+              wd.batch_year AS batch_no#,
+              add_months(wd.batch_year, 1) AS effective_from,
+              add_months(wd.batch_year, 12) + 30 AS effective_upto
+          FROM
+                   ( SELECT
+                      trunc(TO_DATE(to_char(sysdate, &apos;YYYY&apos;) + level + 1,
+              &apos;YYYY&apos;),
+                            &apos;yyyy&apos;) AS batch_year
+                  FROM
+                      dual
+                CONNECT BY
+                    level &lt;= 100
+              ) wd
+              CROSS JOIN school
+        );
+        
+    ---cursor school-batch
+    CURSOR cur_school_batch (
+        p_school_code VARCHAR2,
+        p_batch_no    DATE
+    ) IS
+    SELECT
+        COUNT(1)
+    FROM
+        school_batch
+    WHERE
+            school_code = p_school_code
+        AND batch_no# = p_batch_no
+    HAVING
+        COUNT(1) &gt; 0;
+BEGIN
+    FOR i IN cur_new_school_batch LOOP
+        OPEN cur_school_batch(p_school_code =&gt; i.school_code, p_batch_no =&gt; i.batch_no#);
+        FETCH cur_school_batch INTO v_exist;
+        IF cur_school_batch%notfound THEN
+            INSERT INTO school_batch (
+                school_code,
+                batch_no#,
+                effective_from,
+                effective_upto
+            ) VALUES (
+                i.school_code,
+                i.batch_no#,
+                i.effective_from,
+                i.effective_upto
+            );
+        END IF;
+        CLOSE cur_school_batch;
+    END LOOP;
+END;</source>
+</StoredProcedureOraclev10g>

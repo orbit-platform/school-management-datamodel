@@ -9,92 +9,198 @@
 <refreshType>FORCE</refreshType>
 <startDate>sysdate</startDate>
 <subquery><![CDATA[SELECT
-        school_code,
-        batch_no,
-        class_code,
-        stream_code,
-        section_code,
-        term_code,
-        student_id,
-        min_mark,
-        max_mark,
-        total_score,
-        overall_status,
-        percentage,
-        ranking
+        wd.school_code,
+        wd.batch_no,
+        wd.class_code,
+        wd.stream_code,
+        wd.term_code,
+        wd.student_id,
+        wd.overall_status,
+        RANK()
+        OVER(PARTITION BY wd.school_code, wd.batch_no, wd.class_code, wd.stream_code, wd.term_code
+             ORDER BY
+                     CASE
+                         WHEN wd.overall_status = 'SIMPLE_PASSED' THEN
+                             2
+                         WHEN wd.overall_status = 'FAILED'        THEN
+                             3
+                         ELSE
+                             1
+                     END
+                 ASC,
+                     percentage DESC NULLS LAST
+        ) AS rank_no,
+        std.first_name || nvl2(std.middle_name, ' ' || std.middle_name || ' ', ' ') || std.last_name AS student_name,
+        wd.total_score,
+        wd.score,
+        wd.percentage,
+        (
+            CASE
+                WHEN wd.overall_status = 'FAILED'        THEN
+                    'FAILED'
+                WHEN wd.overall_status = 'SIMPLE_PASSED' THEN
+                    'SIMPLE PASSED'
+                ELSE
+                    sdiv.division_name
+            END
+        ) AS division_name
     FROM
-        ( SELECT
+             ( SELECT
               school_code,
               batch_no,
               class_code,
               stream_code,
-              section_code,
               term_code,
               student_id,
-              min_mark,
-              max_mark,
               total_score,
-              overall_status,
+              score,
               percentage,
-              RANK()
-              OVER(PARTITION BY school_code, batch_no, class_code, stream_code, section_code,
-                                term_code
+              overall_status,
+              ROW_NUMBER()
+              OVER(PARTITION BY school_code, batch_no, class_code, stream_code, term_code,
+                                student_id
                    ORDER BY
-                       CASE
-                           WHEN overall_status = 'PASSED' THEN
-                               1
-                           WHEN overall_status = 'FAILED' THEN
-                               2
-                           ELSE
-                               3
-                       END, percentage DESC NULLS LAST
-              ) AS ranking
+                       (
+                           CASE
+                               WHEN overall_status = 'FAILED'        THEN
+                                   1
+                               WHEN overall_status = 'SIMPLE_PASSED' THEN
+                                   2
+                               WHEN overall_status = 'PASSED'        THEN
+                                   3
+                           END
+                       )
+              ) AS my_rank
           FROM
               ( SELECT
-                        arc.school_code,
-                        arc.batch_no# AS batch_no,
-                        arc.class_code,
-                        arc.stream_code,
-                        arc.section_code,
-                        arc.term_code,
-                        arc.student_id,
-                        SUM(nvl(arc.max_main, 0)) + SUM(nvl(arc.max_internal, 0)) AS max_mark,
-                        SUM(nvl(arc.min_main, 0)) + SUM(nvl(arc.min_internal, 0)) AS min_mark,
-                        round(SUM(nvl(arc.score_main, 0)) + SUM(nvl(arc.score_internal, 0)),
-                              0) AS total_score,
-                        sop.overall_status,
-                        round((SUM(nvl(arc.score_main, 0)) + SUM(nvl(arc.score_internal, 0))) /(SUM(nvl(arc.max_main, 0)) + SUM(nvl(arc.max_internal, 0))) * 100,
-                              2) AS percentage
-                    FROM
-                             arc_std_score arc
-                        INNER JOIN mv_std_overall_passed sop
-                        ON ( sop.school_code = arc.school_code
-                             AND sop.batch_no = arc.batch_no#
-                             AND sop.class_code = arc.class_code
-                             AND sop.stream_code = arc.stream_code
-                             AND sop.term_code = arc.term_code
-                             AND sop.student_id = arc.student_id )
-                  WHERE
-                      arc.ranking_type = 'YES'
-                GROUP BY
-                    arc.school_code,
-                    arc.batch_no#,
-                    arc.class_code,
-                    arc.stream_code,
-                    arc.section_code,
-                    arc.term_code,
-                    arc.student_id,
-                    sop.overall_status
+                    school_code,
+                    batch_no,
+                    class_code,
+                    stream_code,
+                    term_code,
+                    student_id,
+                    round(score) AS total_score,
+                    round(score) || '/' || maximum AS score,
+                    round(score / maximum * 100, 1) AS percentage,
+                    CASE
+                        WHEN status = 'PASSED' THEN
+                            'PASSED'
+                        WHEN status = 'FAILED' THEN
+                            'FAILED'
+                        WHEN status = 'SIMPLE_PASSED'
+                             AND my_count = 1 THEN
+                            'SIMPLE_PASSED'
+                        WHEN status = 'SIMPLE_PASSED'
+                             AND my_count > 1 THEN
+                            'FAILED'
+                    END AS overall_status
+                FROM
+                    ( SELECT
+                            school_code,
+                            batch_no# AS batch_no,
+                            class_code,
+                            stream_code,
+                            term_code,
+                            student_id,
+                            status,
+                            score,
+                            maximum,
+                            COUNT(*) AS my_count
+                        FROM
+                            ( SELECT
+                                  wd.school_code,
+                                  wd.batch_no#,
+                                  wd.class_code,
+                                  wd.stream_code,
+                                  wd.term_code,
+                                  wd.student_id,
+                                  wd.super_code,
+                                  SUM(wd.score)
+                                  OVER(PARTITION BY wd.school_code, wd.batch_no#, wd.class_code, wd.stream_code, wd.term_code,
+                                                    wd.student_id) AS score,
+                                  SUM(wd.maximum)
+                                  OVER(PARTITION BY wd.school_code, wd.batch_no#, wd.class_code, wd.stream_code, wd.term_code,
+                                                    wd.student_id) AS maximum,
+                                  (
+                                      CASE
+                                          WHEN wd.status = 'PASSED' THEN
+                                              'PASSED'
+                                          WHEN wd.status = 'FAILED'
+                                               AND sp.super_code IS NOT NULL THEN
+                                              'SIMPLE_PASSED'
+                                          WHEN wd.status = 'FAILED'
+                                               AND sp.super_code IS NULL THEN
+                                              'FAILED'
+                                          ELSE
+                                              'FAILED'
+                                      END
+                                  ) AS status
+                              FROM
+                                  ( SELECT
+                                            arc.school_code,
+                                            arc.batch_no#,
+                                            arc.class_code,
+                                            arc.stream_code,
+                                            arc.term_code,
+                                            arc.student_id,
+                                            arc.super_code,
+                                            SUM(nvl(arc.score_main, 0) + nvl(arc.score_internal, 0)) AS score,
+                                            SUM(nvl(arc.max_main, 0) + nvl(arc.max_internal, 0)) AS maximum,
+                                            (
+                                                CASE
+                                                    WHEN SUM(round(nvl(arc.min_main, 0))) > SUM(round(nvl(arc.score_main, 0)))                                                                                         THEN
+                                                        'FAILED'
+                                                    WHEN ( SUM(round(nvl(arc.min_main, 0))) + SUM(round(nvl(arc.min_internal, 0))) ) > ( SUM(round(nvl(arc.score_main, 0))) + SUM(round(nvl(arc.score_internal, 0))) ) THEN
+                                                        'FAILED'
+                                                    ELSE
+                                                        'PASSED'
+                                                END
+                                            ) AS status
+                                        FROM
+                                            arc_std_score arc
+                                      WHERE
+                                          arc.ranking_type = 'YES'
+                                    GROUP BY
+                                        arc.school_code,
+                                        arc.batch_no#,
+                                        arc.class_code,
+                                        arc.stream_code,
+                                        arc.term_code,
+                                        arc.student_id,
+                                        arc.super_code
+                                  ) wd
+                                  LEFT OUTER JOIN simple_passed sp
+                                  ON ( sp.school_code = wd.school_code
+                                       AND sp.batch_no# = wd.batch_no#
+                                       AND sp.term_code = wd.term_code
+                                       AND sp.stream_code = wd.stream_code
+                                       AND sp.class_code = wd.class_code
+                                       AND sp.super_code = wd.super_code
+                                       AND sp.status_name = 'ACTIVE' )
+                            )
+                      GROUP BY
+                          school_code,
+                          batch_no#,
+                          class_code,
+                          stream_code,
+                          term_code,
+                          student_id,
+                          status,
+                          score,
+                          maximum
+                    )
               )
-        )
-    ORDER BY
-        school_code,
-        batch_no,
-        class_code,
-        stream_code,
-        section_code,
-        term_code,
-        ranking;]]></subquery>
+        ) wd
+        INNER JOIN school_division sdiv
+        ON ( sdiv.school_code = wd.school_code
+             AND sdiv.batch_no# = wd.batch_no
+             AND sdiv.class_code = wd.class_code
+             AND sdiv.stream_code = wd.stream_code
+             AND wd.percentage BETWEEN sdiv.range_from AND sdiv.range_upto )
+        INNER JOIN student std
+        ON ( std.id = wd.student_id )
+    WHERE
+        my_rank = 1]]></subquery>
 <subqueryNeedsMigration>false</subqueryNeedsMigration>
 <with>ROWID</with>
 </SnapshotOraclev11g>
